@@ -630,3 +630,60 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* GET A QUOTE */
+
+.quote-section {
+    background: #f5f7fa;
+    text-align: center;
+}
+
+.quote-form {
+    max-width: 650px;
+    margin: 35px auto 0;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+.quote-form textarea {
+    resize: vertical;
+}
+
+.quote-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #25D366;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.quote-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
