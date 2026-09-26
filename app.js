@@ -55,3 +55,32 @@ function sendQuote() {
 
     window.open(whatsappURL, "_blank");
 }
+/* DARK / LIGHT MODE */
+
+function toggleTheme() {
+    const body = document.body;
+    const button = document.getElementById("themeToggle");
+
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        button.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+    } else {
+        button.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("theme");
+    const button = document.getElementById("themeToggle");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+
+        if (button) {
+            button.textContent = "☀️ Light Mode";
+        }
+    }
+});
