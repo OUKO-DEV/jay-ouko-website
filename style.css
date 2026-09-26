@@ -953,3 +953,59 @@ nav a[href="#quote"]:hover {
         font-size: 25px;
     }
 }
+/* QUICK SERVICES */
+
+.quick-services {
+    background: #111827;
+    padding: 45px 25px;
+}
+
+.quick-services-content {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.quick-service {
+    background: #1f2937;
+    color: white;
+    padding: 25px 20px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid #374151;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quick-service:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.quick-service > div {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.quick-service h3 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.quick-service p {
+    color: #d1d5db;
+    line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+    .quick-services-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .quick-services-content {
+        grid-template-columns: 1fr;
+    }
+}
