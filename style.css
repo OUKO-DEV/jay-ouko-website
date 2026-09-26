@@ -1166,3 +1166,43 @@ body.dark-mode .portfolio-btn {
         gap: 20px !important;
     }
 }
+/* SIMPLE PORTFOLIO LAYOUT */
+
+#portfolio .portfolio-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 30px auto !important;
+}
+
+#portfolio .portfolio-card {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 0 25px 0 !important;
+    padding: 30px !important;
+    text-align: center !important;
+    background: white !important;
+    border-radius: 18px !important;
+    border: 1px solid #ddd !important;
+}
+
+#portfolio .portfolio-card h3 {
+    margin-bottom: 12px !important;
+}
+
+#portfolio .portfolio-card p {
+    line-height: 1.6 !important;
+}
+
+#portfolio .portfolio-tags {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 15px 0 20px !important;
+}
+
+#portfolio .portfolio-btn {
+    display: inline-block !important;
+}
