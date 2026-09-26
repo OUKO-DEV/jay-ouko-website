@@ -556,7 +556,75 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+/* DIGITAL SKILLS */
 
+.skills-section {
+    background: #111827;
+    color: white;
+    text-align: center;
+}
+
+.skills-section h2 {
+    color: white;
+}
+
+.skills-section > p {
+    color: #d1d5db;
+}
+
+.skills-grid {
+    max-width: 950px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.skill-card {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 10px;
+    background: #374151;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: #38bdf8;
+    border-radius: 20px;
+    animation: skillGrow 1.5s ease-out;
+}
+
+@keyframes skillGrow {
+    from {
+        width: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
 @media (max-width: 600px) {
     .trust-grid {
         grid-template-columns: 1fr;
