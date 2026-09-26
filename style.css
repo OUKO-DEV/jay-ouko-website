@@ -464,3 +464,49 @@ footer {
         transform: none;
     }
 }
+ /* PAYMENT SECTION */
+
+.payment-section {
+    background: #ffffff;
+    text-align: center;
+}
+
+.payment-card {
+    max-width: 550px;
+    margin: 40px auto 0;
+    padding: 40px 30px;
+    background: #f5f7fa;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.payment-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.payment-card h3 {
+    font-size: 28px;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+.payment-card p {
+    margin-bottom: 15px;
+}
+
+.payment-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 13px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.payment-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
