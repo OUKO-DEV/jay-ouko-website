@@ -819,3 +819,17 @@ body.dark-mode .quote-form textarea {
     color: white;
     border-color: #4b5563;
 }
+/* GET A QUOTE NAVIGATION */
+
+nav a[href="#quote"] {
+    background: #38bdf8;
+    color: #111827 !important;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+nav a[href="#quote"]:hover {
+    background: #ffffff;
+    color: #111827 !important;
+}
