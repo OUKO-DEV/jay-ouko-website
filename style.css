@@ -1127,3 +1127,42 @@ body.dark-mode .portfolio-btn {
     background: white;
     color: #111827;
 }
+/* ===== PORTFOLIO GRID FIX ===== */
+
+#portfolio .portfolio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 35px auto 0 !important;
+}
+
+#portfolio .portfolio-card {
+    width: auto !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 30px !important;
+}
+
+#portfolio .portfolio-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    #portfolio .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+    #portfolio .portfolio-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
