@@ -751,3 +751,71 @@ footer {
         max-width: 600px;
     }
 }
+/* DARK / LIGHT MODE */
+
+.theme-toggle {
+    border: none;
+    background: #38bdf8;
+    color: #111827;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+body.dark-mode .profile-section,
+body.dark-mode .payment-section,
+body.dark-mode .quote-section {
+    background: #0f172a;
+}
+
+body.dark-mode .pricing-section,
+body.dark-mode .trust-section {
+    background: #111827;
+}
+
+body.dark-mode .profile-text h2,
+body.dark-mode .profile-text p,
+body.dark-mode .section p,
+body.dark-mode .pricing-card p,
+body.dark-mode .pricing-card li,
+body.dark-mode .trust-card p {
+    color: #e5e7eb;
+}
+
+body.dark-mode .pricing-card,
+body.dark-mode .trust-card,
+body.dark-mode .payment-card,
+body.dark-mode .quote-form,
+body.dark-mode .portfolio-card {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+body.dark-mode .pricing-card h3,
+body.dark-mode .trust-card h3,
+body.dark-mode .payment-card h3,
+body.dark-mode .portfolio-card h3 {
+    color: #38bdf8;
+}
+
+body.dark-mode .quote-form input,
+body.dark-mode .quote-form select,
+body.dark-mode .quote-form textarea {
+    background: #111827;
+    color: white;
+    border-color: #4b5563;
+}
