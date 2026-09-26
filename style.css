@@ -253,3 +253,59 @@ footer {
         font-size: 14px;
     }
 }
+/* Professional Profile */
+.profile-section {
+    padding: 70px 25px;
+    background: white;
+}
+
+.profile-content {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #111827;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.profile-text {
+    max-width: 650px;
+}
+
+.profile-label {
+    color: #1e3a8a;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.profile-text h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.profile-text p {
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 700px) {
+    .profile-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
