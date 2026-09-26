@@ -1,172 +1,900 @@
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section portfolio-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h2>My Portfolio</h2>
+    <title>Jay Ouko | Freelancer & Digital Creator</title>
 
-    <p>
-        A selection of digital projects and services I have worked on.
-    </p>
+    <meta name="description"
+          content="Jay Ouko - Freelancer, digital creator and web developer offering websites, Canva design, content writing, data entry and digital services.">
 
-    <div class="portfolio-grid">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <!-- Project 1 -->
-        <div class="portfolio-card">
+<body>
 
-            <div class="portfolio-icon">🌐</div>
+    <!-- NAVIGATION -->
+    <header>
+        <nav>
+            <div class="logo">JAY OUKO</div>
 
-            <h3>Jay Ouko Professional Website</h3>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#tools">Tools</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#payment">Payment</a>
+                <a href="#quote">Get a Quote</a>
+                <a href="#contact">Contact</a>
+
+                <button id="themeToggle"
+                        class="theme-toggle"
+                        onclick="toggleTheme()">
+                    🌙 Dark Mode
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+
+            <p class="profile-label">WELCOME TO MY WEBSITE</p>
+
+            <h1>Hi, I'm Jay Ouko</h1>
+
+            <h2>Freelancer • Digital Creator • Web Developer</h2>
 
             <p>
-                A responsive personal freelancer website showcasing
-                my services, skills, pricing, contact information
-                and online presence.
+                I create websites, digital content and online solutions
+                for individuals, creators and businesses.
             </p>
 
-            <div class="portfolio-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
+            <div class="hero-buttons">
+
+                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20hire%20you."
+                   class="btn whatsapp"
+                   target="_blank">
+                    💬 Hire Me on WhatsApp
+                </a>
+
+                <a href="#quote" class="btn hero-quote-btn">
+                    🚀 Get a Free Quote
+                </a>
+
             </div>
 
-            <a href="https://ouko-dev.github.io/jay-ouko-website/"
-               target="_blank"
-               class="portfolio-btn">
-                🔗 View Project
+        </div>
+    </section>
+
+
+    <!-- QUICK SERVICES -->
+    <section class="quick-services">
+
+        <div class="quick-services-content">
+
+            <div class="quick-service">
+                <div>🌐</div>
+                <h3>Web Development</h3>
+                <p>Professional websites for individuals and businesses.</p>
+            </div>
+
+            <div class="quick-service">
+                <div>🎨</div>
+                <h3>Canva Design</h3>
+                <p>Posters, social media graphics and digital designs.</p>
+            </div>
+
+            <div class="quick-service">
+                <div>✍️</div>
+                <h3>Content Writing</h3>
+                <p>Business descriptions, captions and online content.</p>
+            </div>
+
+            <div class="quick-service">
+                <div>📊</div>
+                <h3>Data Entry</h3>
+                <p>Accurate data entry and online research services.</p>
+            </div>
+
+            <div class="quick-service">
+                <div>📱</div>
+                <h3>Social Media</h3>
+                <p>Digital content and social media support.</p>
+            </div>
+
+            <div class="quick-service">
+                <div>📢</div>
+                <h3>Digital Marketing</h3>
+                <p>Helping brands build their online presence.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section class="profile-section">
+
+        <div class="profile-content">
+
+            <div class="profile-avatar">
+                <img src="jayouko.jpg" alt="Jay Ouko">
+            </div>
+
+            <div class="profile-text">
+
+                <p class="profile-label">JAY OUKO</p>
+
+                <h2>Freelancer & Digital Creator</h2>
+
+                <p>
+                    I create websites, digital content and online solutions
+                    that help individuals and businesses build a stronger
+                    presence online.
+                </p>
+
+                <a href="#contact" class="btn">
+                    Let's Work Together
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+
+        <h2>About Me</h2>
+
+        <p>
+            I'm Jay Ouko, a freelancer and digital creator focused on
+            helping individuals, creators and small businesses establish
+            a professional online presence.
+        </p>
+
+        <p>
+            I work on websites, digital content, Canva designs,
+            content writing, data entry, online research and social media
+            projects.
+        </p>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+
+        <h2>My Services</h2>
+
+        <p>
+            Digital services designed for individuals, creators and businesses.
+        </p>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <h3>🌐 Website Development</h3>
+                <p>
+                    Professional and mobile-friendly websites for
+                    personal brands and businesses.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <h3>🎨 Canva Design</h3>
+                <p>
+                    Posters, social media graphics, promotional designs
+                    and digital content.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <h3>✍️ Content Writing</h3>
+                <p>
+                    Business descriptions, social media captions and
+                    online content.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <h3>📊 Data Entry</h3>
+                <p>
+                    Data entry, online research and digital administrative
+                    support.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <h3>📱 Social Media</h3>
+                <p>
+                    Digital content and social media support for creators
+                    and businesses.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <h3>📢 Digital Marketing</h3>
+                <p>
+                    Helping brands develop and improve their online presence.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOOLS -->
+    <section id="tools" class="section tools-section">
+
+        <h2>Tools & Platforms</h2>
+
+        <p>
+            Platforms and creative tools I use for digital projects.
+        </p>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">📢</div>
+
+                <h3>Twiva</h3>
+
+                <p>
+                    Influencer marketing and digital campaign platform
+                    for connecting brands with creators.
+                </p>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🎨</div>
+
+                <h3>Canva</h3>
+
+                <p>
+                    Graphic design and content creation for social media,
+                    posters, logos and digital marketing materials.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section">
+
+        <h2>My Portfolio</h2>
+
+        <p>
+            Here are some of my digital projects and services.
+        </p>
+
+        <div class="portfolio-grid">
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-icon">🌐</div>
+
+                <h3>Jay Ouko Website</h3>
+
+                <p>
+                    A professional personal portfolio website built to
+                    showcase my skills, services and online presence.
+                </p>
+
+                <a href="https://ouko-dev.github.io/jay-ouko-website/"
+                   target="_blank">
+                    View Project
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-icon">🛍️</div>
+
+                <h3>Gift Hub Marketplace</h3>
+
+                <p>
+                    A marketplace concept designed to connect customers
+                    with products and online sellers.
+                </p>
+
+                <a href="https://ouko-dev.github.io/jay-ouko-website/"
+                   target="_blank">
+                    View Project
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-icon">📱</div>
+
+                <h3>Social Media Projects</h3>
+
+                <p>
+                    Digital content and social media projects created
+                    for online brands and personal creators.
+                </p>
+
+                <a href="https://www.instagram.com/emmanueljayouko/"
+                   target="_blank">
+                    View Socials
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRICING -->
+    <section id="pricing" class="section pricing-section">
+
+        <h2>Services & Pricing</h2>
+
+        <p>
+            Affordable digital services for individuals, creators
+            and small businesses.
+        </p>
+
+        <div class="pricing-grid">
+
+            <div class="pricing-card">
+
+                <h3>Basic Website</h3>
+
+                <div class="price">KSh 3,000</div>
+
+                <ul>
+                    <li>1–3 pages</li>
+                    <li>Mobile-friendly design</li>
+                    <li>Contact information</li>
+                    <li>Social media links</li>
+                    <li>Basic deployment</li>
+                </ul>
+
+                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20the%20Basic%20Website%20package."
+                   class="price-btn"
+                   target="_blank">
+                    Hire Me
+                </a>
+
+            </div>
+
+
+            <div class="pricing-card featured">
+
+                <div class="popular">POPULAR</div>
+
+                <h3>Professional Website</h3>
+
+                <div class="price">KSh 5,000</div>
+
+                <ul>
+                    <li>Up to 5 pages</li>
+                    <li>Professional design</li>
+                    <li>Mobile responsive</li>
+                    <li>WhatsApp integration</li>
+                    <li>Social media integration</li>
+                    <li>GitHub Pages deployment</li>
+                </ul>
+
+                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20the%20Professional%20Website%20package."
+                   class="price-btn"
+                   target="_blank">
+                    Hire Me
+                </a>
+
+            </div>
+
+
+            <div class="pricing-card">
+
+                <h3>Content & Data</h3>
+
+                <div class="price">From KSh 1,000</div>
+
+                <ul>
+                    <li>Content writing</li>
+                    <li>Business descriptions</li>
+                    <li>Social media captions</li>
+                    <li>Data entry</li>
+                    <li>Online research</li>
+                </ul>
+
+                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20your%20Content%20and%20Data%20services."
+                   class="price-btn"
+                   target="_blank">
+                    Hire Me
+                </a>
+
+            </div>
+
+        </div>
+
+        <p class="pricing-note">
+            💬 Custom projects are available. Contact me on WhatsApp
+            for a quotation.
+        </p>
+
+    </section>
+
+
+    <!-- PAYMENT -->
+    <section id="payment" class="section payment-section">
+
+        <h2>Make a Payment</h2>
+
+        <p>
+            Ready to work with me? You can make your payment through M-PESA.
+        </p>
+
+        <div class="payment-card">
+
+            <div class="payment-icon">📱</div>
+
+            <h3>M-PESA</h3>
+
+            <p>
+                <strong>Payment Number:</strong>
+                +254142617814
+            </p>
+
+            <p>
+                Please contact me on WhatsApp before making payment
+                so I can confirm your service and amount.
+            </p>
+
+            <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20make%20a%20payment%20for%20your%20services."
+               class="payment-btn"
+               target="_blank">
+                💬 Confirm Payment on WhatsApp
             </a>
 
         </div>
 
+    </section>
 
-        <!-- Project 2 -->
-        <div class="portfolio-card">
 
-            <div class="portfolio-icon">🛍️</div>
+    <!-- WHY WORK WITH ME -->
+    <section class="section trust-section">
 
-            <h3>Gift Hub Marketplace</h3>
+        <h2>Why Work With Me?</h2>
 
-            <p>
-                A marketplace website concept designed to connect
-                customers with products and online sellers.
-            </p>
+        <p>
+            I provide affordable digital services with clear communication
+            and a focus on delivering quality work.
+        </p>
 
-            <div class="portfolio-tags">
-                <span>Website</span>
-                <span>Marketplace</span>
-                <span>UI Design</span>
+        <div class="trust-grid">
+
+            <div class="trust-card">
+                <div class="trust-icon">💼</div>
+                <h3>Professional</h3>
+                <p>
+                    Clean and professional work for individuals and businesses.
+                </p>
             </div>
 
-            <a href="https://ouko-dev.github.io/jay-ouko-website/"
-               target="_blank"
-               class="portfolio-btn">
-                🔗 View Project
-            </a>
+            <div class="trust-card">
+                <div class="trust-icon">⚡</div>
+                <h3>Fast Response</h3>
+                <p>
+                    Quick communication through WhatsApp and social media.
+                </p>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">💰</div>
+                <h3>Affordable</h3>
+                <p>
+                    Flexible pricing suitable for individuals and
+                    small businesses.
+                </p>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>
+                    Websites designed to work well on phones,
+                    tablets and computers.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section class="section skills-section">
+
+        <h2>My Digital Skills</h2>
+
+        <p>
+            Skills I use to help individuals, creators and businesses
+            grow online.
+        </p>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>🌐 Web Development</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>🎨 Canva Design</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>✍️ Content Writing</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>📊 Data Entry</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>📱 Social Media</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-top">
+                    <span>📢 Digital Marketing</span>
+                    <span>80%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="section process-section">
+
+        <h2>How It Works</h2>
+
+        <p>
+            Getting started is simple. Here's how we'll work together.
+        </p>
+
+        <div class="process-grid">
+
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <div class="process-icon">💬</div>
+
+                <h3>Contact Me</h3>
+
+                <p>
+                    Send me a WhatsApp message or submit a quote request.
+                </p>
+            </div>
+
+
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <div class="process-icon">📝</div>
+
+                <h3>Discuss Your Project</h3>
+
+                <p>
+                    We discuss your requirements, timeline and budget.
+                </p>
+            </div>
+
+
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <div class="process-icon">💻</div>
+
+                <h3>I Do the Work</h3>
+
+                <p>
+                    I work on your project and keep you updated on progress.
+                </p>
+            </div>
+
+
+            <div class="process-card">
+                <div class="process-number">04</div>
+                <div class="process-icon">🎉</div>
+
+                <h3>Project Delivered</h3>
+
+                <p>
+                    You receive the completed work ready for use.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GET A QUOTE -->
+    <section id="quote" class="section quote-section">
+
+        <h2>Get a Free Quote</h2>
+
+        <p>
+            Tell me what you need and I'll get back to you.
+        </p>
+
+        <div class="quote-form">
+
+            <input type="text"
+                   id="quoteName"
+                   placeholder="Your Name">
+
+            <input type="email"
+                   id="quoteEmail"
+                   placeholder="Your Email">
+
+            <select id="quoteService">
+
+                <option value="">
+                    Select a Service
+                </option>
+
+                <option>Basic Website</option>
+                <option>Professional Website</option>
+                <option>Content Writing</option>
+                <option>Data Entry</option>
+                <option>Canva Design</option>
+                <option>Social Media Services</option>
+                <option>Other</option>
+
+            </select>
+
+
+            <select id="quoteBudget">
+
+                <option value="">
+                    Select Your Budget
+                </option>
+
+                <option>KSh 1,000 - 3,000</option>
+                <option>KSh 3,000 - 5,000</option>
+                <option>KSh 5,000 - 10,000</option>
+                <option>Above KSh 10,000</option>
+
+            </select>
+
+
+            <textarea id="quoteMessage"
+                      rows="5"
+                      placeholder="Describe your project"></textarea>
+
+
+            <button type="button"
+                    class="quote-btn"
+                    onclick="sendQuote()">
+                📱 Send Quote Request
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CLIENT FEEDBACK -->
+    <section class="section testimonials-section">
+
+        <h2>Client Feedback</h2>
+
+        <p>
+            Feedback from clients will appear here as I complete projects.
+        </p>
+
+        <div class="testimonials-grid">
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Your feedback could appear here after we complete
+                    a project together.”
+                </p>
+
+                <h3>Future Client</h3>
+
+                <span>Client</span>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “I value clear communication, quality work and
+                    customer satisfaction.”
+                </p>
+
+                <h3>Future Client</h3>
+
+                <span>Client</span>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Real client reviews will be added here with permission.”
+                </p>
+
+                <h3>Future Client</h3>
+
+                <span>Client</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact-section">
+
+        <h2>Contact Me</h2>
+
+        <p>
+            Ready to start a project? Get in touch with me.
+        </p>
+
+        <div class="contact-details">
+
+            <p>
+                📧
+                <strong>Email:</strong>
+                <a href="mailto:emmanuelouko21@gmail.com">
+                    emmanuelouko21@gmail.com
+                </a>
+            </p>
+
+            <p>
+                📱
+                <strong>Phone:</strong>
+                <a href="tel:+254142617814">
+                    +254142617814
+                </a>
+            </p>
 
         </div>
 
 
-        <!-- Project 3 -->
-        <div class="portfolio-card">
+        <div class="social-links">
 
-            <div class="portfolio-icon">🎨</div>
-
-            <h3>Canva Design Projects</h3>
-
-            <p>
-                Creative digital designs including promotional posters,
-                social media graphics, business materials and branding.
-            </p>
-
-            <div class="portfolio-tags">
-                <span>Canva</span>
-                <span>Graphics</span>
-                <span>Branding</span>
-            </div>
-
-            <a href="https://www.instagram.com/emmanueljayouko/"
-               target="_blank"
-               class="portfolio-btn">
-                📱 View Socials
+            <a href="https://www.facebook.com/profile.php?id=615687"
+               target="_blank">
+                Facebook
             </a>
-
-        </div>
-
-
-        <!-- Project 4 -->
-        <div class="portfolio-card">
-
-            <div class="portfolio-icon">📱</div>
-
-            <h3>Social Media Projects</h3>
-
-            <p>
-                Digital content and social media work created to help
-                individuals and businesses build their online presence.
-            </p>
-
-            <div class="portfolio-tags">
-                <span>Social Media</span>
-                <span>Content</span>
-                <span>Marketing</span>
-            </div>
 
             <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-               target="_blank"
-               class="portfolio-btn">
-                ▶️ View YouTube
+               target="_blank">
+                YouTube
+            </a>
+
+            <a href="https://www.instagram.com/emmanueljayouko/"
+               target="_blank">
+                Instagram
             </a>
 
         </div>
 
 
-        <!-- Project 5 -->
-        <div class="portfolio-card">
+        <div class="contact-buttons">
 
-            <div class="portfolio-icon">📊</div>
+            <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20discuss%20a%20project."
+               class="btn whatsapp"
+               target="_blank">
+                💬 WhatsApp Me
+            </a>
 
-            <h3>Data Entry & Research</h3>
-
-            <p>
-                Data entry, online research and digital administrative
-                support for individuals and businesses.
-            </p>
-
-            <div class="portfolio-tags">
-                <span>Data Entry</span>
-                <span>Research</span>
-                <span>Online Work</span>
-            </div>
-
-            <a href="#quote" class="portfolio-btn">
-                💬 Request Service
+            <a href="mailto:emmanuelouko21@gmail.com"
+               class="btn">
+                📧 Email Me
             </a>
 
         </div>
 
+    </section>
 
-        <!-- Project 6 -->
-        <div class="portfolio-card">
 
-            <div class="portfolio-icon">✍️</div>
+    <!-- FOOTER -->
+    <footer>
 
-            <h3>Content Writing</h3>
+        <p>
+            © 2026 Jay Ouko. All rights reserved.
+        </p>
 
-            <p>
-                Business descriptions, social media captions,
-                website content and other digital writing services.
-            </p>
+        <p>
+            Freelancer • Digital Creator • Web Developer
+        </p>
 
-            <div class="portfolio-tags">
-                <span>Writing</span>
-                <span>Content</span>
-                <span>Business</span>
-            </div>
+    </footer>
 
-            <a href="#quote" class="portfolio-btn">
-                🚀 Get a Quote
-            </a>
 
-        </div>
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20discuss%20a%20project."
+       class="floating-whatsapp"
+       target="_blank"
+       aria-label="Contact Jay Ouko on WhatsApp">
+        💬
+    </a>
 
-    </div>
 
-</section>
+    <script src="app.js"></script>
+
+</body>
+</html>
