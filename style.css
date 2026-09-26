@@ -268,7 +268,13 @@ footer {
     gap: 45px;
 }
 
-.profile-avatar {
+.profile-avatar {.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
     width: 150px;
     height: 150px;
     border-radius: 50%;
