@@ -373,3 +373,94 @@ footer {
         max-width: 600px;
     }
 }
+ /* Services & Pricing */
+.pricing-section {
+    background: #f5f7fa;
+}
+
+.pricing-grid {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.pricing-card {
+    position: relative;
+    background: white;
+    padding: 35px 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.pricing-card h3 {
+    font-size: 23px;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 30px;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 25px;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.pricing-card li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.price-btn {
+    display: inline-block;
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.price-btn:hover {
+    background: #1e3a8a;
+}
+
+.pricing-card.featured {
+    border: 3px solid #38bdf8;
+    transform: scale(1.03);
+}
+
+.popular {
+    display: inline-block;
+    background: #38bdf8;
+    color: #111827;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.pricing-note {
+    margin-top: 35px;
+    font-weight: bold;
+}
+
+@media (max-width: 800px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+
+    .pricing-card.featured {
+        transform: none;
+    }
+}
