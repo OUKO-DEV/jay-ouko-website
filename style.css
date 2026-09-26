@@ -833,3 +833,25 @@ nav a[href="#quote"]:hover {
     background: #ffffff;
     color: #111827 !important;
 }
+/* HERO QUOTE BUTTON */
+
+.hero-quote-btn {
+    background: #ffffff;
+    color: #111827 !important;
+    margin-left: 10px;
+    border: 2px solid #38bdf8;
+}
+
+.hero-quote-btn:hover {
+    background: #38bdf8;
+    color: #111827 !important;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    .hero-quote-btn {
+        display: block;
+        width: fit-content;
+        margin: 12px auto 0;
+    }
+}
