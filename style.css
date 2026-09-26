@@ -919,3 +919,37 @@ nav a[href="#quote"]:hover {
         grid-template-columns: 1fr;
     }
 }
+/* FLOATING WHATSAPP BUTTON */
+
+.floating-whatsapp {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.12);
+}
+
+@media (max-width: 600px) {
+    .floating-whatsapp {
+        right: 15px;
+        bottom: 15px;
+        width: 52px;
+        height: 52px;
+        font-size: 25px;
+    }
+}
