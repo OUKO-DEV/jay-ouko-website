@@ -1,4 +1,14 @@
-// Jay Ouko Website
+// ==================== SUPABASE CONNECTION ====================
+
+const SUPABASE_URL = "https://cjcyjsgcsgqeqanxwitq.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_F7taABXLhqRbRlkBygPF6A_pMphViS5";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);// Jay Ouko Website
 
 document.addEventListener("DOMContentLoaded", function () {
 
