@@ -4039,3 +4039,558 @@ select:focus-visible {
 
 }
 ```
+/* =========================================================
+   JAY CLASSIC - MOBILE OPTIMIZATION
+   ========================================================= */
+
+/* Prevent horizontal scrolling */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-container,
+    .about-container,
+    .contact-container,
+    .registration-wrapper,
+    .class-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 120px;
+        padding-bottom: 70px;
+    }
+
+    .hero-content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-trust {
+        justify-content: center;
+    }
+
+    .hero-card {
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+    .services-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .jobs-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .reviews-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .steps-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .social-links {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   PHONES
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    /* Global spacing */
+
+    section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+
+    /* Header */
+
+    .header {
+        padding: 12px 16px;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+
+    /* Mobile menu */
+
+    .mobile-menu {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        border-radius: 16px;
+    }
+
+    .mobile-menu a {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        padding-top: 105px;
+        padding-bottom: 55px;
+    }
+
+    .hero-container {
+        gap: 35px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-badge {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .hero h1 {
+        font-size: clamp(
+            2rem,
+            10vw,
+            3rem
+        );
+
+        line-height: 1.08;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-buttons a,
+    .hero-buttons button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-trust {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+
+    /* Hero card */
+
+    .hero-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .class-time-card {
+        padding: 18px;
+    }
+
+
+    /* Section headings */
+
+    .section-title {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* Services */
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .service-card {
+        padding: 22px;
+    }
+
+    .service-card h3 {
+        font-size: 18px;
+    }
+
+
+    /* Free class */
+
+    .class-section {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .class-banner {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    .class-content h2 {
+        font-size: 26px;
+    }
+
+    .class-details {
+        grid-template-columns: 1fr;
+    }
+
+    .class-buttons {
+        flex-direction: column;
+    }
+
+    .class-buttons a,
+    .class-buttons button {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+    /* Registration */
+
+    .registration-section {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .registration-wrapper {
+        gap: 25px;
+    }
+
+    .registration-form,
+    .registration-card {
+        padding: 22px 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .form-button {
+        width: 100%;
+        min-height: 50px;
+    }
+
+
+    /* Jobs */
+
+    .jobs-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .job-card {
+        padding: 22px;
+    }
+
+
+    /* Rating */
+
+    .rating-wrapper {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .rating-main {
+        text-align: center;
+    }
+
+    .rating-score {
+        font-size: 52px;
+    }
+
+    .rating-bars {
+        width: 100%;
+    }
+
+    .rating-row {
+        grid-template-columns:
+            35px 1fr 35px;
+    }
+
+
+    /* Reviews */
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .review-card {
+        padding: 22px;
+    }
+
+    .review-form-wrapper {
+        padding: 22px 18px;
+    }
+
+    .review-form textarea {
+        min-height: 130px;
+    }
+
+
+    /* About */
+
+    .about-container {
+        gap: 35px;
+    }
+
+    .about-card {
+        padding: 22px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-item {
+        padding: 14px;
+    }
+
+
+    /* Steps */
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .step {
+        padding: 22px;
+    }
+
+
+    /* Contact */
+
+    .contact-container {
+        gap: 30px;
+    }
+
+    .contact-content {
+        width: 100%;
+    }
+
+    .contact-item {
+        padding: 15px;
+    }
+
+    .contact-form {
+        padding: 22px 18px;
+    }
+
+
+    /* Social media */
+
+    .social-links {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 100%;
+        min-height: 68px;
+    }
+
+
+    /* Footer */
+
+    .footer {
+        padding: 45px 18px 25px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+
+    /* Back to top */
+
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    section {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .hero {
+        padding-top: 95px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .service-card,
+    .job-card,
+    .review-card,
+    .step {
+        padding: 18px;
+    }
+
+    .class-banner {
+        padding: 20px 15px;
+    }
+
+    .registration-form,
+    .registration-card,
+    .contact-form,
+    .review-form-wrapper {
+        padding: 18px 14px;
+    }
+
+    .social-link {
+        padding: 12px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH-SCREEN IMPROVEMENTS
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    a,
+    button {
+        -webkit-tap-highlight-color:
+            transparent;
+    }
+
+    button,
+    .primary-button,
+    .secondary-button,
+    .form-button,
+    .social-link {
+        min-height: 44px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE ACCESSIBILITY
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 3px;
+    }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
