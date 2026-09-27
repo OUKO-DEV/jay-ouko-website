@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     */
 
     const SUPABASE_PUBLISHABLE_KEY =
-        "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+        "sb_publishable_F7taABXLhqRbRlkBygPF6A_pMphViS5";
 
 
     let supabaseClient = null;
