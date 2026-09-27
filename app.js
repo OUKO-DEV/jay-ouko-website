@@ -1,300 +1,373 @@
 /* =========================================================
-   JAY CLASSIC - COMPLETE APP.JS
-   Freelancing & Online Works Website
+   JAY CLASSIC
+   SUPABASE CONNECTED APP.JS
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     /* =====================================================
-       1. PAGE LOADER
+       SUPABASE CONFIGURATION
        ===================================================== */
 
-    const pageLoader = document.querySelector(".page-loader");
+    const SUPABASE_URL =
+        "https://cjcyjsgcsgqeqanxwitq.supabase.co";
 
-    const hideLoader = () => {
-        if (pageLoader) {
-            pageLoader.classList.add("hidden");
+    /*
+       IMPORTANT:
+       Use ONLY your Supabase PUBLISHABLE/ANON key here.
 
-            setTimeout(() => {
-                pageLoader.style.display = "none";
-            }, 500);
-        }
-    };
+       NEVER put your Supabase SECRET/SERVICE-ROLE key
+       inside this file.
+    */
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+
+    let supabaseClient = null;
+
+    if (
+        window.supabase &&
+        SUPABASE_PUBLISHABLE_KEY !==
+        "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
+    ) {
+
+        supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+        console.log(
+            "Jay Classic: Supabase connected."
+        );
+
+    } else {
+
+        console.warn(
+            "Jay Classic: Supabase is not configured yet."
+        );
+
+    }
+
+
+    /* =====================================================
+       PAGE LOADER
+       ===================================================== */
+
+    const pageLoader =
+        document.querySelector(".page-loader");
+
+    function hideLoader() {
+
+        if (!pageLoader) return;
+
+        pageLoader.classList.add("hidden");
+
+        setTimeout(() => {
+            pageLoader.style.display = "none";
+        }, 500);
+    }
 
     window.addEventListener("load", hideLoader);
 
-    // Backup loader timeout
     setTimeout(hideLoader, 2500);
 
 
     /* =====================================================
-       2. DARK MODE / LIGHT MODE
+       DARK / LIGHT MODE
        ===================================================== */
 
-    const themeToggle = document.querySelector(".theme-toggle");
-    const body = document.body;
+    const themeToggle =
+        document.querySelector(".theme-toggle");
 
-    const savedTheme = localStorage.getItem("jayClassicTheme");
+    const body =
+        document.body;
+
+    const savedTheme =
+        localStorage.getItem("jayClassicTheme");
 
     if (savedTheme === "dark") {
         body.classList.add("dark-mode");
-    } else {
-        body.classList.remove("dark-mode");
     }
 
-    const updateThemeButton = () => {
+    function updateThemeButton() {
+
         if (!themeToggle) return;
 
-        const isDark = body.classList.contains("dark-mode");
+        const isDark =
+            body.classList.contains("dark-mode");
 
         themeToggle.setAttribute(
             "aria-label",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
+            isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode"
         );
 
         themeToggle.setAttribute(
             "title",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
+            isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode"
         );
 
-        // If button contains an icon
-        const icon = themeToggle.querySelector("i");
+        const icon =
+            themeToggle.querySelector("i");
 
         if (icon) {
-            icon.className = isDark
-                ? "fas fa-sun"
-                : "fas fa-moon";
-        }
 
-        // If button contains text instead
-        if (!icon && themeToggle.textContent.trim() !== "") {
-            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            icon.className =
+                isDark
+                    ? "fas fa-sun"
+                    : "fas fa-moon";
         }
-    };
+    }
 
     updateThemeButton();
 
     if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
 
-            body.classList.toggle("dark-mode");
+        themeToggle.addEventListener(
+            "click",
+            () => {
 
-            const isDark = body.classList.contains("dark-mode");
+                body.classList.toggle(
+                    "dark-mode"
+                );
 
-            localStorage.setItem(
-                "jayClassicTheme",
-                isDark ? "dark" : "light"
-            );
+                const isDark =
+                    body.classList.contains(
+                        "dark-mode"
+                    );
 
-            updateThemeButton();
-        });
+                localStorage.setItem(
+                    "jayClassicTheme",
+                    isDark
+                        ? "dark"
+                        : "light"
+                );
+
+                updateThemeButton();
+            }
+        );
     }
 
 
     /* =====================================================
-       3. MOBILE MENU
+       MOBILE MENU
        ===================================================== */
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mobileMenu = document.querySelector(".mobile-menu");
+    const menuToggle =
+        document.querySelector(".menu-toggle");
+
+    const mobileMenu =
+        document.querySelector(".mobile-menu");
 
     if (menuToggle && mobileMenu) {
 
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener(
+            "click",
+            () => {
 
-            mobileMenu.classList.toggle("active");
+                mobileMenu.classList.toggle(
+                    "active"
+                );
 
-            const isOpen = mobileMenu.classList.contains("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
-            // Change menu icon
-            const icon = menuToggle.querySelector("i");
-
-            if (icon) {
-                icon.className = isOpen
-                    ? "fas fa-times"
-                    : "fas fa-bars";
-            }
-        });
-
-
-        // Close mobile menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll("a");
-
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-
-                mobileMenu.classList.remove("active");
+                const isOpen =
+                    mobileMenu.classList.contains(
+                        "active"
+                    );
 
                 menuToggle.setAttribute(
                     "aria-expanded",
-                    "false"
+                    isOpen
+                        ? "true"
+                        : "false"
                 );
 
-                const icon = menuToggle.querySelector("i");
+                const icon =
+                    menuToggle.querySelector("i");
 
                 if (icon) {
-                    icon.className = "fas fa-bars";
+
+                    icon.className =
+                        isOpen
+                            ? "fas fa-times"
+                            : "fas fa-bars";
                 }
+            }
+        );
+
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        mobileMenu.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
+                );
             });
-        });
-
-
-        // Close menu with Escape
-        document.addEventListener("keydown", (event) => {
-
-            if (event.key === "Escape") {
-
-                mobileMenu.classList.remove("active");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                const icon = menuToggle.querySelector("i");
-
-                if (icon) {
-                    icon.className = "fas fa-bars";
-                }
-            }
-        });
     }
 
 
     /* =====================================================
-       4. HEADER SCROLL EFFECT
+       HEADER SCROLL
        ===================================================== */
 
-    const header = document.querySelector(".header");
+    const header =
+        document.querySelector(".header");
 
-    const handleHeaderScroll = () => {
+    function handleHeaderScroll() {
 
         if (!header) return;
 
         if (window.scrollY > 40) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    };
 
-    window.addEventListener("scroll", handleHeaderScroll);
+            header.classList.add(
+                "scrolled"
+            );
+
+        } else {
+
+            header.classList.remove(
+                "scrolled"
+            );
+        }
+    }
+
+    window.addEventListener(
+        "scroll",
+        handleHeaderScroll
+    );
 
     handleHeaderScroll();
 
 
     /* =====================================================
-       5. SMOOTH SCROLLING
+       SMOOTH SCROLL
        ===================================================== */
 
-    const internalLinks = document.querySelectorAll(
-        'a[href^="#"]'
-    );
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
 
-    internalLinks.forEach(link => {
+            link.addEventListener(
+                "click",
+                function (event) {
 
-        link.addEventListener("click", function (event) {
+                    const targetID =
+                        this.getAttribute("href");
 
-            const targetId = this.getAttribute("href");
+                    if (
+                        !targetID ||
+                        targetID === "#"
+                    ) return;
 
-            if (
-                !targetId ||
-                targetId === "#" ||
-                targetId.length < 2
-            ) {
-                return;
-            }
+                    const target =
+                        document.querySelector(
+                            targetID
+                        );
 
-            const target = document.querySelector(targetId);
+                    if (!target) return;
 
-            if (target) {
+                    event.preventDefault();
 
-                event.preventDefault();
+                    const headerHeight =
+                        header
+                            ? header.offsetHeight
+                            : 0;
 
-                const headerHeight =
-                    header ? header.offsetHeight : 0;
+                    const position =
+                        target.getBoundingClientRect()
+                            .top +
+                        window.scrollY -
+                        headerHeight;
 
-                const targetPosition =
-                    target.getBoundingClientRect().top +
-                    window.scrollY -
-                    headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth"
-                });
-            }
+                    window.scrollTo({
+                        top: position,
+                        behavior: "smooth"
+                    });
+                }
+            );
         });
-    });
 
 
     /* =====================================================
-       6. BACK TO TOP BUTTON
+       BACK TO TOP
        ===================================================== */
 
-    const backToTop = document.querySelector(".back-to-top");
+    const backToTop =
+        document.querySelector(".back-to-top");
 
-    const handleBackToTop = () => {
+    function updateBackToTop() {
 
         if (!backToTop) return;
 
         if (window.scrollY > 500) {
-            backToTop.classList.add("visible");
+
+            backToTop.classList.add(
+                "visible"
+            );
+
         } else {
-            backToTop.classList.remove("visible");
+
+            backToTop.classList.remove(
+                "visible"
+            );
         }
-    };
+    }
 
-    window.addEventListener("scroll", handleBackToTop);
+    window.addEventListener(
+        "scroll",
+        updateBackToTop
+    );
 
-    handleBackToTop();
+    updateBackToTop();
 
     if (backToTop) {
 
-        backToTop.addEventListener("click", () => {
+        backToTop.addEventListener(
+            "click",
+            () => {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
-        });
+            }
+        );
     }
 
 
     /* =====================================================
-       7. CURRENT YEAR
+       CURRENT YEAR
        ===================================================== */
 
-    const currentYear = document.querySelector("#currentYear");
+    const currentYear =
+        document.querySelector("#currentYear");
 
     if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
+
+        currentYear.textContent =
+            new Date().getFullYear();
     }
 
 
     /* =====================================================
-       8. SERVICE CARD ANIMATION
-       ===================================================== */
-
-    const serviceCards =
-        document.querySelectorAll(".service-card");
-
-    serviceCards.forEach((card, index) => {
-
-        card.style.animationDelay =
-            `${index * 0.08}s`;
-
-    });
-
-
-    /* =====================================================
-       9. REVIEW STAR SYSTEM
+       REVIEW SYSTEM
        ===================================================== */
 
     const reviewForm =
@@ -303,15 +376,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const reviewGrid =
         document.querySelector(".reviews-grid");
 
-    const reviewStars =
-        document.querySelectorAll(
-            ".review-form .star-input, .review-form .rating-star"
-        );
-
     let selectedRating = 5;
 
 
-    // Support buttons with data-rating
+    /* -----------------------------------------------------
+       RATING BUTTONS
+       ----------------------------------------------------- */
+
     const ratingButtons =
         document.querySelectorAll(
             "[data-rating]"
@@ -319,283 +390,408 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ratingButtons.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            const rating =
-                Number(button.dataset.rating);
+                const rating =
+                    Number(
+                        button.dataset.rating
+                    );
 
-            if (
-                rating >= 1 &&
-                rating <= 5
-            ) {
-                selectedRating = rating;
+                if (
+                    rating >= 1 &&
+                    rating <= 5
+                ) {
+
+                    selectedRating =
+                        rating;
+                }
+
+                updateRatingDisplay(
+                    selectedRating
+                );
             }
-
-            updateRatingDisplay(selectedRating);
-        });
-
+        );
     });
 
 
-    function updateRatingDisplay(rating) {
+    function updateRatingDisplay(
+        rating
+    ) {
 
-        ratingButtons.forEach(button => {
+        ratingButtons.forEach(
+            button => {
 
-            const buttonRating =
-                Number(button.dataset.rating);
+                const buttonRating =
+                    Number(
+                        button.dataset.rating
+                    );
 
-            if (buttonRating <= rating) {
-                button.classList.add("active");
-            } else {
-                button.classList.remove("active");
+                button.classList.toggle(
+                    "active",
+                    buttonRating <= rating
+                );
             }
-
-        });
+        );
     }
 
-    updateRatingDisplay(selectedRating);
+    updateRatingDisplay(
+        selectedRating
+    );
 
 
     /* =====================================================
-       10. REVIEW FORM
+       LOAD REVIEWS FROM SUPABASE
        ===================================================== */
 
-    if (reviewForm) {
+    async function loadReviews() {
 
-        reviewForm.addEventListener("submit", (event) => {
+        if (!supabaseClient) {
 
-            event.preventDefault();
-
-            const nameInput =
-                reviewForm.querySelector(
-                    'input[name="name"], #reviewName'
-                );
-
-            const roleInput =
-                reviewForm.querySelector(
-                    'input[name="role"], input[name="location"], #reviewRole'
-                );
-
-            const commentInput =
-                reviewForm.querySelector(
-                    'textarea[name="comment"], #reviewComment'
-                );
-
-            const ratingInput =
-                reviewForm.querySelector(
-                    'select[name="rating"], input[name="rating"]:checked'
-                );
-
-
-            const name =
-                nameInput
-                    ? nameInput.value.trim()
-                    : "";
-
-            const role =
-                roleInput
-                    ? roleInput.value.trim()
-                    : "";
-
-            const comment =
-                commentInput
-                    ? commentInput.value.trim()
-                    : "";
-
-            let rating = selectedRating;
-
-            if (ratingInput) {
-
-                const inputRating =
-                    Number(ratingInput.value);
-
-                if (
-                    inputRating >= 1 &&
-                    inputRating <= 5
-                ) {
-                    rating = inputRating;
-                }
-            }
-
-
-            // Validation
-            if (!name) {
-
-                showMessage(
-                    "Please enter your name.",
-                    "error"
-                );
-
-                if (nameInput) nameInput.focus();
-
-                return;
-            }
-
-
-            if (!comment) {
-
-                showMessage(
-                    "Please write your review.",
-                    "error"
-                );
-
-                if (commentInput) commentInput.focus();
-
-                return;
-            }
-
-
-            // Create review
-            const review = {
-                id: Date.now(),
-                name: name,
-                role: role || "Jay Classic Client",
-                comment: comment,
-                rating: rating,
-                date: new Date().toLocaleDateString()
-            };
-
-
-            saveReview(review);
-
-            addReviewToPage(review);
-
-
-            // Reset form
-            reviewForm.reset();
-
-            selectedRating = 5;
-
-            updateRatingDisplay(selectedRating);
-
-
-            showMessage(
-                "Thank you! Your review has been submitted on this device.",
-                "success"
+            console.warn(
+                "Supabase not connected."
             );
 
-        });
-    }
+            return;
+        }
+
+        if (!reviewGrid) return;
 
 
-    /* =====================================================
-       11. SAVE REVIEWS TO LOCAL STORAGE
-       ===================================================== */
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("reviews")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
-    function getSavedReviews() {
 
-        try {
-
-            const reviews =
-                localStorage.getItem(
-                    "jayClassicReviews"
-                );
-
-            return reviews
-                ? JSON.parse(reviews)
-                : [];
-
-        } catch (error) {
+        if (error) {
 
             console.error(
                 "Could not load reviews:",
                 error
             );
 
-            return [];
+            return;
         }
-    }
 
 
-    function saveReview(review) {
+        /*
+           Remove old dynamically loaded reviews
+           but leave HTML reviews if you want them.
+        */
 
-        const reviews =
-            getSavedReviews();
+        data.forEach(review => {
 
-        reviews.unshift(review);
+            addReviewToPage(
+                review,
+                false
+            );
 
-        // Keep maximum 20 locally stored reviews
-        const limitedReviews =
-            reviews.slice(0, 20);
+        });
 
-        localStorage.setItem(
-            "jayClassicReviews",
-            JSON.stringify(limitedReviews)
+
+        updateAverageRating(
+            data
         );
     }
 
 
     /* =====================================================
-       12. DISPLAY SAVED REVIEWS
+       SUBMIT REVIEW TO SUPABASE
        ===================================================== */
 
-    if (reviewGrid) {
+    if (reviewForm) {
 
-        const savedReviews =
-            getSavedReviews();
+        reviewForm.addEventListener(
+            "submit",
+            async event => {
 
-        savedReviews.reverse().forEach(review => {
-            addReviewToPage(review, false);
-        });
+                event.preventDefault();
 
+
+                const nameInput =
+                    reviewForm.querySelector(
+                        '[name="name"], #reviewName'
+                    );
+
+                const roleInput =
+                    reviewForm.querySelector(
+                        '[name="role"], [name="location"], #reviewRole'
+                    );
+
+                const commentInput =
+                    reviewForm.querySelector(
+                        '[name="comment"], #reviewComment'
+                    );
+
+                const ratingInput =
+                    reviewForm.querySelector(
+                        'select[name="rating"], input[name="rating"]:checked'
+                    );
+
+
+                const name =
+                    nameInput
+                        ? nameInput.value.trim()
+                        : "";
+
+                const role =
+                    roleInput
+                        ? roleInput.value.trim()
+                        : "";
+
+                const comment =
+                    commentInput
+                        ? commentInput.value.trim()
+                        : "";
+
+
+                let rating =
+                    selectedRating;
+
+
+                if (ratingInput) {
+
+                    const inputRating =
+                        Number(
+                            ratingInput.value
+                        );
+
+                    if (
+                        inputRating >= 1 &&
+                        inputRating <= 5
+                    ) {
+
+                        rating =
+                            inputRating;
+                    }
+                }
+
+
+                if (!name) {
+
+                    showMessage(
+                        "Please enter your name.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!comment) {
+
+                    showMessage(
+                        "Please write your review.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!supabaseClient) {
+
+                    showMessage(
+                        "Supabase is not connected yet.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const submitButton =
+                    reviewForm.querySelector(
+                        'button[type="submit"]'
+                    );
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        true;
+
+                    submitButton.textContent =
+                        "Submitting...";
+                }
+
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient
+                    .from("reviews")
+                    .insert([
+                        {
+                            name: name,
+                            role:
+                                role ||
+                                "Jay Classic Client",
+                            comment: comment,
+                            rating: rating
+                        }
+                    ])
+                    .select()
+                    .single();
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Submit Review";
+                }
+
+
+                if (error) {
+
+                    console.error(
+                        "Review submission error:",
+                        error
+                    );
+
+                    showMessage(
+                        "Unable to submit your review. Please try again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                   Add the newly submitted review
+                   immediately to the page.
+                */
+
+                addReviewToPage(
+                    data,
+                    true
+                );
+
+
+                reviewForm.reset();
+
+                selectedRating = 5;
+
+                updateRatingDisplay(
+                    selectedRating
+                );
+
+
+                showMessage(
+                    "Thank you! Your review has been submitted.",
+                    "success"
+                );
+            }
+        );
     }
 
 
-    function addReviewToPage(review, animate = true) {
+    /* =====================================================
+       ADD REVIEW TO PAGE
+       ===================================================== */
+
+    function addReviewToPage(
+        review,
+        animate = true
+    ) {
 
         if (!reviewGrid) return;
 
 
         const reviewCard =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
 
-        reviewCard.className = "review-card";
+        reviewCard.className =
+            "review-card";
 
 
         if (animate) {
-            reviewCard.style.opacity = "0";
+
+            reviewCard.style.opacity =
+                "0";
+
             reviewCard.style.transform =
                 "translateY(20px)";
         }
 
 
+        const rating =
+            Number(review.rating) || 5;
+
+
         const stars =
-            "★".repeat(review.rating) +
-            "☆".repeat(5 - review.rating);
+            "★".repeat(rating) +
+            "☆".repeat(5 - rating);
 
 
-        const avatarLetter =
+        const name =
             escapeHTML(
                 review.name
-                    .charAt(0)
-                    .toUpperCase()
+            );
+
+
+        const role =
+            escapeHTML(
+                review.role ||
+                "Jay Classic Client"
+            );
+
+
+        const comment =
+            escapeHTML(
+                review.comment
+            );
+
+
+        const avatar =
+            escapeHTML(
+                String(
+                    review.name || "J"
+                )
+                .charAt(0)
+                .toUpperCase()
             );
 
 
         reviewCard.innerHTML = `
 
-            <div class="review-stars"
-                 aria-label="${review.rating} out of 5 stars">
+            <div class="review-stars">
                 ${stars}
             </div>
 
             <p class="review-text">
-                "${escapeHTML(review.comment)}"
+                "${comment}"
             </p>
 
             <div class="review-author">
 
                 <div class="review-avatar">
-                    ${avatarLetter}
+                    ${avatar}
                 </div>
 
                 <div>
                     <strong>
-                        ${escapeHTML(review.name)}
+                        ${name}
                     </strong>
 
                     <span>
-                        ${escapeHTML(review.role)}
+                        ${role}
                     </span>
                 </div>
 
@@ -604,54 +800,126 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
 
-        reviewGrid.prepend(reviewCard);
+        reviewGrid.prepend(
+            reviewCard
+        );
 
 
         if (animate) {
 
-            requestAnimationFrame(() => {
+            requestAnimationFrame(
+                () => {
 
-                reviewCard.style.transition =
-                    "all 0.5s ease";
+                    reviewCard.style.transition =
+                        "all 0.5s ease";
 
-                reviewCard.style.opacity = "1";
+                    reviewCard.style.opacity =
+                        "1";
 
-                reviewCard.style.transform =
-                    "translateY(0)";
-            });
-
+                    reviewCard.style.transform =
+                        "translateY(0)";
+                }
+            );
         }
     }
 
 
     /* =====================================================
-       13. HTML ESCAPE SECURITY
+       AVERAGE RATING
+       ===================================================== */
+
+    function updateAverageRating(
+        reviews
+    ) {
+
+        if (!reviews.length) return;
+
+
+        const total =
+            reviews.reduce(
+                (sum, review) =>
+                    sum +
+                    Number(review.rating),
+                0
+            );
+
+
+        const average =
+            total / reviews.length;
+
+
+        const scoreElement =
+            document.querySelector(
+                ".rating-score"
+            );
+
+
+        if (scoreElement) {
+
+            scoreElement.textContent =
+                average.toFixed(1);
+        }
+
+
+        const ratingCount =
+            document.querySelector(
+                "[data-rating-count]"
+            );
+
+
+        if (ratingCount) {
+
+            ratingCount.textContent =
+                `${reviews.length} reviews`;
+        }
+    }
+
+
+    /* =====================================================
+       HTML SECURITY
        ===================================================== */
 
     function escapeHTML(value) {
 
         return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
     }
 
 
     /* =====================================================
-       14. REGISTRATION FORM
+       REGISTRATION SYSTEM
        ===================================================== */
 
     const registrationForm =
-        document.querySelector(".registration-form");
+        document.querySelector(
+            ".registration-form"
+        );
 
 
     if (registrationForm) {
 
         registrationForm.addEventListener(
             "submit",
-            (event) => {
+            async event => {
 
                 event.preventDefault();
 
@@ -709,9 +977,93 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
+                if (!supabaseClient) {
+
+                    showMessage(
+                        "Supabase is not connected yet.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const submitButton =
+                    registrationForm.querySelector(
+                        'button[type="submit"]'
+                    );
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        true;
+
+                    submitButton.textContent =
+                        "Registering...";
+                }
+
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient
+                    .from("registrations")
+                    .insert([
+                        {
+                            name: name,
+                            email: email || null,
+                            phone: phone || null,
+                            service:
+                                service || null,
+                            message:
+                                message || null
+                        }
+                    ])
+                    .select()
+                    .single();
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Register Now";
+                }
+
+
+                if (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+                    showMessage(
+                        "Registration failed. Please try again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                console.log(
+                    "Registration saved:",
+                    data
+                );
+
+
+                /*
+                   Create an email as an additional
+                   notification option.
+                */
+
                 const subject =
                     encodeURIComponent(
-                        "Jay Classic Registration"
+                        "Jay Classic New Registration"
                     );
 
 
@@ -719,7 +1071,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     encodeURIComponent(
                         `Hello Jay Classic,
 
-I would like to register.
+A new registration has been submitted.
 
 Name: ${name}
 Email: ${email || "Not provided"}
@@ -728,51 +1080,40 @@ Service/Class: ${service || "Not specified"}
 
 Message:
 ${message || "No additional message."}
-
-Thank you.`
+`
                     );
 
 
-                const mailto =
+                /*
+                   Open the visitor's email application.
+                   The registration is ALREADY saved
+                   in Supabase before this happens.
+                */
+
+                window.location.href =
                     `mailto:emmanuelouko21@gmail.com?subject=${subject}&body=${emailBody}`;
 
 
-                // Open email
-                window.location.href = mailto;
-
-
-                // Save registration locally
-                const registration = {
-                    id: Date.now(),
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    service: service,
-                    message: message,
-                    date: new Date().toISOString()
-                };
-
-
-                saveRegistration(
-                    registration
-                );
+                registrationForm.reset();
 
 
                 showMessage(
-                    "Your registration details are ready to send by email.",
+                    "Registration successful! Your details have been saved.",
                     "success"
                 );
-
             }
         );
     }
 
 
     /* =====================================================
-       15. FORM VALUE HELPER
+       FORM VALUE HELPER
        ===================================================== */
 
-    function getFormValue(form, name) {
+    function getFormValue(
+        form,
+        name
+    ) {
 
         const field =
             form.querySelector(
@@ -786,141 +1127,20 @@ Thank you.`
 
 
     /* =====================================================
-       16. SAVE REGISTRATIONS
-       ===================================================== */
-
-    function saveRegistration(data) {
-
-        try {
-
-            const registrations =
-                JSON.parse(
-                    localStorage.getItem(
-                        "jayClassicRegistrations"
-                    )
-                ) || [];
-
-
-            registrations.unshift(data);
-
-
-            localStorage.setItem(
-                "jayClassicRegistrations",
-                JSON.stringify(
-                    registrations.slice(0, 50)
-                )
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Could not save registration:",
-                error
-            );
-
-        }
-    }
-
-
-    /* =====================================================
-       17. WHATSAPP BUTTONS
-       ===================================================== */
-
-    const whatsappButtons =
-        document.querySelectorAll(
-            ".whatsapp-button, [data-whatsapp]"
-        );
-
-
-    whatsappButtons.forEach(button => {
-
-        button.addEventListener("click", (event) => {
-
-            event.preventDefault();
-
-
-            const customMessage =
-                button.dataset.whatsappMessage ||
-                "Hello Jay Classic, I would like to know more about your services.";
-
-
-            /*
-             * IMPORTANT:
-             *
-             * WhatsApp requires a valid Kenyan mobile
-             * number in international format.
-             *
-             * Replace the number below with your actual
-             * WhatsApp mobile number if different.
-             */
-
-            const whatsappNumber =
-                "254700000000";
-
-
-            const whatsappURL =
-                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(customMessage)}`;
-
-
-            window.open(
-                whatsappURL,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-        });
-
-    });
-
-
-    /* =====================================================
-       18. EMAIL BUTTONS
-       ===================================================== */
-
-    const emailButtons =
-        document.querySelectorAll(
-            ".email-button, [data-email]"
-        );
-
-
-    emailButtons.forEach(button => {
-
-        button.addEventListener("click", (event) => {
-
-            event.preventDefault();
-
-
-            const subject =
-                button.dataset.emailSubject ||
-                "Jay Classic Inquiry";
-
-
-            const body =
-                button.dataset.emailMessage ||
-                "Hello Jay Classic, I would like to know more about your services.";
-
-
-            window.location.href =
-                `mailto:emmanuelouko21@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        });
-
-    });
-
-
-    /* =====================================================
-       19. CONTACT FORM
+       CONTACT FORM
        ===================================================== */
 
     const contactForm =
-        document.querySelector(".contact-form");
+        document.querySelector(
+            ".contact-form"
+        );
 
 
     if (contactForm) {
 
         contactForm.addEventListener(
             "submit",
-            (event) => {
+            event => {
 
                 event.preventDefault();
 
@@ -944,32 +1164,14 @@ Thank you.`
                     );
 
 
-                if (!name) {
+                if (
+                    !name ||
+                    !email ||
+                    !message
+                ) {
 
                     showMessage(
-                        "Please enter your name.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!email) {
-
-                    showMessage(
-                        "Please enter your email.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!message) {
-
-                    showMessage(
-                        "Please enter your message.",
+                        "Please complete all required fields.",
                         "error"
                     );
 
@@ -997,283 +1199,149 @@ ${message}`
 
                 window.location.href =
                     `mailto:emmanuelouko21@gmail.com?subject=${subject}&body=${body}`;
-
-
-                showMessage(
-                    "Opening your email application...",
-                    "success"
-                );
-
             }
         );
     }
 
 
     /* =====================================================
-       20. MESSAGE SYSTEM
+       WHATSAPP BUTTON
        ===================================================== */
 
-    function showMessage(message, type = "success") {
+    document
+        .querySelectorAll(
+            ".whatsapp-button"
+        )
+        .forEach(button => {
 
-        // Remove previous message
-        const oldMessage =
+            button.addEventListener(
+                "click",
+                event => {
+
+                    const number =
+                        button.dataset.whatsapp;
+
+                    if (!number) {
+
+                        /*
+                           No WhatsApp number has been
+                           configured yet.
+                        */
+
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    const message =
+                        button.dataset.whatsappMessage ||
+                        "Hello Jay Classic, I would like to know more about your services.";
+
+
+                    const url =
+                        `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+
+
+                    window.open(
+                        url,
+                        "_blank",
+                        "noopener,noreferrer"
+                    );
+                }
+            );
+        });
+
+
+    /* =====================================================
+       GENERAL MESSAGE
+       ===================================================== */
+
+    function showMessage(
+        message,
+        type = "success"
+    ) {
+
+        const old =
             document.querySelector(
                 ".js-message"
             );
 
-        if (oldMessage) {
-            oldMessage.remove();
-        }
+        if (old) old.remove();
 
 
-        const messageBox =
-            document.createElement("div");
+        const box =
+            document.createElement(
+                "div"
+            );
 
 
-        messageBox.className =
+        box.className =
             `js-message ${type}`;
 
 
-        messageBox.textContent =
+        box.textContent =
             message;
 
 
         Object.assign(
-            messageBox.style,
+            box.style,
             {
                 position: "fixed",
                 top: "90px",
                 right: "20px",
-                maxWidth: "360px",
+                maxWidth: "380px",
                 padding: "15px 20px",
                 borderRadius: "12px",
                 zIndex: "99999",
                 fontSize: "14px",
                 fontWeight: "600",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-                background: type === "error"
-                    ? "#ffe5e5"
-                    : "#e7f8ed",
-                color: type === "error"
-                    ? "#b42318"
-                    : "#137333"
+                boxShadow:
+                    "0 10px 30px rgba(0,0,0,.15)",
+                background:
+                    type === "error"
+                        ? "#ffe5e5"
+                        : "#e7f8ed",
+                color:
+                    type === "error"
+                        ? "#b42318"
+                        : "#137333"
             }
         );
 
 
         document.body.appendChild(
-            messageBox
+            box
         );
 
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            messageBox.style.opacity = "0";
-            messageBox.style.transform =
-                "translateY(-10px)";
-            messageBox.style.transition =
-                "all 0.3s ease";
+                box.style.opacity =
+                    "0";
 
-            setTimeout(() => {
-                messageBox.remove();
-            }, 300);
+                box.style.transform =
+                    "translateY(-10px)";
 
-        }, 3500);
+                box.style.transition =
+                    "all .3s ease";
+
+
+                setTimeout(
+                    () => box.remove(),
+                    300
+                );
+
+            },
+            3500
+        );
     }
 
 
     /* =====================================================
-       21. COPY CONTACT DETAILS
-       ===================================================== */
-
-    const copyButtons =
-        document.querySelectorAll(
-            "[data-copy]"
-        );
-
-
-    copyButtons.forEach(button => {
-
-        button.addEventListener("click", async () => {
-
-            const text =
-                button.dataset.copy;
-
-
-            if (!text) return;
-
-
-            try {
-
-                await navigator.clipboard.writeText(
-                    text
-                );
-
-
-                const original =
-                    button.textContent;
-
-
-                button.textContent =
-                    "Copied!";
-
-
-                setTimeout(() => {
-
-                    button.textContent =
-                        original;
-
-                }, 1500);
-
-
-            } catch (error) {
-
-                console.error(
-                    "Copy failed:",
-                    error
-                );
-
-                showMessage(
-                    "Unable to copy automatically.",
-                    "error"
-                );
-
-            }
-
-        });
-
-    });
-
-
-    /* =====================================================
-       22. SOCIAL LINKS
-       ===================================================== */
-
-    const socialLinks =
-        document.querySelectorAll(
-            ".social-link"
-        );
-
-
-    socialLinks.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            const platform =
-                link.dataset.platform;
-
-
-            if (platform) {
-
-                console.log(
-                    `Opening ${platform}`
-                );
-
-            }
-
-        });
-
-    });
-
-
-    /* =====================================================
-       23. ONLINE CLASS BUTTON
-       ===================================================== */
-
-    const classButtons =
-        document.querySelectorAll(
-            ".class-button, [data-class-link]"
-        );
-
-
-    classButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            (event) => {
-
-                const link =
-                    button.dataset.classLink;
-
-
-                if (
-                    link &&
-                    link !== "#"
-                ) {
-
-                    event.preventDefault();
-
-                    window.open(
-                        link,
-                        "_blank",
-                        "noopener,noreferrer"
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       24. SERVICE BUTTONS
-       ===================================================== */
-
-    const serviceButtons =
-        document.querySelectorAll(
-            "[data-service]"
-        );
-
-
-    serviceButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const service =
-                    button.dataset.service;
-
-
-                const registrationForm =
-                    document.querySelector(
-                        ".registration-form"
-                    );
-
-
-                if (
-                    registrationForm &&
-                    service
-                ) {
-
-                    const serviceField =
-                        registrationForm.querySelector(
-                            '[name="service"], #service'
-                        );
-
-
-                    if (serviceField) {
-                        serviceField.value =
-                            service;
-                    }
-
-                    registrationForm.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       25. INTERSECTION OBSERVER ANIMATIONS
+       SCROLL ANIMATIONS
        ===================================================== */
 
     const animatedElements =
@@ -1288,24 +1356,25 @@ ${message}`
 
         const observer =
             new IntersectionObserver(
-                (entries, obs) => {
+                entries => {
 
-                    entries.forEach(entry => {
+                    entries.forEach(
+                        entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target.classList.add(
-                                "in-view"
-                            );
+                                entry.target.classList.add(
+                                    "in-view"
+                                );
 
-                            obs.unobserve(
-                                entry.target
-                            );
+                                observer.unobserve(
+                                    entry.target
+                                );
+                            }
                         }
-
-                    });
+                    );
 
                 },
                 {
@@ -1314,177 +1383,27 @@ ${message}`
             );
 
 
-        animatedElements.forEach(element => {
-
-            observer.observe(element);
-
-        });
-
-    } else {
-
-        animatedElements.forEach(element => {
-
-            element.classList.add(
-                "in-view"
-            );
-
-        });
-
+        animatedElements.forEach(
+            element =>
+                observer.observe(element)
+        );
     }
 
 
     /* =====================================================
-       26. PREVENT EMPTY LINKS
+       INITIALIZE DATABASE DATA
        ===================================================== */
 
-    const emptyLinks =
-        document.querySelectorAll(
-            'a[href="#"]'
-        );
-
-
-    emptyLinks.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            (event) => {
-
-                const hasAction =
-                    link.dataset.action ||
-                    link.dataset.classLink ||
-                    link.dataset.whatsapp;
-
-
-                if (!hasAction) {
-
-                    event.preventDefault();
-
-                }
-
-            }
-        );
-
-    });
+    await loadReviews();
 
 
     /* =====================================================
-       27. ONLINE STATUS
-       ===================================================== */
-
-    const statusDots =
-        document.querySelectorAll(
-            ".status-dot"
-        );
-
-
-    statusDots.forEach(dot => {
-
-        dot.setAttribute(
-            "title",
-            "Jay Classic is available online"
-        );
-
-    });
-
-
-    /* =====================================================
-       28. KEYBOARD ACCESSIBILITY
-       ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            // Press "/" to focus registration form
-            if (
-                event.key === "/" &&
-                !isTyping(event.target)
-            ) {
-
-                const registration =
-                    document.querySelector(
-                        ".registration-form input"
-                    );
-
-
-                if (registration) {
-
-                    event.preventDefault();
-
-                    registration.focus();
-
-                }
-            }
-
-        }
-    );
-
-
-    function isTyping(element) {
-
-        if (!element) return false;
-
-        const tag =
-            element.tagName.toLowerCase();
-
-        return (
-            tag === "input" ||
-            tag === "textarea" ||
-            tag === "select"
-        );
-
-    }
-
-
-    /* =====================================================
-       29. PREVENT DOUBLE FORM SUBMISSION
-       ===================================================== */
-
-    const forms =
-        document.querySelectorAll("form");
-
-
-    forms.forEach(form => {
-
-        form.addEventListener(
-            "submit",
-            () => {
-
-                const submitButton =
-                    form.querySelector(
-                        'button[type="submit"]'
-                    );
-
-
-                if (submitButton) {
-
-                    setTimeout(() => {
-
-                        submitButton.disabled =
-                            false;
-
-                    }, 2000);
-
-                }
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       30. CONSOLE BRANDING
+       SUCCESS MESSAGE
        ===================================================== */
 
     console.log(
         "%c JAY CLASSIC ",
         "background:#111;color:#fff;font-size:20px;font-weight:bold;padding:8px 15px;border-radius:8px;"
-    );
-
-    console.log(
-        "%c Freelancing • Digital Skills • Online Opportunities ",
-        "font-size:14px;color:#666;"
     );
 
     console.log(
