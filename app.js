@@ -94,3 +94,95 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+// ==================== PUBLIC TESTIMONIALS ====================
+
+const testimonialForm = document.getElementById("testimonialForm");
+const testimonialMessage = document.getElementById("testimonialMessage");
+const testimonialGrid = document.querySelector(".testimonial-grid");
+
+// Load existing reviews from Supabase
+async function loadTestimonials() {
+    if (!testimonialGrid) return;
+
+    const { data, error } = await supabaseClient
+        .from("testimonials")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Could not load testimonials:", error);
+        return;
+    }
+
+    data.forEach((testimonial) => {
+        const card = document.createElement("div");
+        card.className = "testimonial-card";
+
+        const stars = "★".repeat(testimonial.rating) +
+                      "☆".repeat(5 - testimonial.rating);
+
+        card.innerHTML = `
+            <div class="stars">${stars}</div>
+            <p>"${escapeHTML(testimonial.comment)}"</p>
+            <h3>${escapeHTML(testimonial.name)}</h3>
+            <span>Website Visitor</span>
+        `;
+
+        testimonialGrid.appendChild(card);
+    });
+}
+
+// Protect the page from HTML being entered into comments
+function escapeHTML(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Submit a new review
+if (testimonialForm) {
+
+    testimonialForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("testimonialName").value.trim();
+        const rating = Number(
+            document.getElementById("testimonialRating").value
+        );
+        const comment = document.getElementById("testimonialComment").value.trim();
+
+        testimonialMessage.textContent = "Submitting your review...";
+
+        const { error } = await supabaseClient
+            .from("testimonials")
+            .insert([
+                {
+                    name: name,
+                    rating: rating,
+                    comment: comment
+                }
+            ]);
+
+        if (error) {
+            console.error("Submission error:", error);
+
+            testimonialMessage.textContent =
+                "Sorry, your review could not be submitted. Please try again.";
+
+            return;
+        }
+
+        testimonialMessage.textContent =
+            "Thank you! Your review has been submitted successfully. ⭐";
+
+        testimonialForm.reset();
+
+        // Refresh the displayed reviews
+        testimonialGrid.innerHTML = "";
+        await loadTestimonials();
+    });
+}
+
+// Load reviews when the website opens
+loadTestimonials();
