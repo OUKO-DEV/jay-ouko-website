@@ -1157,3 +1157,72 @@ body.dark-mode .skill-bar {
         font-size: 16px;
     }
 }
+/* ==================== FORCE REVIEW FORM LAYOUT ==================== */
+
+.comment-form-wrapper {
+    width: min(750px, 90%);
+    margin: 70px auto 40px !important;
+    padding: 40px !important;
+    box-sizing: border-box;
+    border-radius: 24px !important;
+}
+
+#testimonialForm {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+}
+
+#testimonialForm .form-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 9px !important;
+}
+
+#testimonialForm label {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+#testimonialForm input,
+#testimonialForm select,
+#testimonialForm textarea {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+#testimonialForm input {
+    height: 52px !important;
+}
+
+#testimonialForm select {
+    height: 52px !important;
+    cursor: pointer;
+}
+
+#testimonialForm textarea {
+    min-height: 160px !important;
+}
+
+.comment-submit-btn {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 5px !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .comment-form-wrapper {
+        width: calc(100% - 30px) !important;
+        margin: 45px auto 30px !important;
+        padding: 25px 20px !important;
+    }
+}
