@@ -1,1548 +1,499 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jay Ouko | Freelancer & Digital Creator</title>
+  <title>Gift Hub Kenya | Marketplace & Online Jobs</title>
 
-    <meta name="description"
-          content="Jay Ouko - Freelancer, web developer and digital creator offering website development, Canva design, content writing, data entry and digital marketing services.">
+  <meta name="description" content="Gift Hub Kenya - A marketplace for gifts, products, freelancing and online opportunities.">
 
-    <meta name="author" content="Jay Ouko">
-
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <body>
 
-<!-- ================= NAVIGATION ================= -->
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
 
-<header class="site-header">
+      <div class="logo">
+        <span>🎁</span> Gift Hub
+      </div>
 
-    <nav class="navbar">
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#marketplace">Marketplace</a>
+        <a href="#jobs">Online Jobs</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-        <a href="#home" class="logo">
-            JAY <span>OUKO</span>
-        </a>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
 
-        <button class="menu-toggle"
-                id="menuToggle"
-                aria-label="Open menu">
-            ☰
-        </button>
-
-        <div class="nav-menu" id="navMenu">
-
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#quote">Get a Quote</a>
-            <a href="#contact">Contact</a>
-
-            <button id="themeToggle"
-                    class="theme-toggle"
-                    onclick="toggleTheme()">
-                🌙 Dark Mode
-            </button>
-
-        </div>
-
-    </nav>
-
-</header>
+    </div>
+  </header>
 
 
-<!-- ================= HERO ================= -->
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
 
-<section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <div class="hero-badge">
-            🚀 AVAILABLE FOR FREELANCE WORK
-        </div>
+      <div class="hero-text">
+        <p class="small-title">WELCOME TO GIFT HUB KENYA</p>
 
         <h1>
-            Hi, I'm <span>Jay Ouko</span>
+          Discover. Shop.<br>
+          <span>Earn.</span>
         </h1>
 
-        <h2>
-            Freelancer • Digital Creator • Web Developer
-        </h2>
-
         <p>
-            I help individuals, creators and businesses build a
-            professional online presence through websites, digital
-            content, design and online services.
+          Your simple online marketplace for gifts, products,
+          freelancing opportunities and online jobs in Kenya.
         </p>
 
         <div class="hero-buttons">
+          <a href="#marketplace" class="primary-btn">
+            Shop Now
+          </a>
 
-            <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20hire%20you."
-               target="_blank"
-               class="btn btn-primary">
-                💬 Hire Me
-            </a>
-
-            <a href="#portfolio"
-               class="btn btn-secondary">
-                🖥️ View My Work
-            </a>
-
+          <a href="#jobs" class="secondary-btn">
+            Find Online Jobs
+          </a>
         </div>
+      </div>
 
-        <div class="hero-stats">
-
-            <div>
-                <strong>6+</strong>
-                <span>Digital Services</span>
-            </div>
-
-            <div>
-                <strong>24/7</strong>
-                <span>Online Contact</span>
-            </div>
-
-            <div>
-                <strong>Kenya</strong>
-                <span>Based</span>
-            </div>
-
-        </div>
+      <div class="hero-card">
+        <div class="gift-icon">🎁</div>
+        <h2>Gift Hub</h2>
+        <p>Shop smart. Sell online. Grow together.</p>
+      </div>
 
     </div>
+  </section>
 
-</section>
 
-
-<!-- ================= QUICK SERVICES ================= -->
-
-<section class="quick-services">
+  <!-- MARKETPLACE -->
+  <section id="marketplace" class="section">
 
     <div class="container">
 
-        <div class="quick-grid">
+      <div class="section-heading">
+        <p class="small-title">MARKETPLACE</p>
 
-            <div class="quick-item">
-                <span>🌐</span>
-                <h3>Web Development</h3>
-                <p>Professional websites</p>
-            </div>
-
-            <div class="quick-item">
-                <span>🎨</span>
-                <h3>Canva Design</h3>
-                <p>Creative digital graphics</p>
-            </div>
-
-            <div class="quick-item">
-                <span>✍️</span>
-                <h3>Content Writing</h3>
-                <p>Business & social content</p>
-            </div>
-
-            <div class="quick-item">
-                <span>📊</span>
-                <h3>Data Entry</h3>
-                <p>Accurate online work</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section id="about" class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>ABOUT ME</span>
-
-            <h2>Helping People Build Online</h2>
-
-            <p>
-                I am Jay Ouko, a freelancer and digital creator
-                focused on creating useful digital solutions for
-                individuals, creators and small businesses.
-            </p>
-
-        </div>
-
-
-        <div class="about-grid">
-
-            <div class="about-image">
-
-                <img src="jayouko.jpg"
-                     alt="Jay Ouko">
-
-            </div>
-
-
-            <div class="about-content">
-
-                <h3>
-                    Freelancer & Digital Creator
-                </h3>
-
-                <p>
-                    I provide digital services including website
-                    development, Canva design, content writing,
-                    data entry, social media support and digital
-                    marketing.
-                </p>
-
-                <p>
-                    My goal is to make digital services simple,
-                    affordable and accessible to individuals and
-                    businesses.
-                </p>
-
-                <div class="about-points">
-
-                    <div>✓ Mobile-friendly websites</div>
-                    <div>✓ Clear communication</div>
-                    <div>✓ Affordable services</div>
-                    <div>✓ Online support</div>
-
-                </div>
-
-                <a href="#quote"
-                   class="btn btn-primary">
-                    Start a Project
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SERVICES ================= -->
-
-<section id="services" class="section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>WHAT I DO</span>
-
-            <h2>My Services</h2>
-
-            <p>
-                Digital services for individuals, creators and
-                businesses.
-            </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-            <div class="service-card">
-
-                <div class="service-icon">🌐</div>
-
-                <h3>Website Development</h3>
-
-                <p>
-                    Professional and mobile-friendly websites
-                    for personal brands and businesses.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">🎨</div>
-
-                <h3>Canva Design</h3>
-
-                <p>
-                    Posters, social media graphics, promotional
-                    designs and digital materials.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">✍️</div>
-
-                <h3>Content Writing</h3>
-
-                <p>
-                    Website content, business descriptions,
-                    captions and digital writing.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">📊</div>
-
-                <h3>Data Entry</h3>
-
-                <p>
-                    Accurate data entry, online research and
-                    digital administrative support.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">📱</div>
-
-                <h3>Social Media</h3>
-
-                <p>
-                    Social media content and digital support
-                    for online brands.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">📢</div>
-
-                <h3>Digital Marketing</h3>
-
-                <p>
-                    Digital content and online presence support
-                    for businesses and creators.
-                </p>
-
-                <a href="#quote">Request Service →</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= TOOLS ================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>MY TOOLS</span>
-
-            <h2>Tools & Platforms</h2>
-
-            <p>
-                Platforms and tools I use for digital projects.
-            </p>
-
-        </div>
-
-
-        <div class="tools-grid">
-
-            <div class="tool-card">
-
-                <div class="tool-icon">🎨</div>
-
-                <h3>Canva</h3>
-
-                <p>
-                    Graphic design, social media content,
-                    posters and digital branding.
-                </p>
-
-            </div>
-
-
-            <div class="tool-card">
-
-                <div class="tool-icon">📢</div>
-
-                <h3>Twiva</h3>
-
-                <p>
-                    Influencer marketing and digital campaign
-                    platform.
-                </p>
-
-            </div>
-
-
-            <div class="tool-card">
-
-                <div class="tool-icon">💻</div>
-
-                <h3>GitHub</h3>
-
-                <p>
-                    Website development, code management and
-                    GitHub Pages deployment.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PORTFOLIO ================= -->
-
-<section id="portfolio" class="section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>MY WORK</span>
-
-            <h2>Portfolio</h2>
-
-            <p>
-                A selection of my digital projects and services.
-            </p>
-
-        </div>
-
-
-        <div class="portfolio-grid">
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-web">
-                    🌐
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        WEB DEVELOPMENT
-                    </span>
-
-                    <h3>Jay Ouko Website</h3>
-
-                    <p>
-                        A professional freelancer website built
-                        to showcase services, skills, pricing and
-                        contact information.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-
-                    </div>
-
-                    <a href="https://ouko-dev.github.io/jay-ouko-website/"
-                       target="_blank"
-                       class="project-link">
-                        View Project →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-shop">
-                    🛍️
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        MARKETPLACE
-                    </span>
-
-                    <h3>Gift Hub Marketplace</h3>
-
-                    <p>
-                        A marketplace concept designed to connect
-                        customers with products and online sellers.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>Marketplace</span>
-                        <span>Web Design</span>
-                        <span>UI</span>
-
-                    </div>
-
-                    <a href="https://ouko-dev.github.io/jay-ouko-website/"
-                       target="_blank"
-                       class="project-link">
-                        View Project →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-design">
-                    🎨
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        GRAPHIC DESIGN
-                    </span>
-
-                    <h3>Canva Design Projects</h3>
-
-                    <p>
-                        Promotional graphics, social media designs,
-                        posters and digital branding materials.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>Canva</span>
-                        <span>Design</span>
-                        <span>Branding</span>
-
-                    </div>
-
-                    <a href="https://www.instagram.com/emmanueljayouko/"
-                       target="_blank"
-                       class="project-link">
-                        View Socials →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-social">
-                    📱
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        SOCIAL MEDIA
-                    </span>
-
-                    <h3>Social Media Projects</h3>
-
-                    <p>
-                        Digital content and social media projects
-                        for online brands and creators.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>Content</span>
-                        <span>Social</span>
-                        <span>Marketing</span>
-
-                    </div>
-
-                    <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-                       target="_blank"
-                       class="project-link">
-                        View YouTube →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-data">
-                    📊
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        DATA SERVICES
-                    </span>
-
-                    <h3>Data Entry & Research</h3>
-
-                    <p>
-                        Data entry, online research and digital
-                        administrative support.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>Data</span>
-                        <span>Research</span>
-                        <span>Online</span>
-
-                    </div>
-
-                    <a href="#quote"
-                       class="project-link">
-                        Request Service →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="portfolio-card">
-
-                <div class="portfolio-image portfolio-writing">
-                    ✍️
-                </div>
-
-                <div class="portfolio-content">
-
-                    <span class="project-category">
-                        CONTENT
-                    </span>
-
-                    <h3>Content Writing</h3>
-
-                    <p>
-                        Business descriptions, captions, website
-                        content and digital writing.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>Writing</span>
-                        <span>Content</span>
-                        <span>Business</span>
-
-                    </div>
-
-                    <a href="#quote"
-                       class="project-link">
-                        Request Service →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PRICING ================= -->
-
-<section id="pricing" class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>PRICING</span>
-
-            <h2>Simple & Affordable</h2>
-
-            <p>
-                Choose a service package or request a custom quote.
-            </p>
-
-        </div>
-
-
-        <div class="pricing-grid">
-
-
-            <div class="pricing-card">
-
-                <h3>Basic Website</h3>
-
-                <div class="price">
-                    KSh 3,000
-                </div>
-
-                <p>For simple personal websites.</p>
-
-                <ul>
-
-                    <li>✓ 1–3 pages</li>
-                    <li>✓ Mobile-friendly</li>
-                    <li>✓ Contact information</li>
-                    <li>✓ Social links</li>
-                    <li>✓ Basic deployment</li>
-
-                </ul>
-
-                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20the%20Basic%20Website%20package."
-                   target="_blank"
-                   class="price-btn">
-                    Choose Package
-                </a>
-
-            </div>
-
-
-            <div class="pricing-card featured">
-
-                <div class="popular">
-                    POPULAR
-                </div>
-
-                <h3>Professional Website</h3>
-
-                <div class="price">
-                    KSh 5,000
-                </div>
-
-                <p>For businesses and personal brands.</p>
-
-                <ul>
-
-                    <li>✓ Up to 5 pages</li>
-                    <li>✓ Professional design</li>
-                    <li>✓ Mobile responsive</li>
-                    <li>✓ WhatsApp integration</li>
-                    <li>✓ Social media integration</li>
-                    <li>✓ GitHub Pages deployment</li>
-
-                </ul>
-
-                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20the%20Professional%20Website%20package."
-                   target="_blank"
-                   class="price-btn">
-                    Choose Package
-                </a>
-
-            </div>
-
-
-            <div class="pricing-card">
-
-                <h3>Content & Data</h3>
-
-                <div class="price">
-                    From KSh 1,000
-                </div>
-
-                <p>For online business support.</p>
-
-                <ul>
-
-                    <li>✓ Content writing</li>
-                    <li>✓ Business descriptions</li>
-                    <li>✓ Social captions</li>
-                    <li>✓ Data entry</li>
-                    <li>✓ Online research</li>
-
-                </ul>
-
-                <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20am%20interested%20in%20your%20Content%20and%20Data%20services."
-                   target="_blank"
-                   class="price-btn">
-                    Choose Package
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PAYMENT ================= -->
-
-<section class="section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>PAYMENT</span>
-
-            <h2>M-PESA</h2>
-
-            <p>
-                Contact me first so we can confirm the service and
-                agreed amount before payment.
-            </p>
-
-        </div>
-
-
-        <div class="payment-box">
-
-            <div class="payment-icon">
-                📱
-            </div>
-
-            <h3>
-                Payment Number
-            </h3>
-
-            <div class="payment-number">
-                +254142617814
-            </div>
-
-            <p>
-                Please contact me on WhatsApp before making payment.
-            </p>
-
-            <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20confirm%20a%20payment."
-               target="_blank"
-               class="btn btn-primary">
-                Confirm Payment
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WHY WORK WITH ME ================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>WHY WORK WITH ME</span>
-
-            <h2>What You Can Expect</h2>
-
-        </div>
-
-
-        <div class="trust-grid">
-
-            <div class="trust-card">
-
-                <div>💼</div>
-
-                <h3>Professional</h3>
-
-                <p>
-                    Clear and organized digital work.
-                </p>
-
-            </div>
-
-
-            <div class="trust-card">
-
-                <div>⚡</div>
-
-                <h3>Responsive</h3>
-
-                <p>
-                    Easy communication through WhatsApp and email.
-                </p>
-
-            </div>
-
-
-            <div class="trust-card">
-
-                <div>💰</div>
-
-                <h3>Affordable</h3>
-
-                <p>
-                    Services designed for different budgets.
-                </p>
-
-            </div>
-
-
-            <div class="trust-card">
-
-                <div>📱</div>
-
-                <h3>Mobile Friendly</h3>
-
-                <p>
-                    Websites designed for phones and computers.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SKILLS ================= -->
-
-<section class="section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>MY SKILLS</span>
-
-            <h2>Digital Skills</h2>
-
-        </div>
-
-
-        <div class="skills-grid">
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Web Development</span>
-                    <strong>90%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:90%;"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Canva Design</span>
-                    <strong>85%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:85%;"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Content Writing</span>
-                    <strong>85%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:85%;"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Data Entry</span>
-                    <strong>90%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:90%;"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Social Media</span>
-                    <strong>85%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:85%;"></div>
-                </div>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-title">
-                    <span>Digital Marketing</span>
-                    <strong>80%</strong>
-                </div>
-
-                <div class="skill-bar">
-                    <div style="width:80%;"></div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PROCESS ================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>PROCESS</span>
-
-            <h2>How It Works</h2>
-
-        </div>
-
-
-        <div class="process-grid">
-
-
-            <div class="process-card">
-
-                <span>01</span>
-
-                <div>💬</div>
-
-                <h3>Contact Me</h3>
-
-                <p>
-                    Send me a WhatsApp message or request a quote.
-                </p>
-
-            </div>
-
-
-            <div class="process-card">
-
-                <span>02</span>
-
-                <div>📝</div>
-
-                <h3>Discuss</h3>
-
-                <p>
-                    We discuss your project, requirements and budget.
-                </p>
-
-            </div>
-
-
-            <div class="process-card">
-
-                <span>03</span>
-
-                <div>💻</div>
-
-                <h3>Work Begins</h3>
-
-                <p>
-                    I work on the agreed project.
-                </p>
-
-            </div>
-
-
-            <div class="process-card">
-
-                <span>04</span>
-
-                <div>🎉</div>
-
-                <h3>Delivery</h3>
-
-                <p>
-                    You receive your completed project.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= QUOTE ================= -->
-
-<section id="quote" class="section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>START A PROJECT</span>
-
-            <h2>Get a Free Quote</h2>
-
-            <p>
-                Tell me what you need and I'll get back to you.
-            </p>
-
-        </div>
-
-
-        <div class="quote-form">
-
-            <input type="text"
-                   id="quoteName"
-                   placeholder="Your Name">
-
-            <input type="email"
-                   id="quoteEmail"
-                   placeholder="Your Email">
-
-
-            <select id="quoteService">
-
-                <option value="">
-                    Select a Service
-                </option>
-
-                <option>Website Development</option>
-                <option>Canva Design</option>
-                <option>Content Writing</option>
-                <option>Data Entry</option>
-                <option>Social Media</option>
-                <option>Digital Marketing</option>
-                <option>Other</option>
-
-            </select>
-
-
-            <select id="quoteBudget">
-
-                <option value="">
-                    Select Your Budget
-                </option>
-
-                <option>KSh 1,000 - 3,000</option>
-                <option>KSh 3,000 - 5,000</option>
-                <option>KSh 5,000 - 10,000</option>
-                <option>Above KSh 10,000</option>
-
-            </select>
-
-
-            <textarea id="quoteMessage"
-                      rows="6"
-                      placeholder="Describe your project"></textarea>
-
-
-            <button type="button"
-                    onclick="sendQuote()"
-                    class="btn btn-primary quote-submit">
-                📱 Send Quote Request
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FEEDBACK ================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>CLIENT FEEDBACK</span>
-
-            <h2>Future Client Reviews</h2>
-
-            <p>
-                Real client feedback will be added here after
-                completed projects.
-            </p>
-
-        </div>
-
-
-        <div class="testimonials-grid">
-
-
-            <div class="testimonial">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    Your genuine client feedback can appear here
-                    after a completed project.
-                </p>
-
-                <strong>
-                    Future Client
-                </strong>
-
-            </div>
-
-
-            <div class="testimonial">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    Client reviews will be added with permission
-                    as projects are completed.
-                </p>
-
-                <strong>
-                    Future Client
-                </strong>
-
-            </div>
-
-
-            <div class="testimonial">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    Real experiences from clients will be displayed
-                    in this section.
-                </p>
-
-                <strong>
-                    Future Client
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-        <div class="form-group">
-            <label for="testimonialRating">Your Rating</label>
-            <select id="testimonialRating" required>
-                <option value="">Choose a rating</option>
-                <option value="5">★★★★★ — Excellent</option>
-                <option value="4">★★★★☆ — Very Good</option>
-                <option value="3">★★★☆☆ — Good</option>
-                <option value="2">★★☆☆☆ — Fair</option>
-                <option value="1">★☆☆☆☆ — Poor</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="testimonialComment">Your Comment</label>
-            <textarea
-                id="testimonialComment"
-                placeholder="Write your comment..."
-                minlength="5"
-                maxlength="500"
-                rows="5"
-                required
-            ></textarea>
-        </div>
-
-        <button type="submit" class="comment-submit-btn">
-            Submit Review
-        </button>
-
-        <p id="testimonialMessage"></p>
-
-    </form>
-
-</div>
-</section>
-
-<!-- ==================== TESTIMONIALS ==================== -->
-<section id="testimonials" class="testimonials-section">
-    <div class="container">
-
-        <div class="section-heading">
-            <span>TESTIMONIALS</span>
-            <h2>What Clients Say</h2>
-            <p>Feedback from people I've had the opportunity to work with.</p>
-        </div>
-
-        <div class="testimonial-grid">
-
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>
-                    "Professional service, clear communication and great
-                    attention to detail."
-                </p>
-                <h3>Client Name</h3>
-                <span>Freelance Client</span>
-            </div>
-<div class="testimonial-grid">
-
-    ... testimonial cards ...
-
-</div>
-
-<!-- PUBLIC COMMENT FORM -->
-<div class="comment-form-wrapper">
-
-    ... Leave a Review form ...
-
-</div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>
-                    "A reliable digital creator who takes the time to
-                    understand the project."
-                </p>
-                <h3>Client Name</h3>
-                <span>Business Client</span>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>
-                    "Excellent communication and a professional approach
-                    from start to finish."
-                </p>
-                <h3>Client Name</h3>
-                <span>Digital Client</span>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section id="contact" class="section contact-section section-light">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>CONTACT</span>
-
-            <h2>Let's Work Together</h2>
-
-            <p>
-                Have a project in mind? Get in touch.
-            </p>
-
-        </div>
-
-
-        <div class="contact-grid">
-
-
-            <div class="contact-card">
-
-                <div>📧</div>
-
-                <h3>Email</h3>
-
-                <a href="mailto:emmanuelouko21@gmail.com">
-                    emmanuelouko21@gmail.com
-                </a>
-
-            </div>
-
-
-            <div class="contact-card">
-
-                <div>📱</div>
-
-                <h3>Phone / WhatsApp</h3>
-
-                <a href="tel:+254142617814">
-                    +254142617814
-                </a>
-
-            </div>
-
-
-            <div class="contact-card">
-
-                <div>📍</div>
-
-                <h3>Location</h3>
-
-                <p>
-                    Kenya
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="social-links">
-
-            <a href="https://www.facebook.com/profile.php?id=615687"
-               target="_blank">
-                Facebook
-            </a>
-
-            <a href="https://www.instagram.com/emmanueljayouko/"
-               target="_blank">
-                Instagram
-            </a>
-
-            <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-               target="_blank">
-                YouTube
-            </a>
-
-        </div>
-
-
-        <div class="contact-actions">
-
-            <a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20discuss%20a%20project."
-               target="_blank"
-               class="btn btn-primary">
-                💬 WhatsApp Me
-            </a>
-
-            <a href="mailto:emmanuelouko21@gmail.com"
-               class="btn btn-secondary">
-                📧 Email Me
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="container">
-
-        <h3>
-            JAY OUKO
-        </h3>
+        <h2>Explore Our Products</h2>
 
         <p>
-            Freelancer • Digital Creator • Web Developer
+          Find products and gifts for yourself, friends and family.
         </p>
+      </div>
 
-        <div class="footer-links">
 
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+      <!-- SEARCH -->
+      <div class="market-tools">
 
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search products..."
+          onkeyup="searchProducts()"
+        >
+
+        <select id="categoryFilter" onchange="filterProducts()">
+          <option value="all">All Categories</option>
+          <option value="gifts">Gifts</option>
+          <option value="fashion">Fashion</option>
+          <option value="electronics">Electronics</option>
+          <option value="accessories">Accessories</option>
+        </select>
+
+      </div>
+
+
+      <!-- PRODUCTS -->
+      <div id="productGrid" class="product-grid">
+
+        <div class="product-card" data-category="gifts">
+
+          <div class="product-image">🎁</div>
+
+          <div class="product-info">
+
+            <span class="category">Gifts</span>
+
+            <h3>Premium Gift Box</h3>
+
+            <p>
+              Beautiful gift package suitable for birthdays,
+              celebrations and special occasions.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 1,500</strong>
+
+              <button onclick="addToCart('Premium Gift Box', 1500)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
         </div>
 
-        <p class="copyright">
-            © 2026 Jay Ouko. All rights reserved.
+
+        <div class="product-card" data-category="fashion">
+
+          <div class="product-image">👕</div>
+
+          <div class="product-info">
+
+            <span class="category">Fashion</span>
+
+            <h3>Classic T-Shirt</h3>
+
+            <p>
+              Comfortable everyday T-shirt with a clean modern style.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 1,200</strong>
+
+              <button onclick="addToCart('Classic T-Shirt', 1200)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="product-card" data-category="electronics">
+
+          <div class="product-image">🎧</div>
+
+          <div class="product-info">
+
+            <span class="category">Electronics</span>
+
+            <h3>Wireless Earbuds</h3>
+
+            <p>
+              Compact wireless earbuds for music, calls and entertainment.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 2,500</strong>
+
+              <button onclick="addToCart('Wireless Earbuds', 2500)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="product-card" data-category="accessories">
+
+          <div class="product-image">⌚</div>
+
+          <div class="product-info">
+
+            <span class="category">Accessories</span>
+
+            <h3>Classic Watch</h3>
+
+            <p>
+              Stylish watch suitable for everyday wear and special occasions.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 2,000</strong>
+
+              <button onclick="addToCart('Classic Watch', 2000)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="product-card" data-category="accessories">
+
+          <div class="product-image">🕶️</div>
+
+          <div class="product-info">
+
+            <span class="category">Accessories</span>
+
+            <h3>Fashion Sunglasses</h3>
+
+            <p>
+              Modern sunglasses for a clean and stylish look.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 1,000</strong>
+
+              <button onclick="addToCart('Fashion Sunglasses', 1000)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="product-card" data-category="gifts">
+
+          <div class="product-image">🌹</div>
+
+          <div class="product-info">
+
+            <span class="category">Gifts</span>
+
+            <h3>Romantic Gift Set</h3>
+
+            <p>
+              A simple gift set for birthdays, anniversaries and special moments.
+            </p>
+
+            <div class="product-bottom">
+              <strong>KSh 1,800</strong>
+
+              <button onclick="addToCart('Romantic Gift Set', 1800)">
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ONLINE JOBS -->
+  <section id="jobs" class="jobs-section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <p class="small-title">ONLINE OPPORTUNITIES</p>
+
+        <h2>Find Online Jobs & Freelancing Opportunities</h2>
+
+        <p>
+          Build your skills and discover opportunities to work online.
         </p>
+      </div>
+
+
+      <div class="jobs-grid">
+
+        <div class="job-card">
+          <div class="job-icon">✍️</div>
+
+          <h3>Content Writing</h3>
+
+          <p>
+            Write articles, blogs, product descriptions and other content.
+          </p>
+
+          <button onclick="showJobMessage('Content Writing')">
+            Explore Job
+          </button>
+        </div>
+
+
+        <div class="job-card">
+          <div class="job-icon">💻</div>
+
+          <h3>Data Entry</h3>
+
+          <p>
+            Find opportunities involving data entry and virtual assistance.
+          </p>
+
+          <button onclick="showJobMessage('Data Entry')">
+            Explore Job
+          </button>
+        </div>
+
+
+        <div class="job-card">
+          <div class="job-icon">📱</div>
+
+          <h3>Social Media</h3>
+
+          <p>
+            Explore social media management and digital marketing work.
+          </p>
+
+          <button onclick="showJobMessage('Social Media')">
+            Explore Job
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="section about-section">
+
+    <div class="container about">
+
+      <div>
+        <p class="small-title">ABOUT GIFT HUB</p>
+
+        <h2>Built for Shopping & Digital Opportunities</h2>
+      </div>
+
+      <div>
+        <p>
+          Gift Hub is a digital marketplace concept designed to connect
+          customers with products while also helping people discover
+          online work and freelancing opportunities.
+        </p>
+
+        <p>
+          Our goal is to create a simple, modern and accessible platform
+          for people in Kenya and beyond.
+        </p>
+      </div>
 
     </div>
 
-</footer>
+  </section>
 
 
-<!-- ================= FLOATING WHATSAPP ================= -->
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
 
-<a href="https://wa.me/254142617814?text=Hello%20Jay%20Ouko,%20I%20would%20like%20to%20discuss%20a%20project."
-   target="_blank"
-   class="floating-whatsapp"
-   aria-label="WhatsApp">
-    💬
-</a>
+    <div class="container">
+
+      <div class="section-heading">
+
+        <p class="small-title">GET IN TOUCH</p>
+
+        <h2>Contact Gift Hub</h2>
+
+        <p>
+          Have a question, suggestion or business opportunity?
+          Get in touch with us.
+        </p>
+
+      </div>
 
 
-<script src="app.js"></script>
+      <div class="contact-grid">
 
-<script>
+        <div class="contact-card">
+          <span>📧</span>
 
-/* MOBILE MENU */
+          <h3>Email</h3>
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+          <a href="mailto:emmanuelouko21@gmail.com">
+            emmanuelouko21@gmail.com
+          </a>
+        </div>
 
-if (menuToggle && navMenu) {
 
-    menuToggle.addEventListener("click", function () {
+        <div class="contact-card">
+          <span>📱</span>
 
-        navMenu.classList.toggle("open");
+          <h3>Phone</h3>
 
-    });
+          <a href="tel:+254142617814">
+            +254 142 617 814
+          </a>
+        </div>
 
-    navMenu.querySelectorAll("a").forEach(function(link) {
 
-        link.addEventListener("click", function() {
+        <div class="contact-card">
+          <span>💬</span>
 
-            navMenu.classList.remove("open");
+          <h3>WhatsApp</h3>
 
-        });
+          <a
+            href="https://wa.me/254142617814"
+            target="_blank"
+          >
+            Chat on WhatsApp
+          </a>
+        </div>
 
-    });
+      </div>
 
-}
+    </div>
 
-</script>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-content">
+
+      <div>
+        <h3>🎁 Gift Hub</h3>
+
+        <p>
+          Shop. Sell. Discover opportunities.
+        </p>
+      </div>
+
+      <div class="social-links">
+        <a href="#" onclick="socialMessage('Facebook')">Facebook</a>
+        <a href="#" onclick="socialMessage('TikTok')">TikTok</a>
+        <a href="#" onclick="socialMessage('Instagram')">Instagram</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Gift Hub Kenya. All rights reserved.
+    </div>
+
+  </footer>
+
+
+  <!-- CART MODAL -->
+  <div id="cartModal" class="modal">
+
+    <div class="modal-content">
+
+      <button class="close-btn" onclick="closeCart()">×</button>
+
+      <h2>🛒 Your Cart</h2>
+
+      <div id="cartItems">
+        <p>Your cart is empty.</p>
+      </div>
+
+      <div class="cart-total">
+        Total: <strong>KSh <span id="cartTotal">0</span></strong>
+      </div>
+
+      <button class="checkout-btn" onclick="checkout()">
+        Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="app.js"></script>
 
 </body>
 </html>
+```
