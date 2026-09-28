@@ -1,2150 +1,2587 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <!-- =====================================================
-         JAY CLASSIC
-         Freelancing • Online Work • Digital Education
-    ====================================================== -->
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <meta name="description"
-          content="Jay Classic is a digital platform for freelancing, graphic design, web development, digital marketing, AI tools, online classes and online work opportunities.">
+          content="Jay Classic - Freelancing, Digital Skills, Online Jobs, AI Tools, Canva, Twiva and digital education.">
 
     <meta name="keywords"
-          content="Jay Classic, Jay Ouko, freelancing Kenya, online jobs Kenya, graphic design, web development, digital marketing, AI tools, online classes, TikTok classes">
+          content="Jay Classic, Jay Ouko, freelancing Kenya, online jobs Kenya, digital skills, Canva, Twiva, web development, graphic design, digital marketing">
 
-    <meta name="author"
-          content="Jay Ouko Emmanuel">
+    <meta name="author" content="Jay Ouko">
 
-    <meta name="theme-color"
-          content="#0f172a">
+    <meta name="theme-color" content="#2563eb">
 
-    <meta name="robots"
-          content="index, follow">
-
-    <title>
-        Jay Classic | Freelancing • Digital Skills • Online Work
-    </title>
-
+    <title>Jay Classic | Freelancing • Digital Skills • Online Work</title>
 
     <!-- =====================================================
          GOOGLE FONT
     ====================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- =====================================================
-         MAIN CSS
+         ICONS
     ====================================================== -->
-
     <link rel="stylesheet"
-          href="style.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- =====================================================
+         WEBSITE CSS
+    ====================================================== -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<!-- =========================================================
+     PAGE LOADER
+========================================================= -->
 
-    <!-- =====================================================
-         PAGE LOADER
-    ====================================================== -->
-
-    <div class="page-loader"
-         id="pageLoader">
-
-        <div class="loader-logo">
-            JAY CLASSIC
-        </div>
-
+<div class="page-loader" id="pageLoader">
+    <div class="loader-content">
         <div class="loader-spinner"></div>
-
-        <p>
-            Loading Jay Classic...
-        </p>
-
+        <h3>Jay Classic</h3>
+        <p>Loading your digital experience...</p>
     </div>
+</div>
 
 
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+<header class="header" id="header">
 
-    <header class="header"
-            id="header">
+    <div class="container nav-container">
 
-        <div class="container nav-container">
+        <!-- LOGO -->
+        <a href="#home" class="logo">
+            <span class="logo-mark">J</span>
+
+            <span class="logo-text">
+                <strong>JAY</strong>
+                <small>CLASSIC</small>
+            </span>
+        </a>
 
 
-            <!-- LOGO -->
+        <!-- DESKTOP NAVIGATION -->
 
-            <a href="#home"
-               class="logo"
-               aria-label="Jay Classic Home">
+        <nav class="navbar" id="navbar">
 
-                <span class="logo-main">
-                    JAY
-                </span>
+            <a href="#home" class="nav-link active">
+                Home
+            </a>
 
-                <span class="logo-sub">
-                    CLASSIC
-                </span>
+            <a href="#services" class="nav-link">
+                Services
+            </a>
+
+            <a href="#classes" class="nav-link">
+                Classes
+            </a>
+
+            <a href="#membership" class="nav-link">
+                Membership
+            </a>
+
+            <a href="#referrals" class="nav-link">
+                Referrals
+            </a>
+
+            <a href="#jobs" class="nav-link">
+                Online Jobs
+            </a>
+
+            <a href="#reviews" class="nav-link">
+                Reviews
+            </a>
+
+            <a href="#contact" class="nav-link">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+            <button class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Toggle dark mode">
+
+                <span id="themeIcon">🌙</span>
+
+            </button>
+
+
+            <a href="#registration"
+               class="btn btn-primary nav-register">
+
+                Register
 
             </a>
 
 
-            <!-- DESKTOP NAVIGATION -->
-
-            <nav class="navbar"
-                 id="navbar">
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#services">
-                    Services
-                </a>
-
-                <a href="#classes">
-                    Free Class
-                </a>
-
-                <a href="#jobs">
-                    Online Work
-                </a>
-
-                <a href="#reviews">
-                    Reviews
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </nav>
-
-
-            <!-- HEADER ACTIONS -->
-
-            <div class="header-actions">
-
-
-                <!-- DARK / LIGHT MODE -->
-
-                <button
-                    type="button"
-                    class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="Toggle dark and light mode">
-
-                    <span id="themeIcon">
-                        🌙
-                    </span>
-
-                </button>
-
-
-                <!-- REGISTER BUTTON -->
-
-                <a href="#registration"
-                   class="nav-button">
-
-                    Register
-
-                </a>
-
-
-                <!-- MOBILE MENU -->
-
-                <button
-                    type="button"
-                    class="menu-toggle"
+            <button class="menu-toggle"
                     id="menuToggle"
-                    aria-label="Open navigation menu">
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false">
 
-                    ☰
+                ☰
 
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
-    </header>
-
+    </div>
 
 
     <!-- =====================================================
          MOBILE MENU
     ====================================================== -->
 
-    <div class="mobile-menu"
-         id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu">
 
-        <a href="#home">
-            Home
-        </a>
+        <div class="mobile-menu-inner">
 
-        <a href="#services">
-            Services
-        </a>
+            <a href="#home" class="mobile-nav-link">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
 
-        <a href="#classes">
-            Free Class
-        </a>
+            <a href="#services" class="mobile-nav-link">
+                <i class="fa-solid fa-briefcase"></i>
+                Services
+            </a>
 
-        <a href="#jobs">
-            Online Work
-        </a>
+            <a href="#classes" class="mobile-nav-link">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Classes
+            </a>
 
-        <a href="#reviews">
-            Reviews
-        </a>
+            <a href="#membership" class="mobile-nav-link">
+                <i class="fa-solid fa-crown"></i>
+                Membership
+            </a>
 
-        <a href="#about">
-            About
-        </a>
+            <a href="#referrals" class="mobile-nav-link">
+                <i class="fa-solid fa-users"></i>
+                Referral Program
+            </a>
 
-        <a href="#contact">
-            Contact
-        </a>
+            <a href="#jobs" class="mobile-nav-link">
+                <i class="fa-solid fa-laptop"></i>
+                Online Jobs
+            </a>
 
-        <a href="#registration"
-           class="mobile-cta">
+            <a href="#reviews" class="mobile-nav-link">
+                <i class="fa-solid fa-star"></i>
+                Reviews
+            </a>
 
-            Register Now
+            <a href="#contact" class="mobile-nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                Contact
+            </a>
 
-        </a>
+            <a href="#registration"
+               class="btn btn-primary mobile-register">
+
+                Register Now
+
+            </a>
+
+        </div>
 
     </div>
 
+</header>
 
 
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
 
-    <main>
+<main>
 
+<section class="hero section" id="home">
 
+    <div class="container hero-grid">
 
-        <!-- =================================================
-             HERO SECTION
-        ================================================== -->
+        <!-- HERO CONTENT -->
 
-        <section class="hero"
-                 id="home">
+        <div class="hero-content">
 
-            <div class="container hero-container">
+            <div class="hero-badge">
 
+                <span class="status-dot"></span>
 
-                <div class="hero-content">
-
-
-                    <div class="hero-badge">
-
-                        <span class="status-dot"></span>
-
-                        Welcome to Jay Classic
-
-                    </div>
-
-
-                    <h1>
-
-                        Learn Skills.
-                        <span>
-                            Work Online.
-                        </span>
-
-                        Build Your Future.
-
-                    </h1>
-
-
-                    <p class="hero-description">
-
-                        Jay Classic is a digital platform for
-                        freelancing, online work, digital skills,
-                        technology, AI tools and free online learning.
-
-                    </p>
-
-
-                    <div class="hero-buttons">
-
-                        <a href="#services"
-                           class="primary-button">
-
-                            Explore Services
-
-                        </a>
-
-
-                        <a href="#classes"
-                           class="secondary-button">
-
-                            Join Free Class
-
-                        </a>
-
-                    </div>
-
-
-                    <div class="hero-trust">
-
-
-                        <div class="trust-item">
-
-                            <strong>
-                                FREE
-                            </strong>
-
-                            <span>
-                                Daily Class
-                            </span>
-
-                        </div>
-
-
-                        <div class="trust-item">
-
-                            <strong>
-                                9:00 PM
-                            </strong>
-
-                            <span>
-                                Every Day
-                            </span>
-
-                        </div>
-
-
-                        <div class="trust-item">
-
-                            <strong>
-                                🇰🇪
-                            </strong>
-
-                            <span>
-                                Kenya & Global
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- HERO CARD -->
-
-                <div class="hero-visual">
-
-                    <div class="hero-card">
-
-
-                        <div class="hero-card-header">
-
-                            <div class="profile-mini">
-
-                                <div class="profile-avatar">
-                                    JO
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Jay Classic
-                                    </strong>
-
-                                    <small>
-                                        Digital Skills Platform
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-
-                            <span class="verified">
-                                ✓ Online
-                            </span>
-
-                        </div>
-
-
-                        <div class="hero-card-body">
-
-                            <span class="card-label">
-                                FREE ONLINE CLASS
-                            </span>
-
-                            <h2>
-
-                                Learn Digital Skills
-                                <span>
-                                    Every Day
-                                </span>
-
-                            </h2>
-
-                            <p>
-
-                                Join the Jay Classic TikTok
-                                learning session every evening.
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="class-time-card">
-
-                            <span>
-                                🕘
-                            </span>
-
-                            <div>
-
-                                <strong>
-                                    9:00 PM
-                                </strong>
-
-                                <small>
-                                    Every Day • Free
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <a href="#registration"
-                           class="card-button">
-
-                            Reserve Your Place →
-
-                        </a>
-
-                    </div>
-
-                </div>
+                <span>
+                    Digital Skills • Freelancing • Online Work
+                </span>
 
             </div>
 
-        </section>
+
+            <h1>
+
+                Build Your
+                <span class="gradient-text">
+                    Digital Future
+                </span>
+
+                With Jay Classic.
+
+            </h1>
 
 
+            <p class="hero-description">
 
-        <!-- =================================================
-             SERVICES
-        ================================================== -->
+                Learn digital skills, discover legitimate online
+                opportunities, build your portfolio and grow through
+                our community-based membership and referral program.
 
-        <section class="section services-section"
-                 id="services">
-
-            <div class="container">
+            </p>
 
 
-                <div class="section-heading">
+            <!-- HERO BUTTONS -->
 
-                    <span class="section-label">
-                        DIGITAL SERVICES
+            <div class="hero-buttons">
+
+                <a href="#registration"
+                   class="btn btn-primary btn-large">
+
+                    <i class="fa-solid fa-rocket"></i>
+
+                    Join Jay Classic
+
+                </a>
+
+
+                <a href="#services"
+                   class="btn btn-outline btn-large">
+
+                    Explore Services
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- HERO STATS -->
+
+            <div class="hero-stats">
+
+                <div class="stat-item">
+
+                    <strong>5+</strong>
+
+                    <span>
+                        Digital Skills
                     </span>
 
-                    <h2>
-                        Skills That Open Opportunities
-                    </h2>
-
-                    <p>
-                        Explore practical digital skills and services
-                        you can learn, use and develop for online work.
-                    </p>
-
                 </div>
 
 
-                <div class="services-grid">
+                <div class="stat-item">
 
+                    <strong>3</strong>
 
-                    <!-- FREELANCING -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            💼
-                        </div>
-
-                        <span class="service-number">
-                            01
-                        </span>
-
-                        <h3>
-                            Freelancing
-                        </h3>
-
-                        <p>
-                            Learn how freelancing works, how to build
-                            your profile and how to find legitimate
-                            online projects.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Freelancing →
-                        </a>
-
-                    </article>
-
-
-                    <!-- GRAPHIC DESIGN -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            🎨
-                        </div>
-
-                        <span class="service-number">
-                            02
-                        </span>
-
-                        <h3>
-                            Graphic Design
-                        </h3>
-
-                        <p>
-                            Learn digital design, social media graphics,
-                            posters, branding and creative content.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Design →
-                        </a>
-
-                    </article>
-
-
-                    <!-- WEB DEVELOPMENT -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            💻
-                        </div>
-
-                        <span class="service-number">
-                            03
-                        </span>
-
-                        <h3>
-                            Web Development
-                        </h3>
-
-                        <p>
-                            Learn how websites are created using HTML,
-                            CSS, JavaScript and modern web technologies.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Web Development →
-                        </a>
-
-                    </article>
-
-
-                    <!-- DIGITAL MARKETING -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            📈
-                        </div>
-
-                        <span class="service-number">
-                            04
-                        </span>
-
-                        <h3>
-                            Digital Marketing
-                        </h3>
-
-                        <p>
-                            Explore social media marketing, content
-                            strategy, branding, audience growth and
-                            digital promotion.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Marketing →
-                        </a>
-
-                    </article>
-
-
-                    <!-- AI TOOLS -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            🤖
-                        </div>
-
-                        <span class="service-number">
-                            05
-                        </span>
-
-                        <h3>
-                            AI Tools
-                        </h3>
-
-                        <p>
-                            Discover practical AI tools for writing,
-                            research, productivity, creativity and
-                            digital work.
-                        </p>
-
-                        <a href="#classes">
-                            Explore AI →
-                        </a>
-
-                    </article>
-
-
-                    <!-- CONTENT WRITING -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            ✍️
-                        </div>
-
-                        <span class="service-number">
-                            06
-                        </span>
-
-                        <h3>
-                            Content Writing
-                        </h3>
-
-                        <p>
-                            Learn articles, blog writing, website copy,
-                            product descriptions and digital content.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Writing →
-                        </a>
-
-                    </article>
-
-
-                    <!-- DATA ENTRY -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            📊
-                        </div>
-
-                        <span class="service-number">
-                            07
-                        </span>
-
-                        <h3>
-                            Data Entry
-                        </h3>
-
-                        <p>
-                            Explore data entry, online research,
-                            spreadsheets and virtual assistance.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Data Entry →
-                        </a>
-
-                    </article>
-
-
-                    <!-- SOCIAL MEDIA -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            📱
-                        </div>
-
-                        <span class="service-number">
-                            08
-                        </span>
-
-                        <h3>
-                            Social Media
-                        </h3>
-
-                        <p>
-                            Learn content creation, social media
-                            management, personal branding and growth.
-                        </p>
-
-                        <a href="#classes">
-                            Learn Social Media →
-                        </a>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             FREE DAILY CLASS
-        ================================================== -->
-
-        <section class="section class-section"
-                 id="classes">
-
-            <div class="container">
-
-
-                <div class="class-banner">
-
-
-                    <div class="class-content">
-
-                        <span class="section-label">
-                            JAY CLASSIC DIGITAL CLASS
-                        </span>
-
-
-                        <h2>
-                            Free Online Class
-                            <span>
-                                Every Day at 9:00 PM
-                            </span>
-                        </h2>
-
-
-                        <p>
-
-                            Learn freelancing, graphic design,
-                            web development, digital marketing,
-                            AI tools, online work and other digital
-                            skills through our daily TikTok class.
-
-                        </p>
-
-
-                        <div class="class-details">
-
-
-                            <div class="class-detail">
-
-                                <span>
-                                    🕘
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Time
-                                    </strong>
-
-                                    <small>
-                                        9:00 PM Every Day
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="class-detail">
-
-                                <span>
-                                    💰
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Cost
-                                    </strong>
-
-                                    <small>
-                                        Completely Free
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="class-detail">
-
-                                <span>
-                                    🎵
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Platform
-                                    </strong>
-
-                                    <small>
-                                        TikTok Live
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="class-buttons">
-
-                            <a href="#registration"
-                               class="primary-button">
-
-                                Register for Free Class
-
-                            </a>
-
-
-                            <!-- Replace # with your actual TikTok URL -->
-
-                            <a href="#"
-                               class="secondary-button"
-                               target="_blank"
-                               rel="noopener">
-
-                                Open TikTok →
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="class-visual">
-
-                        <div class="live-card">
-
-                            <div class="live-top">
-
-                                <span class="live-indicator">
-                                    ● LIVE
-                                </span>
-
-                                <span>
-                                    🎵 TikTok
-                                </span>
-
-                            </div>
-
-
-                            <div class="live-icon">
-                                ▶
-                            </div>
-
-
-                            <h3>
-                                Jay Classic
-                            </h3>
-
-                            <p>
-                                Daily Digital Skills Class
-                            </p>
-
-
-                            <div class="live-time">
-                                9:00 PM
-                            </div>
-
-
-                            <span class="free-label">
-                                FREE EVERY DAY
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             REGISTRATION SECTION
-        ================================================== -->
-
-        <section class="section registration-section"
-                 id="registration">
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span class="section-label">
-                        JOIN JAY CLASSIC
+                    <span>
+                        Membership Levels
                     </span>
 
-                    <h2>
-                        Register for the Free Class
-                    </h2>
+                </div>
 
-                    <p>
-                        Fill in your details and choose how you want
-                        to register. There is no charge for the daily
-                        9:00 PM class.
-                    </p>
+
+                <div class="stat-item">
+
+                    <strong>9PM</strong>
+
+                    <span>
+                        Daily Classes
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card-wrapper">
+
+            <div class="hero-card">
+
+                <div class="card-glow"></div>
+
+                <div class="hero-card-top">
+
+                    <div class="profile-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+
+                    <span class="online-badge">
+                        <span></span>
+                        Online
+                    </span>
 
                 </div>
 
 
-                <div class="registration-wrapper">
-
-
-                    <!-- REGISTRATION FORM -->
-
-                    <form class="registration-form"
-                          id="registrationForm">
-
-
-                        <div class="form-row">
-
-
-                            <div class="form-group">
-
-                                <label for="studentName">
-                                    Full Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="studentName"
-                                    name="studentName"
-                                    placeholder="Enter your full name"
-                                    required>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="studentEmail">
-                                    Email Address
-                                </label>
-
-                                <input
-                                    type="email"
-                                    id="studentEmail"
-                                    name="studentEmail"
-                                    placeholder="Enter your email"
-                                    required>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row">
-
-
-                            <div class="form-group">
-
-                                <label for="studentPhone">
-                                    WhatsApp Number
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    id="studentPhone"
-                                    name="studentPhone"
-                                    placeholder="Enter your WhatsApp number"
-                                    required>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="skill">
-                                    Skill of Interest
-                                </label>
-
-                                <select
-                                    id="skill"
-                                    name="skill"
-                                    required>
-
-                                    <option value="">
-                                        Select a skill
-                                    </option>
-
-                                    <option>
-                                        Freelancing
-                                    </option>
-
-                                    <option>
-                                        Graphic Design
-                                    </option>
-
-                                    <option>
-                                        Web Development
-                                    </option>
-
-                                    <option>
-                                        Digital Marketing
-                                    </option>
-
-                                    <option>
-                                        AI Tools
-                                    </option>
-
-                                    <option>
-                                        Content Writing
-                                    </option>
-
-                                    <option>
-                                        Data Entry
-                                    </option>
-
-                                    <option>
-                                        Social Media
-                                    </option>
-
-                                    <option>
-                                        Other
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="studentMessage">
-                                What would you like to learn?
-                            </label>
-
-                            <textarea
-                                id="studentMessage"
-                                name="studentMessage"
-                                rows="5"
-                                placeholder="Tell us what you want to learn..."></textarea>
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            class="primary-button">
-
-                            Submit Registration
-
-                        </button>
-
-
-                        <p class="form-note">
-
-                            🔒 Your information will be used for
-                            class registration and communication.
-
-                        </p>
-
-                    </form>
-
-
-
-                    <!-- DIRECT REGISTRATION -->
-
-                    <div class="registration-options">
-
-
-                        <div class="registration-card">
-
-                            <div class="registration-icon">
-                                📧
-                            </div>
-
-                            <h3>
-                                Register by Email
-                            </h3>
-
-                            <p>
-                                Send your name, WhatsApp number and
-                                preferred skill directly by email.
-                            </p>
-
-                            <a
-                                href="mailto:emmanuelouko21@gmail.com?subject=Jay%20Classic%20Free%20Class%20Registration"
-                                class="secondary-button">
-
-                                Register by Email
-
-                            </a>
-
-                        </div>
-
-
-
-                        <div class="registration-card">
-
-                            <div class="registration-icon">
-                                💬
-                            </div>
-
-                            <h3>
-                                Register on WhatsApp
-                            </h3>
-
-                            <p>
-                                Send your registration details directly
-                                through WhatsApp.
-                            </p>
-
-                            <a
-                                href="https://wa.me/254142617814?text=Hello%20Jay%20Classic.%20I%20would%20like%20to%20register%20for%20the%20free%209%3A00%20PM%20daily%20online%20class."
-                                class="primary-button"
-                                target="_blank"
-                                rel="noopener">
-
-                                Register on WhatsApp
-
-                            </a>
-
-                        </div>
-
+                <h3>
+                    Jay Classic
+                </h3>
+
+                <p>
+                    Your Digital Growth Hub
+                </p>
+
+
+                <div class="hero-card-features">
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Freelancing
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Digital Marketing
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Web Development
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        AI Tools
                     </div>
 
                 </div>
 
+
+                <a href="#membership"
+                   class="card-action">
+
+                    View Membership
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+</section>
 
 
+<!-- =========================================================
+     SERVICES
+========================================================= -->
 
-        <!-- =================================================
-             ONLINE WORK
-        ================================================== -->
+<section class="section services-section" id="services">
 
-        <section class="section jobs-section"
-                 id="jobs">
+    <div class="container">
 
-            <div class="container">
+        <div class="section-heading">
+
+            <span class="section-tag">
+                WHAT WE DO
+            </span>
+
+            <h2>
+                Digital Services
+            </h2>
+
+            <p>
+                Practical digital skills designed to help you
+                learn, create and work online.
+            </p>
+
+        </div>
 
 
-                <div class="section-heading">
+        <div class="services-grid">
 
-                    <span class="section-label">
-                        ONLINE WORK
+            <!-- SERVICE 1 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+
+                <h3>
+                    Freelancing
+                </h3>
+
+                <p>
+                    Learn how to create profiles, build portfolios
+                    and offer digital services to clients online.
+                </p>
+
+                <span class="service-number">
+                    01
+                </span>
+
+            </article>
+
+
+            <!-- SERVICE 2 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+
+                <h3>
+                    Graphic Design
+                </h3>
+
+                <p>
+                    Create professional posters, social media
+                    graphics, logos and digital marketing materials.
+                </p>
+
+                <span class="service-number">
+                    02
+                </span>
+
+            </article>
+
+
+            <!-- SERVICE 3 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Learn HTML, CSS and JavaScript while building
+                    modern websites and online portfolios.
+                </p>
+
+                <span class="service-number">
+                    03
+                </span>
+
+            </article>
+
+
+            <!-- SERVICE 4 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <h3>
+                    Digital Marketing
+                </h3>
+
+                <p>
+                    Understand social media marketing, content
+                    creation, branding and audience growth.
+                </p>
+
+                <span class="service-number">
+                    04
+                </span>
+
+            </article>
+
+
+            <!-- SERVICE 5 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <h3>
+                    AI Tools
+                </h3>
+
+                <p>
+                    Discover practical ways to use AI tools for
+                    productivity, content and digital work.
+                </p>
+
+                <span class="service-number">
+                    05
+                </span>
+
+            </article>
+
+
+            <!-- SERVICE 6 -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+
+                <h3>
+                    Online Work
+                </h3>
+
+                <p>
+                    Explore digital work opportunities and learn
+                    how to approach online platforms responsibly.
+                </p>
+
+                <span class="service-number">
+                    06
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FREE CLASSES
+========================================================= -->
+
+<section class="section classes-section" id="classes">
+
+    <div class="container">
+
+        <div class="class-banner">
+
+            <div class="class-content">
+
+                <span class="live-label">
+                    <span></span>
+                    FREE DAILY CLASS
+                </span>
+
+                <h2>
+                    Learn Something New Every Day
+                </h2>
+
+                <p>
+                    Join our online digital classes every day at
+                    <strong>9:00 PM</strong>.
+                </p>
+
+                <p class="class-note">
+                    No class charges. Registration is required.
+                </p>
+
+                <div class="class-buttons">
+
+                    <a href="#registration"
+                       class="btn btn-light">
+
+                        Register for Classes
+
+                    </a>
+
+
+                    <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-dark-outline">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                        Join on TikTok
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="class-time-card">
+
+                <i class="fa-regular fa-clock"></i>
+
+                <strong>
+                    9:00 PM
+                </strong>
+
+                <span>
+                    Daily
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MEMBERSHIP SYSTEM
+========================================================= -->
+
+<section class="section membership-section" id="membership">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                MEMBERSHIP
+            </span>
+
+            <h2>
+                Choose Your Access Level
+            </h2>
+
+            <p>
+                Your Jay Classic access level can grow as you
+                participate in the community and complete
+                verified referrals.
+            </p>
+
+        </div>
+
+
+        <div class="membership-grid">
+
+            <!-- REGULAR -->
+
+            <article class="membership-card regular-card">
+
+                <div class="membership-header">
+
+                    <div class="membership-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <span class="membership-label">
+                        STARTER
                     </span>
 
-                    <h2>
-                        Explore Digital Work
-                    </h2>
+                </div>
 
-                    <p>
-                        Learn about different areas where digital
-                        skills can be applied.
-                    </p>
+                <h3>
+                    Regular
+                </h3>
+
+                <p class="membership-description">
+                    Your starting access after registration.
+                </p>
+
+
+                <div class="referral-requirement">
+
+                    <strong>
+                        0–2
+                    </strong>
+
+                    <span>
+                        verified referrals
+                    </span>
 
                 </div>
 
 
-                <div class="jobs-grid">
+                <ul class="membership-features">
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Public digital classes
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Basic resources
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Online work information
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Community access
+                    </li>
+
+                </ul>
 
 
-                    <article class="job-card">
+                <a href="#registration"
+                   class="btn btn-outline full-width">
 
-                        <div class="job-icon">
-                            💼
-                        </div>
+                    Get Started
 
-                        <div class="job-content">
+                </a>
 
-                            <span class="job-tag">
-                                FREELANCE
-                            </span>
-
-                            <h3>
-                                Freelancing
-                            </h3>
-
-                            <p>
-                                Work remotely by offering useful skills
-                                and services to clients.
-                            </p>
-
-                            <a href="#classes">
-                                Learn More →
-                            </a>
-
-                        </div>
-
-                    </article>
+            </article>
 
 
-                    <article class="job-card">
+            <!-- VIP -->
 
-                        <div class="job-icon">
-                            🎨
-                        </div>
+            <article class="membership-card vip-card">
 
-                        <div class="job-content">
+                <div class="popular-badge">
+                    COMMUNITY LEVEL
+                </div>
 
-                            <span class="job-tag">
-                                CREATIVE
-                            </span>
+                <div class="membership-header">
 
-                            <h3>
-                                Graphic Design
-                            </h3>
+                    <div class="membership-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
 
-                            <p>
-                                Create visual content for businesses,
-                                creators and digital brands.
-                            </p>
-
-                            <a href="#classes">
-                                Learn More →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="job-card">
-
-                        <div class="job-icon">
-                            💻
-                        </div>
-
-                        <div class="job-content">
-
-                            <span class="job-tag">
-                                TECHNOLOGY
-                            </span>
-
-                            <h3>
-                                Web Development
-                            </h3>
-
-                            <p>
-                                Build websites and digital experiences
-                                for clients and organizations.
-                            </p>
-
-                            <a href="#classes">
-                                Learn More →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="job-card">
-
-                        <div class="job-icon">
-                            📈
-                        </div>
-
-                        <div class="job-content">
-
-                            <span class="job-tag">
-                                MARKETING
-                            </span>
-
-                            <h3>
-                                Digital Marketing
-                            </h3>
-
-                            <p>
-                                Help businesses reach audiences through
-                                digital platforms and content.
-                            </p>
-
-                            <a href="#classes">
-                                Learn More →
-                            </a>
-
-                        </div>
-
-                    </article>
+                    <span class="membership-label">
+                        VIP
+                    </span>
 
                 </div>
 
-            </div>
+                <h3>
+                    VIP Access
+                </h3>
 
-        </section>
-
-
-
-        <!-- =================================================
-             RATING SECTION
-        ================================================== -->
-
-        <section class="section rating-section"
-                 id="rating">
-
-            <div class="container">
+                <p class="membership-description">
+                    Unlock additional resources by building
+                    your verified referral network.
+                </p>
 
 
-                <div class="rating-wrapper">
+                <div class="referral-requirement">
+
+                    <strong>
+                        3–9
+                    </strong>
+
+                    <span>
+                        verified referrals
+                    </span>
+
+                </div>
 
 
-                    <div class="rating-main">
+                <ul class="membership-features">
 
-                        <span class="section-label">
-                            CUSTOMER EXPERIENCE
-                        </span>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Everything in Regular
+                    </li>
 
-                        <h2>
-                            Ratings & Feedback
-                        </h2>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        VIP learning resources
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Premium tutorials
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        VIP announcements
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Member community features
+                    </li>
+
+                </ul>
+
+
+                <a href="#referrals"
+                   class="btn btn-primary full-width">
+
+                    Start Referring
+
+                </a>
+
+            </article>
+
+
+            <!-- VVIP -->
+
+            <article class="membership-card vvip-card">
+
+                <div class="premium-badge">
+                    PREMIUM ACCESS
+                </div>
+
+                <div class="membership-header">
+
+                    <div class="membership-icon">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+
+                    <span class="membership-label">
+                        VVIP
+                    </span>
+
+                </div>
+
+                <h3>
+                    VVIP Access
+                </h3>
+
+                <p class="membership-description">
+                    The highest community access level,
+                    unlocked through verified participation.
+                </p>
+
+
+                <div class="referral-requirement">
+
+                    <strong>
+                        10+
+                    </strong>
+
+                    <span>
+                        verified referrals
+                    </span>
+
+                </div>
+
+
+                <ul class="membership-features">
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Everything in VIP
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Exclusive resources
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Exclusive learning sessions
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Early access to selected content
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Priority community support
+                    </li>
+
+                </ul>
+
+
+                <a href="#referrals"
+                   class="btn btn-premium full-width">
+
+                    Unlock VVIP
+
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REFERRAL PROGRAM
+========================================================= -->
+
+<section class="section referral-section" id="referrals">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                REFERRAL PROGRAM
+            </span>
+
+            <h2>
+                Grow Your Access Through Referrals
+            </h2>
+
+            <p>
+                Every registered member can have a unique referral
+                code. Verified unique registrations can contribute
+                toward the member's access level.
+            </p>
+
+        </div>
+
+
+        <div class="referral-layout">
+
+            <!-- REFERRAL EXPLANATION -->
+
+            <div class="referral-info">
+
+                <div class="referral-step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div>
+                        <h3>
+                            Register
+                        </h3>
 
                         <p>
-                            We value feedback from the Jay Classic
-                            community and use it to improve the
-                            platform.
+                            Create your Jay Classic member profile.
                         </p>
-
-
-                        <div class="rating-score">
-
-                            <strong>
-                                5.0
-                            </strong>
-
-                            <div>
-
-                                <div class="stars">
-                                    ★★★★★
-                                </div>
-
-                                <span>
-                                    Community rating
-                                </span>
-
-                            </div>
-
-                        </div>
-
                     </div>
 
-
-                    <div class="rating-bars">
-
-
-                        <div class="rating-row">
-
-                            <span>
-                                5 ★
-                            </span>
-
-                            <div class="rating-bar">
-                                <span style="width: 100%;"></span>
-                            </div>
-
-                            <strong>
-                                —
-                            </strong>
-
-                        </div>
+                </div>
 
 
-                        <div class="rating-row">
+                <div class="referral-step">
 
-                            <span>
-                                4 ★
-                            </span>
+                    <div class="step-number">
+                        02
+                    </div>
 
-                            <div class="rating-bar">
-                                <span style="width: 0%;"></span>
-                            </div>
+                    <div>
+                        <h3>
+                            Get Your Referral Link
+                        </h3>
 
-                            <strong>
-                                —
-                            </strong>
+                        <p>
+                            Your dashboard will generate a unique
+                            referral link for you.
+                        </p>
+                    </div>
 
-                        </div>
-
-
-                        <div class="rating-row">
-
-                            <span>
-                                3 ★
-                            </span>
-
-                            <div class="rating-bar">
-                                <span style="width: 0%;"></span>
-                            </div>
-
-                            <strong>
-                                —
-                            </strong>
-
-                        </div>
+                </div>
 
 
-                        <div class="rating-row">
+                <div class="referral-step">
 
-                            <span>
-                                2 ★
-                            </span>
+                    <div class="step-number">
+                        03
+                    </div>
 
-                            <div class="rating-bar">
-                                <span style="width: 0%;"></span>
-                            </div>
+                    <div>
+                        <h3>
+                            Invite People
+                        </h3>
 
-                            <strong>
-                                —
-                            </strong>
+                        <p>
+                            Share your link with people who genuinely
+                            want to join Jay Classic.
+                        </p>
+                    </div>
 
-                        </div>
+                </div>
 
 
-                        <div class="rating-row">
+                <div class="referral-step">
 
-                            <span>
-                                1 ★
-                            </span>
+                    <div class="step-number">
+                        04
+                    </div>
 
-                            <div class="rating-bar">
-                                <span style="width: 0%;"></span>
-                            </div>
+                    <div>
+                        <h3>
+                            Unlock Access
+                        </h3>
 
-                            <strong>
-                                —
-                            </strong>
-
-                        </div>
-
+                        <p>
+                            Verified unique referrals are counted
+                            toward your membership level.
+                        </p>
                     </div>
 
                 </div>
 
             </div>
 
-        </section>
 
+            <!-- REFERRAL DASHBOARD PREVIEW -->
 
+            <div class="referral-dashboard">
 
-        <!-- =================================================
-             CUSTOMER REVIEWS
-        ================================================== -->
-
-        <section class="section reviews-section"
-                 id="reviews">
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span class="section-label">
-                        COMMUNITY FEEDBACK
-                    </span>
-
-                    <h2>
-                        Customer Reviews & Comments
-                    </h2>
-
-                    <p>
-                        Real feedback can be added here as customers
-                        use Jay Classic.
-                    </p>
-
-                </div>
-
-
-                <div class="reviews-grid">
-
-
-                    <article class="review-card">
-
-                        <div class="review-stars">
-                            ★★★★★
-                        </div>
-
-                        <p class="review-text">
-
-                            Your first customer review will appear
-                            here after a real customer submits feedback.
-
-                        </p>
-
-                        <div class="review-author">
-
-                            <div class="review-avatar">
-                                JC
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Jay Classic Community
-                                </strong>
-
-                                <span>
-                                    Customer Feedback
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="review-card">
-
-                        <div class="review-stars">
-                            ★★★★★
-                        </div>
-
-                        <p class="review-text">
-
-                            This section is ready for genuine
-                            customer comments and experiences.
-
-                        </p>
-
-                        <div class="review-author">
-
-                            <div class="review-avatar">
-                                JC
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Jay Classic Community
-                                </strong>
-
-                                <span>
-                                    Customer Feedback
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="review-card">
-
-                        <div class="review-stars">
-                            ★★★★★
-                        </div>
-
-                        <p class="review-text">
-
-                            Customer ratings and comments will be
-                            connected to the website database later.
-
-                        </p>
-
-                        <div class="review-author">
-
-                            <div class="review-avatar">
-                                JC
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Jay Classic Community
-                                </strong>
-
-                                <span>
-                                    Customer Feedback
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-
-                <!-- REVIEW FORM -->
-
-                <div class="review-form-wrapper">
-
+                <div class="dashboard-header">
 
                     <div>
 
-                        <span class="section-label">
-                            SHARE YOUR EXPERIENCE
+                        <span class="dashboard-label">
+                            MEMBER DASHBOARD
                         </span>
 
                         <h3>
-                            Leave a Rating & Comment
+                            Your Progress
                         </h3>
 
-                        <p>
-                            Tell us about your experience with
-                            Jay Classic.
-                        </p>
+                    </div>
+
+                    <div class="tier-badge regular-tier"
+                         id="tierBadge">
+
+                        REGULAR
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-progress">
+
+                    <div class="progress-top">
+
+                        <span>
+                            Referral Progress
+                        </span>
+
+                        <strong id="referralCount">
+                            0 / 10
+                        </strong>
 
                     </div>
 
 
-                    <form class="review-form"
-                          id="reviewForm">
+                    <div class="progress-bar">
 
+                        <div class="progress-fill"
+                             id="referralProgress"
+                             style="width: 0%;">
+
+                        </div>
+
+                    </div>
+
+
+                    <p id="referralMessage">
+
+                        Register to receive your unique
+                        referral link.
+
+                    </p>
+
+                </div>
+
+
+                <!-- REFERRAL LINK -->
+
+                <div class="referral-link-box">
+
+                    <label for="referralLink">
+                        Your Referral Link
+                    </label>
+
+                    <div class="copy-link-row">
+
+                        <input type="text"
+                               id="referralLink"
+                               value="Register first to generate your referral link."
+                               readonly>
+
+                        <button type="button"
+                                id="copyReferralBtn"
+                                class="copy-btn">
+
+                            <i class="fa-regular fa-copy"></i>
+
+                            Copy
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHARE BUTTONS -->
+
+                <div class="share-buttons">
+
+                    <button type="button"
+                            class="share-btn whatsapp-share"
+                            id="shareWhatsApp">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                        WhatsApp
+
+                    </button>
+
+
+                    <button type="button"
+                            class="share-btn facebook-share"
+                            id="shareFacebook">
+
+                        <i class="fa-brands fa-facebook"></i>
+
+                        Facebook
+
+                    </button>
+
+
+                    <button type="button"
+                            class="share-btn native-share"
+                            id="nativeShare">
+
+                        <i class="fa-solid fa-share-nodes"></i>
+
+                        Share
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REFERRAL SAFETY NOTE -->
+
+        <div class="referral-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <div>
+
+                <strong>
+                    How referrals are counted
+                </strong>
+
+                <p>
+                    The system is designed to count verified,
+                    unique registrations rather than simple link
+                    clicks. Self-referrals and duplicate accounts
+                    should not qualify as verified referrals.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MEMBER ACCESS AREA
+========================================================= -->
+
+<section class="section member-area-section" id="memberArea">
+
+    <div class="container">
+
+        <div class="member-access-card">
+
+            <div class="member-access-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="member-access-content">
+
+                <span class="section-tag">
+                    MEMBER AREA
+                </span>
+
+                <h2>
+                    Your Premium Learning Space
+                </h2>
+
+                <p>
+                    Premium resources can be made available
+                    according to your verified membership level.
+                </p>
+
+            </div>
+
+
+            <div class="member-access-actions">
+
+                <button type="button"
+                        class="btn btn-primary"
+                        id="memberLoginBtn">
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Member Login
+
+                </button>
+
+                <a href="#registration"
+                   class="btn btn-outline">
+
+                    Register
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PAYMENT / MEMBERSHIP
+========================================================= -->
+
+<section class="section payment-section" id="payment">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                MEMBERSHIP PAYMENTS
+            </span>
+
+            <h2>
+                Simple & Transparent Access
+            </h2>
+
+            <p>
+                If paid membership options are introduced,
+                payment requests can be submitted and verified
+                before premium access is activated.
+            </p>
+
+        </div>
+
+
+        <div class="payment-grid">
+
+            <!-- PAYMENT INFO -->
+
+            <div class="payment-info-card">
+
+                <div class="payment-logo">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+
+                <h3>
+                    M-Pesa
+                </h3>
+
+                <p>
+                    Membership payment instructions can be
+                    provided here when a paid plan is selected.
+                </p>
+
+
+                <div class="payment-number">
+
+                    <span>
+                        M-Pesa Number
+                    </span>
+
+                    <strong>
+                        0142617814
+                    </strong>
+
+                </div>
+
+
+                <div class="payment-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Payment access should be activated only
+                        after transaction verification.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT FORM -->
+
+            <div class="payment-form-card">
+
+                <h3>
+                    Submit Payment Details
+                </h3>
+
+                <p>
+                    For paid membership plans, submit your
+                    transaction details for verification.
+                </p>
+
+
+                <form id="paymentForm"
+                      class="payment-form">
+
+                    <div class="form-group">
+
+                        <label for="paymentName">
+                            Full Name
+                        </label>
+
+                        <input type="text"
+                               id="paymentName"
+                               name="paymentName"
+                               placeholder="Your full name"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentEmail">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               id="paymentEmail"
+                               name="paymentEmail"
+                               placeholder="you@example.com"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentPlan">
+                            Membership Plan
+                        </label>
+
+                        <select id="paymentPlan"
+                                name="paymentPlan"
+                                required>
+
+                            <option value="">
+                                Select plan
+                            </option>
+
+                            <option value="vip">
+                                VIP Membership
+                            </option>
+
+                            <option value="vvip">
+                                VVIP Membership
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="transactionCode">
+                            M-Pesa Transaction Code
+                        </label>
+
+                        <input type="text"
+                               id="transactionCode"
+                               name="transactionCode"
+                               placeholder="e.g. QWE123ABC"
+                               required>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn btn-primary full-width">
+
+                        Submit for Verification
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ONLINE JOBS
+========================================================= -->
+
+<section class="section jobs-section" id="jobs">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                ONLINE WORK
+            </span>
+
+            <h2>
+                Explore Digital Work
+            </h2>
+
+            <p>
+                Build skills first, then use legitimate platforms
+                and client opportunities to apply them.
+            </p>
+
+        </div>
+
+
+        <div class="jobs-grid">
+
+            <article class="job-card">
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+
+                <h3>
+                    Freelance Projects
+                </h3>
+
+                <p>
+                    Offer services such as writing, design,
+                    websites, virtual assistance and digital
+                    marketing.
+                </p>
+
+                <span class="job-tag">
+                    Freelancing
+                </span>
+
+            </article>
+
+
+            <article class="job-card">
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+
+                <h3>
+                    Canva Design
+                </h3>
+
+                <p>
+                    Learn how to create social media graphics,
+                    posters, presentations and promotional designs.
+                </p>
+
+                <span class="job-tag">
+                    Design
+                </span>
+
+            </article>
+
+
+            <article class="job-card">
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+
+                <h3>
+                    Twiva
+                </h3>
+
+                <p>
+                    Explore creator and digital marketing
+                    opportunities through the Twiva ecosystem.
+                </p>
+
+                <span class="job-tag">
+                    Creator Economy
+                </span>
+
+            </article>
+
+
+            <article class="job-card">
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <h3>
+                    AI-Powered Work
+                </h3>
+
+                <p>
+                    Learn practical ways to use AI tools to
+                    improve productivity and digital services.
+                </p>
+
+                <span class="job-tag">
+                    AI
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REGISTRATION
+========================================================= -->
+
+<section class="section registration-section" id="registration">
+
+    <div class="container">
+
+        <div class="registration-layout">
+
+            <!-- REGISTRATION INFO -->
+
+            <div class="registration-info">
+
+                <span class="section-tag">
+                    JOIN THE COMMUNITY
+                </span>
+
+                <h2>
+                    Start Your Digital Journey
+                </h2>
+
+                <p>
+                    Register to access Jay Classic community
+                    features, classes and the referral dashboard.
+                </p>
+
+
+                <div class="registration-benefits">
+
+                    <div>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Free daily classes
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Digital skills resources
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Personal referral code
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            Membership progress tracking
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="registration-contact">
+
+                    <p>
+                        Prefer direct registration?
+                    </p>
+
+
+                    <div class="direct-buttons">
+
+                        <a href="mailto:emmanuelouko21@gmail.com"
+                           class="direct-btn">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            Email
+
+                        </a>
+
+
+                        <a href="https://wa.me/254142617814?text=Hello%20Jay%20Classic%2C%20I%20would%20like%20to%20register."
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="direct-btn">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            WhatsApp
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REGISTRATION FORM -->
+
+            <div class="registration-card">
+
+                <div class="form-header">
+
+                    <span>
+                        NEW MEMBER
+                    </span>
+
+                    <h3>
+                        Create Your Profile
+                    </h3>
+
+                </div>
+
+
+                <form class="registration-form"
+                      id="registrationForm">
+
+                    <div class="form-row">
 
                         <div class="form-group">
 
-                            <label for="reviewName">
-                                Your Name
+                            <label for="studentName">
+                                Full Name
                             </label>
 
-                            <input
-                                type="text"
-                                id="reviewName"
-                                name="reviewName"
-                                placeholder="Your name"
-                                required>
+                            <input type="text"
+                                   id="studentName"
+                                   name="studentName"
+                                   placeholder="Enter your name"
+                                   required>
 
                         </div>
 
 
                         <div class="form-group">
 
-                            <label for="reviewRating">
-                                Rating
+                            <label for="studentEmail">
+                                Email
                             </label>
 
-                            <select
-                                id="reviewRating"
-                                name="reviewRating"
-                                required>
+                            <input type="email"
+                                   id="studentEmail"
+                                   name="studentEmail"
+                                   placeholder="you@example.com"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="studentPhone">
+                                Phone Number
+                            </label>
+
+                            <input type="tel"
+                                   id="studentPhone"
+                                   name="studentPhone"
+                                   placeholder="07XXXXXXXX"
+                                   required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="skill">
+                                Main Interest
+                            </label>
+
+                            <select id="skill"
+                                    name="skill"
+                                    required>
 
                                 <option value="">
-                                    Select rating
+                                    Select an interest
                                 </option>
 
-                                <option value="5">
-                                    ⭐⭐⭐⭐⭐ 5 Stars
+                                <option value="freelancing">
+                                    Freelancing
                                 </option>
 
-                                <option value="4">
-                                    ⭐⭐⭐⭐ 4 Stars
+                                <option value="graphic-design">
+                                    Graphic Design
                                 </option>
 
-                                <option value="3">
-                                    ⭐⭐⭐ 3 Stars
+                                <option value="web-development">
+                                    Web Development
                                 </option>
 
-                                <option value="2">
-                                    ⭐⭐ 2 Stars
+                                <option value="digital-marketing">
+                                    Digital Marketing
                                 </option>
 
-                                <option value="1">
-                                    ⭐ 1 Star
+                                <option value="ai-tools">
+                                    AI Tools
+                                </option>
+
+                                <option value="online-work">
+                                    Online Work
                                 </option>
 
                             </select>
 
                         </div>
 
-
-                        <div class="form-group">
-
-                            <label for="reviewMessage">
-                                Comment
-                            </label>
-
-                            <textarea
-                                id="reviewMessage"
-                                name="reviewMessage"
-                                rows="5"
-                                placeholder="Write your comment..."
-                                required></textarea>
-
-                        </div>
+                    </div>
 
 
-                        <button
-                            type="submit"
-                            class="primary-button">
+                    <div class="form-group">
 
-                            Submit Review
+                        <label for="studentMessage">
+                            What would you like to learn?
+                        </label>
 
-                        </button>
+                        <textarea id="studentMessage"
+                                  name="studentMessage"
+                                  rows="4"
+                                  placeholder="Tell us what you would like to learn..."></textarea>
 
-                    </form>
+                    </div>
+
+
+                    <!-- REFERRAL CODE -->
+
+                    <div class="form-group">
+
+                        <label for="referralCodeInput">
+                            Referral Code
+                            <span class="optional">
+                                (optional)
+                            </span>
+                        </label>
+
+                        <input type="text"
+                               id="referralCodeInput"
+                               name="referralCode"
+                               placeholder="Enter referral code if you have one">
+
+                    </div>
+
+
+                    <div class="form-check">
+
+                        <input type="checkbox"
+                               id="termsAgreement"
+                               name="termsAgreement"
+                               required>
+
+                        <label for="termsAgreement">
+
+                            I agree to provide accurate registration
+                            information and understand that referral
+                            benefits depend on verified unique registrations.
+
+                        </label>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn btn-primary btn-large full-width">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Create My Account
+
+                    </button>
+
+
+                    <p class="form-security">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Your registration details are submitted
+                        securely through the website system.
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RATINGS
+========================================================= -->
+
+<section class="section rating-section" id="rating">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                COMMUNITY FEEDBACK
+            </span>
+
+            <h2>
+                Community Rating
+            </h2>
+
+        </div>
+
+
+        <div class="rating-card">
+
+            <div class="rating-score">
+
+                <strong id="averageRating">
+                    0.0
+                </strong>
+
+                <div>
+
+                    <div class="stars"
+                         id="averageStars">
+
+                        ☆☆☆☆☆
+
+                    </div>
+
+                    <span id="ratingLabel">
+                        No reviews yet
+                    </span>
 
                 </div>
 
             </div>
 
-        </section>
+
+            <div class="rating-bars"
+                 id="ratingBars">
+
+                <div class="rating-bar-row">
+
+                    <span>
+                        5
+                    </span>
+
+                    <div class="rating-bar">
+                        <div style="width:0%;"></div>
+                    </div>
+
+                    <span>
+                        <span data-rating-count="5">0</span>
+                    </span>
+
+                </div>
 
 
+                <div class="rating-bar-row">
 
-        <!-- =================================================
-             ABOUT
-        ================================================== -->
+                    <span>
+                        4
+                    </span>
 
-        <section class="section about-section"
-                 id="about">
+                    <div class="rating-bar">
+                        <div style="width:0%;"></div>
+                    </div>
 
-            <div class="container about-container">
+                    <span>
+                        <span data-rating-count="4">0</span>
+                    </span>
+
+                </div>
 
 
-                <div class="about-visual">
+                <div class="rating-bar-row">
 
-                    <div class="about-card">
+                    <span>
+                        3
+                    </span>
 
-                        <div class="about-logo">
-                            JC
-                        </div>
+                    <div class="rating-bar">
+                        <div style="width:0%;"></div>
+                    </div>
 
-                        <h3>
-                            JAY CLASSIC
-                        </h3>
+                    <span>
+                        <span data-rating-count="3">0</span>
+                    </span>
 
-                        <p>
-                            Learn • Work • Grow
-                        </p>
+                </div>
 
-                        <div class="about-card-line"></div>
+
+                <div class="rating-bar-row">
+
+                    <span>
+                        2
+                    </span>
+
+                    <div class="rating-bar">
+                        <div style="width:0%;"></div>
+                    </div>
+
+                    <span>
+                        <span data-rating-count="2">0</span>
+                    </span>
+
+                </div>
+
+
+                <div class="rating-bar-row">
+
+                    <span>
+                        1
+                    </span>
+
+                    <div class="rating-bar">
+                        <div style="width:0%;"></div>
+                    </div>
+
+                    <span>
+                        <span data-rating-count="1">0</span>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section class="section reviews-section" id="reviews">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                REVIEWS
+            </span>
+
+            <h2>
+                What Members Say
+            </h2>
+
+            <p>
+                Community feedback helps us improve the Jay Classic
+                learning experience.
+            </p>
+
+        </div>
+
+
+        <div class="reviews-grid"
+             id="reviewsList">
+
+            <!-- FALLBACK REVIEWS -->
+
+            <article class="review-card">
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Jay Classic has a simple approach to learning
+                    digital skills and online work."
+                </p>
+
+                <div class="review-author">
+
+                    <div class="review-avatar">
+                        JC
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Community Member
+                        </strong>
 
                         <span>
-                            Digital Skills & Opportunities
+                            Member
                         </span>
 
                     </div>
 
                 </div>
 
-
-                <div class="about-content">
-
-                    <span class="section-label">
-                        ABOUT JAY CLASSIC
-                    </span>
+            </article>
 
 
-                    <h2>
-                        Building Digital Skills
-                        For a Better Online Future.
-                    </h2>
+            <article class="review-card">
 
+                <div class="review-stars">
+                    ★★★★★
+                </div>
 
-                    <p>
+                <p>
+                    "The daily learning sessions make it easier
+                    to stay consistent."
+                </p>
 
-                        Jay Classic is a digital platform focused on
-                        helping people understand freelancing,
-                        online work, digital services, technology and
-                        modern digital skills.
+                <div class="review-author">
 
-                    </p>
+                    <div class="review-avatar">
+                        DM
+                    </div>
 
+                    <div>
 
-                    <p>
+                        <strong>
+                            Digital Learner
+                        </strong>
 
-                        Through free daily learning sessions and
-                        practical digital resources, Jay Classic aims
-                        to make online skills easier to understand
-                        and apply.
-
-                    </p>
-
-
-                    <div class="about-features">
-
-
-                        <div class="feature-item">
-
-                            <span>
-                                ✓
-                            </span>
-
-                            <p>
-                                Freelancing education
-                            </p>
-
-                        </div>
-
-
-                        <div class="feature-item">
-
-                            <span>
-                                ✓
-                            </span>
-
-                            <p>
-                                Digital skills training
-                            </p>
-
-                        </div>
-
-
-                        <div class="feature-item">
-
-                            <span>
-                                ✓
-                            </span>
-
-                            <p>
-                                AI & technology resources
-                            </p>
-
-                        </div>
-
-
-                        <div class="feature-item">
-
-                            <span>
-                                ✓
-                            </span>
-
-                            <p>
-                                Online work education
-                            </p>
-
-                        </div>
+                        <span>
+                            Member
+                        </span>
 
                     </div>
 
                 </div>
+
+            </article>
+
+
+            <article class="review-card">
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "I like the focus on practical digital skills
+                    and building online opportunities."
+                </p>
+
+                <div class="review-author">
+
+                    <div class="review-avatar">
+                        JL
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Jay Classic Member
+                        </strong>
+
+                        <span>
+                            Community
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- REVIEW FORM -->
+
+        <div class="review-form-wrapper">
+
+            <div class="review-form-heading">
+
+                <span class="section-tag">
+                    LEAVE FEEDBACK
+                </span>
+
+                <h3>
+                    Share Your Experience
+                </h3>
 
             </div>
 
-        </section>
 
+            <form class="review-form"
+                  id="reviewForm">
 
+                <div class="form-row">
 
-        <!-- =================================================
-             HOW IT WORKS
-        ================================================== -->
+                    <div class="form-group">
 
-        <section class="section steps-section">
+                        <label for="reviewName">
+                            Your Name
+                        </label>
 
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span class="section-label">
-                        YOUR JOURNEY
-                    </span>
-
-                    <h2>
-                        From Learning to Online Work
-                    </h2>
-
-                </div>
-
-
-                <div class="steps-grid">
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            01
-                        </div>
-
-                        <h3>
-                            Register
-                        </h3>
-
-                        <p>
-                            Join the Jay Classic community and
-                            register for the free class.
-                        </p>
+                        <input type="text"
+                               id="reviewName"
+                               name="reviewName"
+                               placeholder="Your name"
+                               required>
 
                     </div>
 
 
-                    <div class="step">
+                    <div class="form-group">
 
-                        <div class="step-number">
-                            02
-                        </div>
+                        <label for="reviewRating">
+                            Rating
+                        </label>
 
-                        <h3>
-                            Learn
-                        </h3>
+                        <select id="reviewRating"
+                                name="reviewRating"
+                                required>
 
-                        <p>
-                            Attend the daily 9:00 PM TikTok class
-                            and develop practical skills.
-                        </p>
+                            <option value="">
+                                Select rating
+                            </option>
 
-                    </div>
+                            <option value="5">
+                                5 - Excellent
+                            </option>
 
+                            <option value="4">
+                                4 - Very Good
+                            </option>
 
-                    <div class="step">
+                            <option value="3">
+                                3 - Good
+                            </option>
 
-                        <div class="step-number">
-                            03
-                        </div>
+                            <option value="2">
+                                2 - Fair
+                            </option>
 
-                        <h3>
-                            Practice
-                        </h3>
+                            <option value="1">
+                                1 - Poor
+                            </option>
 
-                        <p>
-                            Apply what you learn by building
-                            projects and developing your portfolio.
-                        </p>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            04
-                        </div>
-
-                        <h3>
-                            Grow
-                        </h3>
-
-                        <p>
-                            Continue improving your skills and
-                            explore legitimate online opportunities.
-                        </p>
+                        </select>
 
                     </div>
 
                 </div>
 
-            </div>
 
-        </section>
+                <div class="form-group">
 
+                    <label for="reviewMessage">
+                        Your Review
+                    </label>
 
+                    <textarea id="reviewMessage"
+                              name="reviewMessage"
+                              rows="5"
+                              placeholder="Write your review..."
+                              required></textarea>
 
-        <!-- =================================================
-             CONTACT
-        ================================================== -->
-
-        <section class="section contact-section"
-                 id="contact">
-
-            <div class="container contact-container">
-
-
-                <div class="contact-content">
+                </div>
 
 
-                    <span class="section-label">
-                        CONTACT JAY CLASSIC
-                    </span>
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Submit Review
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-                    <h2>
-                        Let's Connect.
-                    </h2>
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section about-section" id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-content">
+
+                <span class="section-tag">
+                    ABOUT JAY CLASSIC
+                </span>
+
+                <h2>
+                    Learn. Build. Connect. Grow.
+                </h2>
+
+                <p>
+                    Jay Classic is a digital-focused platform
+                    created around practical skills, freelancing,
+                    online work, content creation and technology.
+                </p>
+
+                <p>
+                    The goal is to help learners understand digital
+                    tools and build useful skills that can be applied
+                    to real projects and online opportunities.
+                </p>
 
 
-                    <p>
+                <div class="about-highlights">
 
-                        Have a question, project, partnership idea
-                        or need help registering for the free class?
-                        Contact Jay Classic directly.
+                    <div>
 
-                    </p>
-
-
-
-                    <!-- EMAIL -->
-
-                    <a
-                        href="mailto:emmanuelouko21@gmail.com"
-                        class="contact-item">
-
-                        <div class="contact-icon">
-                            📧
-                        </div>
+                        <i class="fa-solid fa-lightbulb"></i>
 
                         <div>
 
+                            <strong>
+                                Practical Learning
+                            </strong>
+
                             <span>
+                                Learn skills through practical examples.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <div>
+
+                            <strong>
+                                Community
+                            </strong>
+
+                            <span>
+                                Connect with other digital learners.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <div>
+
+                            <strong>
+                                Growth
+                            </strong>
+
+                            <span>
+                                Build skills progressively.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-card-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+
+                <h3>
+                    Your Digital Journey
+                </h3>
+
+                <div class="journey-line"></div>
+
+                <div class="journey-step">
+
+                    <span>
+                        01
+                    </span>
+
+                    <p>
+                        Learn digital skills
+                    </p>
+
+                </div>
+
+
+                <div class="journey-step">
+
+                    <span>
+                        02
+                    </span>
+
+                    <p>
+                        Build your portfolio
+                    </p>
+
+                </div>
+
+
+                <div class="journey-step">
+
+                    <span>
+                        03
+                    </span>
+
+                    <p>
+                        Find opportunities
+                    </p>
+
+                </div>
+
+
+                <div class="journey-step">
+
+                    <span>
+                        04
+                    </span>
+
+                    <p>
+                        Grow your network
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="section contact-section" id="contact">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                CONTACT
+            </span>
+
+            <h2>
+                Let's Work Together
+            </h2>
+
+            <p>
+                Have a question, project or digital service request?
+                Send a message.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <!-- CONTACT DETAILS -->
+
+            <div class="contact-info">
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Email
+                        </span>
+
+                        <a href="mailto:emmanuelouko21@gmail.com">
+                            emmanuelouko21@gmail.com
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            WhatsApp
+                        </span>
+
+                        <a href="https://wa.me/254142617814?text=Hello%20Jay%20Classic%2C%20I%20would%20like%20to%20make%20an%20inquiry."
+                           target="_blank"
+                           rel="noopener noreferrer">
+
+                            0142617814
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            M-Pesa
+                        </span>
+
+                        <strong>
+                            0142617814
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Online Classes
+                        </span>
+
+                        <strong>
+                            Daily at 9:00 PM
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT FORM -->
+
+            <div class="contact-card">
+
+                <form class="contact-form"
+                      id="contactForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="contactName">
+                                Name
+                            </label>
+
+                            <input type="text"
+                                   id="contactName"
+                                   name="contactName"
+                                   placeholder="Your name"
+                                   required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactEmail">
                                 Email
-                            </span>
+                            </label>
 
-                            <strong>
-                                emmanuelouko21@gmail.com
-                            </strong>
-
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- WHATSAPP -->
-
-                    <a
-                        href="https://wa.me/254142617814?text=Hello%20Jay%20Classic.%20I%20would%20like%20to%20get%20more%20information."
-                        class="contact-item"
-                        target="_blank"
-                        rel="noopener">
-
-                        <div class="contact-icon">
-                            💬
-                        </div>
-
-                        <div>
-
-                            <span>
-                                WhatsApp
-                            </span>
-
-                            <strong>
-                                0142617814
-                            </strong>
+                            <input type="email"
+                                   id="contactEmail"
+                                   name="contactEmail"
+                                   placeholder="you@example.com"
+                                   required>
 
                         </div>
-
-                    </a>
-
-
-
-                    <!-- MPESA -->
-
-                    <div class="contact-item">
-
-                        <div class="contact-icon">
-                            💰
-                        </div>
-
-                        <div>
-
-                            <span>
-                                M-Pesa
-                            </span>
-
-                            <strong>
-                                0142617814
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- LOCATION -->
-
-                    <div class="contact-item">
-
-                        <div class="contact-icon">
-                            📍
-                        </div>
-
-                        <div>
-
-                            <span>
-                                Location
-                            </span>
-
-                            <strong>
-                                Nairobi, Kenya
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- CONTACT FORM -->
-
-                <form
-                    class="contact-form"
-                    id="contactForm">
-
-
-                    <div class="form-group">
-
-                        <label for="contactName">
-                            Full Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="contactName"
-                            name="contactName"
-                            placeholder="Enter your name"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="contactEmail">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="contactEmail"
-                            name="contactEmail"
-                            placeholder="Enter your email"
-                            required>
 
                     </div>
 
@@ -2152,43 +2589,39 @@
                     <div class="form-group">
 
                         <label for="contactService">
-                            What do you need?
+                            Service
                         </label>
 
-                        <select
-                            id="contactService"
-                            name="contactService">
+                        <select id="contactService"
+                                name="contactService"
+                                required>
 
                             <option value="">
-                                Select an option
+                                Select a service
                             </option>
 
-                            <option>
+                            <option value="freelancing">
                                 Freelancing
                             </option>
 
-                            <option>
+                            <option value="graphic-design">
                                 Graphic Design
                             </option>
 
-                            <option>
+                            <option value="web-development">
                                 Web Development
                             </option>
 
-                            <option>
+                            <option value="digital-marketing">
                                 Digital Marketing
                             </option>
 
-                            <option>
+                            <option value="ai-tools">
                                 AI Tools
                             </option>
 
-                            <option>
-                                Free Class Registration
-                            </option>
-
-                            <option>
-                                Other
+                            <option value="other">
+                                Other Inquiry
                             </option>
 
                         </select>
@@ -2202,123 +2635,27 @@
                             Message
                         </label>
 
-                        <textarea
-                            id="contactMessage"
-                            name="contactMessage"
-                            rows="6"
-                            placeholder="Write your message..."
-                            required></textarea>
+                        <textarea id="contactMessage"
+                                  name="contactMessage"
+                                  rows="6"
+                                  placeholder="Tell us what you need..."
+                                  required></textarea>
 
                     </div>
 
 
-                    <button
-                        type="submit"
-                        class="primary-button">
+                    <button type="submit"
+                            class="btn btn-primary btn-large full-width">
 
-                        Send Message →
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Send Message
 
                     </button>
 
                 </form>
 
             </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             SOCIAL MEDIA
-        ================================================== -->
-
-      <!-- ================= SOCIAL MEDIA ================= -->
-<section class="social-section" id="social">
-
-    <div class="social-container">
-
-        <div class="social-intro">
-            <span class="section-tag">CONNECT WITH ME</span>
-
-            <h2>
-                Follow <span>Jay Classic</span>
-            </h2>
-
-            <p>
-                Follow me on social media for freelancing tips,
-                digital skills, online opportunities, tutorials,
-                and updates from Jay Classic.
-            </p>
-        </div>
-
-        <div class="social-links">
-
-            <!-- Facebook -->
-            <a
-                href="https://www.facebook.com/profile.php?id=61568719246626"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Jay Ouko Emmanuel on Facebook"
-            >
-                <span class="social-symbol">f</span>
-
-                <div>
-                    <strong>Facebook</strong>
-                    <small>Jay Ouko Emmanuel</small>
-                </div>
-            </a>
-
-
-            <!-- Instagram -->
-            <a
-                href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Emmanuel Jay Ouko on Instagram"
-            >
-                <span class="social-symbol">◎</span>
-
-                <div>
-                    <strong>Instagram</strong>
-                    <small>@emmanueljayouko</small>
-                </div>
-            </a>
-
-
-            <!-- YouTube -->
-            <a
-                href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe to Ouko Emmanuel on YouTube"
-            >
-                <span class="social-symbol">▶</span>
-
-                <div>
-                    <strong>YouTube</strong>
-                    <small>Ouko Emmanuel</small>
-                </div>
-            </a>
-
-
-            <!-- TikTok -->
-            <a
-                href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Jay Classic on TikTok"
-            >
-                <span class="social-symbol">♪</span>
-
-                <div>
-                    <strong>TikTok</strong>
-                    <small>Jay Classic</small>
-                </div>
-            </a>
 
         </div>
 
@@ -2327,203 +2664,338 @@
 </section>
 
 
+<!-- =========================================================
+     SOCIAL MEDIA
+========================================================= -->
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+<section class="section social-section" id="social">
 
-    <footer class="footer">
+    <div class="container">
+
+        <div class="social-content">
+
+            <span class="section-tag">
+                CONNECT
+            </span>
+
+            <h2>
+                Follow Jay Classic Online
+            </h2>
+
+            <p>
+                Stay connected for digital tips, classes,
+                opportunities and new content.
+            </p>
 
 
-        <div class="container footer-grid">
+            <div class="social-links">
 
+                <a href="https://www.facebook.com/profile.php?id=61568719246626"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link facebook">
 
-            <!-- BRAND -->
+                    <i class="fa-brands fa-facebook-f"></i>
 
-            <div class="footer-brand">
-
-                <a href="#home"
-                   class="logo">
-
-                    <span class="logo-main">
-                        JAY
+                    <span>
+                        Facebook
                     </span>
 
-                    <span class="logo-sub">
-                        CLASSIC
+                </a>
+
+
+                <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link instagram">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                    <span>
+                        Instagram
                     </span>
 
                 </a>
 
 
-                <p>
-                    Freelancing • Digital Skills • Online Work
-                </p>
+                <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link youtube">
 
+                    <i class="fa-brands fa-youtube"></i>
 
-                <p>
-                    Learn. Work. Grow.
-                </p>
+                    <span>
+                        YouTube
+                    </span>
 
-            </div>
-
-
-
-            <!-- QUICK LINKS -->
-
-            <div class="footer-column">
-
-                <h4>
-                    Quick Links
-                </h4>
-
-                <a href="#home">
-                    Home
                 </a>
 
-                <a href="#services">
-                    Services
-                </a>
 
-                <a href="#classes">
-                    Free Class
-                </a>
+                <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link tiktok">
 
-                <a href="#jobs">
-                    Online Work
-                </a>
+                    <i class="fa-brands fa-tiktok"></i>
 
-                <a href="#reviews">
-                    Reviews
-                </a>
+                    <span>
+                        TikTok
+                    </span>
 
-                <a href="#contact">
-                    Contact
                 </a>
 
             </div>
 
+        </div>
+
+    </div>
+
+</section>
+
+</main>
 
 
-            <!-- SERVICES -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-            <div class="footer-column">
+<footer class="footer">
 
-                <h4>
-                    Skills
-                </h4>
+    <div class="container footer-grid">
 
-                <a href="#services">
-                    Freelancing
-                </a>
+        <div class="footer-brand">
 
-                <a href="#services">
-                    Graphic Design
-                </a>
+            <a href="#home" class="logo footer-logo">
 
-                <a href="#services">
-                    Web Development
-                </a>
-
-                <a href="#services">
-                    Digital Marketing
-                </a>
-
-                <a href="#services">
-                    AI Tools
-                </a>
-
-            </div>
-
-
-
-            <!-- CONTACT -->
-
-            <div class="footer-column">
-
-                <h4>
-                    Contact
-                </h4>
-
-                <a href="mailto:emmanuelouko21@gmail.com">
-                    emmanuelouko21@gmail.com
-                </a>
-
-                <a href="tel:0142617814">
-                    0142617814
-                </a>
-
-                <a
-                    href="https://wa.me/254142617814"
-                    target="_blank"
-                    rel="noopener">
-
-                    WhatsApp
-
-                </a>
-
-                <span>
-                    Nairobi, Kenya
+                <span class="logo-mark">
+                    J
                 </span>
 
+                <span class="logo-text">
+
+                    <strong>
+                        JAY
+                    </strong>
+
+                    <small>
+                        CLASSIC
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <p>
+                Freelancing • Digital Skills • Online Work
+            </p>
+
+
+            <div class="footer-socials">
+
+                <a href="https://www.facebook.com/profile.php?id=61568719246626"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Facebook">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+
+                <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Instagram">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="YouTube">
+
+                    <i class="fa-brands fa-youtube"></i>
+
+                </a>
+
+
+                <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="TikTok">
+
+                    <i class="fa-brands fa-tiktok"></i>
+
+                </a>
+
             </div>
 
         </div>
 
 
+        <div class="footer-column">
 
-        <!-- FOOTER BOTTOM -->
+            <h4>
+                Quick Links
+            </h4>
 
-        <div class="footer-bottom">
+            <a href="#home">
+                Home
+            </a>
 
-            <div class="container footer-bottom-inner">
+            <a href="#services">
+                Services
+            </a>
 
-                <p>
+            <a href="#classes">
+                Classes
+            </a>
 
-                    © <span id="year"></span>
-                    Jay Classic.
-                    All rights reserved.
-
-                </p>
-
-
-                <p>
-                    Built for the digital generation.
-                </p>
-
-            </div>
+            <a href="#membership">
+                Membership
+            </a>
 
         </div>
 
-    </footer>
+
+        <div class="footer-column">
+
+            <h4>
+                Member
+            </h4>
+
+            <a href="#referrals">
+                Referral Program
+            </a>
+
+            <a href="#payment">
+                Payments
+            </a>
+
+            <a href="#registration">
+                Register
+            </a>
+
+            <a href="#reviews">
+                Reviews
+            </a>
+
+        </div>
 
 
+        <div class="footer-column">
 
-    <!-- =====================================================
-         BACK TO TOP
-    ====================================================== -->
+            <h4>
+                Contact
+            </h4>
 
-    <button
-        type="button"
+            <a href="mailto:emmanuelouko21@gmail.com">
+                emmanuelouko21@gmail.com
+            </a>
+
+            <a href="tel:0142617814">
+                0142617814
+            </a>
+
+            <a href="https://wa.me/254142617814"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <p>
+            © <span id="year"></span> Jay Classic.
+            All rights reserved.
+        </p>
+
+        <p>
+            Built for digital growth.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     TOAST / NOTIFICATION
+========================================================= -->
+
+<div class="toast"
+     id="toast"
+     role="alert"
+     aria-live="polite">
+
+    <div class="toast-icon"
+         id="toastIcon">
+
+        <i class="fa-solid fa-check"></i>
+
+    </div>
+
+    <div class="toast-content">
+
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+        <p id="toastMessage">
+            Your request was successful.
+        </p>
+
+    </div>
+
+    <button type="button"
+            id="toastClose"
+            aria-label="Close notification">
+
+        ×
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button type="button"
         class="back-to-top"
         id="backToTop"
         aria-label="Back to top">
 
-        ↑
+    <i class="fa-solid fa-arrow-up"></i>
 
-    </button>
+</button>
 
 
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- =========================================================
+     WEBSITE JAVASCRIPT
+========================================================= -->
+
 <script src="app.js"></script>
-    
-
 
 </body>
-
 </html>
-```
