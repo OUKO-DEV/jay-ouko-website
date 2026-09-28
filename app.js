@@ -1,494 +1,247 @@
 /* =========================================================
    JAY CLASSIC
-   PROFESSIONAL WEBSITE APPLICATION
-   Freelancing • Digital Skills • Online Work
-   Referral • VIP • VVIP • Payments • Reviews
-========================================================= */
-
+   SUPABASE + MEMBERS + REFERRALS SYSTEM
+   ========================================================= */
 
 /* =========================================================
    1. SUPABASE CONFIGURATION
-========================================================= */
+   ========================================================= */
 
 const SUPABASE_URL = "https://cjcyjsgcsgqeqanxwitq.supabase.co";
 
-const SUPABASE_KEY =
+const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_F7taABXLhqRbRlkBygPF6A_pMphViS5";
 
 let supabaseClient = null;
 
 try {
-
     if (window.supabase) {
-
-        supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_KEY
-            );
+        supabaseClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+        console.log("Jay Classic: Supabase connected.");
+    } else {
+        console.error("Supabase library was not loaded.");
     }
-
 } catch (error) {
-
-    console.error(
-        "Supabase initialization failed:",
-        error
-    );
+    console.error("Supabase connection error:", error);
 }
 
 
 /* =========================================================
    2. GLOBAL STATE
-========================================================= */
+   ========================================================= */
 
 const JayClassic = {
-
     member: null,
-
-    referralCode: null,
-
+    referralCode: "",
     referralCount: 0,
-
     tier: "Regular",
-
-    reviews: [],
-
     initialized: false
 };
 
 
 /* =========================================================
-   3. DOM HELPERS
-========================================================= */
+   3. START APPLICATION
+   ========================================================= */
 
-function $(selector) {
+document.addEventListener("DOMContentLoaded", async () => {
 
-    return document.querySelector(selector);
-}
+    initializeTheme();
+    initializeMobileMenu();
+    initializeHeader();
+    initializeSmoothScrolling();
+    initializeBackToTop();
+    initializeForms();
+    initializeReferralSystem();
+    initializeShareButtons();
+    initializeAnimations();
+    initializeYear();
 
-function $$(selector) {
+    await restoreMember();
 
-    return document.querySelectorAll(selector);
-}
-
-
-/* =========================================================
-   4. PAGE LOADER
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-
-        try {
-
-            await initializeJayClassic();
-
-        } catch (error) {
-
-            console.error(
-                "Initialization error:",
-                error
-            );
-
-        } finally {
-
-            setTimeout(
-                hidePageLoader,
-                500
-            );
-        }
-    }
-);
-
-
-function hidePageLoader() {
-
-    const loader =
-        $(".page-loader");
-
-    if (loader) {
-
-        loader.classList.add(
-            "hidden"
-        );
-    }
-}
-
-
-/* =========================================================
-   5. MAIN INITIALIZATION
-========================================================= */
-
-async function initializeJayClassic() {
-
-    if (JayClassic.initialized) {
-        return;
-    }
+    loadReviews();
 
     JayClassic.initialized = true;
 
-    initializeTheme();
-
-    initializeMobileMenu();
-
-    initializeHeader();
-
-    initializeSmoothScrolling();
-
-    initializeBackToTop();
-
-    initializeForms();
-
-    initializeReferralSystem();
-
-    initializeShareButtons();
-
-    initializeIntersectionAnimations();
-
-    updateCurrentYear();
-
-    await loadReviews();
-
-    await restoreMemberSession();
-}
+    console.log("Jay Classic initialized.");
+});
 
 
 /* =========================================================
-   6. DARK / LIGHT MODE
-========================================================= */
+   4. THEME
+   ========================================================= */
 
 function initializeTheme() {
 
-    const savedTheme =
-        localStorage.getItem(
-            "jayClassicTheme"
-        );
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+
+    if (!themeToggle) return;
+
+    const savedTheme = localStorage.getItem("jayClassicTheme");
 
     if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
 
-        document.body.classList.add(
-            "dark-mode"
-        );
+        if (themeIcon) {
+            themeIcon.textContent = "☀️";
+        }
     }
 
-    updateThemeButton();
+    themeToggle.addEventListener("click", () => {
 
-    const themeToggle =
-        $("#themeToggle");
+        document.body.classList.toggle("dark-mode");
 
-    if (themeToggle) {
+        const isDark =
+            document.body.classList.contains("dark-mode");
 
-        themeToggle.addEventListener(
-            "click",
-            toggleTheme
-        );
-    }
-}
-
-
-function toggleTheme() {
-
-    document.body.classList.toggle(
-        "dark-mode"
-    );
-
-    const isDark =
-        document.body.classList.contains(
-            "dark-mode"
+        localStorage.setItem(
+            "jayClassicTheme",
+            isDark ? "dark" : "light"
         );
 
-    localStorage.setItem(
-        "jayClassicTheme",
-        isDark ? "dark" : "light"
-    );
-
-    updateThemeButton();
-}
-
-
-function updateThemeButton() {
-
-    const icon =
-        $("#themeIcon");
-
-    if (!icon) {
-        return;
-    }
-
-    const isDark =
-        document.body.classList.contains(
-            "dark-mode"
-        );
-
-    icon.textContent =
-        isDark ? "☀️" : "🌙";
-
-    icon.setAttribute(
-        "aria-label",
-        isDark
-            ? "Switch to light mode"
-            : "Switch to dark mode"
-    );
+        if (themeIcon) {
+            themeIcon.textContent = isDark ? "☀️" : "🌙";
+        }
+    });
 }
 
 
 /* =========================================================
-   7. MOBILE MENU
-========================================================= */
+   5. MOBILE MENU
+   ========================================================= */
 
 function initializeMobileMenu() {
 
-    const menuButton =
-        $("#menuToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    const mobileMenu =
-        $("#mobileMenu");
+    if (!menuToggle || !mobileMenu) return;
 
-    if (!menuButton || !mobileMenu) {
-        return;
-    }
+    menuToggle.addEventListener("click", () => {
 
-    menuButton.addEventListener(
-        "click",
-        () => {
+        mobileMenu.classList.toggle("active");
 
-            const active =
-                mobileMenu.classList.toggle(
-                    "active"
-                );
+        const expanded =
+            mobileMenu.classList.contains("active");
 
-            menuButton.textContent =
-                active ? "✕" : "☰";
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                String(active)
-            );
-        }
-    );
-
-    $$(".mobile-nav-link").forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                closeMobileMenu
-            );
-        }
-    );
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                closeMobileMenu();
-            }
-        }
-    );
-
-    document.addEventListener(
-        "click",
-        event => {
-
-            if (
-                mobileMenu.classList.contains(
-                    "active"
-                ) &&
-                !mobileMenu.contains(
-                    event.target
-                ) &&
-                !menuButton.contains(
-                    event.target
-                )
-            ) {
-
-                closeMobileMenu();
-            }
-        }
-    );
-}
-
-
-function closeMobileMenu() {
-
-    const mobileMenu =
-        $("#mobileMenu");
-
-    const menuButton =
-        $("#menuToggle");
-
-    if (mobileMenu) {
-
-        mobileMenu.classList.remove(
-            "active"
-        );
-    }
-
-    if (menuButton) {
-
-        menuButton.textContent = "☰";
-
-        menuButton.setAttribute(
+        menuToggle.setAttribute(
             "aria-expanded",
-            "false"
+            expanded ? "true" : "false"
         );
-    }
+    });
+
+    document
+        .querySelectorAll(".mobile-nav-link")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+            });
+
+        });
 }
 
 
 /* =========================================================
-   8. HEADER SCROLL EFFECT
-========================================================= */
+   6. HEADER
+   ========================================================= */
 
 function initializeHeader() {
 
-    const header =
-        $(".header");
+    const header = document.querySelector(".header");
 
-    if (!header) {
-        return;
-    }
+    if (!header) return;
 
-    const handleScroll = () => {
+    window.addEventListener("scroll", () => {
 
-        if (window.scrollY > 20) {
-
-            header.classList.add(
-                "scrolled"
-            );
-
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
         } else {
-
-            header.classList.remove(
-                "scrolled"
-            );
+            header.classList.remove("scrolled");
         }
-    };
 
-    window.addEventListener(
-        "scroll",
-        handleScroll,
-        { passive: true }
-    );
-
-    handleScroll();
+    });
 }
 
 
 /* =========================================================
-   9. SMOOTH SCROLLING
-========================================================= */
+   7. SMOOTH SCROLLING
+   ========================================================= */
 
 function initializeSmoothScrolling() {
 
-    $$('a[href^="#"]').forEach(
-        link => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-            link.addEventListener(
-                "click",
-                event => {
+        link.addEventListener("click", event => {
 
-                    const targetId =
-                        link.getAttribute(
-                            "href"
-                        );
+            const targetId =
+                link.getAttribute("href");
 
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
+            if (!targetId || targetId === "#") return;
 
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
+            const target =
+                document.querySelector(targetId);
 
-                    if (!target) {
-                        return;
-                    }
+            if (!target) return;
 
-                    event.preventDefault();
+            event.preventDefault();
 
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
-                    closeMobileMenu();
-                }
-            );
-        }
-    );
+        });
+
+    });
 }
 
 
 /* =========================================================
-   10. BACK TO TOP
-========================================================= */
+   8. BACK TO TOP
+   ========================================================= */
 
 function initializeBackToTop() {
 
     const button =
-        $(".back-to-top");
+        document.getElementById("backToTop");
 
-    if (!button) {
-        return;
-    }
+    if (!button) return;
 
-    window.addEventListener(
-        "scroll",
-        () => {
+    window.addEventListener("scroll", () => {
 
-            if (
-                window.scrollY >
-                500
-            ) {
-
-                button.classList.add(
-                    "show"
-                );
-
-            } else {
-
-                button.classList.remove(
-                    "show"
-                );
-            }
-        },
-        { passive: true }
-    );
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+        if (window.scrollY > 500) {
+            button.classList.add("show");
+        } else {
+            button.classList.remove("show");
         }
-    );
+
+    });
+
+    button.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
 }
 
 
 /* =========================================================
-   11. CURRENT YEAR
-========================================================= */
+   9. YEAR
+   ========================================================= */
 
-function updateCurrentYear() {
+function initializeYear() {
 
     const year =
-        $("#year");
+        document.getElementById("year");
 
     if (year) {
-
         year.textContent =
             new Date().getFullYear();
     }
@@ -496,57 +249,44 @@ function updateCurrentYear() {
 
 
 /* =========================================================
-   12. REFERRAL SYSTEM
-========================================================= */
+   10. REFERRAL SYSTEM
+   ========================================================= */
 
 function initializeReferralSystem() {
 
     const params =
-        new URLSearchParams(
-            window.location.search
-        );
+        new URLSearchParams(window.location.search);
 
     const referral =
         params.get("ref");
 
     if (referral) {
 
-        const cleanReferral =
-            referral
-                .trim()
-                .toUpperCase();
+        localStorage.setItem(
+            "jayClassicReferral",
+            referral.trim().toUpperCase()
+        );
 
-        if (
-            cleanReferral.length >= 4 &&
-            cleanReferral.length <= 30
-        ) {
+        const referralInput =
+            document.getElementById("referralCode");
 
-            localStorage.setItem(
-                "jayClassicReferral",
-                cleanReferral
-            );
+        if (referralInput) {
+            referralInput.value =
+                referral.trim().toUpperCase();
         }
     }
 
-    const savedReferral =
-        localStorage.getItem(
-            "jayClassicReferral"
-        );
+    const storedReferral =
+        localStorage.getItem("jayClassicReferral");
 
-    if (savedReferral) {
+    if (storedReferral) {
 
-        const referralInputs =
-            $$(
-                '[name="referralCode"], #referralCode'
-            );
+        const input =
+            document.getElementById("referralCode");
 
-        referralInputs.forEach(
-            input => {
-
-                input.value =
-                    savedReferral;
-            }
-        );
+        if (input && !input.value) {
+            input.value = storedReferral;
+        }
     }
 
     updateReferralDisplay();
@@ -554,55 +294,18 @@ function initializeReferralSystem() {
 
 
 /* =========================================================
-   13. CREATE REFERRAL CODE
-========================================================= */
+   11. REFERRAL TIER
+   ========================================================= */
 
-function generateReferralCode(
-    name = ""
-) {
+function calculateTier(count) {
 
-    const cleaned =
-        name
-            .replace(
-                /[^a-zA-Z0-9]/g,
-                ""
-            )
-            .toUpperCase()
-            .slice(0, 6);
-
-    const random =
-        Math.random()
-            .toString(36)
-            .substring(2, 7)
-            .toUpperCase();
-
-    return (
-        "JAY-" +
-        (cleaned || "USER") +
-        "-" +
-        random
-    );
-}
-
-
-/* =========================================================
-   14. DETERMINE MEMBER TIER
-========================================================= */
-
-function calculateTier(
-    referralCount
-) {
-
-    const count =
-        Number(referralCount) || 0;
+    count = Number(count) || 0;
 
     if (count >= 10) {
-
         return "VVIP";
     }
 
     if (count >= 3) {
-
         return "VIP";
     }
 
@@ -611,453 +314,353 @@ function calculateTier(
 
 
 /* =========================================================
-   15. TIER REQUIREMENTS
-========================================================= */
+   12. REFERRAL PROGRESS
+   ========================================================= */
 
-function getTierRequirement(
-    tier
-) {
+function getNextTierTarget(count) {
 
-    if (tier === "VVIP") {
+    count = Number(count) || 0;
 
-        return {
-            minimum: 10,
-            next: 10
-        };
+    if (count < 3) {
+        return 3;
     }
 
-    if (tier === "VIP") {
-
-        return {
-            minimum: 3,
-            next: 10
-        };
+    if (count < 10) {
+        return 10;
     }
 
-    return {
-        minimum: 0,
-        next: 3
-    };
+    return 10;
 }
 
 
 /* =========================================================
-   16. UPDATE REFERRAL DASHBOARD
-========================================================= */
+   13. UPDATE REFERRAL DISPLAY
+   ========================================================= */
 
 function updateReferralDisplay() {
 
     const count =
-        JayClassic.referralCount;
+        JayClassic.referralCount || 0;
 
     const tier =
-        JayClassic.tier;
+        calculateTier(count);
 
-    const badge =
-        $(".tier-badge");
+    JayClassic.tier = tier;
 
-    if (badge) {
+    const countElements = [
+        document.getElementById("referralCount"),
+        document.getElementById("memberReferralCount")
+    ];
 
-        badge.textContent =
-            tier.toUpperCase();
+    countElements.forEach(element => {
 
-        badge.classList.remove(
-            "regular-tier",
-            "vip-tier",
-            "vvip-tier"
-        );
-
-        if (tier === "VVIP") {
-
-            badge.classList.add(
-                "vvip-tier"
-            );
-
-        } else if (tier === "VIP") {
-
-            badge.classList.add(
-                "vip-tier"
-            );
-
-        } else {
-
-            badge.classList.add(
-                "regular-tier"
-            );
+        if (element) {
+            element.textContent = count;
         }
-    }
 
-    const countElement =
-        $("[data-referral-count]");
+    });
 
-    if (countElement) {
+    const tierElements = [
+        document.getElementById("tier"),
+        document.getElementById("memberTier"),
+        document.getElementById("tierBadge")
+    ];
 
-        countElement.textContent =
-            count;
-    }
+    tierElements.forEach(element => {
 
-    const tierElements =
-        $$("[data-member-tier]");
-
-    tierElements.forEach(
-        element => {
+        if (element) {
 
             element.textContent =
                 tier;
+
+            element.classList.remove(
+                "regular",
+                "vip",
+                "vvip"
+            );
+
+            element.classList.add(
+                tier.toLowerCase()
+            );
         }
-    );
+
+    });
 
     const progress =
-        calculateProgress(
-            count
-        );
+        document.getElementById("referralProgress");
 
-    const progressFill =
-        $(".progress-fill");
+    if (progress) {
 
-    if (progressFill) {
+        let percentage = 100;
 
-        progressFill.style.width =
-            `${progress}%`;
+        if (count < 3) {
+            percentage =
+                Math.min((count / 3) * 100, 100);
+        } else if (count < 10) {
+            percentage =
+                Math.min((count / 10) * 100, 100);
+        }
+
+        progress.style.width =
+            `${percentage}%`;
     }
 
-    const progressText =
-        $("[data-referral-progress]");
+    const nextTarget =
+        document.getElementById("nextTierTarget");
 
-    if (progressText) {
+    if (nextTarget) {
+        nextTarget.textContent =
+            getNextTierTarget(count);
+    }
 
-        if (tier === "VVIP") {
+    const nextMessage =
+        document.getElementById("nextTierMessage");
 
-            progressText.textContent =
-                "VVIP unlocked — you have reached 10 verified referrals.";
+    if (nextMessage) {
 
+        if (tier === "Regular") {
+            nextMessage.textContent =
+                `${3 - count} more verified referral(s) to reach VIP.`;
         } else if (tier === "VIP") {
-
-            const remaining =
-                Math.max(
-                    10 - count,
-                    0
-                );
-
-            progressText.textContent =
-                `${remaining} more verified referral${remaining === 1 ? "" : "s"} to reach VVIP.`;
-
+            nextMessage.textContent =
+                `${10 - count} more verified referral(s) to reach VVIP.`;
         } else {
-
-            const remaining =
-                Math.max(
-                    3 - count,
-                    0
-                );
-
-            progressText.textContent =
-                `${remaining} more verified referral${remaining === 1 ? "" : "s"} to reach VIP.`;
+            nextMessage.textContent =
+                "You have reached VVIP.";
         }
     }
-
-    updateReferralLink();
 }
 
 
 /* =========================================================
-   17. REFERRAL PROGRESS
-========================================================= */
+   14. GENERATE REFERRAL CODE
+   ========================================================= */
 
-function calculateProgress(
-    count
-) {
+function generateReferralCode(name) {
 
-    const referralCount =
-        Math.max(
-            Number(count) || 0,
-            0
-        );
+    const cleanName =
+        String(name || "MEMBER")
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, "")
+            .substring(0, 8);
 
-    if (referralCount >= 10) {
-        return 100;
+    const random =
+        Math.random()
+            .toString(36)
+            .substring(2, 7)
+            .toUpperCase();
+
+    return `JAY-${cleanName}-${random}`;
+}
+
+
+/* =========================================================
+   15. CREATE REFERRAL LINK
+   ========================================================= */
+
+function getReferralLink() {
+
+    if (!JayClassic.referralCode) {
+        return window.location.origin +
+            window.location.pathname;
     }
 
-    return Math.min(
-        (referralCount / 10) * 100,
-        100
-    );
+    return `${window.location.origin}${window.location.pathname}?ref=${encodeURIComponent(JayClassic.referralCode)}`;
 }
 
 
 /* =========================================================
-   18. REFERRAL LINK
-========================================================= */
+   16. DISPLAY REFERRAL LINK
+   ========================================================= */
 
 function updateReferralLink() {
 
-    const input =
-        $("#referralLink");
+    const link =
+        getReferralLink();
 
-    if (!input) {
-        return;
-    }
+    const elements = [
+        document.getElementById("referralLink"),
+        document.getElementById("memberReferralLink")
+    ];
 
-    if (!JayClassic.referralCode) {
+    elements.forEach(element => {
 
-        input.value =
-            "Register to generate your referral link";
+        if (element) {
+            element.value = link;
+            element.textContent = link;
+        }
 
-        return;
-    }
-
-    const baseUrl =
-        window.location.origin +
-        window.location.pathname;
-
-    input.value =
-        `${baseUrl}?ref=${encodeURIComponent(
-            JayClassic.referralCode
-        )}`;
+    });
 }
 
 
 /* =========================================================
-   19. COPY REFERRAL LINK
-========================================================= */
+   17. COPY REFERRAL LINK
+   ========================================================= */
 
 async function copyReferralLink() {
 
-    const input =
-        $("#referralLink");
-
-    if (
-        !input ||
-        !JayClassic.referralCode
-    ) {
-
-        showMessage(
-            "Register first",
-            "Your personal referral link will be created after registration.",
-            "warning"
-        );
-
-        return;
-    }
+    const link =
+        getReferralLink();
 
     try {
 
-        await navigator.clipboard.writeText(
-            input.value
-        );
+        await navigator.clipboard.writeText(link);
 
-        showMessage(
-            "Link copied",
-            "Your referral link is ready to share.",
-            "success"
+        showToast(
+            "Referral link copied successfully."
         );
 
     } catch (error) {
 
-        input.select();
-
-        document.execCommand(
-            "copy"
-        );
-
-        showMessage(
-            "Link copied",
-            "Your referral link has been copied.",
-            "success"
+        showToast(
+            "Copy failed. Please copy the link manually."
         );
     }
 }
 
 
 /* =========================================================
-   20. SHARE REFERRAL LINK
-========================================================= */
+   18. SHARE REFERRAL
+   ========================================================= */
 
-function initializeShareButtons() {
+async function shareReferral() {
 
-    const copyButton =
-        $("#copyReferralBtn");
+    const link =
+        getReferralLink();
 
-    if (copyButton) {
+    const message =
+        `Join Jay Classic using my referral link: ${link}`;
 
-        copyButton.addEventListener(
-            "click",
-            copyReferralLink
-        );
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+                title: "Jay Classic",
+                text: message,
+                url: link
+            });
+
+        } catch (error) {
+            console.log("Share cancelled.");
+        }
+
+        return;
     }
 
-    const shareButtons =
-        $$(".share-btn");
-
-    shareButtons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const platform =
-                        button.dataset.share;
-
-                    shareReferral(
-                        platform
-                    );
-                }
-            );
-        }
+    window.open(
+        `https://wa.me/?text=${encodeURIComponent(message)}`,
+        "_blank"
     );
 }
 
 
-function shareReferral(
-    platform
-) {
+/* =========================================================
+   19. SHARE BUTTONS
+   ========================================================= */
 
-    if (!JayClassic.referralCode) {
+function initializeShareButtons() {
 
-        showMessage(
-            "Register first",
-            "Create your Jay Classic account before sharing your referral link.",
-            "warning"
+    const copyButtons =
+        document.querySelectorAll(
+            "[data-copy-referral]"
         );
 
-        return;
-    }
+    copyButtons.forEach(button => {
 
-    const link =
-        `${window.location.origin}${window.location.pathname}?ref=${encodeURIComponent(
-            JayClassic.referralCode
-        )}`;
-
-    const message =
-        `Join Jay Classic for freelancing, digital skills and online work. Register using my referral link: ${link}`;
-
-    let shareUrl = "";
-
-    if (platform === "whatsapp") {
-
-        shareUrl =
-            `https://wa.me/?text=${encodeURIComponent(
-                message
-            )}`;
-
-    } else if (platform === "facebook") {
-
-        shareUrl =
-            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                link
-            )}`;
-
-    } else if (platform === "twitter") {
-
-        shareUrl =
-            `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                message
-            )}`;
-
-    } else {
-
-        if (
-            navigator.share
-        ) {
-
-            navigator.share({
-                title:
-                    "Jay Classic",
-                text:
-                    message,
-                url:
-                    link
-            });
-
-            return;
-        }
-    }
-
-    if (shareUrl) {
-
-        window.open(
-            shareUrl,
-            "_blank",
-            "noopener,noreferrer"
+        button.addEventListener(
+            "click",
+            copyReferralLink
         );
-    }
+
+    });
+
+    const shareButtons =
+        document.querySelectorAll(
+            "[data-share-referral]"
+        );
+
+    shareButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            shareReferral
+        );
+
+    });
+
+    const whatsappButtons =
+        document.querySelectorAll(
+            "[data-share-whatsapp]"
+        );
+
+    whatsappButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const link =
+                getReferralLink();
+
+            const message =
+                `Join Jay Classic using my referral link: ${link}`;
+
+            window.open(
+                `https://wa.me/?text=${encodeURIComponent(message)}`,
+                "_blank"
+            );
+
+        });
+
+    });
 }
 
 
 /* =========================================================
-   21. RESTORE MEMBER SESSION
-========================================================= */
+   20. RESTORE MEMBER
+   ========================================================= */
 
-async function restoreMemberSession() {
+async function restoreMember() {
 
-    if (!supabaseClient) {
-        return;
-    }
+    if (!supabaseClient) return;
+
+    const email =
+        localStorage.getItem(
+            "jayClassicMemberEmail"
+        );
+
+    if (!email) return;
 
     try {
 
-        const savedEmail =
-            localStorage.getItem(
-                "jayClassicMemberEmail"
-            );
-
-        if (!savedEmail) {
-            return;
-        }
-
-        const {
-            data,
-            error
-        } =
+        const { data, error } =
             await supabaseClient
-                .from("registrations")
+                .from("members")
                 .select("*")
-                .eq(
-                    "email",
-                    savedEmail
-                )
+                .eq("email", email)
                 .maybeSingle();
 
         if (error) {
-
-            console.warn(
-                "Member lookup:",
-                error.message
+            console.error(
+                "Member restore error:",
+                error
             );
-
             return;
         }
 
-        if (data) {
+        if (!data) return;
 
-            JayClassic.member =
-                data;
+        setMemberState(data);
 
-            JayClassic.referralCode =
-                data.referral_code ||
-                generateReferralCode(
-                    data.name
-                );
-
-            JayClassic.referralCount =
-                Number(
-                    data.referral_count
-                ) || 0;
-
-            JayClassic.tier =
-                calculateTier(
-                    JayClassic.referralCount
-                );
-
-            updateReferralDisplay();
-
-            showMemberDashboard();
-        }
+        console.log(
+            "Jay Classic member restored:",
+            data.email
+        );
 
     } catch (error) {
 
         console.error(
-            "Session restore error:",
+            "Unexpected member restore error:",
             error
         );
     }
@@ -1065,56 +668,97 @@ async function restoreMemberSession() {
 
 
 /* =========================================================
-   22. SHOW MEMBER DASHBOARD
-========================================================= */
+   21. SET MEMBER STATE
+   ========================================================= */
 
-function showMemberDashboard() {
+function setMemberState(member) {
+
+    JayClassic.member =
+        member;
+
+    JayClassic.referralCode =
+        member.referral_code || "";
+
+    JayClassic.referralCount =
+        Number(member.referral_count) || 0;
+
+    JayClassic.tier =
+        calculateTier(
+            JayClassic.referralCount
+        );
+
+    updateReferralDisplay();
+    updateReferralLink();
+    updateMemberUI();
+}
+
+
+/* =========================================================
+   22. UPDATE MEMBER UI
+   ========================================================= */
+
+function updateMemberUI() {
+
+    if (!JayClassic.member) return;
+
+    const member =
+        JayClassic.member;
+
+    const nameElements = [
+        document.getElementById("memberName"),
+        document.getElementById("dashboardName")
+    ];
+
+    nameElements.forEach(element => {
+
+        if (element) {
+            element.textContent =
+                member.name || "Member";
+        }
+
+    });
+
+    const emailElements = [
+        document.getElementById("memberEmail"),
+        document.getElementById("dashboardEmail")
+    ];
+
+    emailElements.forEach(element => {
+
+        if (element) {
+            element.textContent =
+                member.email || "";
+        }
+
+    });
+
+    const status =
+        document.getElementById("membershipStatus");
+
+    if (status) {
+        status.textContent =
+            member.membership_status || "active";
+    }
 
     const memberArea =
-        $(".member-area-section");
+        document.getElementById("memberArea");
 
     if (memberArea) {
-
-        memberArea.style.display =
-            "block";
-    }
-
-    const memberName =
-        $("[data-member-name]");
-
-    if (
-        memberName &&
-        JayClassic.member
-    ) {
-
-        memberName.textContent =
-            JayClassic.member.name ||
-            "Member";
-    }
-
-    const email =
-        $("[data-member-email]");
-
-    if (
-        email &&
-        JayClassic.member
-    ) {
-
-        email.textContent =
-            JayClassic.member.email ||
-            "";
+        memberArea.classList.add("active");
     }
 }
 
 
 /* =========================================================
    23. REGISTRATION
-========================================================= */
+   ========================================================= */
 
 function initializeForms() {
 
     const registrationForm =
-        $("#registrationForm");
+        document.getElementById(
+            "registrationForm"
+        );
 
     if (registrationForm) {
 
@@ -1125,255 +769,301 @@ function initializeForms() {
     }
 
     const reviewForm =
-        $("#reviewForm");
+        document.getElementById(
+            "reviewForm"
+        );
 
     if (reviewForm) {
 
         reviewForm.addEventListener(
             "submit",
-            handleReviewSubmission
+            handleReview
         );
     }
 
     const contactForm =
-        $("#contactForm");
+        document.getElementById(
+            "contactForm"
+        );
 
     if (contactForm) {
 
         contactForm.addEventListener(
             "submit",
-            handleContactSubmission
+            handleContact
         );
     }
 
     const paymentForm =
-        $("#paymentForm");
+        document.getElementById(
+            "paymentForm"
+        );
 
     if (paymentForm) {
 
         paymentForm.addEventListener(
             "submit",
-            handlePaymentSubmission
+            handlePayment
+        );
+    }
+
+    const classForm =
+        document.getElementById(
+            "classRegistrationForm"
+        );
+
+    if (classForm) {
+
+        classForm.addEventListener(
+            "submit",
+            handleClassRegistration
         );
     }
 }
 
 
 /* =========================================================
-   24. HANDLE REGISTRATION
-========================================================= */
+   24. HANDLE MEMBER REGISTRATION
+   ========================================================= */
 
-async function handleRegistration(
-    event
-) {
+async function handleRegistration(event) {
 
     event.preventDefault();
 
-    const form =
-        event.currentTarget;
-
-    const name =
-        getValue(
-            "#studentName"
-        );
-
-    const email =
-        getValue(
-            "#studentEmail"
-        );
-
-    const phone =
-        getValue(
-            "#studentPhone"
-        );
-
-    const service =
-        getValue(
-            "#skill"
-        );
-
-    const message =
-        getValue(
-            "#studentMessage"
-        );
-
-    const referralCode =
-        getValue(
-            "#referralCode"
-        ) ||
-        localStorage.getItem(
-            "jayClassicReferral"
-        ) ||
-        "";
-
-    if (
-        !name ||
-        !email ||
-        !phone ||
-        !service
-    ) {
-
-        showMessage(
-            "Complete the form",
-            "Please fill in all required registration fields.",
-            "warning"
-        );
-
-        return;
-    }
-
-    if (!isValidEmail(email)) {
-
-        showMessage(
-            "Invalid email",
-            "Please enter a valid email address.",
-            "warning"
-        );
-
-        return;
-    }
-
     if (!supabaseClient) {
 
-        showMessage(
-            "Connection problem",
-            "The registration service is currently unavailable.",
-            "error"
+        showToast(
+            "Supabase is not connected."
         );
 
         return;
     }
 
-    const button =
-        form.querySelector(
-            'button[type="submit"]'
+    const form =
+        event.target;
+
+    const name =
+        getValue("studentName");
+
+    const email =
+        getValue("studentEmail")
+            .toLowerCase();
+
+    const phone =
+        getValue("studentPhone");
+
+    const skill =
+        getValue("skill");
+
+    const message =
+        getValue("studentMessage");
+
+    const referralCode =
+        getValue("referralCode")
+        || localStorage.getItem(
+            "jayClassicReferral"
+        )
+        || "";
+
+    if (!name || !email || !phone) {
+
+        showToast(
+            "Please complete all required fields."
         );
 
-    setButtonLoading(
-        button,
-        true,
-        "Registering..."
-    );
+        return;
+    }
 
     try {
 
-        const referralCodeForNewMember =
-            generateReferralCode(
-                name
+        /* Check whether member already exists */
+
+        const { data: existingMember, error: existingError } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq("email", email)
+                .maybeSingle();
+
+        if (existingError) {
+            throw existingError;
+        }
+
+        if (existingMember) {
+
+            setMemberState(existingMember);
+
+            localStorage.setItem(
+                "jayClassicMemberEmail",
+                email
             );
 
-        const registrationData = {
-
-            name:
-                name,
-
-            email:
-                email.toLowerCase(),
-
-            phone:
-                phone,
-
-            service:
-                service,
-
-            message:
-                message,
-
-            referral_code:
-                referralCodeForNewMember,
-
-            referred_by:
-                referralCode || null,
-
-            referral_count:
-                0,
-
-            tier:
-                "Regular",
-
-            membership_status:
-                "active"
-        };
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("registrations")
-                .insert(
-                    registrationData
-                )
-                .select()
-                .single();
-
-        if (error) {
-
-            if (
-                error.code ===
-                "23505"
-            ) {
-
-                showMessage(
-                    "Already registered",
-                    "This email may already have a Jay Classic registration.",
-                    "warning"
-                );
-
-            } else {
-
-                throw error;
-            }
+            showToast(
+                "This email is already registered."
+            );
 
             return;
         }
 
-        JayClassic.member =
-            data;
 
-        JayClassic.referralCode =
-            data.referral_code ||
-            referralCodeForNewMember;
+        /* Check referral */
 
-        JayClassic.referralCount = 0;
+        let referredBy = null;
 
-        JayClassic.tier =
-            "Regular";
+        if (referralCode) {
+
+            const { data: referrer, error: referrerError } =
+                await supabaseClient
+                    .from("members")
+                    .select("id, referral_code")
+                    .eq(
+                        "referral_code",
+                        referralCode.toUpperCase()
+                    )
+                    .maybeSingle();
+
+            if (referrerError) {
+                throw referrerError;
+            }
+
+            if (referrer) {
+
+                referredBy =
+                    referrer.referral_code;
+            }
+        }
+
+
+        /* Generate member referral code */
+
+        const newReferralCode =
+            generateReferralCode(name);
+
+
+        /* Create member */
+
+        const memberData = {
+
+            name: name,
+
+            email: email,
+
+            phone: phone,
+
+            referral_code:
+                newReferralCode,
+
+            referral_count: 0,
+
+            tier: "Regular",
+
+            referred_by:
+                referredBy,
+
+            membership_status:
+                "active",
+
+            is_verified: false
+        };
+
+
+        const { data: member, error: memberError } =
+            await supabaseClient
+                .from("members")
+                .insert(memberData)
+                .select()
+                .single();
+
+        if (memberError) {
+            throw memberError;
+        }
+
+
+        /* Save member locally */
 
         localStorage.setItem(
             "jayClassicMemberEmail",
-            email.toLowerCase()
+            email
         );
 
-        updateReferralDisplay();
+        setMemberState(member);
 
-        showMemberDashboard();
+
+        /* Create referral record */
+
+        if (referredBy) {
+
+            const { data: referrer } =
+                await supabaseClient
+                    .from("members")
+                    .select("id, referral_code")
+                    .eq(
+                        "referral_code",
+                        referredBy
+                    )
+                    .maybeSingle();
+
+            if (referrer) {
+
+                const { error: referralError } =
+                    await supabaseClient
+                        .from("referrals")
+                        .insert({
+
+                            referrer_id:
+                                referrer.id,
+
+                            referred_member_id:
+                                member.id,
+
+                            status:
+                                "pending",
+
+                            referral_code:
+                                referredBy
+                        });
+
+                if (referralError) {
+
+                    console.error(
+                        "Referral creation error:",
+                        referralError
+                    );
+                }
+            }
+        }
+
+
+        /* Record activity */
+
+        await supabaseClient
+            .from("referral_activity")
+            .insert({
+
+                member_id:
+                    member.id,
+
+                activity_type:
+                    "registration",
+
+                referral_code:
+                    referredBy || null,
+
+                details:
+                    skill
+                        ? `Registered for ${skill}. ${message || ""}`
+                        : message || "New Jay Classic member."
+            });
+
+
+        showToast(
+            "Registration successful! Welcome to Jay Classic."
+        );
 
         form.reset();
 
-        showMessage(
-            "Registration successful",
-            `Welcome to Jay Classic, ${name}. Your referral code is ${JayClassic.referralCode}.`,
-            "success"
-        );
-
-        setTimeout(
-            () => {
-
-                const dashboard =
-                    $(".member-area-section");
-
-                if (dashboard) {
-
-                    dashboard.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-                }
-
-            },
-            800
-        );
+        updateReferralDisplay();
+        updateReferralLink();
 
     } catch (error) {
 
@@ -1382,140 +1072,71 @@ async function handleRegistration(
             error
         );
 
-        showMessage(
-            "Registration failed",
-            "We could not complete your registration. Please try again.",
-            "error"
-        );
-
-    } finally {
-
-        setButtonLoading(
-            button,
-            false
+        showToast(
+            "Registration failed. Please try again."
         );
     }
 }
 
 
 /* =========================================================
-   25. REVIEW SYSTEM
-========================================================= */
+   25. REVIEWS
+   ========================================================= */
 
-async function handleReviewSubmission(
-    event
-) {
+async function handleReview(event) {
 
     event.preventDefault();
 
-    const form =
-        event.currentTarget;
+    if (!supabaseClient) {
+        showToast("Supabase is not connected.");
+        return;
+    }
 
     const name =
-        getValue(
-            "#reviewName"
-        );
+        getValue("reviewName");
 
     const rating =
         Number(
-            getValue(
-                "#reviewRating"
-            )
+            getValue("reviewRating")
         );
 
-    const comment =
-        getValue(
-            "#reviewMessage"
-        );
+    const message =
+        getValue("reviewMessage");
 
-    if (
-        !name ||
-        !rating ||
-        !comment
-    ) {
+    if (!name || !rating || !message) {
 
-        showMessage(
-            "Complete the review",
-            "Please provide your name, rating and comment.",
-            "warning"
+        showToast(
+            "Please complete the review form."
         );
 
         return;
     }
-
-    if (
-        rating < 1 ||
-        rating > 5
-    ) {
-
-        showMessage(
-            "Invalid rating",
-            "Please choose a rating from 1 to 5.",
-            "warning"
-        );
-
-        return;
-    }
-
-    if (!supabaseClient) {
-
-        showMessage(
-            "Connection problem",
-            "The review service is unavailable right now.",
-            "error"
-        );
-
-        return;
-    }
-
-    const button =
-        form.querySelector(
-            'button[type="submit"]'
-        );
-
-    setButtonLoading(
-        button,
-        true,
-        "Publishing..."
-    );
 
     try {
 
-        const reviewData = {
-
-            name:
-                name,
-
-            role:
-                "Jay Classic Community",
-
-            comment:
-                comment,
-
-            rating:
-                rating
-        };
-
-        const {
-            error
-        } =
+        const { error } =
             await supabaseClient
                 .from("reviews")
-                .insert(
-                    reviewData
-                );
+                .insert({
+
+                    name: name,
+
+                    rating: rating,
+
+                    message: message,
+
+                    approved: true
+                });
 
         if (error) {
             throw error;
         }
 
-        form.reset();
-
-        showMessage(
-            "Review submitted",
-            "Thank you for sharing your experience with Jay Classic.",
-            "success"
+        showToast(
+            "Thank you for your review!"
         );
+
+        event.target.reset();
 
         await loadReviews();
 
@@ -1526,17 +1147,8 @@ async function handleReviewSubmission(
             error
         );
 
-        showMessage(
-            "Review failed",
-            "Your review could not be submitted. Please try again.",
-            "error"
-        );
-
-    } finally {
-
-        setButtonLoading(
-            button,
-            false
+        showToast(
+            "Unable to submit review."
         );
     }
 }
@@ -1544,30 +1156,22 @@ async function handleReviewSubmission(
 
 /* =========================================================
    26. LOAD REVIEWS
-========================================================= */
+   ========================================================= */
 
 async function loadReviews() {
 
-    if (!supabaseClient) {
-        return;
-    }
+    if (!supabaseClient) return;
 
     try {
 
-        const {
-            data,
-            error
-        } =
+        const { data, error } =
             await supabaseClient
                 .from("reviews")
-                .select(
-                    "name, role, comment, rating, created_at"
-                )
+                .select("*")
+                .eq("approved", true)
                 .order(
                     "created_at",
-                    {
-                        ascending: false
-                    }
+                    { ascending: false }
                 );
 
         if (error) {
@@ -1581,15 +1185,11 @@ async function loadReviews() {
             JayClassic.reviews
         );
 
-        updateAverageRating(
-            JayClassic.reviews
-        );
-
     } catch (error) {
 
-        console.warn(
-            "Could not load reviews:",
-            error.message
+        console.error(
+            "Load reviews error:",
+            error
         );
     }
 }
@@ -1597,394 +1197,177 @@ async function loadReviews() {
 
 /* =========================================================
    27. RENDER REVIEWS
-========================================================= */
+   ========================================================= */
 
-function renderReviews(
-    reviews
-) {
+function renderReviews(reviews) {
 
-    const grid =
-        $(".reviews-grid");
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
 
-    if (!grid) {
-        return;
-    }
+    if (!container) return;
 
     if (!reviews.length) {
+
+        container.innerHTML =
+            `<p class="empty-state">
+                No reviews yet. Be the first to leave a review.
+            </p>`;
+
+        updateRatingOverview([]);
+
         return;
     }
 
-    grid.innerHTML = "";
-
-    reviews.forEach(
-        review => {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-            card.className =
-                "review-card";
-
-            const rating =
-                Math.max(
-                    1,
-                    Math.min(
-                        5,
-                        Number(
-                            review.rating
-                        ) || 5
-                    )
-                );
+    container.innerHTML =
+        reviews.map(review => {
 
             const stars =
                 "★".repeat(
-                    rating
+                    Number(review.rating)
                 ) +
                 "☆".repeat(
-                    5 - rating
+                    5 - Number(review.rating)
                 );
 
-            const author =
-                escapeHTML(
-                    review.name ||
-                    "Jay Classic Member"
-                );
-
-            const role =
-                escapeHTML(
-                    review.role ||
-                    "Community Member"
-                );
-
-            const comment =
-                escapeHTML(
-                    review.comment ||
-                    ""
-                );
-
-            const initials =
-                getInitials(
-                    review.name
-                );
-
-            card.innerHTML = `
-
-                <div class="review-stars">
-                    ${stars}
-                </div>
-
-                <p>
-                    “${comment}”
-                </p>
-
-                <div class="review-author">
-
-                    <div class="review-avatar">
-                        ${initials}
+            return `
+                <article class="review-card">
+                    <div class="review-rating">
+                        ${stars}
                     </div>
 
-                    <div>
+                    <p class="review-message">
+                        ${escapeHTML(review.message)}
+                    </p>
 
-                        <strong>
-                            ${author}
-                        </strong>
-
-                        <span>
-                            ${role}
-                        </span>
-
-                    </div>
-
-                </div>
+                    <strong class="review-name">
+                        ${escapeHTML(review.name)}
+                    </strong>
+                </article>
             `;
 
-            grid.appendChild(
-                card
-            );
-        }
-    );
+        }).join("");
+
+    updateRatingOverview(reviews);
 }
 
 
 /* =========================================================
-   28. AVERAGE RATING
-========================================================= */
+   28. RATING OVERVIEW
+   ========================================================= */
 
-function updateAverageRating(
-    reviews
-) {
+function updateRatingOverview(reviews) {
 
-    const score =
-        $(".rating-score > strong");
+    const averageElement =
+        document.getElementById(
+            "averageRating"
+        );
 
-    const stars =
-        $(".rating-score .stars");
-
-    const label =
-        $(".rating-score span");
+    const totalElement =
+        document.getElementById(
+            "totalReviews"
+        );
 
     if (!reviews.length) {
 
-        if (score) {
-            score.textContent = "—";
+        if (averageElement) {
+            averageElement.textContent =
+                "0.0";
         }
 
-        if (stars) {
-            stars.textContent =
-                "☆☆☆☆☆";
-        }
-
-        if (label) {
-            label.textContent =
-                "No community reviews yet";
+        if (totalElement) {
+            totalElement.textContent =
+                "0";
         }
 
         return;
     }
 
-    const ratings =
-        reviews.map(
-            review =>
-                Number(
-                    review.rating
-                ) || 0
-        );
-
     const total =
-        ratings.reduce(
-            (sum, value) =>
-                sum + value,
+        reviews.reduce(
+            (sum, review) =>
+                sum + Number(review.rating),
             0
         );
 
     const average =
-        total /
-        ratings.length;
+        total / reviews.length;
 
-    if (score) {
-
-        score.textContent =
+    if (averageElement) {
+        averageElement.textContent =
             average.toFixed(1);
     }
 
-    if (stars) {
-
-        const rounded =
-            Math.round(
-                average
-            );
-
-        stars.textContent =
-            "★".repeat(
-                rounded
-            ) +
-            "☆".repeat(
-                5 - rounded
-            );
+    if (totalElement) {
+        totalElement.textContent =
+            reviews.length;
     }
-
-    if (label) {
-
-        label.textContent =
-            `${reviews.length} community review${
-                reviews.length === 1
-                    ? ""
-                    : "s"
-            }`;
-    }
-
-    updateRatingBars(
-        ratings
-    );
 }
 
 
 /* =========================================================
-   29. RATING BARS
-========================================================= */
+   29. CONTACT FORM
+   ========================================================= */
 
-function updateRatingBars(
-    ratings
-) {
-
-    const rows =
-        $$(".rating-bar-row");
-
-    if (!rows.length) {
-        return;
-    }
-
-    const total =
-        ratings.length;
-
-    rows.forEach(
-        row => {
-
-            const value =
-                Number(
-                    row.dataset.rating
-                );
-
-            if (
-                !value ||
-                value < 1 ||
-                value > 5
-            ) {
-                return;
-            }
-
-            const count =
-                ratings.filter(
-                    rating =>
-                        rating === value
-                ).length;
-
-            const percentage =
-                total
-                    ? (count / total) *
-                      100
-                    : 0;
-
-            const bar =
-                row.querySelector(
-                    ".rating-bar div"
-                );
-
-            const number =
-                row.querySelector(
-                    ".rating-count"
-                );
-
-            if (bar) {
-
-                bar.style.width =
-                    `${percentage}%`;
-            }
-
-            if (number) {
-
-                number.textContent =
-                    count;
-            }
-        }
-    );
-}
-
-
-/* =========================================================
-   30. CONTACT FORM
-========================================================= */
-
-async function handleContactSubmission(
-    event
-) {
+async function handleContact(event) {
 
     event.preventDefault();
 
-    const form =
-        event.currentTarget;
+    if (!supabaseClient) {
+        showToast("Supabase is not connected.");
+        return;
+    }
 
     const name =
-        getValue(
-            "#contactName"
-        );
+        getValue("contactName");
 
     const email =
-        getValue(
-            "#contactEmail"
-        );
+        getValue("contactEmail");
 
     const service =
-        getValue(
-            "#contactService"
-        );
+        getValue("contactService");
 
     const message =
-        getValue(
-            "#contactMessage"
-        );
+        getValue("contactMessage");
 
-    if (
-        !name ||
-        !email ||
-        !message
-    ) {
+    if (!name || !email || !message) {
 
-        showMessage(
-            "Complete the form",
-            "Please fill in your name, email and message.",
-            "warning"
+        showToast(
+            "Please complete the required fields."
         );
 
         return;
     }
-
-    if (!isValidEmail(email)) {
-
-        showMessage(
-            "Invalid email",
-            "Please enter a valid email address.",
-            "warning"
-        );
-
-        return;
-    }
-
-    const button =
-        form.querySelector(
-            'button[type="submit"]'
-        );
-
-    setButtonLoading(
-        button,
-        true,
-        "Preparing..."
-    );
 
     try {
 
-        const subject =
-            `Jay Classic Website Inquiry${
-                service
-                    ? " - " + service
-                    : ""
-            }`;
+        const { error } =
+            await supabaseClient
+                .from("contact_messages")
+                .insert({
 
-        const body = `
-Hello Jay Ouko,
+                    name: name,
 
-My name is ${name}.
+                    email: email,
 
-Email: ${email}
+                    service:
+                        service || null,
 
-Service:
-${service || "General inquiry"}
+                    message: message,
 
-Message:
-${message}
+                    status: "new"
+                });
 
-Sent from the Jay Classic website.
-        `.trim();
+        if (error) {
+            throw error;
+        }
 
-        const mailto =
-            `mailto:emmanuelouko21@gmail.com?subject=${encodeURIComponent(
-                subject
-            )}&body=${encodeURIComponent(
-                body
-            )}`;
-
-        window.location.href =
-            mailto;
-
-        form.reset();
-
-        showMessage(
-            "Message prepared",
-            "Your email application should open with the message ready to send.",
-            "success"
+        showToast(
+            "Message sent successfully!"
         );
+
+        event.target.reset();
 
     } catch (error) {
 
@@ -1993,749 +1376,434 @@ Sent from the Jay Classic website.
             error
         );
 
-        showMessage(
-            "Could not prepare message",
-            "Please contact Jay Classic through WhatsApp or email.",
-            "error"
-        );
-
-    } finally {
-
-        setButtonLoading(
-            button,
-            false
+        showToast(
+            "Unable to send your message."
         );
     }
 }
 
 
 /* =========================================================
-   31. PAYMENT SUBMISSION
-========================================================= */
+   30. PAYMENT SUBMISSION
+   ========================================================= */
 
-async function handlePaymentSubmission(
-    event
-) {
+async function handlePayment(event) {
 
     event.preventDefault();
 
-    const form =
-        event.currentTarget;
+    if (!supabaseClient) {
+        showToast("Supabase is not connected.");
+        return;
+    }
 
     const name =
-        getFormValue(
-            form,
-            "paymentName"
-        );
+        getValue("paymentName");
 
     const email =
-        getFormValue(
-            form,
-            "paymentEmail"
-        );
+        getValue("paymentEmail");
 
     const phone =
-        getFormValue(
-            form,
-            "paymentPhone"
-        );
+        getValue("paymentPhone");
 
     const plan =
-        getFormValue(
-            form,
-            "paymentPlan"
-        );
+        getValue("paymentPlan");
+
+    const amount =
+        Number(
+            getValue("paymentAmount")
+        ) || 0;
 
     const transactionCode =
-        getFormValue(
-            form,
-            "transactionCode"
-        );
+        getValue("transactionCode");
 
-    if (
-        !name ||
-        !email ||
-        !phone ||
-        !plan ||
-        !transactionCode
-    ) {
+    if (!name || !email || !phone || !plan) {
 
-        showMessage(
-            "Complete payment details",
-            "Please provide all required payment information.",
-            "warning"
+        showToast(
+            "Please complete the payment form."
         );
 
         return;
     }
-
-    if (!supabaseClient) {
-
-        showMessage(
-            "Payment service unavailable",
-            "Please try again later or contact Jay Classic.",
-            "error"
-        );
-
-        return;
-    }
-
-    const button =
-        form.querySelector(
-            'button[type="submit"]'
-        );
-
-    setButtonLoading(
-        button,
-        true,
-        "Submitting..."
-    );
 
     try {
 
         const paymentData = {
 
-            name:
-                name,
+            member_id:
+                JayClassic.member
+                    ? JayClassic.member.id
+                    : null,
 
-            email:
-                email.toLowerCase(),
+            name: name,
 
-            phone:
-                phone,
+            email: email,
 
-            plan:
-                plan,
+            phone: phone,
+
+            plan: plan,
+
+            amount: amount,
 
             transaction_code:
-                transactionCode,
+                transactionCode || null,
 
-            status:
-                "pending",
-
-            submitted_at:
-                new Date().toISOString()
+            status: "pending"
         };
 
-        const {
-            error
-        } =
+        const { error } =
             await supabaseClient
                 .from("payments")
-                .insert(
-                    paymentData
-                );
+                .insert(paymentData);
 
         if (error) {
             throw error;
         }
 
-        form.reset();
-
-        showMessage(
-            "Payment submitted",
-            "Your transaction has been submitted for verification.",
-            "success"
+        showToast(
+            "Payment submitted for verification."
         );
+
+        event.target.reset();
 
     } catch (error) {
 
         console.error(
-            "Payment submission error:",
+            "Payment error:",
             error
         );
 
-        showMessage(
-            "Payment submission failed",
-            "Check your transaction details and try again.",
-            "error"
-        );
-
-    } finally {
-
-        setButtonLoading(
-            button,
-            false
+        showToast(
+            "Unable to submit payment."
         );
     }
 }
 
 
 /* =========================================================
-   32. FORM VALUE HELPERS
-========================================================= */
+   31. CLASS REGISTRATION
+   ========================================================= */
 
-function getValue(
-    selector
-) {
+async function handleClassRegistration(event) {
 
-    const element =
-        $(selector);
+    event.preventDefault();
 
-    return element
-        ? element.value.trim()
-        : "";
-}
-
-
-function getFormValue(
-    form,
-    name
-) {
-
-    const element =
-        form.elements[name];
-
-    return element
-        ? element.value.trim()
-        : "";
-}
-
-
-/* =========================================================
-   33. EMAIL VALIDATION
-========================================================= */
-
-function isValidEmail(
-    email
-) {
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
-}
-
-
-/* =========================================================
-   34. BUTTON LOADING
-========================================================= */
-
-function setButtonLoading(
-    button,
-    loading,
-    text = "Please wait..."
-) {
-
-    if (!button) {
+    if (!supabaseClient) {
+        showToast("Supabase is not connected.");
         return;
     }
 
-    if (loading) {
+    const name =
+        getValue("className");
 
-        button.dataset.originalText =
-            button.innerHTML;
+    const email =
+        getValue("classEmail");
 
-        button.disabled = true;
+    const phone =
+        getValue("classPhone");
 
-        button.innerHTML = `
-            <i class="fas fa-spinner fa-spin"></i>
-            ${text}
-        `;
+    const className =
+        getValue("classTitle");
 
-    } else {
+    if (!name || !email || !phone) {
 
-        button.disabled = false;
+        showToast(
+            "Please complete the class registration."
+        );
 
-        if (
-            button.dataset.originalText
-        ) {
+        return;
+    }
 
-            button.innerHTML =
-                button.dataset.originalText;
+    try {
+
+        const { error } =
+            await supabaseClient
+                .from("class_registrations")
+                .insert({
+
+                    member_id:
+                        JayClassic.member
+                            ? JayClassic.member.id
+                            : null,
+
+                    name: name,
+
+                    email: email,
+
+                    phone: phone,
+
+                    class_name:
+                        className || null
+                });
+
+        if (error) {
+            throw error;
         }
-    }
-}
 
-
-/* =========================================================
-   35. TOAST MESSAGE
-========================================================= */
-
-let toastTimer = null;
-
-function showMessage(
-    title,
-    message,
-    type = "success"
-) {
-
-    let toast =
-        $(".toast");
-
-    if (!toast) {
-
-        toast =
-            document.createElement(
-                "div"
-            );
-
-        toast.className =
-            "toast";
-
-        toast.innerHTML = `
-
-            <div class="toast-icon">
-                <i class="fas fa-check"></i>
-            </div>
-
-            <div class="toast-content">
-
-                <strong>
-                    Message
-                </strong>
-
-                <p>
-                    Notification
-                </p>
-
-            </div>
-
-            <button
-                type="button"
-                aria-label="Close notification"
-            >
-                ×
-            </button>
-        `;
-
-        document.body.appendChild(
-            toast
+        showToast(
+            "Class registration successful!"
         );
 
-        toast
-            .querySelector("button")
-            .addEventListener(
-                "click",
-                () => {
+        event.target.reset();
 
-                    toast.classList.remove(
-                        "show"
-                    );
-                }
-            );
-    }
+    } catch (error) {
 
-    const icon =
-        toast.querySelector(
-            ".toast-icon i"
+        console.error(
+            "Class registration error:",
+            error
         );
 
-    const titleElement =
-        toast.querySelector(
-            ".toast-content strong"
-        );
-
-    const messageElement =
-        toast.querySelector(
-            ".toast-content p"
-        );
-
-    if (titleElement) {
-
-        titleElement.textContent =
-            title;
-    }
-
-    if (messageElement) {
-
-        messageElement.textContent =
-            message;
-    }
-
-    if (icon) {
-
-        if (type === "error") {
-
-            icon.className =
-                "fas fa-times";
-
-        } else if (
-            type === "warning"
-        ) {
-
-            icon.className =
-                "fas fa-exclamation";
-
-        } else {
-
-            icon.className =
-                "fas fa-check";
-        }
-    }
-
-    toast.classList.add(
-        "show"
-    );
-
-    clearTimeout(
-        toastTimer
-    );
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            5000
-        );
-}
-
-
-/* =========================================================
-   36. ESCAPE HTML
-========================================================= */
-
-function escapeHTML(
-    value
-) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        String(
-            value ?? ""
-        );
-
-    return div.innerHTML;
-}
-
-
-/* =========================================================
-   37. INITIALS
-========================================================= */
-
-function getInitials(
-    name
-) {
-
-    const words =
-        String(
-            name || "JC"
-        )
-            .trim()
-            .split(
-                /\s+/
-            )
-            .filter(Boolean);
-
-    if (!words.length) {
-        return "JC";
-    }
-
-    return words
-        .slice(0, 2)
-        .map(
-            word =>
-                word
-                    .charAt(0)
-                    .toUpperCase()
-        )
-        .join("");
-}
-
-
-/* =========================================================
-   38. INTERSECTION ANIMATIONS
-========================================================= */
-
-function initializeIntersectionAnimations() {
-
-    if (
-        !("IntersectionObserver" in window)
-    ) {
-        return;
-    }
-
-    const elements =
-        $$(".service-card, .job-card, .membership-card");
-
-    const observer =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(
-                    entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.style.opacity =
-                                "1";
-
-                            entry.target.style.transform =
-                                "translateY(0)";
-
-                            observer.unobserve(
-                                entry.target
-                            );
-                        }
-                    }
-                );
-
-            },
-            {
-                threshold: 0.08
-            }
-        );
-
-    elements.forEach(
-        element => {
-
-            element.style.opacity =
-                "0";
-
-            element.style.transform =
-                "translateY(20px)";
-
-            element.style.transition =
-                "opacity .6s ease, transform .6s ease";
-
-            observer.observe(
-                element
-            );
-        }
-    );
-}
-
-
-/* =========================================================
-   39. WHATSAPP BUTTONS
-========================================================= */
-
-$$(
-    'a[href*="wa.me"]'
-).forEach(
-    link => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                try {
-
-                    const currentRef =
-                        JayClassic.referralCode;
-
-                    if (
-                        currentRef
-                    ) {
-
-                        const href =
-                            link.getAttribute(
-                                "href"
-                            );
-
-                        if (
-                            href &&
-                            !href.includes(
-                                "ref="
-                            )
-                        ) {
-
-                            const separator =
-                                href.includes(
-                                    "?"
-                                )
-                                    ? "&"
-                                    : "?";
-
-                            link.setAttribute(
-                                "href",
-                                `${href}${separator}ref=${encodeURIComponent(
-                                    currentRef
-                                )}`
-                            );
-                        }
-                    }
-
-                } catch (error) {
-
-                    console.warn(
-                        "WhatsApp referral update failed.",
-                        error
-                    );
-                }
-            }
-        );
-    }
-);
-
-
-/* =========================================================
-   40. REGISTRATION REFERRAL DISPLAY
-========================================================= */
-
-function injectReferralFieldIfNeeded() {
-
-    const form =
-        $("#registrationForm");
-
-    if (!form) {
-        return;
-    }
-
-    let input =
-        $("#referralCode");
-
-    if (input) {
-        return;
-    }
-
-    const savedReferral =
-        localStorage.getItem(
-            "jayClassicReferral"
-        );
-
-    if (!savedReferral) {
-        return;
-    }
-
-    const group =
-        document.createElement(
-            "div"
-        );
-
-    group.className =
-        "form-group";
-
-    group.innerHTML = `
-
-        <label for="referralCode">
-            Referral Code
-        </label>
-
-        <input
-            type="text"
-            id="referralCode"
-            name="referralCode"
-            value="${escapeHTML(
-                savedReferral
-            )}"
-            readonly
-        >
-    `;
-
-    const messageField =
-        $("#studentMessage");
-
-    if (
-        messageField &&
-        messageField.closest(
-            ".form-group"
-        )
-    ) {
-
-        messageField
-            .closest(
-                ".form-group"
-            )
-            .before(group);
-
-    } else {
-
-        form.appendChild(
-            group
+        showToast(
+            "Unable to register for the class."
         );
     }
 }
 
 
 /* =========================================================
-   41. INITIAL REFERRAL FIELD
-========================================================= */
+   32. LOGOUT
+   ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+function logoutMember() {
 
-        setTimeout(
-            injectReferralFieldIfNeeded,
-            300
-        );
-    }
-);
-
-
-/* =========================================================
-   42. MEMBER LOGOUT
-========================================================= */
-
-function logoutJayClassicMember() {
+    JayClassic.member = null;
+    JayClassic.referralCode = "";
+    JayClassic.referralCount = 0;
+    JayClassic.tier = "Regular";
 
     localStorage.removeItem(
         "jayClassicMemberEmail"
     );
 
-    JayClassic.member = null;
+    updateReferralDisplay();
 
-    JayClassic.referralCode = null;
-
-    JayClassic.referralCount = 0;
-
-    JayClassic.tier = "Regular";
-
-    const memberArea =
-        $(".member-area-section");
-
-    if (memberArea) {
-
-        memberArea.style.display =
-            "none";
-    }
-
-    showMessage(
-        "Logged out",
-        "Your local Jay Classic member session has been cleared.",
-        "success"
+    showToast(
+        "You have been logged out."
     );
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 700);
 }
 
 
 /* =========================================================
-   43. GLOBAL JAY CLASSIC API
-========================================================= */
+   33. TOAST
+   ========================================================= */
+
+function showToast(message) {
+
+    let toast =
+        document.getElementById(
+            "jayToast"
+        );
+
+    if (!toast) {
+
+        toast =
+            document.createElement("div");
+
+        toast.id =
+            "jayToast";
+
+        toast.className =
+            "toast";
+
+        document.body.appendChild(
+            toast
+        );
+    }
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        toast._timeout
+    );
+
+    toast._timeout =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 3500);
+}
+
+
+/* =========================================================
+   34. GET FORM VALUE
+   ========================================================= */
+
+function getValue(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return "";
+    }
+
+    return String(
+        element.value || ""
+    ).trim();
+}
+
+
+/* =========================================================
+   35. ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   36. ANIMATIONS
+   ========================================================= */
+
+function initializeAnimations() {
+
+    const elements =
+        document.querySelectorAll(
+            ".reveal"
+        );
+
+    if (!elements.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+
+        elements.forEach(element => {
+            element.classList.add("visible");
+        });
+
+        return;
+    }
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+
+/* =========================================================
+   37. WHATSAPP REFERRAL LINKS
+   ========================================================= */
+
+function initializeWhatsAppReferralLinks() {
+
+    document
+        .querySelectorAll(
+            'a[href*="wa.me"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    const href =
+                        link.getAttribute("href");
+
+                    if (!href) return;
+
+                    if (
+                        href.includes(
+                            "join"
+                        ) ||
+                        href.includes(
+                            "referral"
+                        )
+                    ) {
+
+                        const referralLink =
+                            getReferralLink();
+
+                        const message =
+                            `Join Jay Classic using my referral link: ${referralLink}`;
+
+                        link.href =
+                            `https://wa.me/254142617814?text=${encodeURIComponent(message)}`;
+                    }
+
+                }
+            );
+
+        });
+}
+
+
+/* =========================================================
+   38. GLOBAL API
+   ========================================================= */
 
 window.JayClassic = {
 
     getMember: () =>
         JayClassic.member,
 
-    getTier: () =>
-        JayClassic.tier,
+    getReferralCode: () =>
+        JayClassic.referralCode,
 
     getReferralCount: () =>
         JayClassic.referralCount,
 
-    getReferralCode: () =>
-        JayClassic.referralCode,
+    getTier: () =>
+        JayClassic.tier,
 
-    copyReferralLink,
+    getReferralLink: () =>
+        getReferralLink(),
 
-    shareReferral,
+    copyReferralLink:
+        copyReferralLink,
+
+    shareReferral:
+        shareReferral,
 
     logout:
-        logoutJayClassicMember,
+        logoutMember,
 
-    showMessage
+    showToast:
+        showToast
 };
 
 
 /* =========================================================
-   44. DEVELOPMENT STATUS
-========================================================= */
+   39. INITIALIZE WHATSAPP
+   ========================================================= */
 
-console.log(
-    "Jay Classic application loaded successfully."
-);
-
-console.log(
-    "Referral system:",
-    "Regular 0–2 | VIP 3–9 | VVIP 10+"
-);
+initializeWhatsAppReferralLinks();
