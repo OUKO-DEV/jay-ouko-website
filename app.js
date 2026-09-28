@@ -1,239 +1,362 @@
 /* =========================================================
    JAY CLASSIC
-   SUPABASE CONNECTED APP.JS
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", async () => {
-
-    /* =====================================================
-       SUPABASE CONFIGURATION
-       ===================================================== */
-
-    const SUPABASE_URL =
-        "https://cjcyjsgcsgqeqanxwitq.supabase.co";
-
-    /*
-       IMPORTANT:
-       Use ONLY your Supabase PUBLISHABLE/ANON key here.
-
-       NEVER put your Supabase SECRET/SERVICE-ROLE key
-       inside this file.
-    */
-
-    const SUPABASE_PUBLISHABLE_KEY =
-        "sb_publishable_F7taABXLhqRbRlkBygPF6A_pMphViS5";
+   PROFESSIONAL WEBSITE APPLICATION
+   Freelancing • Digital Skills • Online Work
+   Referral • VIP • VVIP • Payments • Reviews
+========================================================= */
 
 
-    let supabaseClient = null;
+/* =========================================================
+   1. SUPABASE CONFIGURATION
+========================================================= */
 
-    if (
-        window.supabase &&
-        SUPABASE_PUBLISHABLE_KEY !==
-        "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
-    ) {
+const SUPABASE_URL = "https://cjcyjsgcsgqeqanxwitq.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_F7taABXLhqRbRlkBygPF6A_pMphViS5";
+
+let supabaseClient = null;
+
+try {
+
+    if (window.supabase) {
 
         supabaseClient =
             window.supabase.createClient(
                 SUPABASE_URL,
-                SUPABASE_PUBLISHABLE_KEY
+                SUPABASE_KEY
+            );
+    }
+
+} catch (error) {
+
+    console.error(
+        "Supabase initialization failed:",
+        error
+    );
+}
+
+
+/* =========================================================
+   2. GLOBAL STATE
+========================================================= */
+
+const JayClassic = {
+
+    member: null,
+
+    referralCode: null,
+
+    referralCount: 0,
+
+    tier: "Regular",
+
+    reviews: [],
+
+    initialized: false
+};
+
+
+/* =========================================================
+   3. DOM HELPERS
+========================================================= */
+
+function $(selector) {
+
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+
+    return document.querySelectorAll(selector);
+}
+
+
+/* =========================================================
+   4. PAGE LOADER
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        try {
+
+            await initializeJayClassic();
+
+        } catch (error) {
+
+            console.error(
+                "Initialization error:",
+                error
             );
 
-        console.log(
-            "Jay Classic: Supabase connected."
+        } finally {
+
+            setTimeout(
+                hidePageLoader,
+                500
+            );
+        }
+    }
+);
+
+
+function hidePageLoader() {
+
+    const loader =
+        $(".page-loader");
+
+    if (loader) {
+
+        loader.classList.add(
+            "hidden"
         );
+    }
+}
 
-    } else {
 
-        console.warn(
-            "Jay Classic: Supabase is not configured yet."
-        );
+/* =========================================================
+   5. MAIN INITIALIZATION
+========================================================= */
 
+async function initializeJayClassic() {
+
+    if (JayClassic.initialized) {
+        return;
     }
 
+    JayClassic.initialized = true;
 
-    /* =====================================================
-       PAGE LOADER
-       ===================================================== */
+    initializeTheme();
 
-    const pageLoader =
-        document.querySelector(".page-loader");
+    initializeMobileMenu();
 
-    function hideLoader() {
+    initializeHeader();
 
-        if (!pageLoader) return;
+    initializeSmoothScrolling();
 
-        pageLoader.classList.add("hidden");
+    initializeBackToTop();
 
-        setTimeout(() => {
-            pageLoader.style.display = "none";
-        }, 500);
-    }
+    initializeForms();
 
-    window.addEventListener("load", hideLoader);
+    initializeReferralSystem();
 
-    setTimeout(hideLoader, 2500);
+    initializeShareButtons();
+
+    initializeIntersectionAnimations();
+
+    updateCurrentYear();
+
+    await loadReviews();
+
+    await restoreMemberSession();
+}
 
 
-    /* =====================================================
-       DARK / LIGHT MODE
-       ===================================================== */
+/* =========================================================
+   6. DARK / LIGHT MODE
+========================================================= */
 
-    const themeToggle =
-        document.querySelector(".theme-toggle");
-
-    const body =
-        document.body;
+function initializeTheme() {
 
     const savedTheme =
-        localStorage.getItem("jayClassicTheme");
+        localStorage.getItem(
+            "jayClassicTheme"
+        );
 
     if (savedTheme === "dark") {
-        body.classList.add("dark-mode");
-    }
 
-    function updateThemeButton() {
-
-        if (!themeToggle) return;
-
-        const isDark =
-            body.classList.contains("dark-mode");
-
-        themeToggle.setAttribute(
-            "aria-label",
-            isDark
-                ? "Switch to light mode"
-                : "Switch to dark mode"
+        document.body.classList.add(
+            "dark-mode"
         );
-
-        themeToggle.setAttribute(
-            "title",
-            isDark
-                ? "Switch to light mode"
-                : "Switch to dark mode"
-        );
-
-        const icon =
-            themeToggle.querySelector("i");
-
-        if (icon) {
-
-            icon.className =
-                isDark
-                    ? "fas fa-sun"
-                    : "fas fa-moon";
-        }
     }
 
     updateThemeButton();
+
+    const themeToggle =
+        $("#themeToggle");
 
     if (themeToggle) {
 
         themeToggle.addEventListener(
             "click",
-            () => {
-
-                body.classList.toggle(
-                    "dark-mode"
-                );
-
-                const isDark =
-                    body.classList.contains(
-                        "dark-mode"
-                    );
-
-                localStorage.setItem(
-                    "jayClassicTheme",
-                    isDark
-                        ? "dark"
-                        : "light"
-                );
-
-                updateThemeButton();
-            }
+            toggleTheme
         );
     }
+}
 
 
-    /* =====================================================
-       MOBILE MENU
-       ===================================================== */
+function toggleTheme() {
 
-    const menuToggle =
-        document.querySelector(".menu-toggle");
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+    const isDark =
+        document.body.classList.contains(
+            "dark-mode"
+        );
+
+    localStorage.setItem(
+        "jayClassicTheme",
+        isDark ? "dark" : "light"
+    );
+
+    updateThemeButton();
+}
+
+
+function updateThemeButton() {
+
+    const icon =
+        $("#themeIcon");
+
+    if (!icon) {
+        return;
+    }
+
+    const isDark =
+        document.body.classList.contains(
+            "dark-mode"
+        );
+
+    icon.textContent =
+        isDark ? "☀️" : "🌙";
+
+    icon.setAttribute(
+        "aria-label",
+        isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+    );
+}
+
+
+/* =========================================================
+   7. MOBILE MENU
+========================================================= */
+
+function initializeMobileMenu() {
+
+    const menuButton =
+        $("#menuToggle");
 
     const mobileMenu =
-        document.querySelector(".mobile-menu");
+        $("#mobileMenu");
 
-    if (menuToggle && mobileMenu) {
+    if (!menuButton || !mobileMenu) {
+        return;
+    }
 
-        menuToggle.addEventListener(
-            "click",
-            () => {
+    menuButton.addEventListener(
+        "click",
+        () => {
 
+            const active =
                 mobileMenu.classList.toggle(
                     "active"
                 );
 
-                const isOpen =
-                    mobileMenu.classList.contains(
-                        "active"
-                    );
+            menuButton.textContent =
+                active ? "✕" : "☰";
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    isOpen
-                        ? "true"
-                        : "false"
-                );
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(active)
+            );
+        }
+    );
 
-                const icon =
-                    menuToggle.querySelector("i");
+    $$(".mobile-nav-link").forEach(
+        link => {
 
-                if (icon) {
+            link.addEventListener(
+                "click",
+                closeMobileMenu
+            );
+        }
+    );
 
-                    icon.className =
-                        isOpen
-                            ? "fas fa-times"
-                            : "fas fa-bars";
-                }
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeMobileMenu();
             }
+        }
+    );
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                mobileMenu.classList.contains(
+                    "active"
+                ) &&
+                !mobileMenu.contains(
+                    event.target
+                ) &&
+                !menuButton.contains(
+                    event.target
+                )
+            ) {
+
+                closeMobileMenu();
+            }
+        }
+    );
+}
+
+
+function closeMobileMenu() {
+
+    const mobileMenu =
+        $("#mobileMenu");
+
+    const menuButton =
+        $("#menuToggle");
+
+    if (mobileMenu) {
+
+        mobileMenu.classList.remove(
+            "active"
         );
-
-
-        mobileMenu
-            .querySelectorAll("a")
-            .forEach(link => {
-
-                link.addEventListener(
-                    "click",
-                    () => {
-
-                        mobileMenu.classList.remove(
-                            "active"
-                        );
-
-                        menuToggle.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-                    }
-                );
-            });
     }
 
+    if (menuButton) {
 
-    /* =====================================================
-       HEADER SCROLL
-       ===================================================== */
+        menuButton.textContent = "☰";
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+    }
+}
+
+
+/* =========================================================
+   8. HEADER SCROLL EFFECT
+========================================================= */
+
+function initializeHeader() {
 
     const header =
-        document.querySelector(".header");
+        $(".header");
 
-    function handleHeaderScroll() {
+    if (!header) {
+        return;
+    }
 
-        if (!header) return;
+    const handleScroll = () => {
 
-        if (window.scrollY > 40) {
+        if (window.scrollY > 20) {
 
             header.classList.add(
                 "scrolled"
@@ -245,1169 +368,2374 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "scrolled"
             );
         }
+    };
+
+    window.addEventListener(
+        "scroll",
+        handleScroll,
+        { passive: true }
+    );
+
+    handleScroll();
+}
+
+
+/* =========================================================
+   9. SMOOTH SCROLLING
+========================================================= */
+
+function initializeSmoothScrolling() {
+
+    $$('a[href^="#"]').forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute(
+                            "href"
+                        );
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+                        return;
+                    }
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+                    if (!target) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                    closeMobileMenu();
+                }
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   10. BACK TO TOP
+========================================================= */
+
+function initializeBackToTop() {
+
+    const button =
+        $(".back-to-top");
+
+    if (!button) {
+        return;
     }
 
     window.addEventListener(
         "scroll",
-        handleHeaderScroll
+        () => {
+
+            if (
+                window.scrollY >
+                500
+            ) {
+
+                button.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                button.classList.remove(
+                    "show"
+                );
+            }
+        },
+        { passive: true }
     );
 
-    handleHeaderScroll();
+    button.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    );
+}
 
 
-    /* =====================================================
-       SMOOTH SCROLL
-       ===================================================== */
+/* =========================================================
+   11. CURRENT YEAR
+========================================================= */
 
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
+function updateCurrentYear() {
 
-            link.addEventListener(
-                "click",
-                function (event) {
+    const year =
+        $("#year");
 
-                    const targetID =
-                        this.getAttribute("href");
+    if (year) {
 
-                    if (
-                        !targetID ||
-                        targetID === "#"
-                    ) return;
+        year.textContent =
+            new Date().getFullYear();
+    }
+}
 
-                    const target =
-                        document.querySelector(
-                            targetID
-                        );
 
-                    if (!target) return;
+/* =========================================================
+   12. REFERRAL SYSTEM
+========================================================= */
 
-                    event.preventDefault();
+function initializeReferralSystem() {
 
-                    const headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-                    const position =
-                        target.getBoundingClientRect()
-                            .top +
-                        window.scrollY -
-                        headerHeight;
+    const referral =
+        params.get("ref");
 
-                    window.scrollTo({
-                        top: position,
-                        behavior: "smooth"
-                    });
-                }
+    if (referral) {
+
+        const cleanReferral =
+            referral
+                .trim()
+                .toUpperCase();
+
+        if (
+            cleanReferral.length >= 4 &&
+            cleanReferral.length <= 30
+        ) {
+
+            localStorage.setItem(
+                "jayClassicReferral",
+                cleanReferral
             );
-        });
+        }
+    }
+
+    const savedReferral =
+        localStorage.getItem(
+            "jayClassicReferral"
+        );
+
+    if (savedReferral) {
+
+        const referralInputs =
+            $$(
+                '[name="referralCode"], #referralCode'
+            );
+
+        referralInputs.forEach(
+            input => {
+
+                input.value =
+                    savedReferral;
+            }
+        );
+    }
+
+    updateReferralDisplay();
+}
 
 
-    /* =====================================================
-       BACK TO TOP
-       ===================================================== */
+/* =========================================================
+   13. CREATE REFERRAL CODE
+========================================================= */
 
-    const backToTop =
-        document.querySelector(".back-to-top");
+function generateReferralCode(
+    name = ""
+) {
 
-    function updateBackToTop() {
+    const cleaned =
+        name
+            .replace(
+                /[^a-zA-Z0-9]/g,
+                ""
+            )
+            .toUpperCase()
+            .slice(0, 6);
 
-        if (!backToTop) return;
+    const random =
+        Math.random()
+            .toString(36)
+            .substring(2, 7)
+            .toUpperCase();
 
-        if (window.scrollY > 500) {
+    return (
+        "JAY-" +
+        (cleaned || "USER") +
+        "-" +
+        random
+    );
+}
 
-            backToTop.classList.add(
-                "visible"
+
+/* =========================================================
+   14. DETERMINE MEMBER TIER
+========================================================= */
+
+function calculateTier(
+    referralCount
+) {
+
+    const count =
+        Number(referralCount) || 0;
+
+    if (count >= 10) {
+
+        return "VVIP";
+    }
+
+    if (count >= 3) {
+
+        return "VIP";
+    }
+
+    return "Regular";
+}
+
+
+/* =========================================================
+   15. TIER REQUIREMENTS
+========================================================= */
+
+function getTierRequirement(
+    tier
+) {
+
+    if (tier === "VVIP") {
+
+        return {
+            minimum: 10,
+            next: 10
+        };
+    }
+
+    if (tier === "VIP") {
+
+        return {
+            minimum: 3,
+            next: 10
+        };
+    }
+
+    return {
+        minimum: 0,
+        next: 3
+    };
+}
+
+
+/* =========================================================
+   16. UPDATE REFERRAL DASHBOARD
+========================================================= */
+
+function updateReferralDisplay() {
+
+    const count =
+        JayClassic.referralCount;
+
+    const tier =
+        JayClassic.tier;
+
+    const badge =
+        $(".tier-badge");
+
+    if (badge) {
+
+        badge.textContent =
+            tier.toUpperCase();
+
+        badge.classList.remove(
+            "regular-tier",
+            "vip-tier",
+            "vvip-tier"
+        );
+
+        if (tier === "VVIP") {
+
+            badge.classList.add(
+                "vvip-tier"
+            );
+
+        } else if (tier === "VIP") {
+
+            badge.classList.add(
+                "vip-tier"
             );
 
         } else {
 
-            backToTop.classList.remove(
-                "visible"
+            badge.classList.add(
+                "regular-tier"
             );
         }
     }
 
-    window.addEventListener(
-        "scroll",
-        updateBackToTop
+    const countElement =
+        $("[data-referral-count]");
+
+    if (countElement) {
+
+        countElement.textContent =
+            count;
+    }
+
+    const tierElements =
+        $$("[data-member-tier]");
+
+    tierElements.forEach(
+        element => {
+
+            element.textContent =
+                tier;
+        }
     );
 
-    updateBackToTop();
-
-    if (backToTop) {
-
-        backToTop.addEventListener(
-            "click",
-            () => {
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-        );
-    }
-
-
-    /* =====================================================
-       CURRENT YEAR
-       ===================================================== */
-
-    const currentYear =
-        document.querySelector("#currentYear");
-
-    if (currentYear) {
-
-        currentYear.textContent =
-            new Date().getFullYear();
-    }
-
-
-    /* =====================================================
-       REVIEW SYSTEM
-       ===================================================== */
-
-    const reviewForm =
-        document.querySelector(".review-form");
-
-    const reviewGrid =
-        document.querySelector(".reviews-grid");
-
-    let selectedRating = 5;
-
-
-    /* -----------------------------------------------------
-       RATING BUTTONS
-       ----------------------------------------------------- */
-
-    const ratingButtons =
-        document.querySelectorAll(
-            "[data-rating]"
+    const progress =
+        calculateProgress(
+            count
         );
 
-    ratingButtons.forEach(button => {
+    const progressFill =
+        $(".progress-fill");
 
-        button.addEventListener(
-            "click",
-            () => {
+    if (progressFill) {
 
-                const rating =
-                    Number(
-                        button.dataset.rating
-                    );
+        progressFill.style.width =
+            `${progress}%`;
+    }
 
-                if (
-                    rating >= 1 &&
-                    rating <= 5
-                ) {
+    const progressText =
+        $("[data-referral-progress]");
 
-                    selectedRating =
-                        rating;
-                }
+    if (progressText) {
 
-                updateRatingDisplay(
-                    selectedRating
+        if (tier === "VVIP") {
+
+            progressText.textContent =
+                "VVIP unlocked — you have reached 10 verified referrals.";
+
+        } else if (tier === "VIP") {
+
+            const remaining =
+                Math.max(
+                    10 - count,
+                    0
                 );
-            }
+
+            progressText.textContent =
+                `${remaining} more verified referral${remaining === 1 ? "" : "s"} to reach VVIP.`;
+
+        } else {
+
+            const remaining =
+                Math.max(
+                    3 - count,
+                    0
+                );
+
+            progressText.textContent =
+                `${remaining} more verified referral${remaining === 1 ? "" : "s"} to reach VIP.`;
+        }
+    }
+
+    updateReferralLink();
+}
+
+
+/* =========================================================
+   17. REFERRAL PROGRESS
+========================================================= */
+
+function calculateProgress(
+    count
+) {
+
+    const referralCount =
+        Math.max(
+            Number(count) || 0,
+            0
         );
-    });
+
+    if (referralCount >= 10) {
+        return 100;
+    }
+
+    return Math.min(
+        (referralCount / 10) * 100,
+        100
+    );
+}
 
 
-    function updateRatingDisplay(
-        rating
+/* =========================================================
+   18. REFERRAL LINK
+========================================================= */
+
+function updateReferralLink() {
+
+    const input =
+        $("#referralLink");
+
+    if (!input) {
+        return;
+    }
+
+    if (!JayClassic.referralCode) {
+
+        input.value =
+            "Register to generate your referral link";
+
+        return;
+    }
+
+    const baseUrl =
+        window.location.origin +
+        window.location.pathname;
+
+    input.value =
+        `${baseUrl}?ref=${encodeURIComponent(
+            JayClassic.referralCode
+        )}`;
+}
+
+
+/* =========================================================
+   19. COPY REFERRAL LINK
+========================================================= */
+
+async function copyReferralLink() {
+
+    const input =
+        $("#referralLink");
+
+    if (
+        !input ||
+        !JayClassic.referralCode
     ) {
 
-        ratingButtons.forEach(
-            button => {
+        showMessage(
+            "Register first",
+            "Your personal referral link will be created after registration.",
+            "warning"
+        );
 
-                const buttonRating =
-                    Number(
-                        button.dataset.rating
-                    );
+        return;
+    }
 
-                button.classList.toggle(
-                    "active",
-                    buttonRating <= rating
-                );
-            }
+    try {
+
+        await navigator.clipboard.writeText(
+            input.value
+        );
+
+        showMessage(
+            "Link copied",
+            "Your referral link is ready to share.",
+            "success"
+        );
+
+    } catch (error) {
+
+        input.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+        showMessage(
+            "Link copied",
+            "Your referral link has been copied.",
+            "success"
+        );
+    }
+}
+
+
+/* =========================================================
+   20. SHARE REFERRAL LINK
+========================================================= */
+
+function initializeShareButtons() {
+
+    const copyButton =
+        $("#copyReferralBtn");
+
+    if (copyButton) {
+
+        copyButton.addEventListener(
+            "click",
+            copyReferralLink
         );
     }
 
-    updateRatingDisplay(
-        selectedRating
-    );
+    const shareButtons =
+        $$(".share-btn");
 
+    shareButtons.forEach(
+        button => {
 
-    /* =====================================================
-       LOAD REVIEWS FROM SUPABASE
-       ===================================================== */
+            button.addEventListener(
+                "click",
+                () => {
 
-    async function loadReviews() {
+                    const platform =
+                        button.dataset.share;
 
-        if (!supabaseClient) {
-
-            console.warn(
-                "Supabase not connected."
+                    shareReferral(
+                        platform
+                    );
+                }
             );
+        }
+    );
+}
+
+
+function shareReferral(
+    platform
+) {
+
+    if (!JayClassic.referralCode) {
+
+        showMessage(
+            "Register first",
+            "Create your Jay Classic account before sharing your referral link.",
+            "warning"
+        );
+
+        return;
+    }
+
+    const link =
+        `${window.location.origin}${window.location.pathname}?ref=${encodeURIComponent(
+            JayClassic.referralCode
+        )}`;
+
+    const message =
+        `Join Jay Classic for freelancing, digital skills and online work. Register using my referral link: ${link}`;
+
+    let shareUrl = "";
+
+    if (platform === "whatsapp") {
+
+        shareUrl =
+            `https://wa.me/?text=${encodeURIComponent(
+                message
+            )}`;
+
+    } else if (platform === "facebook") {
+
+        shareUrl =
+            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                link
+            )}`;
+
+    } else if (platform === "twitter") {
+
+        shareUrl =
+            `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                message
+            )}`;
+
+    } else {
+
+        if (
+            navigator.share
+        ) {
+
+            navigator.share({
+                title:
+                    "Jay Classic",
+                text:
+                    message,
+                url:
+                    link
+            });
 
             return;
         }
+    }
 
-        if (!reviewGrid) return;
+    if (shareUrl) {
 
+        window.open(
+            shareUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    }
+}
+
+
+/* =========================================================
+   21. RESTORE MEMBER SESSION
+========================================================= */
+
+async function restoreMemberSession() {
+
+    if (!supabaseClient) {
+        return;
+    }
+
+    try {
+
+        const savedEmail =
+            localStorage.getItem(
+                "jayClassicMemberEmail"
+            );
+
+        if (!savedEmail) {
+            return;
+        }
 
         const {
             data,
             error
-        } = await supabaseClient
-            .from("reviews")
-            .select("*")
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
-
+        } =
+            await supabaseClient
+                .from("registrations")
+                .select("*")
+                .eq(
+                    "email",
+                    savedEmail
+                )
+                .maybeSingle();
 
         if (error) {
 
-            console.error(
-                "Could not load reviews:",
-                error
+            console.warn(
+                "Member lookup:",
+                error.message
             );
 
             return;
         }
 
+        if (data) {
 
-        /*
-           Remove old dynamically loaded reviews
-           but leave HTML reviews if you want them.
-        */
+            JayClassic.member =
+                data;
 
-        data.forEach(review => {
+            JayClassic.referralCode =
+                data.referral_code ||
+                generateReferralCode(
+                    data.name
+                );
 
-            addReviewToPage(
-                review,
-                false
-            );
+            JayClassic.referralCount =
+                Number(
+                    data.referral_count
+                ) || 0;
 
-        });
+            JayClassic.tier =
+                calculateTier(
+                    JayClassic.referralCount
+                );
 
+            updateReferralDisplay();
 
-        updateAverageRating(
-            data
+            showMemberDashboard();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Session restore error:",
+            error
         );
     }
+}
 
 
-    /* =====================================================
-       SUBMIT REVIEW TO SUPABASE
-       ===================================================== */
+/* =========================================================
+   22. SHOW MEMBER DASHBOARD
+========================================================= */
 
-    if (reviewForm) {
+function showMemberDashboard() {
 
-        reviewForm.addEventListener(
-            "submit",
-            async event => {
+    const memberArea =
+        $(".member-area-section");
 
-                event.preventDefault();
+    if (memberArea) {
 
-
-                const nameInput =
-                    reviewForm.querySelector(
-                        '[name="name"], #reviewName'
-                    );
-
-                const roleInput =
-                    reviewForm.querySelector(
-                        '[name="role"], [name="location"], #reviewRole'
-                    );
-
-                const commentInput =
-                    reviewForm.querySelector(
-                        '[name="comment"], #reviewComment'
-                    );
-
-                const ratingInput =
-                    reviewForm.querySelector(
-                        'select[name="rating"], input[name="rating"]:checked'
-                    );
-
-
-                const name =
-                    nameInput
-                        ? nameInput.value.trim()
-                        : "";
-
-                const role =
-                    roleInput
-                        ? roleInput.value.trim()
-                        : "";
-
-                const comment =
-                    commentInput
-                        ? commentInput.value.trim()
-                        : "";
-
-
-                let rating =
-                    selectedRating;
-
-
-                if (ratingInput) {
-
-                    const inputRating =
-                        Number(
-                            ratingInput.value
-                        );
-
-                    if (
-                        inputRating >= 1 &&
-                        inputRating <= 5
-                    ) {
-
-                        rating =
-                            inputRating;
-                    }
-                }
-
-
-                if (!name) {
-
-                    showMessage(
-                        "Please enter your name.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!comment) {
-
-                    showMessage(
-                        "Please write your review.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!supabaseClient) {
-
-                    showMessage(
-                        "Supabase is not connected yet.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                const submitButton =
-                    reviewForm.querySelector(
-                        'button[type="submit"]'
-                    );
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        true;
-
-                    submitButton.textContent =
-                        "Submitting...";
-                }
-
-
-                const {
-                    data,
-                    error
-                } = await supabaseClient
-                    .from("reviews")
-                    .insert([
-                        {
-                            name: name,
-                            role:
-                                role ||
-                                "Jay Classic Client",
-                            comment: comment,
-                            rating: rating
-                        }
-                    ])
-                    .select()
-                    .single();
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        false;
-
-                    submitButton.textContent =
-                        "Submit Review";
-                }
-
-
-                if (error) {
-
-                    console.error(
-                        "Review submission error:",
-                        error
-                    );
-
-                    showMessage(
-                        "Unable to submit your review. Please try again.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                /*
-                   Add the newly submitted review
-                   immediately to the page.
-                */
-
-                addReviewToPage(
-                    data,
-                    true
-                );
-
-
-                reviewForm.reset();
-
-                selectedRating = 5;
-
-                updateRatingDisplay(
-                    selectedRating
-                );
-
-
-                showMessage(
-                    "Thank you! Your review has been submitted.",
-                    "success"
-                );
-            }
-        );
+        memberArea.style.display =
+            "block";
     }
 
+    const memberName =
+        $("[data-member-name]");
 
-    /* =====================================================
-       ADD REVIEW TO PAGE
-       ===================================================== */
-
-    function addReviewToPage(
-        review,
-        animate = true
+    if (
+        memberName &&
+        JayClassic.member
     ) {
 
-        if (!reviewGrid) return;
-
-
-        const reviewCard =
-            document.createElement(
-                "article"
-            );
-
-        reviewCard.className =
-            "review-card";
-
-
-        if (animate) {
-
-            reviewCard.style.opacity =
-                "0";
-
-            reviewCard.style.transform =
-                "translateY(20px)";
-        }
-
-
-        const rating =
-            Number(review.rating) || 5;
-
-
-        const stars =
-            "★".repeat(rating) +
-            "☆".repeat(5 - rating);
-
-
-        const name =
-            escapeHTML(
-                review.name
-            );
-
-
-        const role =
-            escapeHTML(
-                review.role ||
-                "Jay Classic Client"
-            );
-
-
-        const comment =
-            escapeHTML(
-                review.comment
-            );
-
-
-        const avatar =
-            escapeHTML(
-                String(
-                    review.name || "J"
-                )
-                .charAt(0)
-                .toUpperCase()
-            );
-
-
-        reviewCard.innerHTML = `
-
-            <div class="review-stars">
-                ${stars}
-            </div>
-
-            <p class="review-text">
-                "${comment}"
-            </p>
-
-            <div class="review-author">
-
-                <div class="review-avatar">
-                    ${avatar}
-                </div>
-
-                <div>
-                    <strong>
-                        ${name}
-                    </strong>
-
-                    <span>
-                        ${role}
-                    </span>
-                </div>
-
-            </div>
-
-        `;
-
-
-        reviewGrid.prepend(
-            reviewCard
-        );
-
-
-        if (animate) {
-
-            requestAnimationFrame(
-                () => {
-
-                    reviewCard.style.transition =
-                        "all 0.5s ease";
-
-                    reviewCard.style.opacity =
-                        "1";
-
-                    reviewCard.style.transform =
-                        "translateY(0)";
-                }
-            );
-        }
+        memberName.textContent =
+            JayClassic.member.name ||
+            "Member";
     }
 
+    const email =
+        $("[data-member-email]");
 
-    /* =====================================================
-       AVERAGE RATING
-       ===================================================== */
-
-    function updateAverageRating(
-        reviews
+    if (
+        email &&
+        JayClassic.member
     ) {
 
-        if (!reviews.length) return;
-
-
-        const total =
-            reviews.reduce(
-                (sum, review) =>
-                    sum +
-                    Number(review.rating),
-                0
-            );
-
-
-        const average =
-            total / reviews.length;
-
-
-        const scoreElement =
-            document.querySelector(
-                ".rating-score"
-            );
-
-
-        if (scoreElement) {
-
-            scoreElement.textContent =
-                average.toFixed(1);
-        }
-
-
-        const ratingCount =
-            document.querySelector(
-                "[data-rating-count]"
-            );
-
-
-        if (ratingCount) {
-
-            ratingCount.textContent =
-                `${reviews.length} reviews`;
-        }
+        email.textContent =
+            JayClassic.member.email ||
+            "";
     }
+}
 
 
-    /* =====================================================
-       HTML SECURITY
-       ===================================================== */
+/* =========================================================
+   23. REGISTRATION
+========================================================= */
 
-    function escapeHTML(value) {
-
-        return String(value)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-    }
-
-
-    /* =====================================================
-       REGISTRATION SYSTEM
-       ===================================================== */
+function initializeForms() {
 
     const registrationForm =
-        document.querySelector(
-            ".registration-form"
-        );
-
+        $("#registrationForm");
 
     if (registrationForm) {
 
         registrationForm.addEventListener(
             "submit",
-            async event => {
-
-                event.preventDefault();
-
-
-                const name =
-                    getFormValue(
-                        registrationForm,
-                        "name"
-                    );
-
-                const email =
-                    getFormValue(
-                        registrationForm,
-                        "email"
-                    );
-
-                const phone =
-                    getFormValue(
-                        registrationForm,
-                        "phone"
-                    );
-
-                const service =
-                    getFormValue(
-                        registrationForm,
-                        "service"
-                    );
-
-                const message =
-                    getFormValue(
-                        registrationForm,
-                        "message"
-                    );
-
-
-                if (!name) {
-
-                    showMessage(
-                        "Please enter your name.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!email && !phone) {
-
-                    showMessage(
-                        "Please provide your email or phone number.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                if (!supabaseClient) {
-
-                    showMessage(
-                        "Supabase is not connected yet.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                const submitButton =
-                    registrationForm.querySelector(
-                        'button[type="submit"]'
-                    );
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        true;
-
-                    submitButton.textContent =
-                        "Registering...";
-                }
-
-
-                const {
-                    data,
-                    error
-                } = await supabaseClient
-                    .from("registrations")
-                    .insert([
-                        {
-                            name: name,
-                            email: email || null,
-                            phone: phone || null,
-                            service:
-                                service || null,
-                            message:
-                                message || null
-                        }
-                    ])
-                    .select()
-                    .single();
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        false;
-
-                    submitButton.textContent =
-                        "Register Now";
-                }
-
-
-                if (error) {
-
-                    console.error(
-                        "Registration error:",
-                        error
-                    );
-
-                    showMessage(
-                        "Registration failed. Please try again.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                console.log(
-                    "Registration saved:",
-                    data
-                );
-
-
-                /*
-                   Create an email as an additional
-                   notification option.
-                */
-
-                const subject =
-                    encodeURIComponent(
-                        "Jay Classic New Registration"
-                    );
-
-
-                const emailBody =
-                    encodeURIComponent(
-                        `Hello Jay Classic,
-
-A new registration has been submitted.
-
-Name: ${name}
-Email: ${email || "Not provided"}
-Phone: ${phone || "Not provided"}
-Service/Class: ${service || "Not specified"}
-
-Message:
-${message || "No additional message."}
-`
-                    );
-
-
-                /*
-                   Open the visitor's email application.
-                   The registration is ALREADY saved
-                   in Supabase before this happens.
-                */
-
-                window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${subject}&body=${emailBody}`;
-
-
-                registrationForm.reset();
-
-
-                showMessage(
-                    "Registration successful! Your details have been saved.",
-                    "success"
-                );
-            }
+            handleRegistration
         );
     }
 
+    const reviewForm =
+        $("#reviewForm");
 
-    /* =====================================================
-       FORM VALUE HELPER
-       ===================================================== */
+    if (reviewForm) {
 
-    function getFormValue(
-        form,
-        name
-    ) {
-
-        const field =
-            form.querySelector(
-                `[name="${name}"], #${name}`
-            );
-
-        return field
-            ? field.value.trim()
-            : "";
+        reviewForm.addEventListener(
+            "submit",
+            handleReviewSubmission
+        );
     }
-
-
-    /* =====================================================
-       CONTACT FORM
-       ===================================================== */
 
     const contactForm =
-        document.querySelector(
-            ".contact-form"
-        );
-
+        $("#contactForm");
 
     if (contactForm) {
 
         contactForm.addEventListener(
             "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const name =
-                    getFormValue(
-                        contactForm,
-                        "name"
-                    );
-
-                const email =
-                    getFormValue(
-                        contactForm,
-                        "email"
-                    );
-
-                const message =
-                    getFormValue(
-                        contactForm,
-                        "message"
-                    );
-
-
-                if (
-                    !name ||
-                    !email ||
-                    !message
-                ) {
-
-                    showMessage(
-                        "Please complete all required fields.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                const subject =
-                    encodeURIComponent(
-                        `Jay Classic Contact - ${name}`
-                    );
-
-
-                const body =
-                    encodeURIComponent(
-                        `Hello Jay Classic,
-
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}`
-                    );
-
-
-                window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${subject}&body=${body}`;
-            }
+            handleContactSubmission
         );
     }
 
+    const paymentForm =
+        $("#paymentForm");
 
-    /* =====================================================
-       WHATSAPP BUTTON
-       ===================================================== */
+    if (paymentForm) {
 
-    document
-        .querySelectorAll(
-            ".whatsapp-button"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    const number =
-                        button.dataset.whatsapp;
-
-                    if (!number) {
-
-                        /*
-                           No WhatsApp number has been
-                           configured yet.
-                        */
-
-                        return;
-                    }
+        paymentForm.addEventListener(
+            "submit",
+            handlePaymentSubmission
+        );
+    }
+}
 
 
-                    event.preventDefault();
+/* =========================================================
+   24. HANDLE REGISTRATION
+========================================================= */
 
+async function handleRegistration(
+    event
+) {
 
-                    const message =
-                        button.dataset.whatsappMessage ||
-                        "Hello Jay Classic, I would like to know more about your services.";
+    event.preventDefault();
 
+    const form =
+        event.currentTarget;
 
-                    const url =
-                        `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    const name =
+        getValue(
+            "#studentName"
+        );
 
+    const email =
+        getValue(
+            "#studentEmail"
+        );
 
-                    window.open(
-                        url,
-                        "_blank",
-                        "noopener,noreferrer"
-                    );
-                }
-            );
-        });
+    const phone =
+        getValue(
+            "#studentPhone"
+        );
 
+    const service =
+        getValue(
+            "#skill"
+        );
 
-    /* =====================================================
-       GENERAL MESSAGE
-       ===================================================== */
+    const message =
+        getValue(
+            "#studentMessage"
+        );
 
-    function showMessage(
-        message,
-        type = "success"
+    const referralCode =
+        getValue(
+            "#referralCode"
+        ) ||
+        localStorage.getItem(
+            "jayClassicReferral"
+        ) ||
+        "";
+
+    if (
+        !name ||
+        !email ||
+        !phone ||
+        !service
     ) {
 
-        const old =
-            document.querySelector(
-                ".js-message"
+        showMessage(
+            "Complete the form",
+            "Please fill in all required registration fields.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+
+        showMessage(
+            "Invalid email",
+            "Please enter a valid email address.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (!supabaseClient) {
+
+        showMessage(
+            "Connection problem",
+            "The registration service is currently unavailable.",
+            "error"
+        );
+
+        return;
+    }
+
+    const button =
+        form.querySelector(
+            'button[type="submit"]'
+        );
+
+    setButtonLoading(
+        button,
+        true,
+        "Registering..."
+    );
+
+    try {
+
+        const referralCodeForNewMember =
+            generateReferralCode(
+                name
             );
 
-        if (old) old.remove();
+        const registrationData = {
 
+            name:
+                name,
 
-        const box =
-            document.createElement(
-                "div"
-            );
+            email:
+                email.toLowerCase(),
 
+            phone:
+                phone,
 
-        box.className =
-            `js-message ${type}`;
+            service:
+                service,
 
+            message:
+                message,
 
-        box.textContent =
-            message;
+            referral_code:
+                referralCodeForNewMember,
 
+            referred_by:
+                referralCode || null,
 
-        Object.assign(
-            box.style,
-            {
-                position: "fixed",
-                top: "90px",
-                right: "20px",
-                maxWidth: "380px",
-                padding: "15px 20px",
-                borderRadius: "12px",
-                zIndex: "99999",
-                fontSize: "14px",
-                fontWeight: "600",
-                boxShadow:
-                    "0 10px 30px rgba(0,0,0,.15)",
-                background:
-                    type === "error"
-                        ? "#ffe5e5"
-                        : "#e7f8ed",
-                color:
-                    type === "error"
-                        ? "#b42318"
-                        : "#137333"
+            referral_count:
+                0,
+
+            tier:
+                "Regular",
+
+            membership_status:
+                "active"
+        };
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("registrations")
+                .insert(
+                    registrationData
+                )
+                .select()
+                .single();
+
+        if (error) {
+
+            if (
+                error.code ===
+                "23505"
+            ) {
+
+                showMessage(
+                    "Already registered",
+                    "This email may already have a Jay Classic registration.",
+                    "warning"
+                );
+
+            } else {
+
+                throw error;
             }
+
+            return;
+        }
+
+        JayClassic.member =
+            data;
+
+        JayClassic.referralCode =
+            data.referral_code ||
+            referralCodeForNewMember;
+
+        JayClassic.referralCount = 0;
+
+        JayClassic.tier =
+            "Regular";
+
+        localStorage.setItem(
+            "jayClassicMemberEmail",
+            email.toLowerCase()
         );
 
+        updateReferralDisplay();
 
-        document.body.appendChild(
-            box
+        showMemberDashboard();
+
+        form.reset();
+
+        showMessage(
+            "Registration successful",
+            `Welcome to Jay Classic, ${name}. Your referral code is ${JayClassic.referralCode}.`,
+            "success"
         );
-
 
         setTimeout(
             () => {
 
-                box.style.opacity =
-                    "0";
+                const dashboard =
+                    $(".member-area-section");
 
-                box.style.transform =
-                    "translateY(-10px)";
+                if (dashboard) {
 
-                box.style.transition =
-                    "all .3s ease";
+                    dashboard.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }
+
+            },
+            800
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Registration error:",
+            error
+        );
+
+        showMessage(
+            "Registration failed",
+            "We could not complete your registration. Please try again.",
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            button,
+            false
+        );
+    }
+}
 
 
-                setTimeout(
-                    () => box.remove(),
-                    300
+/* =========================================================
+   25. REVIEW SYSTEM
+========================================================= */
+
+async function handleReviewSubmission(
+    event
+) {
+
+    event.preventDefault();
+
+    const form =
+        event.currentTarget;
+
+    const name =
+        getValue(
+            "#reviewName"
+        );
+
+    const rating =
+        Number(
+            getValue(
+                "#reviewRating"
+            )
+        );
+
+    const comment =
+        getValue(
+            "#reviewMessage"
+        );
+
+    if (
+        !name ||
+        !rating ||
+        !comment
+    ) {
+
+        showMessage(
+            "Complete the review",
+            "Please provide your name, rating and comment.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (
+        rating < 1 ||
+        rating > 5
+    ) {
+
+        showMessage(
+            "Invalid rating",
+            "Please choose a rating from 1 to 5.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (!supabaseClient) {
+
+        showMessage(
+            "Connection problem",
+            "The review service is unavailable right now.",
+            "error"
+        );
+
+        return;
+    }
+
+    const button =
+        form.querySelector(
+            'button[type="submit"]'
+        );
+
+    setButtonLoading(
+        button,
+        true,
+        "Publishing..."
+    );
+
+    try {
+
+        const reviewData = {
+
+            name:
+                name,
+
+            role:
+                "Jay Classic Community",
+
+            comment:
+                comment,
+
+            rating:
+                rating
+        };
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("reviews")
+                .insert(
+                    reviewData
+                );
+
+        if (error) {
+            throw error;
+        }
+
+        form.reset();
+
+        showMessage(
+            "Review submitted",
+            "Thank you for sharing your experience with Jay Classic.",
+            "success"
+        );
+
+        await loadReviews();
+
+    } catch (error) {
+
+        console.error(
+            "Review error:",
+            error
+        );
+
+        showMessage(
+            "Review failed",
+            "Your review could not be submitted. Please try again.",
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            button,
+            false
+        );
+    }
+}
+
+
+/* =========================================================
+   26. LOAD REVIEWS
+========================================================= */
+
+async function loadReviews() {
+
+    if (!supabaseClient) {
+        return;
+    }
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("reviews")
+                .select(
+                    "name, role, comment, rating, created_at"
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+        if (error) {
+            throw error;
+        }
+
+        JayClassic.reviews =
+            data || [];
+
+        renderReviews(
+            JayClassic.reviews
+        );
+
+        updateAverageRating(
+            JayClassic.reviews
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "Could not load reviews:",
+            error.message
+        );
+    }
+}
+
+
+/* =========================================================
+   27. RENDER REVIEWS
+========================================================= */
+
+function renderReviews(
+    reviews
+) {
+
+    const grid =
+        $(".reviews-grid");
+
+    if (!grid) {
+        return;
+    }
+
+    if (!reviews.length) {
+        return;
+    }
+
+    grid.innerHTML = "";
+
+    reviews.forEach(
+        review => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "review-card";
+
+            const rating =
+                Math.max(
+                    1,
+                    Math.min(
+                        5,
+                        Number(
+                            review.rating
+                        ) || 5
+                    )
+                );
+
+            const stars =
+                "★".repeat(
+                    rating
+                ) +
+                "☆".repeat(
+                    5 - rating
+                );
+
+            const author =
+                escapeHTML(
+                    review.name ||
+                    "Jay Classic Member"
+                );
+
+            const role =
+                escapeHTML(
+                    review.role ||
+                    "Community Member"
+                );
+
+            const comment =
+                escapeHTML(
+                    review.comment ||
+                    ""
+                );
+
+            const initials =
+                getInitials(
+                    review.name
+                );
+
+            card.innerHTML = `
+
+                <div class="review-stars">
+                    ${stars}
+                </div>
+
+                <p>
+                    “${comment}”
+                </p>
+
+                <div class="review-author">
+
+                    <div class="review-avatar">
+                        ${initials}
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${author}
+                        </strong>
+
+                        <span>
+                            ${role}
+                        </span>
+
+                    </div>
+
+                </div>
+            `;
+
+            grid.appendChild(
+                card
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   28. AVERAGE RATING
+========================================================= */
+
+function updateAverageRating(
+    reviews
+) {
+
+    const score =
+        $(".rating-score > strong");
+
+    const stars =
+        $(".rating-score .stars");
+
+    const label =
+        $(".rating-score span");
+
+    if (!reviews.length) {
+
+        if (score) {
+            score.textContent = "—";
+        }
+
+        if (stars) {
+            stars.textContent =
+                "☆☆☆☆☆";
+        }
+
+        if (label) {
+            label.textContent =
+                "No community reviews yet";
+        }
+
+        return;
+    }
+
+    const ratings =
+        reviews.map(
+            review =>
+                Number(
+                    review.rating
+                ) || 0
+        );
+
+    const total =
+        ratings.reduce(
+            (sum, value) =>
+                sum + value,
+            0
+        );
+
+    const average =
+        total /
+        ratings.length;
+
+    if (score) {
+
+        score.textContent =
+            average.toFixed(1);
+    }
+
+    if (stars) {
+
+        const rounded =
+            Math.round(
+                average
+            );
+
+        stars.textContent =
+            "★".repeat(
+                rounded
+            ) +
+            "☆".repeat(
+                5 - rounded
+            );
+    }
+
+    if (label) {
+
+        label.textContent =
+            `${reviews.length} community review${
+                reviews.length === 1
+                    ? ""
+                    : "s"
+            }`;
+    }
+
+    updateRatingBars(
+        ratings
+    );
+}
+
+
+/* =========================================================
+   29. RATING BARS
+========================================================= */
+
+function updateRatingBars(
+    ratings
+) {
+
+    const rows =
+        $$(".rating-bar-row");
+
+    if (!rows.length) {
+        return;
+    }
+
+    const total =
+        ratings.length;
+
+    rows.forEach(
+        row => {
+
+            const value =
+                Number(
+                    row.dataset.rating
+                );
+
+            if (
+                !value ||
+                value < 1 ||
+                value > 5
+            ) {
+                return;
+            }
+
+            const count =
+                ratings.filter(
+                    rating =>
+                        rating === value
+                ).length;
+
+            const percentage =
+                total
+                    ? (count / total) *
+                      100
+                    : 0;
+
+            const bar =
+                row.querySelector(
+                    ".rating-bar div"
+                );
+
+            const number =
+                row.querySelector(
+                    ".rating-count"
+                );
+
+            if (bar) {
+
+                bar.style.width =
+                    `${percentage}%`;
+            }
+
+            if (number) {
+
+                number.textContent =
+                    count;
+            }
+        }
+    );
+}
+
+
+/* =========================================================
+   30. CONTACT FORM
+========================================================= */
+
+async function handleContactSubmission(
+    event
+) {
+
+    event.preventDefault();
+
+    const form =
+        event.currentTarget;
+
+    const name =
+        getValue(
+            "#contactName"
+        );
+
+    const email =
+        getValue(
+            "#contactEmail"
+        );
+
+    const service =
+        getValue(
+            "#contactService"
+        );
+
+    const message =
+        getValue(
+            "#contactMessage"
+        );
+
+    if (
+        !name ||
+        !email ||
+        !message
+    ) {
+
+        showMessage(
+            "Complete the form",
+            "Please fill in your name, email and message.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+
+        showMessage(
+            "Invalid email",
+            "Please enter a valid email address.",
+            "warning"
+        );
+
+        return;
+    }
+
+    const button =
+        form.querySelector(
+            'button[type="submit"]'
+        );
+
+    setButtonLoading(
+        button,
+        true,
+        "Preparing..."
+    );
+
+    try {
+
+        const subject =
+            `Jay Classic Website Inquiry${
+                service
+                    ? " - " + service
+                    : ""
+            }`;
+
+        const body = `
+Hello Jay Ouko,
+
+My name is ${name}.
+
+Email: ${email}
+
+Service:
+${service || "General inquiry"}
+
+Message:
+${message}
+
+Sent from the Jay Classic website.
+        `.trim();
+
+        const mailto =
+            `mailto:emmanuelouko21@gmail.com?subject=${encodeURIComponent(
+                subject
+            )}&body=${encodeURIComponent(
+                body
+            )}`;
+
+        window.location.href =
+            mailto;
+
+        form.reset();
+
+        showMessage(
+            "Message prepared",
+            "Your email application should open with the message ready to send.",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Contact error:",
+            error
+        );
+
+        showMessage(
+            "Could not prepare message",
+            "Please contact Jay Classic through WhatsApp or email.",
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            button,
+            false
+        );
+    }
+}
+
+
+/* =========================================================
+   31. PAYMENT SUBMISSION
+========================================================= */
+
+async function handlePaymentSubmission(
+    event
+) {
+
+    event.preventDefault();
+
+    const form =
+        event.currentTarget;
+
+    const name =
+        getFormValue(
+            form,
+            "paymentName"
+        );
+
+    const email =
+        getFormValue(
+            form,
+            "paymentEmail"
+        );
+
+    const phone =
+        getFormValue(
+            form,
+            "paymentPhone"
+        );
+
+    const plan =
+        getFormValue(
+            form,
+            "paymentPlan"
+        );
+
+    const transactionCode =
+        getFormValue(
+            form,
+            "transactionCode"
+        );
+
+    if (
+        !name ||
+        !email ||
+        !phone ||
+        !plan ||
+        !transactionCode
+    ) {
+
+        showMessage(
+            "Complete payment details",
+            "Please provide all required payment information.",
+            "warning"
+        );
+
+        return;
+    }
+
+    if (!supabaseClient) {
+
+        showMessage(
+            "Payment service unavailable",
+            "Please try again later or contact Jay Classic.",
+            "error"
+        );
+
+        return;
+    }
+
+    const button =
+        form.querySelector(
+            'button[type="submit"]'
+        );
+
+    setButtonLoading(
+        button,
+        true,
+        "Submitting..."
+    );
+
+    try {
+
+        const paymentData = {
+
+            name:
+                name,
+
+            email:
+                email.toLowerCase(),
+
+            phone:
+                phone,
+
+            plan:
+                plan,
+
+            transaction_code:
+                transactionCode,
+
+            status:
+                "pending",
+
+            submitted_at:
+                new Date().toISOString()
+        };
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("payments")
+                .insert(
+                    paymentData
+                );
+
+        if (error) {
+            throw error;
+        }
+
+        form.reset();
+
+        showMessage(
+            "Payment submitted",
+            "Your transaction has been submitted for verification.",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Payment submission error:",
+            error
+        );
+
+        showMessage(
+            "Payment submission failed",
+            "Check your transaction details and try again.",
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            button,
+            false
+        );
+    }
+}
+
+
+/* =========================================================
+   32. FORM VALUE HELPERS
+========================================================= */
+
+function getValue(
+    selector
+) {
+
+    const element =
+        $(selector);
+
+    return element
+        ? element.value.trim()
+        : "";
+}
+
+
+function getFormValue(
+    form,
+    name
+) {
+
+    const element =
+        form.elements[name];
+
+    return element
+        ? element.value.trim()
+        : "";
+}
+
+
+/* =========================================================
+   33. EMAIL VALIDATION
+========================================================= */
+
+function isValidEmail(
+    email
+) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+}
+
+
+/* =========================================================
+   34. BUTTON LOADING
+========================================================= */
+
+function setButtonLoading(
+    button,
+    loading,
+    text = "Please wait..."
+) {
+
+    if (!button) {
+        return;
+    }
+
+    if (loading) {
+
+        button.dataset.originalText =
+            button.innerHTML;
+
+        button.disabled = true;
+
+        button.innerHTML = `
+            <i class="fas fa-spinner fa-spin"></i>
+            ${text}
+        `;
+
+    } else {
+
+        button.disabled = false;
+
+        if (
+            button.dataset.originalText
+        ) {
+
+            button.innerHTML =
+                button.dataset.originalText;
+        }
+    }
+}
+
+
+/* =========================================================
+   35. TOAST MESSAGE
+========================================================= */
+
+let toastTimer = null;
+
+function showMessage(
+    title,
+    message,
+    type = "success"
+) {
+
+    let toast =
+        $(".toast");
+
+    if (!toast) {
+
+        toast =
+            document.createElement(
+                "div"
+            );
+
+        toast.className =
+            "toast";
+
+        toast.innerHTML = `
+
+            <div class="toast-icon">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <div class="toast-content">
+
+                <strong>
+                    Message
+                </strong>
+
+                <p>
+                    Notification
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                aria-label="Close notification"
+            >
+                ×
+            </button>
+        `;
+
+        document.body.appendChild(
+            toast
+        );
+
+        toast
+            .querySelector("button")
+            .addEventListener(
+                "click",
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+                }
+            );
+    }
+
+    const icon =
+        toast.querySelector(
+            ".toast-icon i"
+        );
+
+    const titleElement =
+        toast.querySelector(
+            ".toast-content strong"
+        );
+
+    const messageElement =
+        toast.querySelector(
+            ".toast-content p"
+        );
+
+    if (titleElement) {
+
+        titleElement.textContent =
+            title;
+    }
+
+    if (messageElement) {
+
+        messageElement.textContent =
+            message;
+    }
+
+    if (icon) {
+
+        if (type === "error") {
+
+            icon.className =
+                "fas fa-times";
+
+        } else if (
+            type === "warning"
+        ) {
+
+            icon.className =
+                "fas fa-exclamation";
+
+        } else {
+
+            icon.className =
+                "fas fa-check";
+        }
+    }
+
+    toast.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
                 );
 
             },
-            3500
+            5000
         );
+}
+
+
+/* =========================================================
+   36. ESCAPE HTML
+========================================================= */
+
+function escapeHTML(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        String(
+            value ?? ""
+        );
+
+    return div.innerHTML;
+}
+
+
+/* =========================================================
+   37. INITIALS
+========================================================= */
+
+function getInitials(
+    name
+) {
+
+    const words =
+        String(
+            name || "JC"
+        )
+            .trim()
+            .split(
+                /\s+/
+            )
+            .filter(Boolean);
+
+    if (!words.length) {
+        return "JC";
     }
 
+    return words
+        .slice(0, 2)
+        .map(
+            word =>
+                word
+                    .charAt(0)
+                    .toUpperCase()
+        )
+        .join("");
+}
 
-    /* =====================================================
-       SCROLL ANIMATIONS
-       ===================================================== */
 
-    const animatedElements =
-        document.querySelectorAll(
-            ".service-card, .job-card, .review-card, .step, .feature-item"
-        );
+/* =========================================================
+   38. INTERSECTION ANIMATIONS
+========================================================= */
 
+function initializeIntersectionAnimations() {
 
     if (
-        "IntersectionObserver" in window
+        !("IntersectionObserver" in window)
     ) {
-
-        const observer =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "in-view"
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-                            }
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        animatedElements.forEach(
-            element =>
-                observer.observe(element)
-        );
+        return;
     }
 
+    const elements =
+        $$(".service-card, .job-card, .membership-card");
 
-    /* =====================================================
-       INITIALIZE DATABASE DATA
-       ===================================================== */
+    const observer =
+        new IntersectionObserver(
+            entries => {
 
-    await loadReviews();
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.style.opacity =
+                                "1";
+
+                            entry.target.style.transform =
+                                "translateY(0)";
+
+                            observer.unobserve(
+                                entry.target
+                            );
+                        }
+                    }
+                );
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+    elements.forEach(
+        element => {
+
+            element.style.opacity =
+                "0";
+
+            element.style.transform =
+                "translateY(20px)";
+
+            element.style.transition =
+                "opacity .6s ease, transform .6s ease";
+
+            observer.observe(
+                element
+            );
+        }
+    );
+}
 
 
-    /* =====================================================
-       SUCCESS MESSAGE
-       ===================================================== */
+/* =========================================================
+   39. WHATSAPP BUTTONS
+========================================================= */
 
-    console.log(
-        "%c JAY CLASSIC ",
-        "background:#111;color:#fff;font-size:20px;font-weight:bold;padding:8px 15px;border-radius:8px;"
+$$(
+    'a[href*="wa.me"]'
+).forEach(
+    link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                try {
+
+                    const currentRef =
+                        JayClassic.referralCode;
+
+                    if (
+                        currentRef
+                    ) {
+
+                        const href =
+                            link.getAttribute(
+                                "href"
+                            );
+
+                        if (
+                            href &&
+                            !href.includes(
+                                "ref="
+                            )
+                        ) {
+
+                            const separator =
+                                href.includes(
+                                    "?"
+                                )
+                                    ? "&"
+                                    : "?";
+
+                            link.setAttribute(
+                                "href",
+                                `${href}${separator}ref=${encodeURIComponent(
+                                    currentRef
+                                )}`
+                            );
+                        }
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "WhatsApp referral update failed.",
+                        error
+                    );
+                }
+            }
+        );
+    }
+);
+
+
+/* =========================================================
+   40. REGISTRATION REFERRAL DISPLAY
+========================================================= */
+
+function injectReferralFieldIfNeeded() {
+
+    const form =
+        $("#registrationForm");
+
+    if (!form) {
+        return;
+    }
+
+    let input =
+        $("#referralCode");
+
+    if (input) {
+        return;
+    }
+
+    const savedReferral =
+        localStorage.getItem(
+            "jayClassicReferral"
+        );
+
+    if (!savedReferral) {
+        return;
+    }
+
+    const group =
+        document.createElement(
+            "div"
+        );
+
+    group.className =
+        "form-group";
+
+    group.innerHTML = `
+
+        <label for="referralCode">
+            Referral Code
+        </label>
+
+        <input
+            type="text"
+            id="referralCode"
+            name="referralCode"
+            value="${escapeHTML(
+                savedReferral
+            )}"
+            readonly
+        >
+    `;
+
+    const messageField =
+        $("#studentMessage");
+
+    if (
+        messageField &&
+        messageField.closest(
+            ".form-group"
+        )
+    ) {
+
+        messageField
+            .closest(
+                ".form-group"
+            )
+            .before(group);
+
+    } else {
+
+        form.appendChild(
+            group
+        );
+    }
+}
+
+
+/* =========================================================
+   41. INITIAL REFERRAL FIELD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        setTimeout(
+            injectReferralFieldIfNeeded,
+            300
+        );
+    }
+);
+
+
+/* =========================================================
+   42. MEMBER LOGOUT
+========================================================= */
+
+function logoutJayClassicMember() {
+
+    localStorage.removeItem(
+        "jayClassicMemberEmail"
     );
 
-    console.log(
-        "Jay Classic website initialized successfully."
-    );
+    JayClassic.member = null;
 
-});
+    JayClassic.referralCode = null;
+
+    JayClassic.referralCount = 0;
+
+    JayClassic.tier = "Regular";
+
+    const memberArea =
+        $(".member-area-section");
+
+    if (memberArea) {
+
+        memberArea.style.display =
+            "none";
+    }
+
+    showMessage(
+        "Logged out",
+        "Your local Jay Classic member session has been cleared.",
+        "success"
+    );
+}
+
+
+/* =========================================================
+   43. GLOBAL JAY CLASSIC API
+========================================================= */
+
+window.JayClassic = {
+
+    getMember: () =>
+        JayClassic.member,
+
+    getTier: () =>
+        JayClassic.tier,
+
+    getReferralCount: () =>
+        JayClassic.referralCount,
+
+    getReferralCode: () =>
+        JayClassic.referralCode,
+
+    copyReferralLink,
+
+    shareReferral,
+
+    logout:
+        logoutJayClassicMember,
+
+    showMessage
+};
+
+
+/* =========================================================
+   44. DEVELOPMENT STATUS
+========================================================= */
+
+console.log(
+    "Jay Classic application loaded successfully."
+);
+
+console.log(
+    "Referral system:",
+    "Regular 0–2 | VIP 3–9 | VVIP 10+"
+);
