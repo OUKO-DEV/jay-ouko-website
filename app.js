@@ -1160,40 +1160,42 @@ async function handleReview(event) {
 
 async function loadReviews() {
 
-    if (!supabaseClient) return;
+    if (!supabaseClient) {
+        console.warn("Supabase is not connected.");
+        return;
+    }
 
     try {
 
-        const { data, error } =
-            await supabaseClient
-                .from("reviews")
-                .select("*")
-                .eq("approved", true)
-                .order(
-                    "created_at",
-                    { ascending: false }
-                );
+        const { data, error } = await supabaseClient
+            .from("reviews")
+            .select("id, name, rating, message, approved, created_at")
+            .eq("approved", true);
 
         if (error) {
-            throw error;
+            console.error("Load reviews error:", error);
+            return;
         }
 
-        JayClassic.reviews =
-            data || [];
-
-        renderReviews(
-            JayClassic.reviews
+        JayClassic.reviews = (data || []).sort(
+            (a, b) =>
+                new Date(b.created_at) -
+                new Date(a.created_at)
         );
+
+        renderReviews(JayClassic.reviews);
 
     } catch (error) {
 
         console.error(
-            "Load reviews error:",
+            "Unexpected reviews error:",
             error
         );
+
+        JayClassic.reviews = [];
+        renderReviews([]);
     }
 }
-
 
 /* =========================================================
    27. RENDER REVIEWS
