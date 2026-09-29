@@ -3,179 +3,105 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Jay Classic - Digital skills, freelancing, online work, web development, graphic design, AI tools and digital marketing."
-    >
+    <meta name="description"
+          content="Jay Classic - Digital skills, freelancing, online work, web development, graphic design, digital marketing and AI tools.">
 
-    <meta
-        name="keywords"
-        content="Jay Classic, Jay Ouko, freelancing Kenya, online jobs Kenya, Canva, Twiva, AI tools, web development, graphic design, digital marketing"
-    >
+    <meta name="keywords"
+          content="Jay Classic, Jay Ouko, freelancing Kenya, online jobs Kenya, graphic design, web development, digital marketing, AI tools, Canva, Twiva">
 
-    <meta
-        name="author"
-        content="Jay Ouko"
-    >
+    <meta name="author" content="Jay Ouko">
 
-    <meta
-        name="theme-color"
-        content="#2563eb"
-    >
+    <meta name="theme-color" content="#2563eb">
 
     <title>Jay Classic | Digital Skills & Online Work</title>
 
     <!-- Google Font -->
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Website CSS -->
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- =========================================================
      PAGE LOADER
-===================================================== -->
+========================================================= -->
 
-<div
-    id="pageLoader"
-    class="page-loader"
-    aria-hidden="true"
->
+<div id="pageLoader" class="page-loader">
     <div class="loader-ring"></div>
-
     <p>Loading Jay Classic...</p>
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
-<header
-    class="header"
-    id="header"
->
+<header class="header" id="header">
 
     <div class="container nav-container">
 
-        <a
-            href="#home"
-            class="logo"
-            aria-label="Jay Classic Home"
-        >
+        <a href="#home"
+           class="logo"
+           aria-label="Jay Classic Home">
+
             <span class="logo-mark">JC</span>
 
             <span class="logo-text">
                 Jay <strong>Classic</strong>
             </span>
+
         </a>
 
 
-        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" id="navbar">
 
-        <nav
-            class="desktop-nav"
-            id="navbar"
-            aria-label="Main navigation"
-        >
-
-            <a
-                href="#home"
-                class="nav-link active"
-            >
+            <a href="#home" class="nav-link active">
                 Home
             </a>
 
-            <a
-                href="#services"
-                class="nav-link"
-            >
+            <a href="#services" class="nav-link">
                 Services
             </a>
 
-            <a
-                href="#classes"
-                class="nav-link"
-            >
+            <a href="#classes" class="nav-link">
                 Classes
             </a>
 
-            <a
-                href="#dashboard"
-                class="nav-link"
-            >
-                Dashboard
-            </a>
-
-            <a
-                href="#membership"
-                class="nav-link"
-            >
+            <a href="#membership" class="nav-link">
                 Membership
             </a>
 
-            <a
-                href="#referrals"
-                class="nav-link"
-            >
+            <a href="#referrals" class="nav-link">
                 Referrals
             </a>
 
-            <a
-                href="#jobs"
-                class="nav-link"
-            >
+            <a href="#jobs" class="nav-link">
                 Online Work
             </a>
 
-            <a
-                href="#reviews"
-                class="nav-link"
-            >
+            <a href="#reviews" class="nav-link">
                 Reviews
             </a>
 
-            <a
-                href="#contact"
-                class="nav-link"
-            >
+            <a href="#contact" class="nav-link">
                 Contact
             </a>
 
         </nav>
 
-
-        <!-- Header Actions -->
 
         <div class="header-actions">
 
@@ -183,22 +109,38 @@
                 type="button"
                 class="theme-toggle"
                 id="themeToggle"
-                aria-label="Toggle dark mode"
                 title="Toggle theme"
-            >
-                <i
-                    class="fa-solid fa-moon"
-                    id="themeIcon"
-                ></i>
+                aria-label="Toggle dark mode">
+
+                <i class="fa-solid fa-moon"
+                   id="themeIcon"></i>
+
             </button>
 
 
-            <a
-                href="#registration"
-                class="btn btn-primary nav-register"
-            >
+            <button
+                type="button"
+                class="notification-button"
+                id="notificationButton"
+                aria-label="Notifications">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span id="notificationBadge"
+                      class="notification-badge">
+                    0
+                </span>
+
+            </button>
+
+
+            <a href="#registration"
+               class="btn btn-primary nav-register">
+
                 <i class="fa-solid fa-user-plus"></i>
+
                 Register
+
             </a>
 
 
@@ -207,9 +149,10 @@
                 class="menu-toggle"
                 id="menuToggle"
                 aria-label="Open navigation menu"
-                aria-expanded="false"
-            >
+                aria-expanded="false">
+
                 <i class="fa-solid fa-bars"></i>
+
             </button>
 
         </div>
@@ -217,92 +160,65 @@
     </div>
 
 
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU -->
 
-    <div
-        class="mobile-menu"
-        id="mobileMenu"
-        aria-hidden="true"
-    >
+    <div class="mobile-menu" id="mobileMenu">
 
-        <a
-            href="#home"
-            class="mobile-nav-link"
-        >
+        <a href="#home" class="mobile-nav-link">
             <i class="fa-solid fa-house"></i>
             Home
         </a>
 
-        <a
-            href="#services"
-            class="mobile-nav-link"
-        >
+        <a href="#services" class="mobile-nav-link">
             <i class="fa-solid fa-briefcase"></i>
             Services
         </a>
 
-        <a
-            href="#classes"
-            class="mobile-nav-link"
-        >
+        <a href="#classes" class="mobile-nav-link">
             <i class="fa-solid fa-graduation-cap"></i>
             Classes
         </a>
 
-        <a
-            href="#dashboard"
-            class="mobile-nav-link"
-        >
-            <i class="fa-solid fa-chart-line"></i>
-            Dashboard
-        </a>
-
-        <a
-            href="#membership"
-            class="mobile-nav-link"
-        >
+        <a href="#membership" class="mobile-nav-link">
             <i class="fa-solid fa-crown"></i>
             Membership
         </a>
 
-        <a
-            href="#referrals"
-            class="mobile-nav-link"
-        >
+        <a href="#referrals" class="mobile-nav-link">
             <i class="fa-solid fa-share-nodes"></i>
             Referrals
         </a>
 
-        <a
-            href="#jobs"
-            class="mobile-nav-link"
-        >
+        <a href="#jobs" class="mobile-nav-link">
             <i class="fa-solid fa-laptop-code"></i>
             Online Work
         </a>
 
-        <a
-            href="#reviews"
-            class="mobile-nav-link"
-        >
+        <a href="#reviews" class="mobile-nav-link">
             <i class="fa-solid fa-star"></i>
             Reviews
         </a>
 
-        <a
-            href="#contact"
-            class="mobile-nav-link"
-        >
+        <a href="#contact" class="mobile-nav-link">
             <i class="fa-solid fa-envelope"></i>
             Contact
         </a>
 
-        <a
-            href="#registration"
-            class="btn btn-primary mobile-register"
-        >
+        <a href="#dashboard"
+           class="mobile-nav-link">
+
+            <i class="fa-solid fa-gauge-high"></i>
+            My Dashboard
+
+        </a>
+
+        <a href="#registration"
+           class="btn btn-primary mobile-register">
+
             <i class="fa-solid fa-user-plus"></i>
+
             Join Jay Classic
+
         </a>
 
     </div>
@@ -310,61 +226,116 @@
 </header>
 
 
+<!-- =========================================================
+     NOTIFICATION PANEL
+========================================================= -->
+
+<div class="notification-panel"
+     id="notificationPanel">
+
+    <div class="notification-panel-header">
+
+        <div>
+            <span class="section-kicker">
+                JAY CLASSIC
+            </span>
+
+            <h3>Notifications</h3>
+        </div>
+
+        <button
+            type="button"
+            id="closeNotifications"
+            class="icon-button">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <div id="notificationList"
+         class="notification-list">
+
+        <div class="empty-state">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <p>No new notifications</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main>
 
 
-<!-- =====================================================
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
-<section
-    class="hero section"
-    id="home"
->
+<section class="hero section"
+         id="home">
 
     <div class="container hero-grid">
 
         <div class="hero-content reveal">
 
             <div class="hero-badge">
-                <span class="live-dot"></span>
-                DIGITAL SKILLS • ONLINE WORK • GROWTH
+
+                <span class="status-dot"></span>
+
+                Digital Skills • Online Work • Freelancing
+
             </div>
 
 
             <h1>
+
                 Build Skills.
                 <span class="gradient-text">
                     Build Income.
                 </span>
-                Build Your Future.
+
             </h1>
 
 
-            <p class="hero-description">
+            <p class="hero-text">
+
                 Welcome to Jay Classic — a digital platform for
-                freelancing, online work, graphic design,
-                web development, digital marketing, Canva,
-                Twiva and AI-powered opportunities.
+                freelancing, online work, digital skills,
+                AI tools, graphic design, web development
+                and digital marketing.
+
             </p>
 
 
             <div class="hero-actions">
 
-                <a
-                    href="#registration"
-                    class="btn btn-primary btn-large"
-                >
+                <a href="#registration"
+                   class="btn btn-primary btn-large">
+
                     <i class="fa-solid fa-rocket"></i>
+
                     Get Started
+
                 </a>
 
-                <a
-                    href="#services"
-                    class="btn btn-secondary btn-large"
-                >
-                    Explore Services
-                    <i class="fa-solid fa-arrow-right"></i>
+
+                <a href="#dashboard"
+                   class="btn btn-secondary btn-large">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    My Dashboard
+
                 </a>
 
             </div>
@@ -372,19 +343,28 @@
 
             <div class="trust-row">
 
-                <div>
-                    <strong>5+</strong>
-                    <span>Digital Skills</span>
+                <div class="trust-item">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>Professional Platform</span>
+
                 </div>
 
-                <div>
-                    <strong>9PM</strong>
-                    <span>Daily Classes</span>
+                <div class="trust-item">
+
+                    <i class="fa-solid fa-mobile-screen"></i>
+
+                    <span>Mobile Friendly</span>
+
                 </div>
 
-                <div>
-                    <strong>24/7</strong>
-                    <span>Online Resources</span>
+                <div class="trust-item">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <span>Fast Responses</span>
+
                 </div>
 
             </div>
@@ -392,106 +372,151 @@
         </div>
 
 
-        <!-- Hero Dashboard -->
+        <!-- HERO DASHBOARD -->
 
         <div class="hero-dashboard reveal">
 
-            <div class="dashboard-window">
+            <div class="dashboard-topbar">
 
-                <div class="dashboard-top">
+                <div class="window-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
-                    <div class="window-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                <span>Jay Classic Dashboard</span>
 
-                    <span class="dashboard-label">
-                        JAY CLASSIC
-                    </span>
+                <i class="fa-solid fa-ellipsis"></i>
 
-                    <span class="status-online">
-                        <span></span>
-                        Online
-                    </span>
+            </div>
+
+
+            <div class="dashboard-welcome">
+
+                <div>
+
+                    <small>
+                        Welcome back
+                    </small>
+
+                    <h3 id="heroUserName">
+                        Jay Classic Member
+                    </h3>
+
+                </div>
+
+                <div class="dashboard-avatar">
+                    JC
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+                <div class="mini-dashboard-card">
+
+                    <span>Applications</span>
+
+                    <strong id="heroApplications">
+                        0
+                    </strong>
+
+                    <i class="fa-solid fa-file-circle-check"></i>
 
                 </div>
 
 
-                <div class="dashboard-body">
+                <div class="mini-dashboard-card">
 
-                    <div class="mini-profile">
+                    <span>Referrals</span>
 
-                        <div class="avatar">
-                            JO
-                        </div>
+                    <strong id="heroReferrals">
+                        0
+                    </strong>
 
-                        <div>
-                            <small>Welcome back</small>
-                            <strong>Jay Classic Member</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="mini-stats">
-
-                        <div class="mini-stat">
-                            <span>Skills</span>
-                            <strong>06+</strong>
-                        </div>
-
-                        <div class="mini-stat">
-                            <span>Classes</span>
-                            <strong>9PM</strong>
-                        </div>
-
-                        <div class="mini-stat">
-                            <span>Status</span>
-                            <strong>Active</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-box">
-
-                        <div class="progress-heading">
-                            <span>Digital Growth</span>
-                            <strong>82%</strong>
-                        </div>
-
-                        <div class="progress">
-                            <span style="width:82%"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="dashboard-list">
-
-                        <div>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Online Work</span>
-                            <strong>Ready</strong>
-                        </div>
-
-                        <div>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Digital Skills</span>
-                            <strong>Active</strong>
-                        </div>
-
-                        <div>
-                            <i class="fa-solid fa-video"></i>
-                            <span>Zoom Class</span>
-                            <strong>9:00 PM</strong>
-                        </div>
-
-                    </div>
+                    <i class="fa-solid fa-users"></i>
 
                 </div>
 
+
+                <div class="mini-dashboard-card">
+
+                    <span>Classes</span>
+
+                    <strong id="heroClasses">
+                        0
+                    </strong>
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div class="mini-dashboard-card">
+
+                    <span>Membership</span>
+
+                    <strong id="heroMembership">
+                        Regular
+                    </strong>
+
+                    <i class="fa-solid fa-crown"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-progress">
+
+                <div class="progress-header">
+
+                    <span>
+                        Learning Progress
+                    </span>
+
+                    <strong>
+                        68%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+                    <span style="width:68%"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO STATS -->
+
+    <div class="container">
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>5+</strong>
+                <span>Digital Skills</span>
+            </div>
+
+            <div>
+                <strong>3</strong>
+                <span>Membership Levels</span>
+            </div>
+
+            <div>
+                <strong>9PM</strong>
+                <span>Daily Classes</span>
+            </div>
+
+            <div>
+                <strong>24/7</strong>
+                <span>Online Resources</span>
             </div>
 
         </div>
@@ -501,53 +526,12 @@
 </section>
 
 
-<!-- =====================================================
-     SEARCH
-===================================================== -->
-
-<section class="search-section">
-
-    <div class="container">
-
-        <div class="search-box">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="search"
-                id="siteSearch"
-                placeholder="Search services, classes, online work..."
-                autocomplete="off"
-            >
-
-            <button
-                type="button"
-                id="searchButton"
-                class="btn btn-primary"
-            >
-                Search
-            </button>
-
-        </div>
-
-        <div
-            id="searchResults"
-            class="search-results"
-        ></div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- =========================================================
      SERVICES
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section"
-    id="services"
->
+<section class="section"
+         id="services">
 
     <div class="container">
 
@@ -558,15 +542,15 @@
             </span>
 
             <h2>
-                Digital Services That
+                Digital Services &
                 <span class="gradient-text">
-                    Create Opportunity.
+                    Skills
                 </span>
             </h2>
 
             <p>
-                Practical digital services designed for individuals,
-                creators, students and businesses.
+                Practical digital solutions for individuals,
+                students, creators and businesses.
             </p>
 
         </div>
@@ -584,14 +568,13 @@
                 <h3>Freelancing</h3>
 
                 <p>
-                    Learn how to find and complete online freelance
-                    work using digital platforms.
+                    Learn how to find and complete legitimate
+                    online freelance opportunities.
                 </p>
 
-                <a href="#registration">
-                    Get Started
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Online Work
+                </span>
 
             </article>
 
@@ -599,20 +582,19 @@
             <article class="service-card reveal">
 
                 <div class="service-icon">
-                    <i class="fa-solid fa-pen-nib"></i>
+                    <i class="fa-solid fa-palette"></i>
                 </div>
 
                 <h3>Graphic Design</h3>
 
                 <p>
                     Posters, social media graphics, branding,
-                    thumbnails and digital designs.
+                    Canva designs and visual content.
                 </p>
 
-                <a href="#registration">
-                    Request Service
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Creative
+                </span>
 
             </article>
 
@@ -627,13 +609,12 @@
 
                 <p>
                     Modern responsive websites for individuals,
-                    creators and small businesses.
+                    projects and small businesses.
                 </p>
 
-                <a href="#registration">
-                    Build a Website
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Development
+                </span>
 
             </article>
 
@@ -641,20 +622,19 @@
             <article class="service-card reveal">
 
                 <div class="service-icon">
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-bullhorn"></i>
                 </div>
 
                 <h3>Digital Marketing</h3>
 
                 <p>
-                    Social media, content strategy, digital promotion
-                    and online brand growth.
+                    Social media presence, content strategy
+                    and digital promotion.
                 </p>
 
-                <a href="#registration">
-                    Request Service
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Marketing
+                </span>
 
             </article>
 
@@ -668,14 +648,13 @@
                 <h3>AI Tools</h3>
 
                 <p>
-                    Learn practical ways to use AI tools for content,
-                    productivity, research and online work.
+                    Learn practical ways to use modern AI tools
+                    for productivity and online work.
                 </p>
 
-                <a href="#classes">
-                    Learn AI
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Technology
+                </span>
 
             </article>
 
@@ -689,14 +668,13 @@
                 <h3>Online Work</h3>
 
                 <p>
-                    Explore legitimate digital work opportunities,
-                    platforms and skills.
+                    Explore digital platforms, creator programs,
+                    remote work and online opportunities.
                 </p>
 
-                <a href="#jobs">
-                    Explore Work
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <span class="service-tag">
+                    Remote
+                </span>
 
             </article>
 
@@ -707,14 +685,12 @@
 </section>
 
 
-<!-- =====================================================
-     ZOOM CLASSES
-===================================================== -->
+<!-- =========================================================
+     CLASSES + ZOOM
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="classes"
->
+<section class="section section-alt"
+         id="classes">
 
     <div class="container">
 
@@ -733,8 +709,7 @@
 
             <p>
                 Free online classes are scheduled daily at
-                <strong>9:00 PM</strong>.
-                Registration is required.
+                9:00 PM. Registration is required.
             </p>
 
         </div>
@@ -742,12 +717,14 @@
 
         <div class="academy-grid">
 
-
             <div class="academy-main reveal">
 
                 <div class="academy-live">
+
                     <span class="live-dot"></span>
+
                     DAILY ONLINE CLASS
+
                 </div>
 
 
@@ -757,21 +734,29 @@
 
 
                 <p>
-                    Join practical sessions covering freelancing,
-                    Canva, digital marketing, AI tools, online work
-                    and other useful digital skills.
+                    Join practical sessions covering
+                    freelancing, Canva, digital marketing,
+                    AI tools, online work and other useful
+                    digital skills.
                 </p>
 
 
                 <div class="academy-time">
 
                     <div class="time-icon">
+
                         <i class="fa-solid fa-clock"></i>
+
                     </div>
 
                     <div>
+
                         <span>Every Day</span>
-                        <strong>9:00 PM</strong>
+
+                        <strong>
+                            9:00 PM
+                        </strong>
+
                     </div>
 
                 </div>
@@ -779,38 +764,54 @@
 
                 <div class="academy-actions">
 
-                    <a
-                        href="#classRegistration"
-                        class="btn btn-primary"
-                    >
+                    <a href="#classRegistration"
+                       class="btn btn-primary">
+
                         <i class="fa-solid fa-graduation-cap"></i>
+
                         Register for Class
+
                     </a>
 
 
-                    <!-- CHANGE THIS ZOOM LINK -->
+                    <!-- REPLACE THIS WITH YOUR REAL ZOOM LINK -->
 
-                    <a
-                        href="ZOOM-LINK-HERE"
-                        id="zoomJoinButton"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-secondary"
-                    >
+                    <a href="ZOOM-LINK-HERE"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-secondary"
+                       id="zoomJoinButton">
+
                         <i class="fa-solid fa-video"></i>
+
                         Join Zoom Class
+
                     </a>
 
 
-                    <a
-                        href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-secondary"
-                    >
+                    <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-secondary">
+
                         <i class="fa-brands fa-tiktok"></i>
+
                         Join on TikTok
+
                     </a>
+
+                </div>
+
+
+                <div class="zoom-notice">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Register before joining the class.
+                        The Zoom link will be provided to registered
+                        learners.
+                    </span>
 
                 </div>
 
@@ -819,57 +820,77 @@
 
             <div class="academy-features reveal">
 
-                <div class="feature-item">
+                <div class="academy-feature">
 
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
+                    <i class="fa-solid fa-wallet"></i>
 
                     <div>
-                        <h4>No Class Charges</h4>
-                        <p>Learn without paying class fees.</p>
+
+                        <h4>
+                            No Class Charges
+                        </h4>
+
+                        <p>
+                            Daily learning sessions are free.
+                        </p>
+
                     </div>
 
                 </div>
 
 
-                <div class="feature-item">
+                <div class="academy-feature">
 
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-mobile-screen"></i>
-                    </div>
+                    <i class="fa-solid fa-mobile-screen"></i>
 
                     <div>
-                        <h4>Learn From Your Phone</h4>
-                        <p>Access sessions from your device.</p>
+
+                        <h4>
+                            Learn From Your Phone
+                        </h4>
+
+                        <p>
+                            Access lessons from your phone or laptop.
+                        </p>
+
                     </div>
 
                 </div>
 
 
-                <div class="feature-item">
+                <div class="academy-feature">
 
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
+                    <i class="fa-solid fa-lightbulb"></i>
 
                     <div>
-                        <h4>Practical Skills</h4>
-                        <p>Focus on skills you can actually use.</p>
+
+                        <h4>
+                            Practical Skills
+                        </h4>
+
+                        <p>
+                            Focus on skills that can be applied.
+                        </p>
+
                     </div>
 
                 </div>
 
 
-                <div class="feature-item">
+                <div class="academy-feature">
 
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
+                    <i class="fa-solid fa-users"></i>
 
                     <div>
-                        <h4>Growing Community</h4>
-                        <p>Connect with other learners.</p>
+
+                        <h4>
+                            Growing Community
+                        </h4>
+
+                        <p>
+                            Connect with other digital learners.
+                        </p>
+
                     </div>
 
                 </div>
@@ -881,10 +902,8 @@
 
         <!-- CLASS REGISTRATION -->
 
-        <div
-            class="form-panel reveal"
-            id="classRegistration"
-        >
+        <div class="form-panel reveal"
+             id="classRegistration">
 
             <div class="form-panel-heading">
 
@@ -897,18 +916,17 @@
                 </h3>
 
                 <p>
-                    Register once and receive an instant confirmation.
+                    Register once and receive confirmation
+                    instantly.
                 </p>
 
             </div>
 
 
-            <form
-                id="classRegistrationForm"
-                class="form-grid"
-            >
+            <form id="classRegistrationForm"
+                  class="form-grid">
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="className">
                         Full Name
@@ -917,14 +935,13 @@
                     <input
                         type="text"
                         id="className"
-                        required
                         placeholder="Enter your full name"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="classEmail">
                         Email
@@ -933,14 +950,13 @@
                     <input
                         type="email"
                         id="classEmail"
-                        required
                         placeholder="you@example.com"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="classPhone">
                         Phone
@@ -949,23 +965,20 @@
                     <input
                         type="tel"
                         id="classPhone"
-                        required
                         placeholder="07XXXXXXXX"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="classNameSelect">
-                        Choose Class
+                        Class
                     </label>
 
-                    <select
-                        id="classNameSelect"
-                        required
-                    >
+                    <select id="classNameSelect"
+                            required>
 
                         <option value="">
                             Select a class
@@ -1000,15 +1013,17 @@
                 </div>
 
 
-                <div class="form-group full-width">
+                <div class="form-submit-row">
 
                     <button
                         type="submit"
                         class="btn btn-primary"
-                        id="classSubmitBtn"
-                    >
-                        <i class="fa-solid fa-paper-plane"></i>
-                        Register for Class
+                        id="classSubmitBtn">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Register Now
+
                     </button>
 
                 </div>
@@ -1022,301 +1037,12 @@
 </section>
 
 
-<!-- =====================================================
-     CLIENT DASHBOARD
-===================================================== -->
-
-<section
-    class="section"
-    id="dashboard"
->
-
-    <div class="container">
-
-        <div class="section-heading reveal">
-
-            <span class="section-kicker">
-                CLIENT CENTER
-            </span>
-
-            <h2>
-                Your Personal
-                <span class="gradient-text">
-                    Dashboard.
-                </span>
-            </h2>
-
-            <p>
-                Track your applications, registrations, referrals
-                and membership activity.
-            </p>
-
-        </div>
-
-
-        <div class="dashboard-card reveal">
-
-
-            <div
-                class="dashboard-login"
-                id="dashboardLogin"
-            >
-
-                <div class="dashboard-login-icon">
-                    <i class="fa-solid fa-user-circle"></i>
-                </div>
-
-                <h3>
-                    Access Your Dashboard
-                </h3>
-
-                <p>
-                    Enter the email you used during registration.
-                </p>
-
-
-                <form id="dashboardLoginForm">
-
-                    <div class="input-with-icon">
-
-                        <i class="fa-solid fa-envelope"></i>
-
-                        <input
-                            type="email"
-                            id="dashboardEmail"
-                            placeholder="Your registered email"
-                            required
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        Open Dashboard
-                    </button>
-
-                </form>
-
-            </div>
-
-
-            <!-- Dashboard Content -->
-
-            <div
-                id="dashboardContent"
-                class="dashboard-content hidden"
-            >
-
-                <div class="dashboard-header">
-
-                    <div>
-
-                        <span>
-                            Welcome back
-                        </span>
-
-                        <h3 id="dashboardName">
-                            Member
-                        </h3>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="dashboardLogout"
-                        class="btn btn-secondary"
-                    >
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        Logout
-                    </button>
-
-                </div>
-
-
-                <div class="dashboard-stats">
-
-                    <div class="dashboard-stat">
-
-                        <i class="fa-solid fa-file-circle-check"></i>
-
-                        <span>Applications</span>
-
-                        <strong id="applicationCount">
-                            0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="dashboard-stat">
-
-                        <i class="fa-solid fa-graduation-cap"></i>
-
-                        <span>Classes</span>
-
-                        <strong id="classCount">
-                            0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="dashboard-stat">
-
-                        <i class="fa-solid fa-share-nodes"></i>
-
-                        <span>Referrals</span>
-
-                        <strong id="referralCount">
-                            0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="dashboard-stat">
-
-                        <i class="fa-solid fa-crown"></i>
-
-                        <span>Membership</span>
-
-                        <strong id="membershipStatus">
-                            Regular
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-sections">
-
-
-                    <div class="activity-panel">
-
-                        <div class="panel-heading">
-
-                            <h4>
-                                Application Status
-                            </h4>
-
-                            <span class="status-pill">
-                                Live
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            id="applicationTimeline"
-                            class="timeline"
-                        >
-
-                            <div class="timeline-empty">
-
-                                <i class="fa-solid fa-clock-rotate-left"></i>
-
-                                <p>
-                                    Your applications will appear here.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity-panel">
-
-                        <div class="panel-heading">
-
-                            <h4>
-                                Notifications
-                            </h4>
-
-                        </div>
-
-
-                        <div
-                            id="dashboardNotifications"
-                            class="notification-list"
-                        >
-
-                            <div class="notification-item">
-
-                                <i class="fa-solid fa-bell"></i>
-
-                                <div>
-
-                                    <strong>
-                                        Welcome to Jay Classic
-                                    </strong>
-
-                                    <p>
-                                        Your dashboard is ready.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-actions">
-
-                    <a
-                        href="#classes"
-                        class="btn btn-primary"
-                    >
-                        <i class="fa-solid fa-video"></i>
-                        View Classes
-                    </a>
-
-                    <a
-                        href="#jobs"
-                        class="btn btn-secondary"
-                    >
-                        <i class="fa-solid fa-briefcase"></i>
-                        Explore Work
-                    </a>
-
-                    <a
-                        href="#payment"
-                        class="btn btn-secondary"
-                    >
-                        <i class="fa-solid fa-credit-card"></i>
-                        Payments
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- =========================================================
      MEMBERSHIP
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="membership"
->
+<section class="section"
+         id="membership">
 
     <div class="container">
 
@@ -1329,13 +1055,13 @@
             <h2>
                 Choose Your
                 <span class="gradient-text">
-                    Membership Level.
+                    Membership
                 </span>
             </h2>
 
             <p>
-                Membership options designed around different
-                levels of access and community benefits.
+                Select a membership level that matches your
+                digital journey.
             </p>
 
         </div>
@@ -1350,13 +1076,25 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
 
-                <h3>Regular</h3>
+                <span class="membership-label">
+                    STARTER
+                </span>
 
-                <div class="membership-price">
-                    Free
-                </div>
+                <h3>
+                    Regular
+                </h3>
+
+                <p>
+                    Start learning and exploring digital
+                    opportunities.
+                </p>
 
                 <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Community access
+                    </li>
 
                     <li>
                         <i class="fa-solid fa-check"></i>
@@ -1368,18 +1106,13 @@
                         Daily classes
                     </li>
 
-                    <li>
-                        <i class="fa-solid fa-check"></i>
-                        Community access
-                    </li>
-
                 </ul>
 
-                <a
-                    href="#registration"
-                    class="btn btn-secondary"
-                >
-                    Join Free
+                <a href="#registration"
+                   class="btn btn-secondary">
+
+                    Join Regular
+
                 </a>
 
             </article>
@@ -1392,16 +1125,28 @@
                 </div>
 
                 <div class="membership-icon">
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-crown"></i>
                 </div>
 
-                <h3>VIP</h3>
+                <span class="membership-label">
+                    ADVANCED
+                </span>
 
-                <div class="membership-price">
-                    Custom
-                </div>
+                <h3>
+                    VIP
+                </h3>
+
+                <p>
+                    More support and additional learning
+                    opportunities.
+                </p>
 
                 <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Everything in Regular
+                    </li>
 
                     <li>
                         <i class="fa-solid fa-check"></i>
@@ -1410,21 +1155,16 @@
 
                     <li>
                         <i class="fa-solid fa-check"></i>
-                        Advanced resources
-                    </li>
-
-                    <li>
-                        <i class="fa-solid fa-check"></i>
-                        Referral benefits
+                        Additional resources
                     </li>
 
                 </ul>
 
-                <a
-                    href="#payment"
-                    class="btn btn-primary"
-                >
-                    Become VIP
+                <a href="#registration"
+                   class="btn btn-primary">
+
+                    Join VIP
+
                 </a>
 
             </article>
@@ -1433,16 +1173,28 @@
             <article class="membership-card reveal">
 
                 <div class="membership-icon">
-                    <i class="fa-solid fa-crown"></i>
+                    <i class="fa-solid fa-gem"></i>
                 </div>
 
-                <h3>VVIP</h3>
+                <span class="membership-label">
+                    PREMIUM
+                </span>
 
-                <div class="membership-price">
-                    Custom
-                </div>
+                <h3>
+                    VVIP
+                </h3>
+
+                <p>
+                    A premium digital learning and support
+                    experience.
+                </p>
 
                 <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Everything in VIP
+                    </li>
 
                     <li>
                         <i class="fa-solid fa-check"></i>
@@ -1451,21 +1203,16 @@
 
                     <li>
                         <i class="fa-solid fa-check"></i>
-                        Premium resources
-                    </li>
-
-                    <li>
-                        <i class="fa-solid fa-check"></i>
-                        Business opportunities
+                        Advanced resources
                     </li>
 
                 </ul>
 
-                <a
-                    href="#payment"
-                    class="btn btn-secondary"
-                >
-                    Contact Us
+                <a href="#registration"
+                   class="btn btn-secondary">
+
+                    Join VVIP
+
                 </a>
 
             </article>
@@ -1477,14 +1224,12 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      REFERRALS
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section"
-    id="referrals"
->
+<section class="section section-alt"
+         id="referrals">
 
     <div class="container">
 
@@ -1495,15 +1240,14 @@
             </span>
 
             <h2>
-                Grow With Your
+                Grow With
                 <span class="gradient-text">
-                    Community.
+                    Jay Classic
                 </span>
             </h2>
 
             <p>
-                Invite people to Jay Classic and track your referrals
-                through your dashboard.
+                Share your referral link and track your activity.
             </p>
 
         </div>
@@ -1511,16 +1255,22 @@
 
         <div class="referral-grid">
 
-
-            <div class="referral-steps reveal">
+            <div class="referral-info reveal">
 
                 <div class="referral-step">
 
                     <span>01</span>
 
                     <div>
-                        <h3>Register</h3>
-                        <p>Create your Jay Classic account.</p>
+
+                        <h3>
+                            Register
+                        </h3>
+
+                        <p>
+                            Create your Jay Classic member profile.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1531,8 +1281,15 @@
                     <span>02</span>
 
                     <div>
-                        <h3>Get Your Link</h3>
-                        <p>Receive your personal referral link.</p>
+
+                        <h3>
+                            Get Your Link
+                        </h3>
+
+                        <p>
+                            Your referral link can be shared.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1543,20 +1300,15 @@
                     <span>03</span>
 
                     <div>
-                        <h3>Share</h3>
-                        <p>Share your link with your community.</p>
-                    </div>
 
-                </div>
+                        <h3>
+                            Invite Others
+                        </h3>
 
+                        <p>
+                            Share your link with your network.
+                        </p>
 
-                <div class="referral-step">
-
-                    <span>04</span>
-
-                    <div>
-                        <h3>Track</h3>
-                        <p>Monitor your referrals from your dashboard.</p>
                     </div>
 
                 </div>
@@ -1564,102 +1316,222 @@
             </div>
 
 
-            <div
-                class="member-area reveal"
-                id="memberArea"
-            >
+            <div class="member-dashboard-card reveal"
+                 id="memberArea">
 
-                <div class="member-area-heading">
+                <div id="dashboardLogin">
 
-                    <div>
-                        <span>YOUR REFERRAL CENTER</span>
-                        <h3>Member Dashboard</h3>
+                    <div class="dashboard-lock-icon">
+                        <i class="fa-solid fa-lock"></i>
                     </div>
 
-                    <i class="fa-solid fa-share-nodes"></i>
+                    <h3>
+                        Member Dashboard
+                    </h3>
+
+                    <p>
+                        Enter the email you used during
+                        registration to view your dashboard.
+                    </p>
+
+                    <form id="dashboardLoginForm">
+
+                        <div class="input-group">
+
+                            <label for="dashboardEmail">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="dashboardEmail"
+                                placeholder="you@example.com"
+                                required>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                            Open Dashboard
+
+                        </button>
+
+                    </form>
 
                 </div>
 
 
-                <div class="referral-progress-box">
+                <div id="dashboardContent"
+                     class="dashboard-content hidden">
 
-                    <div class="progress-heading">
+                    <div class="dashboard-profile">
 
-                        <span>
-                            Referral Progress
-                        </span>
+                        <div class="dashboard-avatar"
+                             id="dashboardAvatar">
+                            JC
+                        </div>
 
-                        <strong id="referralProgress">
-                            0%
-                        </strong>
+                        <div>
 
-                    </div>
+                            <span>
+                                Welcome back
+                            </span>
 
-                    <div class="progress">
-                        <span
-                            id="referralProgressBar"
-                            style="width:0%"
-                        ></span>
-                    </div>
+                            <h3 id="dashboardName">
+                                Member
+                            </h3>
 
-                </div>
-
-
-                <div class="referral-link-box">
-
-                    <span>Your Referral Link</span>
-
-                    <div>
-
-                        <input
-                            type="text"
-                            id="referralLink"
-                            readonly
-                            value="Register to generate your link"
-                        >
+                        </div>
 
                         <button
                             type="button"
-                            id="copyReferral"
-                            class="btn btn-primary"
-                        >
-                            <i class="fa-solid fa-copy"></i>
-                            Copy
+                            id="dashboardLogout"
+                            class="icon-button">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
                         </button>
 
                     </div>
 
-                </div>
+
+                    <div class="dashboard-stat-grid">
+
+                        <div class="dashboard-stat">
+
+                            <span>
+                                Referrals
+                            </span>
+
+                            <strong id="referralCount">
+                                0
+                            </strong>
+
+                        </div>
 
 
-                <div class="share-buttons">
+                        <div class="dashboard-stat">
 
-                    <button
-                        type="button"
-                        id="shareWhatsApp"
-                        class="share-btn"
-                    >
-                        <i class="fa-brands fa-whatsapp"></i>
-                        WhatsApp
-                    </button>
+                            <span>
+                                Applications
+                            </span>
 
-                    <button
-                        type="button"
-                        id="shareFacebook"
-                        class="share-btn"
-                    >
-                        <i class="fa-brands fa-facebook"></i>
-                        Facebook
-                    </button>
+                            <strong id="dashboardApplications">
+                                0
+                            </strong>
 
-                    <button
-                        type="button"
-                        id="nativeShare"
-                        class="share-btn"
-                    >
-                        <i class="fa-solid fa-share-nodes"></i>
-                        Share
-                    </button>
+                        </div>
+
+
+                        <div class="dashboard-stat">
+
+                            <span>
+                                Classes
+                            </span>
+
+                            <strong id="dashboardClasses">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-progress-box">
+
+                        <div class="progress-header">
+
+                            <span>
+                                Referral Progress
+                            </span>
+
+                            <strong id="referralProgressText">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <span id="referralProgress"
+                                  style="width:0%">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="referral-link-box">
+
+                        <label>
+                            Your Referral Link
+                        </label>
+
+                        <div class="copy-row">
+
+                            <input
+                                type="text"
+                                id="referralLink"
+                                readonly>
+
+                            <button
+                                type="button"
+                                id="copyReferral"
+                                class="btn btn-primary">
+
+                                <i class="fa-solid fa-copy"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-actions">
+
+                        <button
+                            type="button"
+                            id="shareWhatsApp"
+                            class="btn btn-secondary">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            WhatsApp
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="shareFacebook"
+                            class="btn btn-secondary">
+
+                            <i class="fa-brands fa-facebook"></i>
+
+                            Facebook
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="nativeShare"
+                            class="btn btn-secondary">
+
+                            <i class="fa-solid fa-share-nodes"></i>
+
+                            Share
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -1672,14 +1544,12 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      ONLINE WORK
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="jobs"
->
+<section class="section"
+         id="jobs">
 
     <div class="container">
 
@@ -1690,15 +1560,15 @@
             </span>
 
             <h2>
-                Turn Digital Skills Into
+                Digital Opportunities &
                 <span class="gradient-text">
-                    Opportunities.
+                    Programs
                 </span>
             </h2>
 
             <p>
-                Explore practical areas where digital skills can
-                be applied.
+                Explore digital platforms, tools and programs
+                that can support your online journey.
             </p>
 
         </div>
@@ -1713,14 +1583,18 @@
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
 
-                <h3>Freelance Projects</h3>
+                <h3>
+                    Freelance Projects
+                </h3>
 
                 <p>
-                    Build a portfolio and offer services online.
+                    Build skills and work on digital projects
+                    for clients.
                 </p>
 
-                <a href="#registration">
-                    Apply / Request
+                <a href="#contact">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
             </article>
@@ -1729,18 +1603,21 @@
             <article class="job-card reveal">
 
                 <div class="job-icon">
-                    <i class="fa-solid fa-palette"></i>
+                    <i class="fa-solid fa-pen-nib"></i>
                 </div>
 
-                <h3>Canva Design</h3>
+                <h3>
+                    Canva
+                </h3>
 
                 <p>
-                    Create social media posts, posters, flyers
-                    and other graphics.
+                    Learn graphic design and create professional
+                    digital content.
                 </p>
 
                 <a href="#classes">
                     Learn Canva
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
             </article>
@@ -1749,22 +1626,21 @@
             <article class="job-card reveal">
 
                 <div class="job-icon">
-                    <i class="fa-solid fa-bullhorn"></i>
+                    <i class="fa-solid fa-chart-line"></i>
                 </div>
 
-                <h3>Twiva</h3>
+                <h3>
+                    Twiva
+                </h3>
 
                 <p>
-                    Explore creator and digital marketing opportunities
-                    through social media.
+                    Explore creator and digital marketing
+                    opportunities through Twiva.
                 </p>
 
-                <a
-                    href="https://twiva.co/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Explore Twiva
+                <a href="#classes">
+                    Explore Program
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
             </article>
@@ -1776,15 +1652,18 @@
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
 
-                <h3>AI-Powered Work</h3>
+                <h3>
+                    AI-Powered Work
+                </h3>
 
                 <p>
-                    Use AI tools to improve productivity, content
-                    creation and digital services.
+                    Use AI tools to improve productivity,
+                    creativity and digital services.
                 </p>
 
                 <a href="#classes">
                     Learn AI
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
             </article>
@@ -1797,25 +1676,20 @@
             <div>
 
                 <span class="section-kicker">
-                    READY TO START?
+                    BUILD YOUR DIGITAL FUTURE
                 </span>
 
                 <h3>
-                    Turn your skills into something people can pay for.
+                    Turn your skills into useful digital services.
                 </h3>
-
-                <p>
-                    Register and start building your digital profile.
-                </p>
 
             </div>
 
-            <a
-                href="#registration"
-                class="btn btn-primary"
-            >
+            <a href="#registration"
+               class="btn btn-primary">
+
                 Start Now
-                <i class="fa-solid fa-arrow-right"></i>
+
             </a>
 
         </div>
@@ -1825,14 +1699,12 @@
 </section>
 
 
-<!-- =====================================================
-     REGISTRATION / APPLICATION
-===================================================== -->
+<!-- =========================================================
+     REGISTRATION
+========================================================= -->
 
-<section
-    class="section"
-    id="registration"
->
+<section class="section section-alt"
+         id="registration">
 
     <div class="container">
 
@@ -1845,13 +1717,12 @@
             <h2>
                 Create Your
                 <span class="gradient-text">
-                    Digital Profile.
+                    Member Profile
                 </span>
             </h2>
 
             <p>
-                Register once and use your profile to access
-                Jay Classic services and opportunities.
+                Register to access the Jay Classic digital platform.
             </p>
 
         </div>
@@ -1859,12 +1730,11 @@
 
         <div class="form-panel reveal">
 
-            <form
-                id="registrationForm"
-                class="form-grid"
-            >
+            <form id="registrationForm"
+                  class="form-grid">
 
-                <div class="form-group">
+
+                <div class="input-group">
 
                     <label for="regName">
                         Full Name
@@ -1873,14 +1743,13 @@
                     <input
                         type="text"
                         id="regName"
-                        required
                         placeholder="Your full name"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="regEmail">
                         Email Address
@@ -1889,14 +1758,13 @@
                     <input
                         type="email"
                         id="regEmail"
-                        required
                         placeholder="you@example.com"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="regPhone">
                         Phone Number
@@ -1905,83 +1773,35 @@
                     <input
                         type="tel"
                         id="regPhone"
-                        required
                         placeholder="07XXXXXXXX"
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="regSkill">
                         Main Skill
                     </label>
 
-                    <select
-                        id="regSkill"
-                        required
-                    >
+                    <select id="regSkill"
+                            required>
 
                         <option value="">
                             Select your skill
                         </option>
 
-                        <option>Freelancing</option>
-                        <option>Graphic Design</option>
-                        <option>Web Development</option>
-                        <option>Digital Marketing</option>
-                        <option>AI Tools</option>
-                        <option>Canva</option>
-                        <option>Online Work</option>
-                        <option>Other</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="regReferral">
-                        Referral Code
-                    </label>
-
-                    <input
-                        type="text"
-                        id="regReferral"
-                        placeholder="Optional"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="regService">
-                        What do you need?
-                    </label>
-
-                    <select id="regService">
-
-                        <option value="">
-                            Select an option
+                        <option>
+                            Freelancing
                         </option>
 
                         <option>
-                            Learn Digital Skills
+                            Graphic Design
                         </option>
 
                         <option>
-                            Find Online Work
-                        </option>
-
-                        <option>
-                            Graphic Design Service
-                        </option>
-
-                        <option>
-                            Website Development
+                            Web Development
                         </option>
 
                         <option>
@@ -1989,7 +1809,11 @@
                         </option>
 
                         <option>
-                            AI Support
+                            AI Tools
+                        </option>
+
+                        <option>
+                            Online Work
                         </option>
 
                     </select>
@@ -1997,53 +1821,60 @@
                 </div>
 
 
-                <div class="form-group full-width">
+                <div class="input-group">
+
+                    <label for="referralCode">
+                        Referral Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="referralCode"
+                        placeholder="Optional">
+
+                </div>
+
+
+                <div class="input-group">
 
                     <label for="regMessage">
-                        Message
+                        What do you want to learn?
                     </label>
 
                     <textarea
                         id="regMessage"
-                        rows="5"
-                        placeholder="Tell us what you would like help with..."
-                    ></textarea>
+                        rows="4"
+                        placeholder="Tell us what you want to learn...">
+                    </textarea>
 
                 </div>
 
 
-                <div class="form-group full-width checkbox-group">
+                <div class="checkbox-group">
 
-                    <label>
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required>
 
-                        <input
-                            type="checkbox"
-                            id="regTerms"
-                            required
-                        >
-
-                        <span>
-                            I agree to provide accurate information
-                            and receive Jay Classic updates.
-                        </span>
-
+                    <label for="terms">
+                        I agree to provide accurate information
+                        and use the platform responsibly.
                     </label>
 
                 </div>
 
 
-                <div class="form-group full-width">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="registrationSubmitBtn">
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                        id="registrationSubmitBtn"
-                    >
-                        <i class="fa-solid fa-user-plus"></i>
-                        Create My Profile
-                    </button>
+                    <i class="fa-solid fa-user-plus"></i>
 
-                </div>
+                    Create My Account
+
+                </button>
 
             </form>
 
@@ -2054,14 +1885,100 @@
 </section>
 
 
-<!-- =====================================================
-     PAYMENT
-===================================================== -->
+<!-- =========================================================
+     APPLICATION TRACKING
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="payment"
->
+<section class="section"
+         id="tracking">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <span class="section-kicker">
+                APPLICATION CENTER
+            </span>
+
+            <h2>
+                Track Your
+                <span class="gradient-text">
+                    Applications
+                </span>
+            </h2>
+
+            <p>
+                Check the progress of your registrations and
+                service requests.
+            </p>
+
+        </div>
+
+
+        <div class="tracking-panel reveal">
+
+            <div class="tracking-search">
+
+                <div class="input-group">
+
+                    <label for="trackingEmail">
+                        Enter your registered email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="trackingEmail"
+                        placeholder="you@example.com">
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="trackApplicationBtn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Track
+
+                </button>
+
+            </div>
+
+
+            <div id="trackingResults"
+                 class="tracking-results">
+
+                <div class="empty-state">
+
+                    <i class="fa-solid fa-file-circle-question"></i>
+
+                    <h3>
+                        No application loaded
+                    </h3>
+
+                    <p>
+                        Enter your email above to check your
+                        application activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PAYMENT
+========================================================= -->
+
+<section class="section section-alt"
+         id="payment">
 
     <div class="container">
 
@@ -2072,14 +1989,14 @@
             </span>
 
             <h2>
-                Secure Payment
+                Membership
                 <span class="gradient-text">
-                    Verification.
+                    Payment
                 </span>
             </h2>
 
             <p>
-                Submit your M-Pesa transaction details for verification.
+                Submit your payment details for verification.
             </p>
 
         </div>
@@ -2087,58 +2004,83 @@
 
         <div class="payment-grid">
 
-
             <div class="payment-info reveal">
 
-                <div class="payment-icon">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
+                <div class="payment-method">
+
+                    <div class="payment-icon">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            M-Pesa Number
+                        </span>
+
+                        <strong>
+                            0142617814
+                        </strong>
+
+                    </div>
+
                 </div>
 
-                <h3>
-                    M-Pesa
-                </h3>
 
-                <p>
-                    Send your payment using the number below.
-                </p>
+                <div class="payment-steps">
 
+                    <div>
 
-                <div class="mpesa-number">
-                    0142617814
+                        <span>1</span>
+
+                        <p>
+                            Select your membership plan.
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <span>2</span>
+
+                        <p>
+                            Complete your M-Pesa payment.
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <span>3</span>
+
+                        <p>
+                            Enter the transaction code below.
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <span>4</span>
+
+                        <p>
+                            Submit for verification.
+                        </p>
+
+                    </div>
+
                 </div>
-
-
-                <ol>
-
-                    <li>
-                        Open M-Pesa.
-                    </li>
-
-                    <li>
-                        Complete the payment.
-                    </li>
-
-                    <li>
-                        Save your transaction code.
-                    </li>
-
-                    <li>
-                        Submit it through this form.
-                    </li>
-
-                </ol>
 
             </div>
 
 
             <div class="form-panel reveal">
 
-                <form
-                    id="paymentForm"
-                    class="form-grid"
-                >
+                <form id="paymentForm"
+                      class="form-grid">
 
-                    <div class="form-group">
+
+                    <div class="input-group">
 
                         <label for="paymentName">
                             Full Name
@@ -2147,13 +2089,12 @@
                         <input
                             type="text"
                             id="paymentName"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="input-group">
 
                         <label for="paymentEmail">
                             Email
@@ -2162,13 +2103,12 @@
                         <input
                             type="email"
                             id="paymentEmail"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="input-group">
 
                         <label for="paymentPhone">
                             Phone
@@ -2177,25 +2117,26 @@
                         <input
                             type="tel"
                             id="paymentPhone"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="input-group">
 
                         <label for="paymentPlan">
-                            Plan
+                            Membership Plan
                         </label>
 
-                        <select
-                            id="paymentPlan"
-                            required
-                        >
+                        <select id="paymentPlan"
+                                required>
 
                             <option value="">
                                 Select plan
+                            </option>
+
+                            <option>
+                                Regular
                             </option>
 
                             <option>
@@ -2206,16 +2147,12 @@
                                 VVIP
                             </option>
 
-                            <option>
-                                Other
-                            </option>
-
                         </select>
 
                     </div>
 
 
-                    <div class="form-group full-width">
+                    <div class="input-group">
 
                         <label for="transactionCode">
                             M-Pesa Transaction Code
@@ -2224,25 +2161,22 @@
                         <input
                             type="text"
                             id="transactionCode"
-                            required
-                            placeholder="e.g. QWE123ABC"
-                        >
+                            placeholder="e.g. ABC123XYZ"
+                            required>
 
                     </div>
 
 
-                    <div class="form-group full-width">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="paymentSubmitBtn">
 
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                            id="paymentSubmitBtn"
-                        >
-                            <i class="fa-solid fa-shield-check"></i>
-                            Submit Verification
-                        </button>
+                        <i class="fa-solid fa-paper-plane"></i>
 
-                    </div>
+                        Submit Payment
+
+                    </button>
 
                 </form>
 
@@ -2255,14 +2189,12 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      REVIEWS
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section"
-    id="reviews"
->
+<section class="section"
+         id="reviews">
 
     <div class="container">
 
@@ -2273,9 +2205,9 @@
             </span>
 
             <h2>
-                What People
+                What Members
                 <span class="gradient-text">
-                    Say.
+                    Say
                 </span>
             </h2>
 
@@ -2294,28 +2226,13 @@
                     0.0
                 </strong>
 
-                <div
-                    id="averageStars"
-                    class="stars"
-                >
+                <div id="averageStars"
+                     class="stars">
                     ☆☆☆☆☆
                 </div>
 
-                <span>
-                    Average Rating
-                </span>
-
-            </div>
-
-
-            <div>
-
-                <strong id="reviewCount">
-                    0
-                </strong>
-
-                <span>
-                    Community Reviews
+                <span id="reviewCount">
+                    0 reviews
                 </span>
 
             </div>
@@ -2323,74 +2240,85 @@
         </div>
 
 
-        <div
-            id="reviewsContainer"
-            class="reviews-grid"
-        >
+        <div id="reviewsContainer"
+             class="reviews-grid">
 
             <div class="empty-state">
-                <i class="fa-solid fa-comments"></i>
-                <p>No reviews yet. Be the first to share your experience.</p>
+
+                <i class="fa-regular fa-star"></i>
+
+                <p>
+                    Loading reviews...
+                </p>
+
             </div>
 
         </div>
 
 
-        <div class="form-panel reveal">
+        <div class="form-panel review-form-panel reveal">
 
-            <form
-                id="reviewForm"
-                class="form-grid"
-            >
+            <div class="form-panel-heading">
 
-                <div class="form-group">
+                <span class="section-kicker">
+                    LEAVE A REVIEW
+                </span>
+
+                <h3>
+                    Share Your Experience
+                </h3>
+
+            </div>
+
+
+            <form id="reviewForm"
+                  class="form-grid">
+
+                <div class="input-group">
 
                     <label for="reviewName">
-                        Your Name
+                        Name
                     </label>
 
                     <input
                         type="text"
                         id="reviewName"
-                        required
-                    >
+                        required>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="input-group">
 
                     <label for="reviewRating">
                         Rating
                     </label>
 
-                    <select
-                        id="reviewRating"
-                        required
-                    >
+                    <select id="reviewRating"
+                            required>
 
                         <option value="">
                             Select rating
                         </option>
 
                         <option value="5">
-                            5 Stars
+                            5 - Excellent
                         </option>
 
                         <option value="4">
-                            4 Stars
+                            4 - Very Good
                         </option>
 
                         <option value="3">
-                            3 Stars
+                            3 - Good
                         </option>
 
                         <option value="2">
-                            2 Stars
+                            2 - Fair
                         </option>
 
                         <option value="1">
-                            1 Star
+                            1 - Poor
                         </option>
 
                     </select>
@@ -2398,34 +2326,32 @@
                 </div>
 
 
-                <div class="form-group full-width">
+                <div class="input-group">
 
                     <label for="reviewMessage">
-                        Your Review
+                        Comment
                     </label>
 
                     <textarea
                         id="reviewMessage"
-                        rows="5"
+                        rows="4"
                         required
-                        placeholder="Tell us about your experience..."
-                    ></textarea>
+                        placeholder="Write your review...">
+                    </textarea>
 
                 </div>
 
 
-                <div class="form-group full-width">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="reviewSubmitBtn">
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                        id="reviewSubmitBtn"
-                    >
-                        <i class="fa-solid fa-star"></i>
-                        Submit Review
-                    </button>
+                    <i class="fa-solid fa-star"></i>
 
-                </div>
+                    Submit Review
+
+                </button>
 
             </form>
 
@@ -2436,46 +2362,49 @@
 </section>
 
 
-<!-- =====================================================
-     FAQ
-===================================================== -->
+<!-- =========================================================
+     FAQ / INSTANT ANSWERS
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="faq"
->
+<section class="section section-alt"
+         id="faq">
 
     <div class="container">
 
         <div class="section-heading reveal">
 
             <span class="section-kicker">
-                FAQ
+                INSTANT HELP
             </span>
 
             <h2>
-                Frequently Asked
+                Get Answers
                 <span class="gradient-text">
-                    Questions.
+                    Instantly
                 </span>
             </h2>
+
+            <p>
+                Find quick answers about registration, classes,
+                payments and online work.
+            </p>
 
         </div>
 
 
-        <div class="faq-list">
-
+        <div class="faq-grid">
 
             <details class="faq-item reveal">
 
                 <summary>
-                    What time are the online classes?
+                    How do I register?
                     <i class="fa-solid fa-chevron-down"></i>
                 </summary>
 
                 <p>
-                    Jay Classic online classes are scheduled daily
-                    at 9:00 PM.
+                    Go to the registration section, enter your
+                    details and submit the form. You will receive
+                    an instant confirmation on this website.
                 </p>
 
             </details>
@@ -2484,13 +2413,28 @@
             <details class="faq-item reveal">
 
                 <summary>
-                    How do I join the Zoom class?
+                    When are the classes?
                     <i class="fa-solid fa-chevron-down"></i>
                 </summary>
 
                 <p>
-                    Register for the class and use the Join Zoom Class
-                    button when the session is available.
+                    Jay Classic online classes are scheduled
+                    daily at 9:00 PM.
+                </p>
+
+            </details>
+
+
+            <details class="faq-item reveal">
+
+                <summary>
+                    How do I join Zoom?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </summary>
+
+                <p>
+                    Register for the class first, then use the
+                    Join Zoom Class button when the class is live.
                 </p>
 
             </details>
@@ -2504,8 +2448,8 @@
                 </summary>
 
                 <p>
-                    The classes are currently presented as free
-                    online learning sessions.
+                    The daily online learning sessions are
+                    currently presented as free classes.
                 </p>
 
             </details>
@@ -2514,13 +2458,13 @@
             <details class="faq-item reveal">
 
                 <summary>
-                    Can I request a website?
+                    How can I contact Jay Classic?
                     <i class="fa-solid fa-chevron-down"></i>
                 </summary>
 
                 <p>
-                    Yes. Use the registration form and select
-                    Website Development.
+                    You can use the contact form, email or
+                    WhatsApp contact provided below.
                 </p>
 
             </details>
@@ -2529,13 +2473,13 @@
             <details class="faq-item reveal">
 
                 <summary>
-                    Can I track my application?
+                    How can I track my application?
                     <i class="fa-solid fa-chevron-down"></i>
                 </summary>
 
                 <p>
-                    Yes. Use the Client Dashboard with the email
-                    used during registration.
+                    Enter the email used during registration
+                    in the Application Center.
                 </p>
 
             </details>
@@ -2547,109 +2491,111 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      ABOUT
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section"
-    id="about"
->
+<section class="section"
+         id="about">
 
-    <div class="container about-grid">
+    <div class="container">
 
-        <div class="about-content reveal">
+        <div class="about-grid">
 
-            <span class="section-kicker">
-                ABOUT JAY CLASSIC
-            </span>
+            <div class="about-content reveal">
 
-            <h2>
-                A Digital Platform
-                <span class="gradient-text">
-                    Built For Growth.
+                <span class="section-kicker">
+                    ABOUT JAY CLASSIC
                 </span>
-            </h2>
 
-            <p>
-                Jay Classic focuses on digital skills, online work,
-                freelancing, technology and practical learning.
-            </p>
+                <h2>
+                    Building a
+                    <span class="gradient-text">
+                        Digital Future
+                    </span>
+                </h2>
 
-            <p>
-                The goal is to help people discover digital
-                opportunities and develop useful skills for the
-                modern online economy.
-            </p>
+                <p>
+                    Jay Classic is a digital platform focused on
+                    helping people understand digital skills,
+                    online work, freelancing and modern technology.
+                </p>
 
-            <div class="about-points">
+                <p>
+                    The platform combines learning, digital
+                    services, community interaction and online
+                    opportunities in one place.
+                </p>
 
-                <div>
-                    <i class="fa-solid fa-check-circle"></i>
-                    Practical learning
-                </div>
+                <a href="#registration"
+                   class="btn btn-primary">
 
-                <div>
-                    <i class="fa-solid fa-check-circle"></i>
-                    Digital opportunities
-                </div>
+                    Join the Platform
 
-                <div>
-                    <i class="fa-solid fa-check-circle"></i>
-                    Community growth
-                </div>
-
-                <div>
-                    <i class="fa-solid fa-check-circle"></i>
-                    Technology focused
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="about-card reveal">
-
-            <div class="about-card-top">
-
-                <span>JAY CLASSIC</span>
-
-                <i class="fa-solid fa-bolt"></i>
+                </a>
 
             </div>
 
 
-            <div class="about-number">
-                24/7
-            </div>
-
-            <p>
-                Digital resources and opportunities.
-            </p>
-
-
-            <div class="about-bars">
+            <div class="about-highlights reveal">
 
                 <div>
-                    <span>Learning</span>
-                    <div class="progress">
-                        <span style="width:90%"></span>
-                    </div>
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <h3>
+                        Practical
+                    </h3>
+
+                    <p>
+                        Focused on usable digital skills.
+                    </p>
+
                 </div>
 
-                <div>
-                    <span>Technology</span>
-                    <div class="progress">
-                        <span style="width:95%"></span>
-                    </div>
-                </div>
 
                 <div>
-                    <span>Community</span>
-                    <div class="progress">
-                        <span style="width:82%"></span>
-                    </div>
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h3>
+                        Community
+                    </h3>
+
+                    <p>
+                        Learn and connect with others.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h3>
+                        Growth
+                    </h3>
+
+                    <p>
+                        Develop your digital capabilities.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <h3>
+                        Professional
+                    </h3>
+
+                    <p>
+                        Built around a professional experience.
+                    </p>
+
                 </div>
 
             </div>
@@ -2661,14 +2607,12 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      CONTACT
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section section-alt"
-    id="contact"
->
+<section class="section section-alt"
+         id="contact">
 
     <div class="container">
 
@@ -2681,12 +2625,12 @@
             <h2>
                 Let's
                 <span class="gradient-text">
-                    Connect.
+                    Connect
                 </span>
             </h2>
 
             <p>
-                Have a question, project or digital-work idea?
+                Have a question, project or learning request?
                 Contact Jay Classic.
             </p>
 
@@ -2699,41 +2643,51 @@
             <div class="contact-info reveal">
 
 
-                <a
-                    href="mailto:emmanuelouko21@gmail.com"
-                    class="contact-item"
-                >
+                <a href="mailto:emmanuelouko21@gmail.com"
+                   class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fa-solid fa-envelope"></i>
+
                     </div>
 
                     <div>
-                        <span>Email</span>
+
+                        <span>
+                            Email
+                        </span>
+
                         <strong>
                             emmanuelouko21@gmail.com
                         </strong>
+
                     </div>
 
                 </a>
 
 
-                <a
-                    href="https://wa.me/254142617814"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="contact-item"
-                >
+                <a href="https://wa.me/254142617814"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fa-brands fa-whatsapp"></i>
+
                     </div>
 
                     <div>
-                        <span>WhatsApp</span>
+
+                        <span>
+                            WhatsApp
+                        </span>
+
                         <strong>
                             +254 142 617 814
                         </strong>
+
                     </div>
 
                 </a>
@@ -2742,14 +2696,21 @@
                 <div class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fa-solid fa-mobile-screen"></i>
+
                     </div>
 
                     <div>
-                        <span>M-Pesa</span>
+
+                        <span>
+                            M-Pesa
+                        </span>
+
                         <strong>
                             0142617814
                         </strong>
+
                     </div>
 
                 </div>
@@ -2758,14 +2719,21 @@
                 <div class="contact-item">
 
                     <div class="contact-icon">
-                        <i class="fa-solid fa-video"></i>
+
+                        <i class="fa-solid fa-clock"></i>
+
                     </div>
 
                     <div>
-                        <span>Online Classes</span>
+
+                        <span>
+                            Daily Classes
+                        </span>
+
                         <strong>
-                            Daily at 9:00 PM
+                            9:00 PM
                         </strong>
+
                     </div>
 
                 </div>
@@ -2776,12 +2744,11 @@
 
             <div class="form-panel reveal">
 
-                <form
-                    id="contactForm"
-                    class="form-grid"
-                >
+                <form id="contactForm"
+                      class="form-grid">
 
-                    <div class="form-group">
+
+                    <div class="input-group">
 
                         <label for="contactName">
                             Name
@@ -2790,13 +2757,12 @@
                         <input
                             type="text"
                             id="contactName"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="input-group">
 
                         <label for="contactEmail">
                             Email
@@ -2805,13 +2771,12 @@
                         <input
                             type="email"
                             id="contactEmail"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group full-width">
+                    <div class="input-group">
 
                         <label for="contactSubject">
                             Subject
@@ -2820,13 +2785,12 @@
                         <input
                             type="text"
                             id="contactSubject"
-                            required
-                        >
+                            required>
 
                     </div>
 
 
-                    <div class="form-group full-width">
+                    <div class="input-group">
 
                         <label for="contactMessage">
                             Message
@@ -2835,23 +2799,21 @@
                         <textarea
                             id="contactMessage"
                             rows="6"
-                            required
-                        ></textarea>
+                            required>
+                        </textarea>
 
                     </div>
 
 
-                    <div class="form-group full-width">
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
 
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                        >
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Send Message
-                        </button>
+                        <i class="fa-solid fa-paper-plane"></i>
 
-                    </div>
+                        Send Message
+
+                    </button>
 
                 </form>
 
@@ -2864,89 +2826,102 @@
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      SOCIAL
-===================================================== -->
+========================================================= -->
 
-<section
-    class="section social-section"
-    id="social"
->
+<section class="section social-section"
+         id="social">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="section-heading reveal">
 
             <span class="section-kicker">
-                CONNECT
+                SOCIAL MEDIA
             </span>
 
             <h2>
-                Follow Jay Classic
+                Follow
+                <span class="gradient-text">
+                    Jay Classic
+                </span>
             </h2>
-
-            <p>
-                Stay connected for updates, classes and digital content.
-            </p>
 
         </div>
 
 
-        <div class="social-grid">
+        <div class="social-grid reveal">
 
 
-            <a
-                href="https://www.facebook.com/profile.php?id=61568719246626"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-            >
+            <a href="https://www.facebook.com/profile.php?id=61568719246626"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-card facebook">
 
                 <i class="fa-brands fa-facebook"></i>
 
-                <span>Facebook</span>
+                <span>
+                    Facebook
+                </span>
+
+                <small>
+                    Jay Ouko Emmanuel
+                </small>
 
             </a>
 
 
-            <a
-                href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-            >
+            <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-card instagram">
 
                 <i class="fa-brands fa-instagram"></i>
 
-                <span>Instagram</span>
+                <span>
+                    Instagram
+                </span>
+
+                <small>
+                    @emmanueljayouko
+                </small>
 
             </a>
 
 
-            <a
-                href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-            >
+            <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-card youtube">
 
                 <i class="fa-brands fa-youtube"></i>
 
-                <span>YouTube</span>
+                <span>
+                    YouTube
+                </span>
+
+                <small>
+                    Ouko Emmanuel
+                </small>
 
             </a>
 
 
-            <a
-                href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-            >
+            <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-card tiktok">
 
                 <i class="fa-brands fa-tiktok"></i>
 
-                <span>TikTok</span>
+                <span>
+                    TikTok
+                </span>
+
+                <small>
+                    Jay Classic
+                </small>
 
             </a>
 
@@ -2957,65 +2932,484 @@
 </section>
 
 
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<section class="section section-alt"
+         id="dashboard">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <span class="section-kicker">
+                MEMBER CENTER
+            </span>
+
+            <h2>
+                Your
+                <span class="gradient-text">
+                    Digital Dashboard
+                </span>
+            </h2>
+
+            <p>
+                View your activity, classes, applications and
+                membership information.
+            </p>
+
+        </div>
+
+
+        <div class="full-dashboard reveal">
+
+
+            <div class="full-dashboard-header">
+
+                <div>
+
+                    <span>
+                        MEMBER DASHBOARD
+                    </span>
+
+                    <h3 id="fullDashboardName">
+                        Welcome, Member
+                    </h3>
+
+                </div>
+
+                <div class="dashboard-status">
+
+                    <span class="status-dot"></span>
+
+                    Active Platform
+
+                </div>
+
+            </div>
+
+
+            <div class="full-dashboard-grid">
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-icon">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </div>
+
+                    <span>
+                        Applications
+                    </span>
+
+                    <strong id="fullApplications">
+                        0
+                    </strong>
+
+                    <small>
+                        Track your requests
+                    </small>
+
+                </div>
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <span>
+                        Classes
+                    </span>
+
+                    <strong id="fullClasses">
+                        0
+                    </strong>
+
+                    <small>
+                        Registered classes
+                    </small>
+
+                </div>
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <span>
+                        Referrals
+                    </span>
+
+                    <strong id="fullReferrals">
+                        0
+                    </strong>
+
+                    <small>
+                        People referred
+                    </small>
+
+                </div>
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-icon">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+
+                    <span>
+                        Membership
+                    </span>
+
+                    <strong id="fullMembership">
+                        Regular
+                    </strong>
+
+                    <small>
+                        Current plan
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity-panel">
+
+                <div class="activity-header">
+
+                    <h3>
+                        Recent Activity
+                    </h3>
+
+                    <span>
+                        Live
+                    </span>
+
+                </div>
+
+
+                <div id="activityTimeline"
+                     class="activity-timeline">
+
+                    <div class="activity-item">
+
+                        <span class="activity-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Welcome to Jay Classic
+                            </strong>
+
+                            <p>
+                                Your dashboard is ready.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 </main>
 
 
-<!-- =====================================================
-     FLOATING WHATSAPP
-===================================================== -->
+<!-- =========================================================
+     WHATSAPP FLOAT
+========================================================= -->
 
-<a
-    href="https://wa.me/254142617814?text=Hello%20Jay%20Classic%2C%20I%20would%20like%20to%20know%20more."
-    target="_blank"
-    rel="noopener noreferrer"
-    class="whatsapp-float"
-    aria-label="Contact Jay Classic on WhatsApp"
->
+<a href="https://wa.me/254142617814?text=Hello%20Jay%20Classic%2C%20I%20would%20like%20to%20know%20more."
+   target="_blank"
+   rel="noopener noreferrer"
+   class="whatsapp-float"
+   aria-label="Contact Jay Classic on WhatsApp">
+
     <i class="fa-brands fa-whatsapp"></i>
+
 </a>
 
 
-<!-- =====================================================
+<!-- =========================================================
      BACK TO TOP
-===================================================== -->
+========================================================= -->
 
 <button
     type="button"
     id="backToTop"
     class="back-to-top"
-    aria-label="Back to top"
->
+    aria-label="Back to top">
+
     <i class="fa-solid fa-arrow-up"></i>
+
 </button>
 
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<!-- =========================================================
+     QUICK HELP
+========================================================= -->
 
-<div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
-    aria-atomic="true"
->
-    <i class="fa-solid fa-circle-check"></i>
+<button
+    type="button"
+    id="quickHelpButton"
+    class="quick-help-button"
+    aria-label="Open quick help">
 
-    <span id="toastMessage">
-        Success
-    </span>
+    <i class="fa-solid fa-headset"></i>
+
+</button>
+
+
+<div id="quickHelpPanel"
+     class="quick-help-panel">
+
+    <div class="quick-help-header">
+
+        <div>
+
+            <span>
+                JAY CLASSIC ASSISTANT
+            </span>
+
+            <h3>
+                How can I help?
+            </h3>
+
+        </div>
+
+        <button
+            type="button"
+            id="closeQuickHelp"
+            class="icon-button">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="quick-help-options">
+
+        <button data-help="registration">
+            <i class="fa-solid fa-user-plus"></i>
+            Registration
+        </button>
+
+        <button data-help="classes">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Classes
+        </button>
+
+        <button data-help="zoom">
+            <i class="fa-solid fa-video"></i>
+            Zoom
+        </button>
+
+        <button data-help="payment">
+            <i class="fa-solid fa-money-bill"></i>
+            Payment
+        </button>
+
+        <button data-help="tracking">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Application Tracking
+        </button>
+
+        <button data-help="contact">
+            <i class="fa-solid fa-envelope"></i>
+            Contact
+        </button>
+
+    </div>
+
+
+    <div id="quickHelpAnswer"
+         class="quick-help-answer">
+
+        Select a question above.
+
+    </div>
+
 </div>
 
 
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast"
+     id="toast"
+     role="status"
+     aria-live="polite"
+     aria-atomic="true">
+
+    <div class="toast-icon">
+
+        <i class="fa-solid fa-check"></i>
+
+    </div>
+
+    <div>
+
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+        <p id="toastMessage">
+            Your action was completed.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a href="#home"
+                   class="logo">
+
+                    <span class="logo-mark">
+                        JC
+                    </span>
+
+                    <span class="logo-text">
+                        Jay <strong>Classic</strong>
+                    </span>
+
+                </a>
+
+                <p>
+                    Digital skills, online work,
+                    freelancing and technology.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Platform
+                </h4>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#classes">
+                    Classes
+                </a>
+
+                <a href="#membership">
+                    Membership
+                </a>
+
+                <a href="#dashboard">
+                    Dashboard
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Support
+                </h4>
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
+                <a href="#tracking">
+                    Track Application
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <a href="#reviews">
+                    Reviews
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Connect
+                </h4>
+
+                <a href="mailto:emmanuelouko21@gmail.com">
+                    Email
+                </a>
+
+                <a href="https://wa.me/254142617814"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    WhatsApp
+                </a>
+
+                <a href="#social">
+                    Social Media
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © <span id="currentYear"></span>
+                Jay Classic. All rights reserved.
+            </p>
+
+            <p>
+                Built for digital growth.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<!-- Website JavaScript -->
 
 <script src="app.js"></script>
 
