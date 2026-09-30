@@ -1,203 +1,396 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <!-- =========================
+         BASIC INFORMATION
+    ========================== -->
+
     <meta charset="UTF-8">
 
-    <!-- Mobile responsiveness -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Jay Classic App - Freelancing, graphic design, web development, digital marketing, AI tools, online classes and digital services by Jay Ouko.">
+          content="Jay Classic by Jay Ouko — Freelancing, Web Development, Graphic Design, Digital Marketing, AI Tools and Online Digital Services.">
 
     <meta name="keywords"
-        content="Jay Classic, Jay Ouko, freelancing Kenya, graphic design, web development, digital marketing, AI tools, Canva, Twiva">
+          content="Jay Classic, Jay Ouko, freelancing Kenya, web development, graphic design, digital marketing, AI tools, Canva, Twiva, online jobs">
 
-    <meta name="author" content="Jay Ouko">
+    <meta name="author"
+          content="Jay Ouko">
 
-    <title>Jay Classic | Freelancing & Digital Services</title>
+    <meta name="theme-color"
+          content="#111111">
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Jay Classic | Digital Services & Freelancing
+    </title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
+    <!-- =========================
+         GOOGLE FONT
+    ========================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =========================
+         MAIN CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         HEADER / NAVIGATION
-    ========================== -->
-    <header class="header" id="home">
 
-        <div class="container nav-container">
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-            <a href="#home" class="logo">
-                <span>JAY</span> CLASSIC
+<header class="header"
+        id="siteHeader">
+
+    <div class="container nav-container">
+
+
+        <!-- LOGO -->
+
+        <a href="#home"
+           class="logo"
+           aria-label="Jay Classic Home">
+
+            <span>JAY</span> CLASSIC
+
+        </a>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navbar"
+             id="navbar"
+             aria-label="Main navigation">
+
+
+            <a href="#home"
+               class="nav-link active">
+                Home
             </a>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
-                <i class="fas fa-bars"></i>
+
+            <a href="#about"
+               class="nav-link">
+                About
+            </a>
+
+
+            <a href="#services"
+               class="nav-link">
+                Services
+            </a>
+
+
+            <a href="#portfolio"
+               class="nav-link">
+                Portfolio
+            </a>
+
+
+            <a href="#programs"
+               class="nav-link">
+                Programs
+            </a>
+
+
+            <a href="#classes"
+               class="nav-link">
+                Classes
+            </a>
+
+
+            <a href="#reviews"
+               class="nav-link">
+                Reviews
+            </a>
+
+
+            <a href="#contact"
+               class="nav-link">
+                Contact
+            </a>
+
+
+            <!-- DARK MODE -->
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch to dark mode">
+
+                <i class="fas fa-moon"></i>
+
             </button>
 
-            <nav class="navbar" id="navbar">
+        </nav>
 
-                <a href="#home" class="nav-link active">Home</a>
+    </div>
 
-                <a href="#about" class="nav-link">About</a>
+</header>
 
-                <a href="#services" class="nav-link">Services</a>
 
-                <a href="#programs" class="nav-link">Programs</a>
 
-                <a href="#classes" class="nav-link">Classes</a>
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
 
-                <a href="#reviews" class="nav-link">Reviews</a>
+<main>
 
-                <a href="#contact" class="nav-link">Contact</a>
 
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-            </nav>
+<section class="hero"
+         id="home">
+
+    <div class="container hero-container">
+
+
+        <!-- HERO TEXT -->
+
+        <div class="hero-content">
+
+
+            <span class="hero-badge">
+
+                <i class="fas fa-circle"></i>
+
+                Available for Online Work
+
+            </span>
+
+
+            <h1>
+
+                Build Your
+                <span>Digital Future.</span>
+
+            </h1>
+
+
+            <h2>
+
+                Freelancing • Design • Web • Marketing • AI
+
+            </h2>
+
+
+            <p>
+
+                Welcome to <strong>Jay Classic</strong>.
+
+                I'm <strong>Jay Ouko</strong>, a digital creator
+                focused on freelancing, web development,
+                graphic design, digital marketing and
+                modern AI-powered tools.
+
+            </p>
+
+
+            <!-- HERO BUTTONS -->
+
+            <div class="hero-buttons">
+
+
+                <a href="#services"
+                   class="btn btn-primary">
+
+                    <i class="fas fa-briefcase"></i>
+
+                    Explore Services
+
+                </a>
+
+
+                <a href="#contact"
+                   class="btn btn-secondary">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Work With Me
+
+                </a>
+
+            </div>
+
+
+            <!-- SOCIAL MEDIA -->
+
+            <div class="hero-socials">
+
+
+                <a href="https://www.facebook.com/profile.php?id=61568719246626"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Facebook">
+
+                    <i class="fab fa-facebook-f"></i>
+
+                </a>
+
+
+                <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Instagram">
+
+                    <i class="fab fa-instagram"></i>
+
+                </a>
+
+
+                <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="YouTube">
+
+                    <i class="fab fa-youtube"></i>
+
+                </a>
+
+
+                <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="TikTok">
+
+                    <i class="fab fa-tiktok"></i>
+
+                </a>
+
+            </div>
 
         </div>
 
-    </header>
 
 
-    <!-- =========================
-         HERO SECTION
-    ========================== -->
-    <main>
+        <!-- HERO DIGITAL CARD -->
 
-        <section class="hero">
+        <div class="hero-card">
 
-            <div class="container hero-container">
+            <div class="hero-card-inner">
 
-                <div class="hero-content">
 
-                    <span class="hero-badge">
-                        <i class="fas fa-circle"></i>
-                        Available for Online Work
-                    </span>
+                <div class="hero-icon">
 
-                    <h1>
-                        Welcome to
-                        <span>Jay Classic</span>
-                    </h1>
-
-                    <h2>
-                        Freelancing & Digital Services
-                    </h2>
-
-                    <p>
-                        I’m <strong>Jay Ouko</strong>, a young digital creator helping
-                        individuals and businesses grow through freelancing,
-                        graphic design, web development, digital marketing,
-                        Canva and AI-powered tools.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#services" class="btn btn-primary">
-                            <i class="fas fa-briefcase"></i>
-                            Explore Services
-                        </a>
-
-                        <a href="#contact" class="btn btn-secondary">
-                            <i class="fas fa-paper-plane"></i>
-                            Hire Me
-                        </a>
-
-                    </div>
-
-                    <div class="hero-socials">
-
-                        <a href="https://www.facebook.com/profile.php?id=61568719246626"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-
-                        <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-
-                        <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-
-                        <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="TikTok">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-
-                    </div>
+                    <i class="fas fa-laptop-code"></i>
 
                 </div>
 
 
-                <div class="hero-card">
+                <span class="section-label">
 
-                    <div class="hero-card-inner">
+                    JAY CLASSIC
 
-                        <div class="hero-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
+                </span>
 
-                        <h3>Digital Skills</h3>
 
-                        <p>
-                            Creative solutions for the digital world.
-                        </p>
+                <h3>
 
-                        <div class="skill-list">
+                    Digital Services
 
-                            <div class="skill-item">
-                                <i class="fas fa-check"></i>
-                                Freelancing
-                            </div>
+                </h3>
 
-                            <div class="skill-item">
-                                <i class="fas fa-check"></i>
-                                Graphic Design
-                            </div>
 
-                            <div class="skill-item">
-                                <i class="fas fa-check"></i>
-                                Web Development
-                            </div>
+                <p>
 
-                            <div class="skill-item">
-                                <i class="fas fa-check"></i>
-                                Digital Marketing
-                            </div>
+                    Practical digital solutions for
+                    individuals, creators and businesses.
 
-                            <div class="skill-item">
-                                <i class="fas fa-check"></i>
-                                AI Tools
-                            </div>
+                </p>
 
-                        </div>
+
+                <div class="skill-list">
+
+
+                    <div class="skill-item">
+
+                        <i class="fas fa-check"></i>
+
+                        Freelancing
+
+                    </div>
+
+
+                    <div class="skill-item">
+
+                        <i class="fas fa-check"></i>
+
+                        Web Development
+
+                    </div>
+
+
+                    <div class="skill-item">
+
+                        <i class="fas fa-check"></i>
+
+                        Graphic Design
+
+                    </div>
+
+
+                    <div class="skill-item">
+
+                        <i class="fas fa-check"></i>
+
+                        Digital Marketing
+
+                    </div>
+
+
+                    <div class="skill-item">
+
+                        <i class="fas fa-check"></i>
+
+                        AI Tools
 
                     </div>
 
@@ -205,465 +398,946 @@
 
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+</section>
 
 
-        <!-- =========================
-             ABOUT SECTION
-        ========================== -->
-        <section class="section about-section" id="about">
 
-            <div class="container">
+<!-- =====================================================
+     TRUST / QUICK STATS
+===================================================== -->
 
-                <div class="section-heading">
+<section class="section"
+         aria-label="Jay Classic highlights">
 
-                    <span class="section-label">ABOUT ME</span>
+    <div class="container">
 
-                    <h2>
-                        Building My Digital Future
-                    </h2>
+
+        <div class="about-stats">
+
+
+            <div class="stat-card">
+
+                <i class="fas fa-laptop"></i>
+
+                <h3>
+                    Online
+                </h3>
+
+                <p>
+                    Digital Work
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <i class="fas fa-code"></i>
+
+                <h3>
+                    Web
+                </h3>
+
+                <p>
+                    Development
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <i class="fas fa-palette"></i>
+
+                <h3>
+                    Creative
+                </h3>
+
+                <p>
+                    Design
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <i class="fas fa-robot"></i>
+
+                <h3>
+                    AI
+                </h3>
+
+                <p>
+                    Productivity
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="section about-section"
+         id="about">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                ABOUT JAY CLASSIC
+            </span>
+
+            <h2>
+                Turning Digital Skills Into Opportunities
+            </h2>
+
+            <p>
+                A personal digital brand built around learning,
+                creativity, technology and online opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+
+            <div class="about-content">
+
+                <h3>
+                    Hello, I'm Jay Ouko.
+                </h3>
+
+
+                <p>
+
+                    Jay Classic is my digital brand where I provide
+                    online services, explore technology and share
+                    practical digital skills.
+
+                </p>
+
+
+                <p>
+
+                    My focus is helping individuals and small businesses
+                    establish a stronger digital presence through
+                    websites, design, marketing and modern tools.
+
+                </p>
+
+
+                <p>
+
+                    I also share information about freelancing,
+                    online work and digital learning opportunities.
+
+                </p>
+
+
+                <a href="#contact"
+                   class="btn btn-primary">
+
+                    Let's Work Together
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="about-stats">
+
+
+                <div class="stat-card">
+
+                    <i class="fas fa-globe"></i>
+
+                    <h3>
+                        Digital
+                    </h3>
 
                     <p>
-                        Turning digital skills into useful solutions,
-                        opportunities and online income.
+                        Services
                     </p>
 
                 </div>
 
 
-                <div class="about-grid">
+                <div class="stat-card">
 
-                    <div class="about-content">
+                    <i class="fas fa-pen-ruler"></i>
+
+                    <h3>
+                        Creative
+                    </h3>
+
+                    <p>
+                        Solutions
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h3>
+                        Online
+                    </h3>
+
+                    <p>
+                        Growth
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <i class="fas fa-lightbulb"></i>
+
+                    <h3>
+                        Digital
+                    </h3>
+
+                    <p>
+                        Learning
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="section services-section"
+         id="services">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                SERVICES
+            </span>
+
+            <h2>
+                What I Can Help You With
+            </h2>
+
+            <p>
+                Digital services for individuals, creators,
+                students and small businesses.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <!-- SERVICE -->
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-laptop"></i>
+
+                </div>
+
+                <h3>
+                    Freelancing
+                </h3>
+
+                <p>
+                    Digital support and online freelance tasks
+                    for individuals and businesses.
+                </p>
+
+                <ul>
+
+                    <li>Virtual assistance</li>
+
+                    <li>Online tasks</li>
+
+                    <li>Digital support</li>
+
+                </ul>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-code"></i>
+
+                </div>
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Responsive websites and landing pages
+                    for personal and business projects.
+                </p>
+
+                <ul>
+
+                    <li>Business websites</li>
+
+                    <li>Portfolio websites</li>
+
+                    <li>Landing pages</li>
+
+                </ul>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-palette"></i>
+
+                </div>
+
+                <h3>
+                    Graphic Design
+                </h3>
+
+                <p>
+                    Clean visual designs for brands,
+                    creators and social media.
+                </p>
+
+                <ul>
+
+                    <li>Posters</li>
+
+                    <li>Social media graphics</li>
+
+                    <li>Business designs</li>
+
+                </ul>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-bullhorn"></i>
+
+                </div>
+
+                <h3>
+                    Digital Marketing
+                </h3>
+
+                <p>
+                    Digital content and social media support
+                    for building online visibility.
+                </p>
+
+                <ul>
+
+                    <li>Content ideas</li>
+
+                    <li>Social media support</li>
+
+                    <li>Digital promotion</li>
+
+                </ul>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+                <h3>
+                    AI Tools
+                </h3>
+
+                <p>
+                    Learn how modern AI tools can improve
+                    creativity and productivity.
+                </p>
+
+                <ul>
+
+                    <li>AI productivity</li>
+
+                    <li>Content creation</li>
+
+                    <li>AI workflows</li>
+
+                </ul>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-file-lines"></i>
+
+                </div>
+
+                <h3>
+                    Digital Support
+                </h3>
+
+                <p>
+                    Practical assistance with everyday
+                    online and digital projects.
+                </p>
+
+                <ul>
+
+                    <li>Online research</li>
+
+                    <li>Document support</li>
+
+                    <li>Digital setup</li>
+
+                </ul>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
+
+<section class="section"
+         id="portfolio">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PORTFOLIO
+            </span>
+
+            <h2>
+                Selected Digital Projects
+            </h2>
+
+            <p>
+                A growing collection of digital work,
+                projects and creative experiments.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-globe"></i>
+
+                </div>
+
+                <h3>
+                    Jay Classic Website
+                </h3>
+
+                <p>
+                    A responsive personal digital platform
+                    built to showcase services and opportunities.
+                </p>
+
+                <span class="program-tag">
+                    Web Development
+                </span>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-pen-nib"></i>
+
+                </div>
+
+                <h3>
+                    Creative Designs
+                </h3>
+
+                <p>
+                    Social media graphics, promotional materials
+                    and digital creative concepts.
+                </p>
+
+                <span class="program-tag">
+                    Graphic Design
+                </span>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-mobile-screen"></i>
+
+                </div>
+
+                <h3>
+                    Social Media Projects
+                </h3>
+
+                <p>
+                    Digital content and social media projects
+                    focused on building online presence.
+                </p>
+
+                <span class="program-tag">
+                    Digital Marketing
+                </span>
+
+            </article>
+
+
+
+            <article class="service-card">
+
+                <div class="service-icon">
+
+                    <i class="fas fa-wand-magic-sparkles"></i>
+
+                </div>
+
+                <h3>
+                    AI Experiments
+                </h3>
+
+                <p>
+                    Exploring practical ways to use AI tools
+                    for creativity, productivity and online work.
+                </p>
+
+                <span class="program-tag">
+                    AI Tools
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROGRAMS
+===================================================== -->
+
+<section class="section programs-section"
+         id="programs">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PROGRAMS
+            </span>
+
+            <h2>
+                Digital Programs & Opportunities
+            </h2>
+
+            <p>
+                Platforms and learning areas that are part
+                of my digital journey.
+            </p>
+
+        </div>
+
+
+        <div class="programs-grid">
+
+
+            <article class="program-card">
+
+                <div class="program-icon">
+
+                    <i class="fas fa-mobile-screen-button"></i>
+
+                </div>
+
+                <h3>
+                    Twiva
+                </h3>
+
+                <p>
+                    Explore creator opportunities,
+                    digital campaigns and social media work.
+                </p>
+
+                <span class="program-tag">
+                    Creator Economy
+                </span>
+
+            </article>
+
+
+
+            <article class="program-card">
+
+                <div class="program-icon">
+
+                    <i class="fas fa-wand-magic-sparkles"></i>
+
+                </div>
+
+                <h3>
+                    Canva
+                </h3>
+
+                <p>
+                    Learn visual design, presentations,
+                    social media graphics and creative content.
+                </p>
+
+                <span class="program-tag">
+                    Design
+                </span>
+
+            </article>
+
+
+
+            <article class="program-card">
+
+                <div class="program-icon">
+
+                    <i class="fas fa-graduation-cap"></i>
+
+                </div>
+
+                <h3>
+                    Digital Skills
+                </h3>
+
+                <p>
+                    Practical learning around freelancing,
+                    online work, technology and productivity.
+                </p>
+
+                <span class="program-tag">
+                    Learning
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FREE ONLINE CLASSES
+===================================================== -->
+
+<section class="section classes-section"
+         id="classes">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                FREE ONLINE CLASSES
+            </span>
+
+            <h2>
+                Learn Digital Skills With Jay
+            </h2>
+
+            <p>
+                Join the daily learning sessions and
+                develop practical digital skills.
+            </p>
+
+        </div>
+
+
+        <div class="class-card">
+
+
+            <div class="class-main">
+
+                <div class="class-icon">
+
+                    <i class="fas fa-chalkboard-user"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Daily Digital Skills Class
+                    </h3>
+
+                    <p>
+                        Freelancing, Canva, AI tools,
+                        online work, digital marketing and more.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="class-details">
+
+
+                <div class="class-detail">
+
+                    <i class="fas fa-calendar-days"></i>
+
+                    <div>
+
+                        <strong>
+                            Schedule
+                        </strong>
+
+                        <span>
+                            Every Day
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="class-detail">
+
+                    <i class="fas fa-clock"></i>
+
+                    <div>
+
+                        <strong>
+                            Time
+                        </strong>
+
+                        <span>
+                            9:00 PM
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="class-detail">
+
+                    <i class="fas fa-tag"></i>
+
+                    <div>
+
+                        <strong>
+                            Cost
+                        </strong>
+
+                        <span>
+                            FREE
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="class-actions">
+
+
+                <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-primary">
+
+                    <i class="fab fa-tiktok"></i>
+
+                    Join on TikTok
+
+                </a>
+
+
+                <a href="#register"
+                   class="btn btn-secondary">
+
+                    <i class="fas fa-user-plus"></i>
+
+                    Register
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     REGISTRATION
+===================================================== -->
+
+<section class="section registration-section"
+         id="register">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                REGISTRATION
+            </span>
+
+            <h2>
+                Join the Online Classes
+            </h2>
+
+            <p>
+                Register your interest and get information
+                about upcoming sessions.
+            </p>
+
+        </div>
+
+
+        <div class="registration-grid">
+
+
+            <div class="registration-info">
+
+
+                <div class="info-box">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <div>
 
                         <h3>
-                            Hello, I'm Jay Ouko
+                            Email Registration
                         </h3>
 
                         <p>
-                            Jay Classic is my personal digital brand focused on
-                            freelancing, online work, creative design,
-                            technology and digital opportunities.
+                            Send your name and preferred
+                            learning topic.
                         </p>
 
-                        <p>
-                            My goal is to create practical digital solutions
-                            while helping other young people discover
-                            legitimate online opportunities and useful digital
-                            skills.
-                        </p>
-
-                        <p>
-                            I continuously learn and improve my skills in
-                            technology, design, marketing, Canva and
-                            AI-powered productivity tools.
-                        </p>
-
-                        <a href="#contact" class="btn btn-primary">
-                            Work With Me
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="mailto:emmanuelouko21@gmail.com">
+                            emmanuelouko21@gmail.com
                         </a>
 
                     </div>
 
-
-                    <div class="about-stats">
-
-                        <div class="stat-card">
-                            <i class="fas fa-code"></i>
-                            <h3>Web</h3>
-                            <p>Development</p>
-                        </div>
-
-                        <div class="stat-card">
-                            <i class="fas fa-palette"></i>
-                            <h3>Creative</h3>
-                            <p>Design</p>
-                        </div>
-
-                        <div class="stat-card">
-                            <i class="fas fa-bullhorn"></i>
-                            <h3>Digital</h3>
-                            <p>Marketing</p>
-                        </div>
-
-                        <div class="stat-card">
-                            <i class="fas fa-robot"></i>
-                            <h3>AI</h3>
-                            <p>Tools</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             SERVICES SECTION
-        ========================== -->
-        <section class="section services-section" id="services">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">MY SERVICES</span>
-
-                    <h2>
-                        Digital Services
-                    </h2>
-
-                    <p>
-                        Services designed to help individuals,
-                        creators and businesses build their digital presence.
-                    </p>
-
                 </div>
 
 
-                <div class="services-grid">
+                <div class="info-box">
 
-                    <!-- Service 1 -->
-                    <article class="service-card">
+                    <i class="fab fa-whatsapp"></i>
 
-                        <div class="service-icon">
-                            <i class="fas fa-laptop"></i>
-                        </div>
+                    <div>
 
-                        <h3>Freelancing</h3>
-
-                        <p>
-                            Online freelance services for individuals,
-                            creators and businesses.
-                        </p>
-
-                        <ul>
-                            <li>Online tasks</li>
-                            <li>Virtual assistance</li>
-                            <li>Digital support</li>
-                        </ul>
-
-                    </article>
-
-
-                    <!-- Service 2 -->
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-
-                        <h3>Graphic Design</h3>
+                        <h3>
+                            WhatsApp
+                        </h3>
 
                         <p>
-                            Clean and creative designs for personal
-                            and business use.
+                            Contact Jay directly for
+                            registration information.
                         </p>
 
-                        <ul>
-                            <li>Posters</li>
-                            <li>Social media designs</li>
-                            <li>Business graphics</li>
-                        </ul>
-
-                    </article>
-
-
-                    <!-- Service 3 -->
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-
-                        <h3>Web Development</h3>
-
-                        <p>
-                            Modern and responsive websites for
-                            individuals and small businesses.
-                        </p>
-
-                        <ul>
-                            <li>Business websites</li>
-                            <li>Portfolio websites</li>
-                            <li>Landing pages</li>
-                        </ul>
-
-                    </article>
-
-
-                    <!-- Service 4 -->
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-
-                        <h3>Digital Marketing</h3>
-
-                        <p>
-                            Digital strategies and content support
-                            for online visibility.
-                        </p>
-
-                        <ul>
-                            <li>Social media support</li>
-                            <li>Content ideas</li>
-                            <li>Digital promotion</li>
-                        </ul>
-
-                    </article>
-
-
-                    <!-- Service 5 -->
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-
-                        <h3>AI Tools</h3>
-
-                        <p>
-                            Learn and use modern AI tools to improve
-                            productivity and creativity.
-                        </p>
-
-                        <ul>
-                            <li>AI productivity</li>
-                            <li>Content creation</li>
-                            <li>AI-assisted workflows</li>
-                        </ul>
-
-                    </article>
-
-
-                    <!-- Service 6 -->
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fas fa-file-lines"></i>
-                        </div>
-
-                        <h3>Digital Support</h3>
-
-                        <p>
-                            Practical assistance with everyday digital
-                            tasks and online projects.
-                        </p>
-
-                        <ul>
-                            <li>Document support</li>
-                            <li>Online research</li>
-                            <li>Digital setup</li>
-                        </ul>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PROGRAMS SECTION
-        ========================== -->
-        <section class="section programs-section" id="programs">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">PROGRAMS</span>
-
-                    <h2>
-                        Digital Opportunities
-                    </h2>
-
-                    <p>
-                        Programs and platforms I am exploring and sharing
-                        as part of my digital journey.
-                    </p>
-
-                </div>
-
-
-                <div class="programs-grid">
-
-                    <article class="program-card">
-
-                        <div class="program-icon">
-                            <i class="fas fa-mobile-screen-button"></i>
-                        </div>
-
-                        <h3>Twiva</h3>
-
-                        <p>
-                            Explore creator and influencer opportunities,
-                            digital campaigns and social media work.
-                        </p>
-
-                        <span class="program-tag">
-                            Creator Economy
-                        </span>
-
-                    </article>
-
-
-                    <article class="program-card">
-
-                        <div class="program-icon">
-                            <i class="fas fa-wand-magic-sparkles"></i>
-                        </div>
-
-                        <h3>Canva</h3>
-
-                        <p>
-                            Learn graphic design, content creation,
-                            presentations and other visual skills.
-                        </p>
-
-                        <span class="program-tag">
-                            Design & Creativity
-                        </span>
-
-                    </article>
-
-
-                    <article class="program-card">
-
-                        <div class="program-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-
-                        <h3>Digital Skills</h3>
-
-                        <p>
-                            Practical lessons covering online work,
-                            digital tools, freelancing and productivity.
-                        </p>
-
-                        <span class="program-tag">
-                            Online Learning
-                        </span>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             ONLINE CLASSES
-        ========================== -->
-        <section class="section classes-section" id="classes">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">FREE ONLINE CLASSES</span>
-
-                    <h2>
-                        Learn Digital Skills With Jay
-                    </h2>
-
-                    <p>
-                        Join the daily online learning sessions and
-                        improve your digital skills.
-                    </p>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <div class="class-main">
-
-                        <div class="class-icon">
-                            <i class="fas fa-chalkboard-user"></i>
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Daily Online Classes
-                            </h3>
-
-                            <p>
-                                Learn useful digital skills, online work,
-                                Canva, AI tools, freelancing and more.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="class-details">
-
-                        <div class="class-detail">
-
-                            <i class="fas fa-clock"></i>
-
-                            <div>
-                                <strong>Every Day</strong>
-                                <span>9:00 PM</span>
-                            </div>
-
-                        </div>
-
-
-                        <div class="class-detail">
-
-                            <i class="fas fa-tag"></i>
-
-                            <div>
-                                <strong>Cost</strong>
-                                <span>FREE</span>
-                            </div>
-
-                        </div>
-
-
-                        <div class="class-detail">
-
-                            <i class="fas fa-video"></i>
-
-                            <div>
-                                <strong>Platform</strong>
-                                <span>TikTok</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="class-actions">
-
-                        <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                        <a href="https://wa.me/254142617814"
                            target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn btn-primary">
+                           rel="noopener noreferrer">
 
-                            <i class="fab fa-tiktok"></i>
-                            Join on TikTok
-
-                        </a>
-
-                        <a href="#register" class="btn btn-secondary">
-
-                            <i class="fas fa-user-plus"></i>
-                            Register
+                            Chat on WhatsApp
 
                         </a>
 
@@ -673,707 +1347,913 @@
 
             </div>
 
-        </section>
 
 
-        <!-- =========================
-             REGISTRATION SECTION
-        ========================== -->
-        <section class="section registration-section" id="register">
+            <form class="registration-form"
+                  id="registrationForm">
 
-            <div class="container">
 
-                <div class="section-heading">
+                <div class="form-group">
 
-                    <span class="section-label">REGISTRATION</span>
+                    <label for="registerName">
+                        Full Name
+                    </label>
 
-                    <h2>
-                        Register for Online Classes
-                    </h2>
-
-                    <p>
-                        Interested in joining? Send your details and
-                        I will get back to you.
-                    </p>
+                    <input
+                        type="text"
+                        id="registerName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
 
                 </div>
 
 
-                <div class="registration-grid">
+                <div class="form-group">
 
-                    <div class="registration-info">
+                    <label for="registerEmail">
+                        Email Address
+                    </label>
 
-                        <div class="info-box">
-
-                            <i class="fas fa-envelope"></i>
-
-                            <div>
-                                <h3>Email Registration</h3>
-
-                                <p>
-                                    Send your name and the class you
-                                    would like to join.
-                                </p>
-
-                                <a href="mailto:emmanuelouko21@gmail.com">
-                                    emmanuelouko21@gmail.com
-                                </a>
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <i class="fab fa-whatsapp"></i>
-
-                            <div>
-                                <h3>WhatsApp Registration</h3>
-
-                                <p>
-                                    Contact Jay directly for registration
-                                    and class information.
-                                </p>
-
-                                <a href="https://wa.me/254142617814"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    Chat on WhatsApp
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <form class="registration-form" id="registrationForm">
-
-                        <div class="form-group">
-
-                            <label for="registerName">
-                                Full Name
-                            </label>
-
-                            <input
-                                type="text"
-                                id="registerName"
-                                name="name"
-                                placeholder="Enter your name"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="registerEmail">
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                id="registerEmail"
-                                name="email"
-                                placeholder="Enter your email"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="registerPhone">
-                                Phone / WhatsApp
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="registerPhone"
-                                name="phone"
-                                placeholder="Enter your phone number"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="registerInterest">
-                                What would you like to learn?
-                            </label>
-
-                            <select id="registerInterest"
-                                    name="interest"
-                                    required>
-
-                                <option value="">
-                                    Select a topic
-                                </option>
-
-                                <option value="freelancing">
-                                    Freelancing
-                                </option>
-
-                                <option value="graphic-design">
-                                    Graphic Design
-                                </option>
-
-                                <option value="web-development">
-                                    Web Development
-                                </option>
-
-                                <option value="digital-marketing">
-                                    Digital Marketing
-                                </option>
-
-                                <option value="ai-tools">
-                                    AI Tools
-                                </option>
-
-                                <option value="canva">
-                                    Canva
-                                </option>
-
-                                <option value="twiva">
-                                    Twiva
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="registerMessage">
-                                Message
-                            </label>
-
-                            <textarea
-                                id="registerMessage"
-                                name="message"
-                                rows="4"
-                                placeholder="Write your message..."
-                            ></textarea>
-
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Submit Registration
-                        </button>
-
-                        <p id="registrationMessage" class="form-message"></p>
-
-                    </form>
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
 
                 </div>
 
-            </div>
 
-        </section>
+                <div class="form-group">
 
+                    <label for="registerPhone">
+                        Phone / WhatsApp
+                    </label>
 
-        <!-- =========================
-             REVIEWS SECTION
-        ========================== -->
-        <section class="section reviews-section" id="reviews">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">REVIEWS</span>
-
-                    <h2>
-                        What People Say
-                    </h2>
-
-                    <p>
-                        Your feedback helps Jay Classic continue to improve.
-                    </p>
+                    <input
+                        type="tel"
+                        id="registerPhone"
+                        name="phone"
+                        placeholder="Your phone number"
+                        autocomplete="tel"
+                        required>
 
                 </div>
 
 
-                <div class="reviews-grid" id="reviewsContainer">
+                <div class="form-group">
 
-                    <!-- Reviews can be loaded dynamically by app.js -->
+                    <label for="registerInterest">
+                        Topic
+                    </label>
 
-                    <article class="review-card">
+                    <select
+                        id="registerInterest"
+                        name="interest"
+                        required>
 
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <option value="">
+                            Select a topic
+                        </option>
 
-                        <p>
-                            Be among the first people to leave a review
-                            about Jay Classic.
-                        </p>
+                        <option value="Freelancing">
+                            Freelancing
+                        </option>
 
-                        <h4>
-                            Jay Classic Community
-                        </h4>
+                        <option value="Graphic Design">
+                            Graphic Design
+                        </option>
 
-                    </article>
+                        <option value="Web Development">
+                            Web Development
+                        </option>
 
-                </div>
+                        <option value="Digital Marketing">
+                            Digital Marketing
+                        </option>
 
+                        <option value="AI Tools">
+                            AI Tools
+                        </option>
 
-                <div class="review-form-wrapper">
+                        <option value="Canva">
+                            Canva
+                        </option>
 
-                    <h3>
-                        Leave a Review
-                    </h3>
+                        <option value="Twiva">
+                            Twiva
+                        </option>
 
-                    <form id="reviewForm" class="review-form">
-
-                        <div class="form-group">
-
-                            <label for="reviewName">
-                                Your Name
-                            </label>
-
-                            <input
-                                type="text"
-                                id="reviewName"
-                                name="name"
-                                placeholder="Enter your name"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="reviewRating">
-                                Rating
-                            </label>
-
-                            <select id="reviewRating"
-                                    name="rating"
-                                    required>
-
-                                <option value="">
-                                    Select rating
-                                </option>
-
-                                <option value="5">
-                                    ★★★★★ — 5 Stars
-                                </option>
-
-                                <option value="4">
-                                    ★★★★☆ — 4 Stars
-                                </option>
-
-                                <option value="3">
-                                    ★★★☆☆ — 3 Stars
-                                </option>
-
-                                <option value="2">
-                                    ★★☆☆☆ — 2 Stars
-                                </option>
-
-                                <option value="1">
-                                    ★☆☆☆☆ — 1 Star
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="reviewText">
-                                Your Comment
-                            </label>
-
-                            <textarea
-                                id="reviewText"
-                                name="comment"
-                                rows="4"
-                                placeholder="Write your review..."
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-star"></i>
-                            Submit Review
-                        </button>
-
-                        <p id="reviewMessage" class="form-message"></p>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CONTACT SECTION
-        ========================== -->
-        <section class="section contact-section" id="contact">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">CONTACT</span>
-
-                    <h2>
-                        Let's Work Together
-                    </h2>
-
-                    <p>
-                        Have a project, question or online opportunity?
-                        Get in touch with Jay Classic.
-                    </p>
+                    </select>
 
                 </div>
 
 
-                <div class="contact-grid">
+                <div class="form-group">
 
-                    <div class="contact-info">
+                    <label for="registerMessage">
+                        Message
+                    </label>
 
-                        <div class="contact-item">
-
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-
-                            <div>
-
-                                <span>Email</span>
-
-                                <a href="mailto:emmanuelouko21@gmail.com">
-                                    emmanuelouko21@gmail.com
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="contact-item">
-
-                            <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-
-                            <div>
-
-                                <span>WhatsApp</span>
-
-                                <a href="https://wa.me/254142617814"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    Chat on WhatsApp
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="contact-item">
-
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-
-                            <div>
-
-                                <span>Phone</span>
-
-                                <a href="tel:0142617814">
-                                    0142617814
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="contact-item">
-
-                            <div class="contact-icon">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </div>
-
-                            <div>
-
-                                <span>M-Pesa</span>
-
-                                <strong>
-                                    0142617814
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <form class="contact-form" id="contactForm">
-
-                        <div class="form-row">
-
-                            <div class="form-group">
-
-                                <label for="contactName">
-                                    Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="contactName"
-                                    name="name"
-                                    placeholder="Your name"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="contactEmail">
-                                    Email
-                                </label>
-
-                                <input
-                                    type="email"
-                                    id="contactEmail"
-                                    name="email"
-                                    placeholder="Your email"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="contactSubject">
-                                Subject
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contactSubject"
-                                name="subject"
-                                placeholder="What can I help you with?"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="contactMessage">
-                                Message
-                            </label>
-
-                            <textarea
-                                id="contactMessage"
-                                name="message"
-                                rows="6"
-                                placeholder="Write your message..."
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
-
-                        <p id="contactMessageStatus"
-                           class="form-message"></p>
-
-                    </form>
+                    <textarea
+                        id="registerMessage"
+                        name="message"
+                        rows="4"
+                        placeholder="Tell me what you would like to learn..."></textarea>
 
                 </div>
 
-            </div>
 
-        </section>
+                <button
+                    type="submit"
+                    class="btn btn-primary">
 
-    </main>
+                    <i class="fas fa-paper-plane"></i>
 
+                    Submit Registration
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer class="footer">
-
-        <div class="container">
-
-            <div class="footer-grid">
-
-                <div class="footer-brand">
-
-                    <a href="#home" class="logo">
-                        <span>JAY</span> CLASSIC
-                    </a>
-
-                    <p>
-                        Freelancing, digital services,
-                        online learning and digital opportunities.
-                    </p>
-
-                </div>
+                </button>
 
 
-                <div class="footer-links">
-
-                    <h3>Quick Links</h3>
-
-                    <a href="#home">Home</a>
-
-                    <a href="#about">About</a>
-
-                    <a href="#services">Services</a>
-
-                    <a href="#programs">Programs</a>
-
-                    <a href="#classes">Classes</a>
-
-                    <a href="#contact">Contact</a>
-
-                </div>
-
-
-                <div class="footer-links">
-
-                    <h3>Services</h3>
-
-                    <a href="#services">Freelancing</a>
-
-                    <a href="#services">Graphic Design</a>
-
-                    <a href="#services">Web Development</a>
-
-                    <a href="#services">Digital Marketing</a>
-
-                    <a href="#services">AI Tools</a>
-
-                </div>
-
-
-                <div class="footer-social">
-
-                    <h3>Follow Me</h3>
-
-                    <div class="social-links">
-
-                        <a href="https://www.facebook.com/profile.php?id=61568719246626"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="Facebook">
-
-                            <i class="fab fa-facebook-f"></i>
-
-                        </a>
-
-
-                        <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="Instagram">
-
-                            <i class="fab fa-instagram"></i>
-
-                        </a>
-
-
-                        <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="YouTube">
-
-                            <i class="fab fa-youtube"></i>
-
-                        </a>
-
-
-                        <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           aria-label="TikTok">
-
-                            <i class="fab fa-tiktok"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                <p>
-                    &copy;
-                    <span id="currentYear"></span>
-                    Jay Classic. All rights reserved.
+                <p
+                    id="registrationMessage"
+                    class="form-message">
                 </p>
 
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     REVIEWS
+===================================================== -->
+
+<section class="section reviews-section"
+         id="reviews">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                REVIEWS
+            </span>
+
+            <h2>
+                Community Feedback
+            </h2>
+
+            <p>
+                Your feedback helps Jay Classic grow and improve.
+            </p>
+
+        </div>
+
+
+        <div class="reviews-grid"
+             id="reviewsContainer">
+
+
+            <article class="review-card">
+
+                <div class="review-stars">
+
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+
+                </div>
+
+
                 <p>
-                    Built by Jay Ouko
+                    Be among the first people to share
+                    your experience with Jay Classic.
+                </p>
+
+
+                <h4>
+                    Jay Classic Community
+                </h4>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- REVIEW FORM -->
+
+        <div class="review-form-wrapper">
+
+
+            <h3>
+                Leave a Review
+            </h3>
+
+
+            <form
+                id="reviewForm"
+                class="review-form">
+
+
+                <div class="form-group">
+
+                    <label for="reviewName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="reviewName"
+                        name="name"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="reviewRating">
+                        Rating
+                    </label>
+
+                    <select
+                        id="reviewRating"
+                        name="rating"
+                        required>
+
+                        <option value="">
+                            Select rating
+                        </option>
+
+                        <option value="5">
+                            ★★★★★ — 5 Stars
+                        </option>
+
+                        <option value="4">
+                            ★★★★☆ — 4 Stars
+                        </option>
+
+                        <option value="3">
+                            ★★★☆☆ — 3 Stars
+                        </option>
+
+                        <option value="2">
+                            ★★☆☆☆ — 2 Stars
+                        </option>
+
+                        <option value="1">
+                            ★☆☆☆☆ — 1 Star
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="reviewText">
+                        Comment
+                    </label>
+
+                    <textarea
+                        id="reviewText"
+                        name="comment"
+                        rows="4"
+                        placeholder="Write your review..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    <i class="fas fa-star"></i>
+
+                    Submit Review
+
+                </button>
+
+
+                <p
+                    id="reviewMessage"
+                    class="form-message">
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="section contact-section"
+         id="contact">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                CONTACT
+            </span>
+
+            <h2>
+                Let's Work Together
+            </h2>
+
+            <p>
+                Have a project, question or online opportunity?
+                Get in touch with Jay Classic.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- CONTACT DETAILS -->
+
+            <div class="contact-info">
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-envelope"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Email
+                        </span>
+
+                        <a href="mailto:emmanuelouko21@gmail.com">
+
+                            emmanuelouko21@gmail.com
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            WhatsApp
+                        </span>
+
+                        <a href="https://wa.me/254142617814"
+                           target="_blank"
+                           rel="noopener noreferrer">
+
+                            Chat with Jay
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-phone"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <a href="tel:0142617814">
+
+                            0142617814
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-money-bill-wave"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            M-Pesa
+                        </span>
+
+                        <strong>
+                            0142617814
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT FORM -->
+
+            <form
+                class="contact-form"
+                id="contactForm">
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="contactName">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contactName"
+                            name="name"
+                            placeholder="Your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contactEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="contactEmail"
+                            name="email"
+                            placeholder="Your email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="contactSubject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contactSubject"
+                        name="subject"
+                        placeholder="What can I help you with?"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="contactMessage">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="6"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Send Message
+
+                </button>
+
+
+                <p
+                    id="contactMessageStatus"
+                    class="form-message">
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <a href="#home"
+                   class="logo">
+
+                    <span>JAY</span> CLASSIC
+
+                </a>
+
+
+                <p>
+
+                    Freelancing, digital services,
+                    online learning and digital opportunities.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#portfolio">
+                    Portfolio
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+
+            <!-- SERVICES -->
+
+            <div class="footer-links">
+
+                <h3>
+                    Services
+                </h3>
+
+                <a href="#services">
+                    Freelancing
+                </a>
+
+                <a href="#services">
+                    Web Development
+                </a>
+
+                <a href="#services">
+                    Graphic Design
+                </a>
+
+                <a href="#services">
+                    Digital Marketing
+                </a>
+
+                <a href="#services">
+                    AI Tools
+                </a>
+
+            </div>
+
+
+
+            <!-- SOCIAL -->
+
+            <div class="footer-social">
+
+                <h3>
+                    Follow Jay
+                </h3>
+
+
+                <div class="social-links">
+
+
+                    <a href="https://www.facebook.com/profile.php?id=61568719246626"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Facebook">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+
+                    <a href="https://www.instagram.com/emmanueljayouko?stkn=MTBwdnhmOXdlb2I4ag=="
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Instagram">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+
+                    <a href="https://www.youtube.com/@OukoEmmanuel-o2f1x"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="YouTube">
+
+                        <i class="fab fa-youtube"></i>
+
+                    </a>
+
+
+                    <a href="https://vm.tiktok.com/ZS9AnHTYsYp1q-UHld8/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="TikTok">
+
+                        <i class="fab fa-tiktok"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+
+            <p>
+
+                &copy;
+                <span id="currentYear"></span>
+                Jay Classic.
+                All rights reserved.
+
+            </p>
+
+
+            <p>
+                Built by Jay Ouko
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     FLOATING WHATSAPP
+===================================================== -->
+
+<a
+    href="https://wa.me/254142617814"
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with Jay Classic on WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+    <span>
+        Chat on WhatsApp
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     AI CHATBOT
+===================================================== -->
+
+<div
+    class="ai-chatbot"
+    id="aiChatbot">
+
+
+    <!-- CHAT WINDOW -->
+
+    <div
+        class="chat-window"
+        id="chatWindow"
+        aria-hidden="true">
+
+
+        <div class="chat-header">
+
+            <div>
+
+                <strong>
+                    Jay Classic AI
+                </strong>
+
+                <small>
+                    Digital Assistant
+                </small>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="closeChat"
+                aria-label="Close AI chat">
+
+                <i class="fas fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="chat-messages"
+            id="chatMessages">
+
+
+            <div class="chat-message bot">
+
+                <div class="chat-avatar">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+                <p>
+
+                    Hi! 👋 I'm the Jay Classic
+                    digital assistant.
+
+                    Ask me about services,
+                    classes, freelancing or
+                    how to contact Jay.
+
                 </p>
 
             </div>
 
         </div>
 
-    </footer>
+
+        <div class="chat-input-area">
 
 
-    <!-- =========================
-         BACK TO TOP BUTTON
-    ========================== -->
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask Jay Classic..."
+                autocomplete="off">
+
+
+            <button
+                type="button"
+                id="sendChat"
+                aria-label="Send message">
+
+                <i class="fas fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CHAT BUTTON -->
+
     <button
-        id="backToTop"
-        class="back-to-top"
-        aria-label="Back to top">
+        type="button"
+        class="chat-button"
+        id="chatButton"
+        aria-label="Open Jay Classic AI">
 
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-robot"></i>
 
     </button>
 
+</div>
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-    <script src="app.js"></script>
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top">
+
+    <i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="app.js"></script>
+
 
 </body>
+
 </html>
 ```
