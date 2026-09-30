@@ -1,919 +1,1709 @@
 ```javascript
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   JAY OUKO PORTFOLIO
+   COMPLETE JAVASCRIPT
+========================================================= */
 
-    /* ================================
-       ELEMENTS
-    ================================= */
+"use strict";
 
-    const body = document.body;
-    const themeToggle = document.getElementById("themeToggle");
 
-    /* ================================
-       DARK MODE
-    ================================= */
+/* =========================================================
+   1. PAGE LOADER
+========================================================= */
 
-    function applyTheme(theme) {
-        if (theme === "dark") {
-            body.classList.add("dark-mode");
-        } else {
-            body.classList.remove("dark-mode");
-        }
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".page-loader");
 
-        updateThemeIcon();
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 500);
+  }
+});
+
+
+/* =========================================================
+   2. DOM ELEMENTS
+========================================================= */
+
+const body = document.body;
+
+const header = document.querySelector(".site-header");
+
+const menuToggle = document.querySelector(".menu-toggle");
+
+const navbar = document.querySelector(".navbar");
+
+const themeToggle = document.querySelector(".theme-toggle");
+
+const backToTop = document.querySelector(".back-to-top");
+
+const chatbot = document.querySelector(".chatbot");
+
+const chatbotToggle = document.querySelector(".chatbot-toggle");
+
+const chatbotClose = document.querySelector(".chatbot-close");
+
+const chatbotForm = document.querySelector(".chatbot-form");
+
+const chatbotInput = document.querySelector(".chatbot-form input");
+
+const chatbotMessages = document.querySelector(".chatbot-messages");
+
+
+/* =========================================================
+   3. MOBILE MENU
+========================================================= */
+
+if (menuToggle && navbar) {
+
+  menuToggle.addEventListener("click", () => {
+
+    const isOpen = navbar.classList.toggle("open");
+
+    menuToggle.classList.toggle("active", isOpen);
+
+    body.classList.toggle("menu-open", isOpen);
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+  });
+
+
+  /* CLOSE MENU WHEN LINK IS CLICKED */
+
+  const navLinks = navbar.querySelectorAll("a");
+
+  navLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+      navbar.classList.remove("open");
+
+      menuToggle.classList.remove("active");
+
+      body.classList.remove("menu-open");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+  });
+
+}
+
+
+/* =========================================================
+   4. CLOSE MOBILE MENU WITH ESC
+========================================================= */
+
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+
+    if (navbar) {
+      navbar.classList.remove("open");
     }
 
-    function updateThemeIcon() {
-        if (!themeToggle) return;
+    if (menuToggle) {
+      menuToggle.classList.remove("active");
 
-        const icon = themeToggle.querySelector("i");
-
-        if (!icon) return;
-
-        if (body.classList.contains("dark-mode")) {
-            icon.className = "fa-solid fa-sun";
-            themeToggle.setAttribute(
-                "aria-label",
-                "Switch to light mode"
-            );
-            themeToggle.setAttribute(
-                "title",
-                "Switch to light mode"
-            );
-        } else {
-            icon.className = "fa-solid fa-moon";
-            themeToggle.setAttribute(
-                "aria-label",
-                "Switch to dark mode"
-            );
-            themeToggle.setAttribute(
-                "title",
-                "Switch to dark mode"
-            );
-        }
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
     }
 
-    // Load saved theme
-    const savedTheme =
-        localStorage.getItem("jayClassicTheme");
+    body.classList.remove("menu-open");
 
-    if (savedTheme === "dark") {
-        applyTheme("dark");
+  }
+
+});
+
+
+/* =========================================================
+   5. HEADER SCROLL EFFECT
+========================================================= */
+
+function updateHeader() {
+
+  if (!header) return;
+
+  if (window.scrollY > 30) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  updateHeader,
+  { passive: true }
+);
+
+updateHeader();
+
+
+/* =========================================================
+   6. DARK / LIGHT THEME
+========================================================= */
+
+const savedTheme = localStorage.getItem("jayOukoTheme");
+
+if (savedTheme === "light") {
+
+  body.classList.add("light-theme");
+
+}
+
+
+function updateThemeIcon() {
+
+  if (!themeToggle) return;
+
+  const icon = themeToggle.querySelector("i");
+
+  if (!icon) return;
+
+  if (body.classList.contains("light-theme")) {
+
+    icon.className = "fa-solid fa-moon";
+
+    themeToggle.setAttribute(
+      "aria-label",
+      "Switch to dark mode"
+    );
+
+    themeToggle.setAttribute(
+      "title",
+      "Switch to dark mode"
+    );
+
+  } else {
+
+    icon.className = "fa-solid fa-sun";
+
+    themeToggle.setAttribute(
+      "aria-label",
+      "Switch to light mode"
+    );
+
+    themeToggle.setAttribute(
+      "title",
+      "Switch to light mode"
+    );
+
+  }
+
+}
+
+
+updateThemeIcon();
+
+
+if (themeToggle) {
+
+  themeToggle.addEventListener("click", () => {
+
+    body.classList.toggle("light-theme");
+
+    const currentTheme =
+      body.classList.contains("light-theme")
+        ? "light"
+        : "dark";
+
+    localStorage.setItem(
+      "jayOukoTheme",
+      currentTheme
+    );
+
+    updateThemeIcon();
+
+  });
+
+}
+
+
+/* =========================================================
+   7. ACTIVE NAVIGATION
+========================================================= */
+
+const sections = document.querySelectorAll(
+  "section[id]"
+);
+
+const navigationLinks = document.querySelectorAll(
+  ".nav-link"
+);
+
+
+function updateActiveNavigation() {
+
+  if (!sections.length) return;
+
+  let currentSection = "";
+
+  sections.forEach((section) => {
+
+    const sectionTop =
+      section.offsetTop - 140;
+
+    const sectionHeight =
+      section.offsetHeight;
+
+    if (
+      window.scrollY >= sectionTop &&
+      window.scrollY <
+        sectionTop + sectionHeight
+    ) {
+
+      currentSection = section.id;
+
+    }
+
+  });
+
+
+  navigationLinks.forEach((link) => {
+
+    link.classList.remove("active");
+
+    const target =
+      link.getAttribute("href");
+
+    if (
+      target === `#${currentSection}`
+    ) {
+
+      link.classList.add("active");
+
+    }
+
+  });
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  updateActiveNavigation,
+  { passive: true }
+);
+
+updateActiveNavigation();
+
+
+/* =========================================================
+   8. BACK TO TOP
+========================================================= */
+
+function updateBackToTop() {
+
+  if (!backToTop) return;
+
+  if (window.scrollY > 500) {
+
+    backToTop.classList.add("visible");
+
+  } else {
+
+    backToTop.classList.remove("visible");
+
+  }
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  updateBackToTop,
+  { passive: true }
+);
+
+updateBackToTop();
+
+
+if (backToTop) {
+
+  backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  });
+
+}
+
+
+/* =========================================================
+   9. TYPING EFFECT
+========================================================= */
+
+const typingElement =
+  document.querySelector(".typing-text");
+
+
+const typingWords = [
+  "Web Developer",
+  "Freelancer",
+  "Graphic Designer",
+  "Digital Marketer",
+  "AI Tools Creator"
+];
+
+
+let wordIndex = 0;
+
+let characterIndex = 0;
+
+let deleting = false;
+
+
+function typingEffect() {
+
+  if (!typingElement) return;
+
+
+  const currentWord =
+    typingWords[wordIndex];
+
+
+  if (!deleting) {
+
+    characterIndex++;
+
+  } else {
+
+    characterIndex--;
+
+  }
+
+
+  typingElement.textContent =
+    currentWord.substring(
+      0,
+      characterIndex
+    );
+
+
+  let typingSpeed =
+    deleting ? 55 : 90;
+
+
+  if (
+    !deleting &&
+    characterIndex === currentWord.length
+  ) {
+
+    typingSpeed = 1500;
+
+    deleting = true;
+
+  }
+
+
+  if (
+    deleting &&
+    characterIndex === 0
+  ) {
+
+    deleting = false;
+
+    wordIndex =
+      (wordIndex + 1) %
+      typingWords.length;
+
+    typingSpeed = 400;
+
+  }
+
+
+  setTimeout(
+    typingEffect,
+    typingSpeed
+  );
+
+}
+
+
+typingEffect();
+
+
+/* =========================================================
+   10. SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+  document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+  new IntersectionObserver(
+    (entries, observer) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add(
+            "revealed"
+          );
+
+          observer.unobserve(
+            entry.target
+          );
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+
+revealElements.forEach((element) => {
+
+  revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   11. PORTFOLIO FILTER
+========================================================= */
+
+const filterButtons =
+  document.querySelectorAll(".filter-btn");
+
+const portfolioCards =
+  document.querySelectorAll(".portfolio-card");
+
+
+filterButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    filterButtons.forEach((btn) => {
+
+      btn.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    const selectedFilter =
+      button.dataset.filter;
+
+
+    portfolioCards.forEach((card) => {
+
+      const category =
+        card.dataset.category;
+
+
+      if (
+        selectedFilter === "all" ||
+        category === selectedFilter
+      ) {
+
+        card.classList.remove("hidden");
+
+      } else {
+
+        card.classList.add("hidden");
+
+      }
+
+    });
+
+  });
+
+});
+
+
+/* =========================================================
+   12. ANIMATED COUNTERS
+========================================================= */
+
+const counters =
+  document.querySelectorAll(
+    "[data-count]"
+  );
+
+
+function animateCounter(element) {
+
+  const target =
+    Number(
+      element.dataset.count
+    );
+
+
+  const duration = 1600;
+
+  const startTime =
+    performance.now();
+
+
+  function updateCounter(currentTime) {
+
+    const elapsed =
+      currentTime - startTime;
+
+
+    const progress =
+      Math.min(
+        elapsed / duration,
+        1
+      );
+
+
+    const eased =
+      1 -
+      Math.pow(
+        1 - progress,
+        3
+      );
+
+
+    const currentValue =
+      Math.floor(
+        eased * target
+      );
+
+
+    element.textContent =
+      currentValue;
+
+
+    if (progress < 1) {
+
+      requestAnimationFrame(
+        updateCounter
+      );
+
     } else {
-        applyTheme("light");
+
+      element.textContent =
+        target;
+
     }
 
-    // Theme button
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-
-            const isDark =
-                body.classList.contains("dark-mode");
-
-            if (isDark) {
-                applyTheme("light");
-
-                localStorage.setItem(
-                    "jayClassicTheme",
-                    "light"
-                );
-            } else {
-                applyTheme("dark");
-
-                localStorage.setItem(
-                    "jayClassicTheme",
-                    "dark"
-                );
-            }
-
-            // Button animation
-            themeToggle.animate(
-                [
-                    {
-                        transform: "rotate(0deg) scale(1)"
-                    },
-                    {
-                        transform: "rotate(180deg) scale(1.15)"
-                    },
-                    {
-                        transform: "rotate(360deg) scale(1)"
-                    }
-                ],
-                {
-                    duration: 500,
-                    easing: "ease"
-                }
-            );
-        });
-    }
+  }
 
 
-    /* ================================
-       MOBILE MENU
-    ================================= */
+  requestAnimationFrame(
+    updateCounter
+  );
 
-    const menuToggle =
-        document.getElementById("menuToggle");
+}
 
-    const navbar =
-        document.getElementById("navbar");
 
-    if (menuToggle && navbar) {
+if (counters.length) {
 
-        menuToggle.addEventListener("click", () => {
+  const counterObserver =
+    new IntersectionObserver(
+      (entries, observer) => {
 
-            const open =
-                navbar.classList.toggle("active");
+        entries.forEach((entry) => {
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                open
+          if (entry.isIntersecting) {
+
+            animateCounter(
+              entry.target
             );
 
-            const icon =
-                menuToggle.querySelector("i");
+            observer.unobserve(
+              entry.target
+            );
 
-            if (icon) {
-                icon.className = open
-                    ? "fa-solid fa-xmark"
-                    : "fa-solid fa-bars";
-            }
+          }
+
         });
 
-        document.querySelectorAll(".nav-link")
-            .forEach(link => {
-
-                link.addEventListener("click", () => {
-
-                    navbar.classList.remove("active");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    const icon =
-                        menuToggle.querySelector("i");
-
-                    if (icon) {
-                        icon.className =
-                            "fa-solid fa-bars";
-                    }
-                });
-            });
-    }
-
-
-    /* ================================
-       HEADER SCROLL
-    ================================= */
-
-    const header =
-        document.querySelector(".header");
-
-    function handleHeader() {
-
-        if (!header) return;
-
-        if (window.scrollY > 40) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    }
-
-    window.addEventListener(
-        "scroll",
-        handleHeader,
-        { passive: true }
+      },
+      {
+        threshold: 0.5
+      }
     );
 
-    handleHeader();
 
+  counters.forEach((counter) => {
 
-    /* ================================
-       BACK TO TOP
-    ================================= */
-
-    const backToTop =
-        document.getElementById("backToTop");
-
-    function handleBackToTop() {
-
-        if (!backToTop) return;
-
-        if (window.scrollY > 500) {
-            backToTop.classList.add("show");
-        } else {
-            backToTop.classList.remove("show");
-        }
-    }
-
-    window.addEventListener(
-        "scroll",
-        handleBackToTop,
-        { passive: true }
+    counterObserver.observe(
+      counter
     );
 
-    handleBackToTop();
+  });
 
-    if (backToTop) {
+}
 
-        backToTop.addEventListener(
-            "click",
-            () => {
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-        );
+/* =========================================================
+   13. CHATBOT
+========================================================= */
+
+function openChatbot() {
+
+  if (!chatbot) return;
+
+  chatbot.classList.add("open");
+
+}
+
+
+function closeChatbot() {
+
+  if (!chatbot) return;
+
+  chatbot.classList.remove("open");
+
+}
+
+
+if (chatbotToggle) {
+
+  chatbotToggle.addEventListener(
+    "click",
+    () => {
+
+      chatbot.classList.toggle("open");
+
+    }
+  );
+
+}
+
+
+if (chatbotClose) {
+
+  chatbotClose.addEventListener(
+    "click",
+    closeChatbot
+  );
+
+}
+
+
+/* CLOSE CHATBOT OUTSIDE */
+
+document.addEventListener(
+  "click",
+  (event) => {
+
+    if (!chatbot) return;
+
+    if (
+      chatbot.classList.contains("open") &&
+      !chatbot.contains(event.target)
+    ) {
+
+      closeChatbot();
+
     }
 
+  }
+);
 
-    /* ================================
-       SMOOTH NAVIGATION
-    ================================= */
 
-    document.querySelectorAll(
-        'a[href^="#"]'
-    ).forEach(link => {
+/* =========================================================
+   14. CHATBOT RESPONSES
+========================================================= */
 
-        link.addEventListener(
-            "click",
-            event => {
+const chatbotReplies = [
 
-                const targetID =
-                    link.getAttribute("href");
+  {
+    keywords: [
+      "price",
+      "pricing",
+      "cost",
+      "charge",
+      "how much"
+    ],
 
-                if (
-                    !targetID ||
-                    targetID === "#"
-                ) return;
+    response:
+      "My services have different packages depending on the project. You can check the pricing section or contact me directly for a custom quote."
+  },
 
-                const target =
-                    document.querySelector(targetID);
+  {
+    keywords: [
+      "website",
+      "web",
+      "site"
+    ],
 
-                if (!target) return;
+    response:
+      "I can help with responsive websites, landing pages, portfolio websites and business websites."
+  },
 
-                event.preventDefault();
+  {
+    keywords: [
+      "graphic",
+      "design",
+      "logo"
+    ],
 
-                const headerHeight =
-                    header
-                        ? header.offsetHeight
-                        : 0;
+    response:
+      "I offer graphic design services including social media graphics, promotional designs, branding materials and other digital designs."
+  },
 
-                const position =
-                    target.offsetTop -
-                    headerHeight -
-                    10;
+  {
+    keywords: [
+      "marketing",
+      "digital marketing",
+      "social media"
+    ],
 
-                window.scrollTo({
-                    top: position,
-                    behavior: "smooth"
-                });
-            }
+    response:
+      "I can help with digital marketing, social media content, online promotion and basic growth strategies."
+  },
+
+  {
+    keywords: [
+      "ai",
+      "artificial intelligence",
+      "automation"
+    ],
+
+    response:
+      "I work with AI tools for productivity, content creation, automation and digital workflows."
+  },
+
+  {
+    keywords: [
+      "contact",
+      "email",
+      "hire",
+      "work"
+    ],
+
+    response:
+      "You can contact Jay through emmanuelouko21@gmail.com or use the contact form on this website."
+  },
+
+  {
+    keywords: [
+      "class",
+      "classes",
+      "course",
+      "training"
+    ],
+
+    response:
+      "Online learning sessions are available through my social media channels. Check the Classes section for the current schedule."
+  }
+
+];
+
+
+function getChatbotReply(message) {
+
+  const lowerMessage =
+    message.toLowerCase();
+
+
+  for (
+    const item of chatbotReplies
+  ) {
+
+    const matched =
+      item.keywords.some(
+        (keyword) =>
+          lowerMessage.includes(
+            keyword
+          )
+      );
+
+
+    if (matched) {
+
+      return item.response;
+
+    }
+
+  }
+
+
+  return (
+    "Thanks for your message. " +
+    "For a specific project or quotation, " +
+    "please contact me through email or WhatsApp."
+  );
+
+}
+
+
+function addChatMessage(
+  message,
+  type = "bot"
+) {
+
+  if (!chatbotMessages) return;
+
+
+  const wrapper =
+    document.createElement("div");
+
+
+  wrapper.className =
+    type === "user"
+      ? "user-message"
+      : "bot-message";
+
+
+  const paragraph =
+    document.createElement("p");
+
+
+  paragraph.textContent =
+    message;
+
+
+  if (type === "bot") {
+
+    const icon =
+      document.createElement("div");
+
+
+    icon.className =
+      "message-icon";
+
+
+    icon.innerHTML =
+      '<i class="fa-solid fa-robot"></i>';
+
+
+    wrapper.appendChild(icon);
+
+  }
+
+
+  wrapper.appendChild(
+    paragraph
+  );
+
+
+  chatbotMessages.appendChild(
+    wrapper
+  );
+
+
+  chatbotMessages.scrollTop =
+    chatbotMessages.scrollHeight;
+
+}
+
+
+if (chatbotForm) {
+
+  chatbotForm.addEventListener(
+    "submit",
+    (event) => {
+
+      event.preventDefault();
+
+
+      const message =
+        chatbotInput.value.trim();
+
+
+      if (!message) return;
+
+
+      addChatMessage(
+        message,
+        "user"
+      );
+
+
+      chatbotInput.value = "";
+
+
+      setTimeout(() => {
+
+        const reply =
+          getChatbotReply(
+            message
+          );
+
+
+        addChatMessage(
+          reply,
+          "bot"
         );
+
+      }, 500);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   15. CHATBOT QUICK ACTIONS
+========================================================= */
+
+const quickActionButtons =
+  document.querySelectorAll(
+    ".chatbot-quick-actions button"
+  );
+
+
+quickActionButtons.forEach(
+  (button) => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const message =
+          button.textContent.trim();
+
+
+        addChatMessage(
+          message,
+          "user"
+        );
+
+
+        setTimeout(() => {
+
+          const reply =
+            getChatbotReply(
+              message
+            );
+
+
+          addChatMessage(
+            reply,
+            "bot"
+          );
+
+        }, 400);
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   16. REVIEW FORM
+========================================================= */
+
+const reviewForm =
+  document.querySelector(
+    "#reviewForm"
+  );
+
+
+const reviewStatus =
+  document.querySelector(
+    "#reviewStatus"
+  );
+
+
+const reviewsList =
+  document.querySelector(
+    ".reviews-list"
+  );
+
+
+const reviewName =
+  document.querySelector(
+    "#reviewName"
+  );
+
+
+const reviewRating =
+  document.querySelector(
+    "#reviewRating"
+  );
+
+
+const reviewMessage =
+  document.querySelector(
+    "#reviewMessage"
+  );
+
+
+function getSavedReviews() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(
+        "jayOukoReviews"
+      )
+    ) || [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveReviews(reviews) {
+
+  localStorage.setItem(
+    "jayOukoReviews",
+    JSON.stringify(reviews)
+  );
+
+}
+
+
+function renderReviews() {
+
+  if (!reviewsList) return;
+
+
+  const reviews =
+    getSavedReviews();
+
+
+  reviewsList.innerHTML = "";
+
+
+  reviews
+    .slice()
+    .reverse()
+    .forEach((review) => {
+
+      const card =
+        document.createElement("article");
+
+
+      card.className =
+        "review-item";
+
+
+      const header =
+        document.createElement("div");
+
+
+      header.className =
+        "review-item-header";
+
+
+      const name =
+        document.createElement("strong");
+
+
+      name.className =
+        "review-item-name";
+
+
+      name.textContent =
+        review.name;
+
+
+      const stars =
+        document.createElement("span");
+
+
+      stars.className =
+        "review-item-stars";
+
+
+      stars.textContent =
+        "★".repeat(
+          Number(review.rating)
+        );
+
+
+      header.appendChild(name);
+
+      header.appendChild(stars);
+
+
+      const message =
+        document.createElement("p");
+
+
+      message.textContent =
+        review.message;
+
+
+      card.appendChild(header);
+
+      card.appendChild(message);
+
+
+      reviewsList.appendChild(card);
+
     });
 
+}
 
-    /* ================================
-       SCROLL ANIMATIONS
-    ================================= */
 
-    const revealElements =
-        document.querySelectorAll(`
-            .section-heading,
-            .service-card,
-            .program-card,
-            .portfolio-card,
-            .review-card,
-            .stat-card,
-            .class-card,
-            .registration-info,
-            .registration-form,
-            .review-form-wrapper,
-            .contact-info,
-            .contact-form,
-            .info-box
-        `);
+renderReviews();
 
-    revealElements.forEach(element => {
-        element.classList.add("reveal");
-    });
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+if (reviewForm) {
 
-                entries.forEach(entry => {
+  reviewForm.addEventListener(
+    "submit",
+    (event) => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
-                        entry.target.classList.add(
-                            "visible"
-                        );
+      event.preventDefault();
 
-                        observer.unobserve(
-                            entry.target
-                        );
-                    }
-                });
 
-            },
-            {
-                threshold: 0.12
-            }
+      const name =
+        reviewName?.value.trim();
+
+
+      const rating =
+        reviewRating?.value;
+
+
+      const message =
+        reviewMessage?.value.trim();
+
+
+      if (
+        !name ||
+        !rating ||
+        !message
+      ) {
+
+        if (reviewStatus) {
+
+          reviewStatus.textContent =
+            "Please complete all review fields.";
+
+        }
+
+        return;
+
+      }
+
+
+      const reviews =
+        getSavedReviews();
+
+
+      reviews.push({
+
+        name,
+
+        rating,
+
+        message,
+
+        date:
+          new Date().toISOString()
+
+      });
+
+
+      saveReviews(reviews);
+
+      renderReviews();
+
+
+      reviewForm.reset();
+
+
+      if (reviewStatus) {
+
+        reviewStatus.textContent =
+          "Thank you! Your review has been added.";
+
+      }
+
+
+      setTimeout(() => {
+
+        if (reviewStatus) {
+
+          reviewStatus.textContent =
+            "";
+
+        }
+
+      }, 4000);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   17. CONTACT FORM
+========================================================= */
+
+const contactForm =
+  document.querySelector(
+    "#contactForm"
+  );
+
+
+const contactStatus =
+  document.querySelector(
+    "#contactStatus"
+  );
+
+
+if (contactForm) {
+
+  contactForm.addEventListener(
+    "submit",
+    (event) => {
+
+      event.preventDefault();
+
+
+      const formData =
+        new FormData(
+          contactForm
         );
 
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
+
+      const name =
+        formData.get("name") ||
+        "";
 
 
-    /* ================================
-       CONTACT FORM
-    ================================= */
+      const email =
+        formData.get("email") ||
+        "";
 
-    const contactForm =
-        document.getElementById("contactForm");
 
-    const contactStatus =
-        document.getElementById(
-            "contactMessageStatus"
-        );
+      const subject =
+        formData.get("subject") ||
+        "Website enquiry";
 
-    if (contactForm) {
 
-        contactForm.addEventListener(
-            "submit",
-            event => {
+      const message =
+        formData.get("message") ||
+        "";
 
-                event.preventDefault();
 
-                const name =
-                    document.getElementById(
-                        "contactName"
-                    )?.value.trim();
-
-                const email =
-                    document.getElementById(
-                        "contactEmail"
-                    )?.value.trim();
-
-                const subject =
-                    document.getElementById(
-                        "contactSubject"
-                    )?.value.trim();
-
-                const message =
-                    document.getElementById(
-                        "contactMessage"
-                    )?.value.trim();
-
-                if (!name || !email || !message) {
-
-                    showMessage(
-                        contactStatus,
-                        "Please fill in all required fields.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                const emailBody =
-                    encodeURIComponent(
-`Hello Jay Classic,
+      const bodyText =
+        `Hello Jay Ouko,
 
 Name: ${name}
 Email: ${email}
 
 Message:
-${message}`
-                    );
+${message}`;
 
-                const emailSubject =
-                    encodeURIComponent(
-                        subject ||
-                        `Website message from ${name}`
-                    );
 
-                showMessage(
-                    contactStatus,
-                    "Opening your email application...",
-                    "success"
-                );
-
-                window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-
-                contactForm.reset();
-            }
+      const mailto =
+        "mailto:emmanuelouko21@gmail.com" +
+        "?subject=" +
+        encodeURIComponent(
+          subject
+        ) +
+        "&body=" +
+        encodeURIComponent(
+          bodyText
         );
+
+
+      window.location.href =
+        mailto;
+
+
+      if (contactStatus) {
+
+        contactStatus.textContent =
+          "Opening your email application...";
+
+      }
+
     }
+  );
 
+}
 
-    /* ================================
-       REGISTRATION FORM
-    ================================= */
 
-    const registrationForm =
-        document.getElementById(
-            "registrationForm"
-        );
+/* =========================================================
+   18. HIRE BUTTONS
+========================================================= */
 
-    const registrationMessage =
-        document.getElementById(
-            "registrationMessage"
-        );
+const hireButtons =
+  document.querySelectorAll(
+    "[data-hire]"
+  );
 
-    if (registrationForm) {
 
-        registrationForm.addEventListener(
-            "submit",
-            event => {
+hireButtons.forEach(
+  (button) => {
 
-                event.preventDefault();
+    button.addEventListener(
+      "click",
+      () => {
 
-                const name =
-                    document.getElementById(
-                        "registerName"
-                    )?.value.trim();
+        const service =
+          button.dataset.hire ||
+          "a service";
 
-                const email =
-                    document.getElementById(
-                        "registerEmail"
-                    )?.value.trim();
 
-                const phone =
-                    document.getElementById(
-                        "registerPhone"
-                    )?.value.trim();
+        const subject =
+          `Project enquiry - ${service}`;
 
-                const interest =
-                    document.getElementById(
-                        "registerInterest"
-                    )?.value.trim();
-
-                if (!name || !email || !phone) {
-
-                    showMessage(
-                        registrationMessage,
-                        "Please fill in your name, email and phone number.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                const emailBody =
-                    encodeURIComponent(
-`Hello Jay Classic,
-
-I would like to register for the free online classes.
-
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Interest: ${interest || "Not specified"}`
-                    );
-
-                const emailSubject =
-                    encodeURIComponent(
-                        `Free Class Registration - ${name}`
-                    );
-
-                showMessage(
-                    registrationMessage,
-                    "Opening your email application...",
-                    "success"
-                );
-
-                window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-
-                registrationForm.reset();
-            }
-        );
-    }
-
-
-    /* ================================
-       REVIEWS
-    ================================= */
-
-    const reviewForm =
-        document.getElementById("reviewForm");
-
-    const reviewsContainer =
-        document.getElementById(
-            "reviewsContainer"
-        );
-
-    const reviewMessage =
-        document.getElementById(
-            "reviewMessage"
-        );
-
-    let reviews =
-        JSON.parse(
-            localStorage.getItem(
-                "jayClassicReviews"
-            ) || "[]"
-        );
-
-    function renderReviews() {
-
-        if (
-            !reviewsContainer ||
-            reviews.length === 0
-        ) return;
-
-        reviewsContainer.innerHTML = "";
-
-        reviews.forEach(review => {
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "review-card reveal visible";
-
-            const stars =
-                "★".repeat(review.rating) +
-                "☆".repeat(
-                    5 - review.rating
-                );
-
-            card.innerHTML = `
-                <div class="review-stars">
-                    ${stars}
-                </div>
-
-                <p class="review-text"></p>
-
-                <div class="review-author">
-                    <strong></strong>
-                    <small>${review.date}</small>
-                </div>
-            `;
-
-            card.querySelector(
-                ".review-text"
-            ).textContent =
-                `"${review.text}"`;
-
-            card.querySelector(
-                "strong"
-            ).textContent =
-                review.name;
-
-            reviewsContainer.appendChild(card);
-        });
-    }
-
-    if (reviewForm) {
-
-        reviewForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-                const name =
-                    document.getElementById(
-                        "reviewName"
-                    )?.value.trim();
-
-                const rating =
-                    Number(
-                        document.getElementById(
-                            "reviewRating"
-                        )?.value
-                    );
-
-                const text =
-                    document.getElementById(
-                        "reviewText"
-                    )?.value.trim();
-
-                if (
-                    !name ||
-                    !rating ||
-                    !text
-                ) {
-
-                    showMessage(
-                        reviewMessage,
-                        "Please complete all review fields.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                reviews.unshift({
-                    name,
-                    rating,
-                    text,
-                    date:
-                        new Date()
-                            .toLocaleDateString()
-                });
-
-                reviews =
-                    reviews.slice(0, 20);
-
-                localStorage.setItem(
-                    "jayClassicReviews",
-                    JSON.stringify(reviews)
-                );
-
-                renderReviews();
-
-                showMessage(
-                    reviewMessage,
-                    "Thank you! Your review has been added.",
-                    "success"
-                );
-
-                reviewForm.reset();
-            }
-        );
-    }
-
-    renderReviews();
-
-
-    /* ================================
-       AI CHATBOT
-    ================================= */
-
-    const chatButton =
-        document.getElementById("chatButton");
-
-    const chatWindow =
-        document.getElementById("chatWindow");
-
-    const closeChat =
-        document.getElementById("closeChat");
-
-    const chatInput =
-        document.getElementById("chatInput");
-
-    const sendChat =
-        document.getElementById("sendChat");
-
-    const chatMessages =
-        document.getElementById("chatMessages");
-
-    function openChat() {
-
-        if (!chatWindow) return;
-
-        chatWindow.classList.add("active");
-
-        chatWindow.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        setTimeout(() => {
-            chatInput?.focus();
-        }, 200);
-    }
-
-    function closeChatBox() {
-
-        if (!chatWindow) return;
-
-        chatWindow.classList.remove("active");
-
-        chatWindow.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-    }
-
-    chatButton?.addEventListener(
-        "click",
-        openChat
-    );
-
-    closeChat?.addEventListener(
-        "click",
-        closeChatBox
-    );
-
-    function addMessage(
-        message,
-        type
-    ) {
-
-        if (!chatMessages) return;
-
-        const element =
-            document.createElement("div");
-
-        element.className =
-            `chat-message ${type}`;
-
-        element.textContent =
-            message;
-
-        chatMessages.appendChild(
-            element
-        );
-
-        chatMessages.scrollTop =
-            chatMessages.scrollHeight;
-    }
-
-    function botReply(input) {
-
-        const text =
-            input.toLowerCase();
-
-        if (
-            text.includes("hello") ||
-            text.includes("hi") ||
-            text.includes("hey")
-        ) {
-            return "Hello 👋 Welcome to Jay Classic! How can I help you today?";
-        }
-
-        if (
-            text.includes("service") ||
-            text.includes("what do you do")
-        ) {
-            return "Jay Classic offers web development, graphic design, digital marketing, freelancing support, AI tools and digital services.";
-        }
-
-        if (
-            text.includes("freelanc") ||
-            text.includes("online job")
-        ) {
-            return "Jay Classic focuses on freelancing and online digital opportunities. You can contact Jay for guidance or digital services.";
-        }
-
-        if (
-            text.includes("class") ||
-            text.includes("9 pm") ||
-            text.includes("9pm")
-        ) {
-            return "Free online classes are available daily at 9:00 PM through TikTok. You can register on the Classes section.";
-        }
-
-        if (text.includes("canva")) {
-            return "Canva is included among the digital programs. It can help you learn graphic design and content creation.";
-        }
-
-        if (text.includes("twiva")) {
-            return "Twiva is one of the programs featured by Jay Classic for people interested in creator and digital opportunities.";
-        }
-
-        if (
-            text.includes("contact") ||
-            text.includes("email")
-        ) {
-            return "You can contact Jay Classic at emmanuelouko21@gmail.com or through the WhatsApp button.";
-        }
-
-        if (
-            text.includes("price") ||
-            text.includes("cost")
-        ) {
-            return "Project pricing depends on the service and requirements. Contact Jay for a current quotation.";
-        }
-
-        if (
-            text.includes("register")
-        ) {
-            return "You can register using the registration form in the Free Online Classes section.";
-        }
-
-        return "I can help with Jay Classic services, freelancing, online classes, Canva, Twiva, portfolio and contact information.";
-    }
-
-    function sendMessage() {
-
-        if (!chatInput) return;
 
         const message =
-            chatInput.value.trim();
+          `Hello Jay Ouko,
 
-        if (!message) return;
+I am interested in your ${service} service.
 
-        addMessage(
-            message,
-            "user"
+I would like to discuss my project with you.
+
+Thank you.`;
+
+
+        const mailto =
+          "mailto:emmanuelouko21@gmail.com" +
+          "?subject=" +
+          encodeURIComponent(
+            subject
+          ) +
+          "&body=" +
+          encodeURIComponent(
+            message
+          );
+
+
+        window.location.href =
+          mailto;
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   19. WHATSAPP LINKS
+========================================================= */
+
+const whatsappLinks =
+  document.querySelectorAll(
+    'a[href*="wa.me"]'
+  );
+
+
+whatsappLinks.forEach(
+  (link) => {
+
+    link.addEventListener(
+      "click",
+      () => {
+
+        /* WhatsApp opens normally.
+           This handler exists so future
+           tracking can be added safely. */
+
+        console.log(
+          "WhatsApp contact opened."
         );
 
-        chatInput.value = "";
-
-        setTimeout(() => {
-
-            addMessage(
-                botReply(message),
-                "bot"
-            );
-
-        }, 500);
-    }
-
-    sendChat?.addEventListener(
-        "click",
-        sendMessage
+      }
     );
 
-    chatInput?.addEventListener(
-        "keydown",
-        event => {
+  }
+);
 
-            if (
-                event.key === "Enter" &&
-                !event.shiftKey
-            ) {
-                event.preventDefault();
 
-                sendMessage();
-            }
+/* =========================================================
+   20. SMOOTH INTERNAL LINKS
+========================================================= */
+
+document
+  .querySelectorAll(
+    'a[href^="#"]'
+  )
+  .forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      (event) => {
+
+        const targetId =
+          link.getAttribute("href");
+
+
+        if (
+          !targetId ||
+          targetId === "#"
+        ) {
+
+          return;
+
         }
+
+
+        const target =
+          document.querySelector(
+            targetId
+          );
+
+
+        if (!target) return;
+
+
+        event.preventDefault();
+
+
+        const headerHeight =
+          header
+            ? header.offsetHeight
+            : 0;
+
+
+        const targetPosition =
+          target.offsetTop -
+          headerHeight;
+
+
+        window.scrollTo({
+
+          top:
+            targetPosition,
+
+          behavior:
+            "smooth"
+
+        });
+
+      }
     );
 
-
-    /* ================================
-       ESCAPE
-    ================================= */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key !== "Escape") return;
-
-            navbar?.classList.remove(
-                "active"
-            );
-
-            closeChatBox();
-        }
-    );
+  });
 
 
-    /* ================================
-       CURRENT YEAR
-    ================================= */
+/* =========================================================
+   21. SERVICE CARD HOVER ACCESSIBILITY
+========================================================= */
 
-    const year =
-        document.getElementById(
-            "currentYear"
+const serviceCards =
+  document.querySelectorAll(
+    ".service-card"
+  );
+
+
+serviceCards.forEach(
+  (card) => {
+
+    card.addEventListener(
+      "mouseenter",
+      () => {
+
+        card.style.setProperty(
+          "--card-active",
+          "1"
         );
 
-    if (year) {
-        year.textContent =
-            new Date().getFullYear();
-    }
+      }
+    );
 
 
-    /* ================================
-       HELPER
-    ================================= */
+    card.addEventListener(
+      "mouseleave",
+      () => {
 
-    function showMessage(
-        element,
-        message,
-        type
+        card.style.setProperty(
+          "--card-active",
+          "0"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   22. CURRENT YEAR
+========================================================= */
+
+const yearElements =
+  document.querySelectorAll(
+    ".current-year"
+  );
+
+
+yearElements.forEach(
+  (element) => {
+
+    element.textContent =
+      new Date().getFullYear();
+
+  }
+);
+
+
+/* =========================================================
+   23. PREVENT EMPTY FORM SUBMISSION
+========================================================= */
+
+document
+  .querySelectorAll("form")
+  .forEach((form) => {
+
+    form.addEventListener(
+      "invalid",
+      () => {
+
+        form.classList.add(
+          "has-error"
+        );
+
+      },
+      true
+    );
+
+  });
+
+
+/* =========================================================
+   24. ONLINE STATUS
+========================================================= */
+
+function updateOnlineStatus() {
+
+  const status =
+    document.querySelector(
+      ".status-badge"
+    );
+
+
+  if (!status) return;
+
+
+  const text =
+    status.querySelector(
+      "span:last-child"
+    );
+
+
+  if (!text) return;
+
+
+  if (navigator.onLine) {
+
+    text.textContent =
+      "Available for freelance work";
+
+  } else {
+
+    text.textContent =
+      "Currently offline";
+
+  }
+
+}
+
+
+window.addEventListener(
+  "online",
+  updateOnlineStatus
+);
+
+window.addEventListener(
+  "offline",
+  updateOnlineStatus
+);
+
+
+/* =========================================================
+   25. LAZY IMAGE LOADING
+========================================================= */
+
+document
+  .querySelectorAll("img")
+  .forEach((image) => {
+
+    if (
+      !image.hasAttribute(
+        "loading"
+      )
     ) {
 
-        if (!element) return;
+      image.setAttribute(
+        "loading",
+        "lazy"
+      );
 
-        element.textContent = message;
-
-        element.className =
-            `form-message ${type}`;
-
-        element.style.opacity = "1";
-
-        setTimeout(() => {
-            element.style.opacity = "0";
-        }, 5000);
     }
 
+  });
 
-    /* ================================
-       PAGE READY
-    ================================= */
 
-    document.body.classList.add(
-        "page-loaded"
-    );
+/* =========================================================
+   26. ERROR-SAFE EXTERNAL LINKS
+========================================================= */
 
-    console.log(
-        "Jay Classic — Website Ready 🚀"
-    );
+document
+  .querySelectorAll(
+    'a[target="_blank"]'
+  )
+  .forEach((link) => {
 
-});
+    const existingRel =
+      link.getAttribute("rel") ||
+      "";
+
+
+    if (
+      !existingRel.includes(
+        "noopener"
+      )
+    ) {
+
+      link.setAttribute(
+        "rel",
+        `${existingRel} noopener noreferrer`
+          .trim()
+      );
+
+    }
+
+  });
+
+
+/* =========================================================
+   27. INITIALIZATION MESSAGE
+========================================================= */
+
+console.log(
+  "%cJay Ouko Portfolio loaded successfully.",
+  "font-size:16px;font-weight:bold;"
+);
+
+console.log(
+  "Website: Jay Ouko | Freelancing & Digital Services"
+);
+
+
+/* =========================================================
+   END OF APP.JS
+========================================================= */
 ```
