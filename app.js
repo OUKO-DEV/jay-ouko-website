@@ -1,89 +1,25 @@
 ```javascript
-/* =========================================================
-   JAY CLASSIC — PROFESSIONAL WEBSITE APP.JS
-   Modern interactions, animations, chatbot & forms
-   ========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       ELEMENT SELECTOR HELPER
-    ===================================================== */
-    const $ = (selector) => document.querySelector(selector);
-    const $$ = (selector) => document.querySelectorAll(selector);
+    /* ================================
+       ELEMENTS
+    ================================= */
 
-
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
-    const menuToggle = $("#menuToggle");
-    const navbar = $("#navbar");
-
-    if (menuToggle && navbar) {
-
-        menuToggle.addEventListener("click", (event) => {
-            event.stopPropagation();
-
-            const isOpen = navbar.classList.toggle("active");
-
-            menuToggle.setAttribute("aria-expanded", isOpen);
-
-            const icon = menuToggle.querySelector("i");
-
-            if (icon) {
-                icon.classList.toggle("fa-bars", !isOpen);
-                icon.classList.toggle("fa-xmark", isOpen);
-            }
-        });
-
-        // Close menu after clicking a navigation link
-        $$(".nav-link").forEach(link => {
-            link.addEventListener("click", () => {
-                navbar.classList.remove("active");
-
-                menuToggle.setAttribute("aria-expanded", "false");
-
-                const icon = menuToggle.querySelector("i");
-
-                if (icon) {
-                    icon.classList.remove("fa-xmark");
-                    icon.classList.add("fa-bars");
-                }
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", (event) => {
-            if (
-                navbar.classList.contains("active") &&
-                !navbar.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
-                navbar.classList.remove("active");
-
-                menuToggle.setAttribute("aria-expanded", "false");
-
-                const icon = menuToggle.querySelector("i");
-
-                if (icon) {
-                    icon.classList.remove("fa-xmark");
-                    icon.classList.add("fa-bars");
-                }
-            }
-        });
-    }
-
-
-    /* =====================================================
-       DARK / LIGHT MODE
-    ===================================================== */
-    const themeToggle = $("#themeToggle");
     const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
 
-    const savedTheme = localStorage.getItem("jayClassicTheme");
+    /* ================================
+       DARK MODE
+    ================================= */
 
-    if (savedTheme === "dark") {
-        body.classList.add("dark-mode");
+    function applyTheme(theme) {
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+        } else {
+            body.classList.remove("dark-mode");
+        }
+
+        updateThemeIcon();
     }
 
     function updateThemeIcon() {
@@ -94,93 +30,147 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!icon) return;
 
         if (body.classList.contains("dark-mode")) {
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
-            themeToggle.setAttribute("aria-label", "Switch to light mode");
-            themeToggle.setAttribute("title", "Light mode");
+            icon.className = "fa-solid fa-sun";
+            themeToggle.setAttribute(
+                "aria-label",
+                "Switch to light mode"
+            );
+            themeToggle.setAttribute(
+                "title",
+                "Switch to light mode"
+            );
         } else {
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
-            themeToggle.setAttribute("aria-label", "Switch to dark mode");
-            themeToggle.setAttribute("title", "Dark mode");
+            icon.className = "fa-solid fa-moon";
+            themeToggle.setAttribute(
+                "aria-label",
+                "Switch to dark mode"
+            );
+            themeToggle.setAttribute(
+                "title",
+                "Switch to dark mode"
+            );
         }
     }
 
-    updateThemeIcon();
+    // Load saved theme
+    const savedTheme =
+        localStorage.getItem("jayClassicTheme");
 
+    if (savedTheme === "dark") {
+        applyTheme("dark");
+    } else {
+        applyTheme("light");
+    }
+
+    // Theme button
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
 
-            body.classList.toggle("dark-mode");
+            const isDark =
+                body.classList.contains("dark-mode");
 
-            const isDark = body.classList.contains("dark-mode");
+            if (isDark) {
+                applyTheme("light");
 
-            localStorage.setItem(
-                "jayClassicTheme",
-                isDark ? "dark" : "light"
-            );
+                localStorage.setItem(
+                    "jayClassicTheme",
+                    "light"
+                );
+            } else {
+                applyTheme("dark");
 
-            updateThemeIcon();
+                localStorage.setItem(
+                    "jayClassicTheme",
+                    "dark"
+                );
+            }
 
-            // Small visual feedback
+            // Button animation
             themeToggle.animate(
                 [
-                    { transform: "scale(1)" },
-                    { transform: "scale(1.2)" },
-                    { transform: "scale(1)" }
+                    {
+                        transform: "rotate(0deg) scale(1)"
+                    },
+                    {
+                        transform: "rotate(180deg) scale(1.15)"
+                    },
+                    {
+                        transform: "rotate(360deg) scale(1)"
+                    }
                 ],
                 {
-                    duration: 350,
-                    easing: "ease-out"
+                    duration: 500,
+                    easing: "ease"
                 }
             );
         });
     }
 
 
-    /* =====================================================
-       SMOOTH SCROLLING
-    ===================================================== */
-    $$('a[href^="#"]').forEach(anchor => {
+    /* ================================
+       MOBILE MENU
+    ================================= */
 
-        anchor.addEventListener("click", function (event) {
+    const menuToggle =
+        document.getElementById("menuToggle");
 
-            const targetId = this.getAttribute("href");
+    const navbar =
+        document.getElementById("navbar");
 
-            if (!targetId || targetId === "#") return;
+    if (menuToggle && navbar) {
 
-            const target = $(targetId);
+        menuToggle.addEventListener("click", () => {
 
-            if (!target) return;
+            const open =
+                navbar.classList.toggle("active");
 
-            event.preventDefault();
+            menuToggle.setAttribute(
+                "aria-expanded",
+                open
+            );
 
-            const header = $(".header");
+            const icon =
+                menuToggle.querySelector("i");
 
-            const headerHeight = header
-                ? header.offsetHeight
-                : 0;
-
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.scrollY -
-                headerHeight -
-                15;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
+            if (icon) {
+                icon.className = open
+                    ? "fa-solid fa-xmark"
+                    : "fa-solid fa-bars";
+            }
         });
-    });
+
+        document.querySelectorAll(".nav-link")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    navbar.classList.remove("active");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    const icon =
+                        menuToggle.querySelector("i");
+
+                    if (icon) {
+                        icon.className =
+                            "fa-solid fa-bars";
+                    }
+                });
+            });
+    }
 
 
-    /* =====================================================
-       HEADER SCROLL EFFECT
-    ===================================================== */
-    const header = $(".header");
+    /* ================================
+       HEADER SCROLL
+    ================================= */
 
-    function handleHeaderScroll() {
+    const header =
+        document.querySelector(".header");
+
+    function handleHeader() {
 
         if (!header) return;
 
@@ -191,19 +181,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    window.addEventListener("scroll", handleHeaderScroll, {
-        passive: true
-    });
+    window.addEventListener(
+        "scroll",
+        handleHeader,
+        { passive: true }
+    );
 
-    handleHeaderScroll();
+    handleHeader();
 
 
-    /* =====================================================
+    /* ================================
        BACK TO TOP
-    ===================================================== */
-    const backToTop = $("#backToTop");
+    ================================= */
 
-    function updateBackToTop() {
+    const backToTop =
+        document.getElementById("backToTop");
+
+    function handleBackToTop() {
 
         if (!backToTop) return;
 
@@ -214,280 +208,258 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    window.addEventListener("scroll", updateBackToTop, {
-        passive: true
-    });
+    window.addEventListener(
+        "scroll",
+        handleBackToTop,
+        { passive: true }
+    );
 
-    updateBackToTop();
+    handleBackToTop();
 
     if (backToTop) {
 
-        backToTop.addEventListener("click", () => {
+        backToTop.addEventListener(
+            "click",
+            () => {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            backToTop.animate(
-                [
-                    { transform: "translateY(0)" },
-                    { transform: "translateY(-8px)" },
-                    { transform: "translateY(0)" }
-                ],
-                {
-                    duration: 400
-                }
-            );
-        });
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        );
     }
 
 
-    /* =====================================================
-       SCROLL REVEAL ANIMATIONS
-    ===================================================== */
-    const revealElements = $$(`
-        .section-heading,
-        .about-content,
-        .about-stats,
-        .service-card,
-        .program-card,
-        .class-card,
-        .registration-info,
-        .registration-form,
-        .review-card,
-        .review-form-wrapper,
-        .contact-info,
-        .contact-form,
-        .portfolio-card,
-        .stat-card,
-        .info-box
-    `);
+    /* ================================
+       SMOOTH NAVIGATION
+    ================================= */
+
+    document.querySelectorAll(
+        'a[href^="#"]'
+    ).forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const targetID =
+                    link.getAttribute("href");
+
+                if (
+                    !targetID ||
+                    targetID === "#"
+                ) return;
+
+                const target =
+                    document.querySelector(targetID);
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                const headerHeight =
+                    header
+                        ? header.offsetHeight
+                        : 0;
+
+                const position =
+                    target.offsetTop -
+                    headerHeight -
+                    10;
+
+                window.scrollTo({
+                    top: position,
+                    behavior: "smooth"
+                });
+            }
+        );
+    });
+
+
+    /* ================================
+       SCROLL ANIMATIONS
+    ================================= */
+
+    const revealElements =
+        document.querySelectorAll(`
+            .section-heading,
+            .service-card,
+            .program-card,
+            .portfolio-card,
+            .review-card,
+            .stat-card,
+            .class-card,
+            .registration-info,
+            .registration-form,
+            .review-form-wrapper,
+            .contact-info,
+            .contact-form,
+            .info-box
+        `);
 
     revealElements.forEach(element => {
         element.classList.add("reveal");
     });
 
-    const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-
-            entries.forEach(entry => {
-
-                if (!entry.isIntersecting) return;
-
-                entry.target.classList.add("visible");
-
-                observer.unobserve(entry.target);
-            });
-
-        },
-        {
-            threshold: 0.12,
-            rootMargin: "0px 0px -50px 0px"
-        }
-    );
-
-    revealElements.forEach(element => {
-        revealObserver.observe(element);
-    });
-
-
-    /* =====================================================
-       STAGGER CARD ANIMATIONS
-    ===================================================== */
-    const cardGroups = [
-        ".services-grid .service-card",
-        ".programs-grid .program-card",
-        ".reviews-grid .review-card",
-        ".about-stats .stat-card"
-    ];
-
-    cardGroups.forEach(group => {
-
-        $$(group).forEach((card, index) => {
-
-            card.style.transitionDelay =
-                `${Math.min(index * 0.08, 0.5)}s`;
-
-        });
-    });
-
-
-    /* =====================================================
-       ANIMATED STAT COUNTERS
-    ===================================================== */
-    const counters = $$(".counter");
-
-    function animateCounter(element) {
-
-        const target =
-            parseInt(
-                element.getAttribute("data-target") ||
-                element.textContent.replace(/\D/g, "")
-            );
-
-        if (!target || isNaN(target)) return;
-
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-
-            const elapsed = currentTime - startTime;
-
-            const progress = Math.min(
-                elapsed / duration,
-                1
-            );
-
-            // Smooth easing
-            const easedProgress =
-                1 - Math.pow(1 - progress, 3);
-
-            const currentValue =
-                Math.floor(target * easedProgress);
-
-            element.textContent = currentValue;
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target;
-            }
-        }
-
-        requestAnimationFrame(updateCounter);
-    }
-
-    if (counters.length) {
-
-        const counterObserver = new IntersectionObserver(
-            (entries, observer) => {
+    const observer =
+        new IntersectionObserver(
+            entries => {
 
                 entries.forEach(entry => {
 
-                    if (!entry.isIntersecting) return;
+                    if (
+                        entry.isIntersecting
+                    ) {
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-                    animateCounter(entry.target);
-
-                    observer.unobserve(entry.target);
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
                 });
 
             },
             {
-                threshold: 0.6
+                threshold: 0.12
             }
         );
 
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
-        });
-    }
-
-
-    /* =====================================================
-       ACTIVE NAVIGATION
-    ===================================================== */
-    const sections = $$("section[id]");
-    const navLinks = $$(".nav-link");
-
-    function updateActiveNavigation() {
-
-        let currentSection = "";
-
-        sections.forEach(section => {
-
-            const sectionTop =
-                section.offsetTop - 180;
-
-            if (window.scrollY >= sectionTop) {
-                currentSection = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-
-            link.classList.remove("active");
-
-            const href = link.getAttribute("href");
-
-            if (href === `#${currentSection}`) {
-                link.classList.add("active");
-            }
-        });
-    }
-
-    window.addEventListener(
-        "scroll",
-        updateActiveNavigation,
-        { passive: true }
-    );
-
-    updateActiveNavigation();
-
-
-    /* =====================================================
-       BUTTON RIPPLE EFFECT
-    ===================================================== */
-    $$("button, .btn").forEach(button => {
-
-        button.addEventListener("click", function (event) {
-
-            const rect =
-                this.getBoundingClientRect();
-
-            const ripple =
-                document.createElement("span");
-
-            ripple.className = "ripple";
-
-            ripple.style.left =
-                `${event.clientX - rect.left}px`;
-
-            ripple.style.top =
-                `${event.clientY - rect.top}px`;
-
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 650);
-        });
+    revealElements.forEach(element => {
+        observer.observe(element);
     });
 
 
-    /* =====================================================
+    /* ================================
+       CONTACT FORM
+    ================================= */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const contactStatus =
+        document.getElementById(
+            "contactMessageStatus"
+        );
+
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById(
+                        "contactName"
+                    )?.value.trim();
+
+                const email =
+                    document.getElementById(
+                        "contactEmail"
+                    )?.value.trim();
+
+                const subject =
+                    document.getElementById(
+                        "contactSubject"
+                    )?.value.trim();
+
+                const message =
+                    document.getElementById(
+                        "contactMessage"
+                    )?.value.trim();
+
+                if (!name || !email || !message) {
+
+                    showMessage(
+                        contactStatus,
+                        "Please fill in all required fields.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                const emailBody =
+                    encodeURIComponent(
+`Hello Jay Classic,
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}`
+                    );
+
+                const emailSubject =
+                    encodeURIComponent(
+                        subject ||
+                        `Website message from ${name}`
+                    );
+
+                showMessage(
+                    contactStatus,
+                    "Opening your email application...",
+                    "success"
+                );
+
+                window.location.href =
+                    `mailto:emmanuelouko21@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+                contactForm.reset();
+            }
+        );
+    }
+
+
+    /* ================================
        REGISTRATION FORM
-    ===================================================== */
-    const registrationForm = $("#registrationForm");
-    const registrationMessage = $("#registrationMessage");
+    ================================= */
+
+    const registrationForm =
+        document.getElementById(
+            "registrationForm"
+        );
+
+    const registrationMessage =
+        document.getElementById(
+            "registrationMessage"
+        );
 
     if (registrationForm) {
 
         registrationForm.addEventListener(
             "submit",
-            (event) => {
+            event => {
 
                 event.preventDefault();
 
                 const name =
-                    $("#registerName")?.value.trim();
+                    document.getElementById(
+                        "registerName"
+                    )?.value.trim();
 
                 const email =
-                    $("#registerEmail")?.value.trim();
+                    document.getElementById(
+                        "registerEmail"
+                    )?.value.trim();
 
                 const phone =
-                    $("#registerPhone")?.value.trim();
+                    document.getElementById(
+                        "registerPhone"
+                    )?.value.trim();
 
                 const interest =
-                    $("#registerInterest")?.value.trim();
-
-                const message =
-                    $("#registerMessage")?.value.trim();
+                    document.getElementById(
+                        "registerInterest"
+                    )?.value.trim();
 
                 if (!name || !email || !phone) {
 
-                    showFormMessage(
+                    showMessage(
                         registrationMessage,
                         "Please fill in your name, email and phone number.",
                         "error"
@@ -496,23 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                if (!isValidEmail(email)) {
-
-                    showFormMessage(
-                        registrationMessage,
-                        "Please enter a valid email address.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                const subject =
-                    encodeURIComponent(
-                        `Jay Classic Class Registration - ${name}`
-                    );
-
-                const body =
+                const emailBody =
                     encodeURIComponent(
 `Hello Jay Classic,
 
@@ -521,22 +477,22 @@ I would like to register for the free online classes.
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Interest: ${interest || "Not specified"}
-
-Message:
-${message || "No additional message."}
-
-Thank you.`
+Interest: ${interest || "Not specified"}`
                     );
 
-                showFormMessage(
+                const emailSubject =
+                    encodeURIComponent(
+                        `Free Class Registration - ${name}`
+                    );
+
+                showMessage(
                     registrationMessage,
-                    "Registration details prepared. Your email app will open next.",
+                    "Opening your email application...",
                     "success"
                 );
 
                 window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${subject}&body=${body}`;
+                    `mailto:emmanuelouko21@gmail.com?subject=${emailSubject}&body=${emailBody}`;
 
                 registrationForm.reset();
             }
@@ -544,82 +500,36 @@ Thank you.`
     }
 
 
-    /* =====================================================
-       REVIEW FORM
-    ===================================================== */
-    const reviewForm = $("#reviewForm");
-    const reviewsContainer = $("#reviewsContainer");
-    const reviewMessage = $("#reviewMessage");
+    /* ================================
+       REVIEWS
+    ================================= */
+
+    const reviewForm =
+        document.getElementById("reviewForm");
+
+    const reviewsContainer =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+    const reviewMessage =
+        document.getElementById(
+            "reviewMessage"
+        );
 
     let reviews =
         JSON.parse(
-            localStorage.getItem("jayClassicReviews") || "[]"
+            localStorage.getItem(
+                "jayClassicReviews"
+            ) || "[]"
         );
-
-    if (reviewForm) {
-
-        reviewForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-                const name =
-                    $("#reviewName")?.value.trim();
-
-                const rating =
-                    $("#reviewRating")?.value;
-
-                const text =
-                    $("#reviewText")?.value.trim();
-
-                if (!name || !rating || !text) {
-
-                    showFormMessage(
-                        reviewMessage,
-                        "Please complete all review fields.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                const newReview = {
-                    name,
-                    rating: Number(rating),
-                    text,
-                    date: new Date().toLocaleDateString()
-                };
-
-                reviews.unshift(newReview);
-
-                // Keep the browser storage small
-                reviews =
-                    reviews.slice(0, 20);
-
-                localStorage.setItem(
-                    "jayClassicReviews",
-                    JSON.stringify(reviews)
-                );
-
-                renderReviews();
-
-                showFormMessage(
-                    reviewMessage,
-                    "Thank you! Your review has been added.",
-                    "success"
-                );
-
-                reviewForm.reset();
-            }
-        );
-    }
 
     function renderReviews() {
 
-        if (!reviewsContainer) return;
-
-        if (!reviews.length) return;
+        if (
+            !reviewsContainer ||
+            reviews.length === 0
+        ) return;
 
         reviewsContainer.innerHTML = "";
 
@@ -633,11 +543,12 @@ Thank you.`
 
             const stars =
                 "★".repeat(review.rating) +
-                "☆".repeat(5 - review.rating);
+                "☆".repeat(
+                    5 - review.rating
+                );
 
             card.innerHTML = `
-                <div class="review-stars"
-                     aria-label="${review.rating} out of 5 stars">
+                <div class="review-stars">
                     ${stars}
                 </div>
 
@@ -649,136 +560,136 @@ Thank you.`
                 </div>
             `;
 
-            card.querySelector(".review-text").textContent =
+            card.querySelector(
+                ".review-text"
+            ).textContent =
                 `"${review.text}"`;
 
-            card.querySelector("strong").textContent =
+            card.querySelector(
+                "strong"
+            ).textContent =
                 review.name;
 
             reviewsContainer.appendChild(card);
         });
     }
 
-    renderReviews();
+    if (reviewForm) {
 
-
-    /* =====================================================
-       CONTACT FORM
-    ===================================================== */
-    const contactForm = $("#contactForm");
-    const contactStatus = $("#contactMessageStatus");
-
-    if (contactForm) {
-
-        contactForm.addEventListener(
+        reviewForm.addEventListener(
             "submit",
             event => {
 
                 event.preventDefault();
 
                 const name =
-                    $("#contactName")?.value.trim();
+                    document.getElementById(
+                        "reviewName"
+                    )?.value.trim();
 
-                const email =
-                    $("#contactEmail")?.value.trim();
+                const rating =
+                    Number(
+                        document.getElementById(
+                            "reviewRating"
+                        )?.value
+                    );
 
-                const subject =
-                    $("#contactSubject")?.value.trim();
+                const text =
+                    document.getElementById(
+                        "reviewText"
+                    )?.value.trim();
 
-                const message =
-                    $("#contactMessage")?.value.trim();
+                if (
+                    !name ||
+                    !rating ||
+                    !text
+                ) {
 
-                if (!name || !email || !message) {
-
-                    showFormMessage(
-                        contactStatus,
-                        "Please complete the required fields.",
+                    showMessage(
+                        reviewMessage,
+                        "Please complete all review fields.",
                         "error"
                     );
 
                     return;
                 }
 
-                if (!isValidEmail(email)) {
+                reviews.unshift({
+                    name,
+                    rating,
+                    text,
+                    date:
+                        new Date()
+                            .toLocaleDateString()
+                });
 
-                    showFormMessage(
-                        contactStatus,
-                        "Please enter a valid email address.",
-                        "error"
-                    );
+                reviews =
+                    reviews.slice(0, 20);
 
-                    return;
-                }
+                localStorage.setItem(
+                    "jayClassicReviews",
+                    JSON.stringify(reviews)
+                );
 
-                const mailSubject =
-                    encodeURIComponent(
-                        subject ||
-                        `Website message from ${name}`
-                    );
+                renderReviews();
 
-                const mailBody =
-                    encodeURIComponent(
-`Hello Jay,
-
-You have received a new message from your website.
-
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}`
-                    );
-
-                showFormMessage(
-                    contactStatus,
-                    "Opening your email application...",
+                showMessage(
+                    reviewMessage,
+                    "Thank you! Your review has been added.",
                     "success"
                 );
 
-                window.location.href =
-                    `mailto:emmanuelouko21@gmail.com?subject=${mailSubject}&body=${mailBody}`;
-
-                contactForm.reset();
+                reviewForm.reset();
             }
         );
     }
 
+    renderReviews();
 
-    /* =====================================================
+
+    /* ================================
        AI CHATBOT
-    ===================================================== */
-    const chatButton = $("#chatButton");
-    const chatWindow = $("#chatWindow");
-    const closeChat = $("#closeChat");
-    const chatInput = $("#chatInput");
-    const sendChat = $("#sendChat");
-    const chatMessages = $("#chatMessages");
+    ================================= */
+
+    const chatButton =
+        document.getElementById("chatButton");
+
+    const chatWindow =
+        document.getElementById("chatWindow");
+
+    const closeChat =
+        document.getElementById("closeChat");
+
+    const chatInput =
+        document.getElementById("chatInput");
+
+    const sendChat =
+        document.getElementById("sendChat");
+
+    const chatMessages =
+        document.getElementById("chatMessages");
 
     function openChat() {
 
         if (!chatWindow) return;
 
         chatWindow.classList.add("active");
-        chatWindow.classList.add("open");
 
         chatWindow.setAttribute(
             "aria-hidden",
             "false"
         );
 
-        if (chatInput) {
-            setTimeout(() => {
-                chatInput.focus();
-            }, 250);
-        }
+        setTimeout(() => {
+            chatInput?.focus();
+        }, 200);
     }
 
-    function closeChatWindow() {
+    function closeChatBox() {
 
         if (!chatWindow) return;
 
         chatWindow.classList.remove("active");
-        chatWindow.classList.remove("open");
 
         chatWindow.setAttribute(
             "aria-hidden",
@@ -786,130 +697,104 @@ ${message}`
         );
     }
 
-    if (chatButton) {
-        chatButton.addEventListener(
-            "click",
-            openChat
-        );
-    }
+    chatButton?.addEventListener(
+        "click",
+        openChat
+    );
 
-    if (closeChat) {
-        closeChat.addEventListener(
-            "click",
-            closeChatWindow
-        );
-    }
+    closeChat?.addEventListener(
+        "click",
+        closeChatBox
+    );
 
-    function addChatMessage(message, type) {
+    function addMessage(
+        message,
+        type
+    ) {
 
         if (!chatMessages) return;
 
-        const messageElement =
+        const element =
             document.createElement("div");
 
-        messageElement.className =
+        element.className =
             `chat-message ${type}`;
 
-        messageElement.textContent =
+        element.textContent =
             message;
 
         chatMessages.appendChild(
-            messageElement
+            element
         );
 
         chatMessages.scrollTop =
             chatMessages.scrollHeight;
     }
 
-    function getBotResponse(input) {
+    function botReply(input) {
 
         const text =
-            input.toLowerCase().trim();
+            input.toLowerCase();
 
         if (
             text.includes("hello") ||
             text.includes("hi") ||
             text.includes("hey")
         ) {
-            return "Hello 👋 Welcome to Jay Classic! I can help you with services, online classes, Canva, Twiva, freelancing and contact information.";
+            return "Hello 👋 Welcome to Jay Classic! How can I help you today?";
         }
 
         if (
             text.includes("service") ||
             text.includes("what do you do")
         ) {
-            return "Jay Classic provides web development, graphic design, digital marketing, freelancing support, AI tools and other digital services.";
+            return "Jay Classic offers web development, graphic design, digital marketing, freelancing support, AI tools and digital services.";
         }
 
         if (
             text.includes("freelanc") ||
             text.includes("online job")
         ) {
-            return "Jay Classic focuses on freelancing and online digital work. You can contact Jay for help with web development, design, digital marketing and other online services.";
+            return "Jay Classic focuses on freelancing and online digital opportunities. You can contact Jay for guidance or digital services.";
         }
 
         if (
             text.includes("class") ||
-            text.includes("lesson") ||
-            text.includes("9pm") ||
             text.includes("9 pm") ||
-            text.includes("training")
+            text.includes("9pm")
         ) {
-            return "The free online classes are held daily at 9:00 PM through TikTok. You can register through the registration form on this website.";
+            return "Free online classes are available daily at 9:00 PM through TikTok. You can register on the Classes section.";
         }
 
         if (text.includes("canva")) {
-            return "Canva is one of the programs featured by Jay Classic. You can learn practical graphic design and content creation skills using Canva.";
+            return "Canva is included among the digital programs. It can help you learn graphic design and content creation.";
         }
 
         if (text.includes("twiva")) {
-            return "Twiva is one of the programs featured on Jay Classic for people interested in digital opportunities and creator-focused work.";
+            return "Twiva is one of the programs featured by Jay Classic for people interested in creator and digital opportunities.";
         }
 
         if (
-            text.includes("portfolio") ||
-            text.includes("project")
+            text.includes("contact") ||
+            text.includes("email")
         ) {
-            return "You can explore Jay Classic's portfolio section to see examples of digital, web and creative work.";
+            return "You can contact Jay Classic at emmanuelouko21@gmail.com or through the WhatsApp button.";
         }
 
         if (
             text.includes("price") ||
-            text.includes("cost") ||
-            text.includes("charge") ||
-            text.includes("how much")
+            text.includes("cost")
         ) {
-            return "Pricing depends on the service and project requirements. Please contact Jay directly for a current quotation.";
+            return "Project pricing depends on the service and requirements. Contact Jay for a current quotation.";
         }
 
         if (
-            text.includes("email") ||
-            text.includes("contact")
+            text.includes("register")
         ) {
-            return "You can contact Jay Classic by email at emmanuelouko21@gmail.com or through WhatsApp using the WhatsApp button on the website.";
+            return "You can register using the registration form in the Free Online Classes section.";
         }
 
-        if (
-            text.includes("whatsapp") ||
-            text.includes("phone")
-        ) {
-            return "You can use the floating WhatsApp button on the website to contact Jay directly.";
-        }
-
-        if (
-            text.includes("register") ||
-            text.includes("registration")
-        ) {
-            return "You can register for the free online classes using the registration form in the Classes section.";
-        }
-
-        if (
-            text.includes("thank")
-        ) {
-            return "You're welcome! 😊 I'm here whenever you need help.";
-        }
-
-        return "I can help you with Jay Classic's services, freelancing, online classes, Canva, Twiva, portfolio and contact information. Try asking about one of those.";
+        return "I can help with Jay Classic services, freelancing, online classes, Canva, Twiva, portfolio and contact information.";
     }
 
     function sendMessage() {
@@ -921,136 +806,83 @@ ${message}`
 
         if (!message) return;
 
-        addChatMessage(
+        addMessage(
             message,
             "user"
         );
 
         chatInput.value = "";
 
-        // Typing indicator
-        const typing =
-            document.createElement("div");
-
-        typing.className =
-            "chat-message bot typing";
-
-        typing.textContent =
-            "Jay Classic Assistant is typing...";
-
-        if (chatMessages) {
-            chatMessages.appendChild(typing);
-
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-        }
-
         setTimeout(() => {
 
-            typing.remove();
-
-            const response =
-                getBotResponse(message);
-
-            addChatMessage(
-                response,
+            addMessage(
+                botReply(message),
                 "bot"
             );
 
-        }, 650);
+        }, 500);
     }
 
-    if (sendChat) {
-        sendChat.addEventListener(
-            "click",
-            sendMessage
-        );
-    }
+    sendChat?.addEventListener(
+        "click",
+        sendMessage
+    );
 
-    if (chatInput) {
+    chatInput?.addEventListener(
+        "keydown",
+        event => {
 
-        chatInput.addEventListener(
-            "keydown",
-            event => {
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
+                event.preventDefault();
 
-                if (
-                    event.key === "Enter" &&
-                    !event.shiftKey
-                ) {
-                    event.preventDefault();
-
-                    sendMessage();
-                }
+                sendMessage();
             }
-        );
-    }
+        }
+    );
 
 
-    /* =====================================================
-       ESCAPE KEY
-    ===================================================== */
+    /* ================================
+       ESCAPE
+    ================================= */
+
     document.addEventListener(
         "keydown",
         event => {
 
             if (event.key !== "Escape") return;
 
-            if (navbar) {
-                navbar.classList.remove("active");
-            }
+            navbar?.classList.remove(
+                "active"
+            );
 
-            if (menuToggle) {
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                const icon =
-                    menuToggle.querySelector("i");
-
-                if (icon) {
-                    icon.classList.remove(
-                        "fa-xmark"
-                    );
-
-                    icon.classList.add(
-                        "fa-bars"
-                    );
-                }
-            }
-
-            closeChatWindow();
+            closeChatBox();
         }
     );
 
 
-    /* =====================================================
-       EXTERNAL LINKS
-    ===================================================== */
-    $$('a[href^="http"]').forEach(link => {
+    /* ================================
+       CURRENT YEAR
+    ================================= */
 
-        if (
-            !link.href.includes(
-                window.location.hostname
-            )
-        ) {
-            link.setAttribute(
-                "target",
-                "_blank"
-            );
+    const year =
+        document.getElementById(
+            "currentYear"
+        );
 
-            link.setAttribute(
-                "rel",
-                "noopener noreferrer"
-            );
-        }
-    });
+    if (year) {
+        year.textContent =
+            new Date().getFullYear();
+    }
 
 
-    /* =====================================================
-       FORM MESSAGE HELPER
-    ===================================================== */
-    function showFormMessage(
+    /* ================================
+       HELPER
+    ================================= */
+
+    function showMessage(
         element,
         message,
         type
@@ -1060,185 +892,27 @@ ${message}`
 
         element.textContent = message;
 
-        element.classList.remove(
-            "success",
-            "error"
-        );
-
-        element.classList.add(type);
+        element.className =
+            `form-message ${type}`;
 
         element.style.opacity = "1";
 
         setTimeout(() => {
-
             element.style.opacity = "0";
-
-        }, 6000);
+        }, 5000);
     }
 
 
-    /* =====================================================
-       EMAIL VALIDATION
-    ===================================================== */
-    function isValidEmail(email) {
+    /* ================================
+       PAGE READY
+    ================================= */
 
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            .test(email);
-    }
-
-
-    /* =====================================================
-       CURRENT YEAR
-    ===================================================== */
-    const currentYear =
-        $("#currentYear");
-
-    if (currentYear) {
-        currentYear.textContent =
-            new Date().getFullYear();
-    }
-
-
-    /* =====================================================
-       HERO PARALLAX EFFECT
-    ===================================================== */
-    const heroCard = $(".hero-card");
-
-    if (heroCard && window.innerWidth > 768) {
-
-        document.addEventListener(
-            "mousemove",
-            event => {
-
-                const x =
-                    (window.innerWidth / 2 -
-                    event.clientX) / 60;
-
-                const y =
-                    (window.innerHeight / 2 -
-                    event.clientY) / 60;
-
-                heroCard.style.transform =
-                    `perspective(1000px)
-                     rotateY(${-x}deg)
-                     rotateX(${y}deg)
-                     translateY(0)`;
-            }
-        );
-    }
-
-
-    /* =====================================================
-       SERVICE CARD HOVER EFFECT
-    ===================================================== */
-    $$(".service-card, .program-card").forEach(card => {
-
-        card.addEventListener(
-            "mouseenter",
-            () => {
-
-                card.style.transform =
-                    "translateY(-8px)";
-            }
-        );
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.style.transform =
-                    "";
-            }
-        );
-    });
-
-
-    /* =====================================================
-       TYPING EFFECT FOR HERO
-    ===================================================== */
-    const typingText =
-        $(".typing-text");
-
-    if (typingText) {
-
-        const words = [
-            "Freelancer",
-            "Web Developer",
-            "Graphic Designer",
-            "Digital Marketer",
-            "AI Tools Specialist"
-        ];
-
-        let wordIndex = 0;
-        let charIndex = 0;
-        let deleting = false;
-
-        function typeEffect() {
-
-            const currentWord =
-                words[wordIndex];
-
-            if (!deleting) {
-
-                typingText.textContent =
-                    currentWord.substring(
-                        0,
-                        charIndex + 1
-                    );
-
-                charIndex++;
-
-                if (
-                    charIndex ===
-                    currentWord.length
-                ) {
-                    deleting = true;
-
-                    setTimeout(
-                        typeEffect,
-                        1500
-                    );
-
-                    return;
-                }
-
-            } else {
-
-                typingText.textContent =
-                    currentWord.substring(
-                        0,
-                        charIndex - 1
-                    );
-
-                charIndex--;
-
-                if (charIndex === 0) {
-
-                    deleting = false;
-
-                    wordIndex =
-                        (wordIndex + 1) %
-                        words.length;
-                }
-            }
-
-            setTimeout(
-                typeEffect,
-                deleting ? 55 : 90
-            );
-        }
-
-        typeEffect();
-    }
-
-
-    /* =====================================================
-       PAGE LOADED
-    ===================================================== */
-    document.body.classList.add("page-loaded");
+    document.body.classList.add(
+        "page-loaded"
+    );
 
     console.log(
-        "Jay Classic website loaded successfully 🚀"
+        "Jay Classic — Website Ready 🚀"
     );
 
 });
